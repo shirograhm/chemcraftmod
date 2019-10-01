@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "cCc",
+    "ccc"
+  ],
+  "key": {
+    "c": {
+      "item": "chemcraftmod:carbon"
+    },
+    "C": {
+      "item": "chemcraftmod:construction_token",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "minecraft:coal",
+    "count": 2
+  }
+}

@@ -3,11 +3,12 @@ package solitudetraveler.chemcraftmod.item;
 import net.minecraft.item.Item;
 
 public class ItemList {
-
-    public static Item constructor;
-
+    // Blocks
     public static Item dolomite;
-
+    // Items
+    public static Item deconstruction_token;
+    public static Item construction_token;
+    // Elements
     public static Item hydrogen;
     public static Item helium;
     public static Item lithium;

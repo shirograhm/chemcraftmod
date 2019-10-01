@@ -1,13 +1,11 @@
 package solitudetraveler.chemcraftmod;
 
-import com.mojang.datafixers.DataFixer;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -23,15 +21,16 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.block.ConstructorBlock;
 import solitudetraveler.chemcraftmod.creativetab.BlocksItemGroup;
 import solitudetraveler.chemcraftmod.creativetab.ElementItemGroup;
+import solitudetraveler.chemcraftmod.creativetab.ToolsItemGroup;
 import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
+import solitudetraveler.chemcraftmod.item.DamageableItem;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 import solitudetraveler.chemcraftmod.item.ItemList;
-import solitudetraveler.chemcraftmod.tileentity.ConstructorTE;
 
+import javax.tools.Tool;
 import java.util.Objects;
 
 @Mod("chemcraftmod")
@@ -43,7 +42,7 @@ public class ChemCraftMod {
 
     public static final ItemGroup elementsGroup = new ElementItemGroup();
     public static final ItemGroup blocksGroup = new BlocksItemGroup();
-
+    public static final ItemGroup toolsGroup = new ToolsItemGroup();
 
     public ChemCraftMod() {
         instance = this;
@@ -78,9 +77,10 @@ public class ChemCraftMod {
             event.getRegistry().registerAll(
                     // Blocks
                     ItemList.dolomite = new BlockItem(BlockList.dolomite, BlockList.blockProps).setRegistryName(Objects.requireNonNull(BlockList.dolomite.getRegistryName())),
-                    // Tile Entities
-                    ItemList.constructor = new BlockItem(BlockList.constructor, BlockList.blockProps).setRegistryName(Objects.requireNonNull(BlockList.constructor.getRegistryName())),
                     // Items
+                    ItemList.deconstruction_token = new DamageableItem().setRegistryName(location("deconstruction_token")),
+                    ItemList.construction_token = new DamageableItem().setRegistryName(location("construction_token")),
+                    // Elements
                     ItemList.hydrogen = new ElementItem(1).setRegistryName(location("hydrogen")),
                     ItemList.helium = new ElementItem(2).setRegistryName(location("helium")),
                     ItemList.lithium = new ElementItem(3).setRegistryName(location("lithium")),
@@ -118,18 +118,10 @@ public class ChemCraftMod {
                     BlockList.dolomite = new Block(Block.Properties.create(Material.ROCK)
                             .hardnessAndResistance(2.6f, 4.4f)
                             .lightValue(0)
-                            .sound(SoundType.STONE)).setRegistryName(location("dolomite")),
-
-                    BlockList.constructor = new ConstructorBlock()
-
+                            .sound(SoundType.STONE)).setRegistryName(location("dolomite"))
             );
 
             logger.info("Blocks registered!");
-        }
-
-        @SubscribeEvent
-        public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
-            event.getRegistry().register(TileEntityType.Builder.create(ConstructorTE::new, BlockList.constructor).build(null).setRegistryName("constructor"));
         }
 
         private static ResourceLocation location(String name) {
