@@ -11,7 +11,7 @@ loaderVersion="[28,)" #mandatory (28 is current forge version)
 issueTrackerURL="http://my.issue.tracker/" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
-# The modid of the mod
+# The MODID of the mod
 modId="chemcraftmod" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="${file.jarVersion}" #mandatory
@@ -31,9 +31,9 @@ authors="SolitudeTraveler" #optional
 description='''
 A mod for minecraft chemist gamers.
 '''
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+# A dependency - use the . to indicate dependency for a specific MODID. Dependencies are optional.
 [[dependencies.examplemod]] #optional
-    # the modid of the dependency
+    # the MODID of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory

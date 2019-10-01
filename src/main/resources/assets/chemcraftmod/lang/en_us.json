@@ -2,5 +2,32 @@
   "block.chemcraftmod.dolomite": "Dolomite",
 
   "item.chemcraftmod.hydrogen": "Hydrogen",
-  "item.chemcraftmod.helium": "Helium"
+  "item.chemcraftmod.helium": "Helium",
+  "item.chemcraftmod.lithium": "Lithium",
+  "item.chemcraftmod.beryllium": "Beryllium",
+  "item.chemcraftmod.boron": "Boron",
+  "item.chemcraftmod.carbon": "Carbon",
+  "item.chemcraftmod.nitrogen": "Nitrogen",
+  "item.chemcraftmod.oxygen": "Oxygen",
+  "item.chemcraftmod.fluorine": "Fluorine",
+  "item.chemcraftmod.neon": "Neon",
+  "item.chemcraftmod.sodium": "Sodium",
+  "item.chemcraftmod.magnesium": "Magnesium",
+  "item.chemcraftmod.aluminium": "Aluminium",
+  "item.chemcraftmod.silicon": "Silicon",
+  "item.chemcraftmod.phosphorus": "Phosphorus",
+  "item.chemcraftmod.sulphur": "Sulphur",
+  "item.chemcraftmod.chlorine": "Chlorine",
+  "item.chemcraftmod.argon": "Argon",
+  "item.chemcraftmod.potassium": "Potassium",
+  "item.chemcraftmod.calcium": "Calcium",
+  "item.chemcraftmod.scandium": "Scandium",
+  "item.chemcraftmod.titanium": "Titanium",
+  "item.chemcraftmod.vanadium": "Vanadium",
+  "item.chemcraftmod.chromium": "Chromium",
+  "item.chemcraftmod.manganese": "Manganese",
+  "item.chemcraftmod.iron": "Iron",
+
+  "itemGroup.elementsGroup": "ChemCraft Elements",
+  "itemGroup.blocksGroup": "ChemCraft Blocks"
 }
