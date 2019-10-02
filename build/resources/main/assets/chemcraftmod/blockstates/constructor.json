@@ -1,10 +1,7 @@
 {
   "variants": {
-    "facing=north": { "model": "chemcraftmod:block/constructor" },
-    "facing=south": { "model": "chemcraftmod:block/constructor", "y": 180 },
-    "facing=west": { "model": "chemcraftmod:block/constructor", "y": 270 },
-    "facing=east": { "model": "chemcraftmod:block/constructor", "y": 90 },
-    "facing=up": { "model": "chemcraftmod:block/constructor", "x": -90 },
-    "facing=down": { "model": "chemcraftmod:block/constructor", "x": 90 }
+    "": {
+      "model": "chemcraftmod:block/constructor"
+    }
   }
 }

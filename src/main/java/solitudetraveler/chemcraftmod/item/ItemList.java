@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 public class ItemList {
     // Blocks
     public static Item dolomite;
+    public static Item constructor;
     // Items
     // Elements
     public static Item hydrogen;

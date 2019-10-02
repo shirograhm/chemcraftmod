@@ -3,13 +3,19 @@ package solitudetraveler.chemcraftmod;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -20,21 +26,29 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.ConstructorBlock;
+import solitudetraveler.chemcraftmod.container.ConstructorContainer;
 import solitudetraveler.chemcraftmod.creativetab.BlocksItemGroup;
 import solitudetraveler.chemcraftmod.creativetab.ElementItemGroup;
 import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 import solitudetraveler.chemcraftmod.item.ItemList;
+import solitudetraveler.chemcraftmod.proxy.ClientProxy;
+import solitudetraveler.chemcraftmod.proxy.IProxy;
+import solitudetraveler.chemcraftmod.proxy.ServerProxy;
+import solitudetraveler.chemcraftmod.tileentity.ConstructorTileEntity;
 
 import java.util.Objects;
 
 @Mod("chemcraftmod")
 public class ChemCraftMod {
 
+    public static final String MODID = "chemcraftmod";
+
     private static ChemCraftMod instance;
-    private static final String MODID = "chemcraftmod";
     private static final Logger logger = LogManager.getLogger(MODID);
+    private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static final ItemGroup elementsGroup = new ElementItemGroup();
     public static final ItemGroup blocksGroup = new BlocksItemGroup();
@@ -71,7 +85,8 @@ public class ChemCraftMod {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             event.getRegistry().registerAll(
                     // Blocks
-                    ItemList.dolomite = new BlockItem(BlockList.dolomite, BlockList.blockProps).setRegistryName(Objects.requireNonNull(BlockList.dolomite.getRegistryName())),
+                    ItemList.dolomite = new BlockItem(BlockList.dolomite, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.dolomite.getRegistryName())),
+                    ItemList.constructor = new BlockItem(BlockList.constructor, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.constructor.getRegistryName())),
                     // Items
                     // Elements
                     ItemList.hydrogen = new ElementItem(1).setRegistryName(location("hydrogen")),
@@ -200,13 +215,29 @@ public class ChemCraftMod {
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
             Block.Properties rockProps = Block.Properties.create(Material.ROCK).lightValue(0).sound(SoundType.STONE);
-            Block.Properties machineProps = Block.Properties.create(Material.IRON).lightValue(0).sound(SoundType.METAL);
+            Block.Properties machineProps = Block.Properties.create(Material.IRON).lightValue(0).sound(SoundType.METAL).hardnessAndResistance(4.5f);
 
             event.getRegistry().registerAll(
-                    BlockList.dolomite = new Block(rockProps.hardnessAndResistance(2.6f, 4.4f)).setRegistryName(location("dolomite"))
+                    BlockList.dolomite = new Block(rockProps.hardnessAndResistance(2.6f, 4.4f)).setRegistryName(location("dolomite")),
+                    BlockList.constructor = new ConstructorBlock(machineProps).setRegistryName(location("constructor"))
             );
 
             logger.info("Blocks registered!");
+        }
+
+        @SubscribeEvent
+        public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
+            event.getRegistry().registerAll(
+                    TileEntityType.Builder.create(ConstructorTileEntity::new, BlockList.constructor).build(null).setRegistryName(location("constructor"))
+            );
+        }
+
+        @SubscribeEvent
+        public static void registerContainers(final RegistryEvent.Register<ContainerType<?>> event) {
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new ConstructorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
+            }).setRegistryName(location("constructor")));
         }
 
 

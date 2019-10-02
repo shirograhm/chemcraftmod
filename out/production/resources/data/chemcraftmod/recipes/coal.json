@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "c c",
+    "ccc"
+  ],
+  "key": {
+    "c": {
+      "item": "chemcraftmod:carbon"
+    }
+  },
+  "result": {
+    "item": "minecraft:coal",
+    "count": 2
+  }
+}
