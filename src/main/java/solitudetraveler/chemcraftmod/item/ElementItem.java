@@ -24,8 +24,8 @@ public class ElementItem extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag) {
-        list.add(new TextComponent() {
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        tooltip.add(new TextComponent() {
             @Override
             public String getUnformattedComponentText() {
                 return "Element number " + aNum + ".";
