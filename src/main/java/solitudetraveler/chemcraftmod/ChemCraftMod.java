@@ -16,21 +16,17 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.creativetab.BlocksItemGroup;
 import solitudetraveler.chemcraftmod.creativetab.ElementItemGroup;
-import solitudetraveler.chemcraftmod.creativetab.ToolsItemGroup;
 import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
-import solitudetraveler.chemcraftmod.item.DamageableItem;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 import solitudetraveler.chemcraftmod.item.ItemList;
 
-import javax.tools.Tool;
 import java.util.Objects;
 
 @Mod("chemcraftmod")
@@ -42,7 +38,6 @@ public class ChemCraftMod {
 
     public static final ItemGroup elementsGroup = new ElementItemGroup();
     public static final ItemGroup blocksGroup = new BlocksItemGroup();
-    public static final ItemGroup toolsGroup = new ToolsItemGroup();
 
     public ChemCraftMod() {
         instance = this;
@@ -78,8 +73,6 @@ public class ChemCraftMod {
                     // Blocks
                     ItemList.dolomite = new BlockItem(BlockList.dolomite, BlockList.blockProps).setRegistryName(Objects.requireNonNull(BlockList.dolomite.getRegistryName())),
                     // Items
-                    ItemList.deconstruction_token = new DamageableItem().setRegistryName(location("deconstruction_token")),
-                    ItemList.construction_token = new DamageableItem().setRegistryName(location("construction_token")),
                     // Elements
                     ItemList.hydrogen = new ElementItem(1).setRegistryName(location("hydrogen")),
                     ItemList.helium = new ElementItem(2).setRegistryName(location("helium")),
@@ -207,6 +200,7 @@ public class ChemCraftMod {
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
             Block.Properties rockProps = Block.Properties.create(Material.ROCK).lightValue(0).sound(SoundType.STONE);
+            Block.Properties machineProps = Block.Properties.create(Material.IRON).lightValue(0).sound(SoundType.METAL);
 
             event.getRegistry().registerAll(
                     BlockList.dolomite = new Block(rockProps.hardnessAndResistance(2.6f, 4.4f)).setRegistryName(location("dolomite"))
@@ -214,6 +208,7 @@ public class ChemCraftMod {
 
             logger.info("Blocks registered!");
         }
+
 
         private static ResourceLocation location(String name) {
             return new ResourceLocation(MODID, name);

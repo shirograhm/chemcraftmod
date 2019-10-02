@@ -6,8 +6,6 @@ public class ItemList {
     // Blocks
     public static Item dolomite;
     // Items
-    public static Item deconstruction_token;
-    public static Item construction_token;
     // Elements
     public static Item hydrogen;
     public static Item helium;

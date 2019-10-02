@@ -2,16 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ccc",
-    "cCc",
+    "c c",
     "ccc"
   ],
   "key": {
     "c": {
       "item": "chemcraftmod:carbon"
-    },
-    "C": {
-      "item": "chemcraftmod:construction_token",
-      "data": 0
     }
   },
   "result": {
