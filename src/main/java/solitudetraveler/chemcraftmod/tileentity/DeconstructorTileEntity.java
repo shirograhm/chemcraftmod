@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -18,18 +19,17 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.container.ConstructorContainer;
-import solitudetraveler.chemcraftmod.item.ElementItem;
+import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ConstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public class DeconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
-    public ConstructorTileEntity() {
-        super(BlockList.CONSTRUCTOR_TILE_TYPE);
+    public DeconstructorTileEntity() {
+        super(BlockList.DECONSTRUCTOR_TILE_TYPE);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
     }
 
     private final IItemHandler createHandler() {
-        return new ItemStackHandler(10) {
+        return new ItemStackHandler(8) {
             @Override
             protected void onContentsChanged(int slot) {
                 markDirty();
@@ -62,8 +62,11 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if(slot >= 0 && slot < 9) {
-                    return stack.getItem() instanceof ElementItem;
+                if(slot == 0) {
+                    return true;
+                }
+                if(slot == 1) {
+                    return stack.getItem() == Items.REDSTONE;
                 }
                 return false;
             }
@@ -71,9 +74,6 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if(!(stack.getItem() instanceof ElementItem)) {
-                    return stack;
-                }
                 return super.insertItem(slot, stack, simulate);
             }
         };
@@ -96,6 +96,6 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
     @Nullable
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ConstructorContainer(i, world, pos, playerInventory, playerEntity);
+        return new DeconstructorContainer(i, world, pos, playerInventory, playerEntity);
     }
 }

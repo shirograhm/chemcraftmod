@@ -27,7 +27,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.block.ConstructorBlock;
+import solitudetraveler.chemcraftmod.block.DeconstructorBlock;
 import solitudetraveler.chemcraftmod.container.ConstructorContainer;
+import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.creativetab.BlocksItemGroup;
 import solitudetraveler.chemcraftmod.creativetab.ElementItemGroup;
 import solitudetraveler.chemcraftmod.generation.Config;
@@ -38,6 +40,7 @@ import solitudetraveler.chemcraftmod.proxy.ClientProxy;
 import solitudetraveler.chemcraftmod.proxy.IProxy;
 import solitudetraveler.chemcraftmod.proxy.ServerProxy;
 import solitudetraveler.chemcraftmod.tileentity.ConstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 
 import java.util.Objects;
 
@@ -69,6 +72,7 @@ public class ChemCraftMod {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        proxy.init();
         OreGeneration.setupOreGeneration();
 
         logger.info("Setup method registered!");
@@ -87,6 +91,7 @@ public class ChemCraftMod {
                     // Blocks
                     ItemList.dolomite = new BlockItem(BlockList.dolomite, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.dolomite.getRegistryName())),
                     ItemList.constructor = new BlockItem(BlockList.constructor, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.constructor.getRegistryName())),
+                    ItemList.deconstructor = new BlockItem(BlockList.deconstructor, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
                     // Items
                     // Elements
                     ItemList.hydrogen = new ElementItem(1).setRegistryName(location("hydrogen")),
@@ -219,7 +224,8 @@ public class ChemCraftMod {
 
             event.getRegistry().registerAll(
                     BlockList.dolomite = new Block(rockProps.hardnessAndResistance(2.6f, 4.4f)).setRegistryName(location("dolomite")),
-                    BlockList.constructor = new ConstructorBlock(machineProps).setRegistryName(location("constructor"))
+                    BlockList.constructor = new ConstructorBlock(machineProps).setRegistryName(location("constructor")),
+                    BlockList.deconstructor = new DeconstructorBlock(machineProps).setRegistryName(location("deconstructor"))
             );
 
             logger.info("Blocks registered!");
@@ -228,16 +234,23 @@ public class ChemCraftMod {
         @SubscribeEvent
         public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
             event.getRegistry().registerAll(
-                    TileEntityType.Builder.create(ConstructorTileEntity::new, BlockList.constructor).build(null).setRegistryName(location("constructor"))
+                    TileEntityType.Builder.create(ConstructorTileEntity::new, BlockList.constructor).build(null).setRegistryName(location("constructor")),
+                    TileEntityType.Builder.create(DeconstructorTileEntity::new, BlockList.deconstructor).build(null).setRegistryName(location("deconstructor"))
             );
         }
 
         @SubscribeEvent
         public static void registerContainers(final RegistryEvent.Register<ContainerType<?>> event) {
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+            ContainerType constructor_container = IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new ConstructorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
-            }).setRegistryName(location("constructor")));
+            }).setRegistryName(location("constructor"));
+            ContainerType deconstructor_container = IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new DeconstructorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
+            }).setRegistryName(location("deconstructor"));
+
+            event.getRegistry().registerAll(constructor_container, deconstructor_container);
         }
 
 

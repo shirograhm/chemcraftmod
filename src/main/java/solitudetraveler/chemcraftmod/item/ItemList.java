@@ -6,6 +6,7 @@ public class ItemList {
     // Blocks
     public static Item dolomite;
     public static Item constructor;
+    public static Item deconstructor;
     // Items
     // Elements
     public static Item hydrogen;

@@ -3,7 +3,6 @@ package solitudetraveler.chemcraftmod.container;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -20,14 +19,14 @@ import solitudetraveler.chemcraftmod.item.ElementItem;
 
 import java.util.Objects;
 
-public class ConstructorContainer extends Container {
+public class DeconstructorContainer extends Container {
 
     private TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
-    public ConstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.CONSTRUCTOR_CONTAINER, id);
+    public DeconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
+        super(BlockList.DECONSTRUCTOR_CONTAINER, id);
 
         tileEntity = world.getTileEntity(pos);
         playerEntity = player;
@@ -35,17 +34,15 @@ public class ConstructorContainer extends Container {
 
         if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 30, 17));
-                addSlot(new SlotItemHandler(h, 1, 30, 35));
-                addSlot(new SlotItemHandler(h, 2, 30, 53));
-                addSlot(new SlotItemHandler(h, 3, 48, 17));
-                addSlot(new SlotItemHandler(h, 4, 48, 35));
-                addSlot(new SlotItemHandler(h, 5, 48, 53));
-                addSlot(new SlotItemHandler(h, 6, 66, 17));
-                addSlot(new SlotItemHandler(h, 7, 66, 35));
-                addSlot(new SlotItemHandler(h, 8, 66, 53));
+                addSlot(new SlotItemHandler(h, 0, 44, 17));
+                addSlot(new SlotItemHandler(h, 1, 44, 53));
 
-                addSlot(new SlotItemHandler(h, 9, 124, 35));
+                addSlot(new SlotItemHandler(h, 2, 98, 17));
+                addSlot(new SlotItemHandler(h, 3, 98, 35));
+                addSlot(new SlotItemHandler(h, 4, 98, 53));
+                addSlot(new SlotItemHandler(h, 5, 116, 17));
+                addSlot(new SlotItemHandler(h, 6, 116, 35));
+                addSlot(new SlotItemHandler(h, 7, 116, 53));
             });
         }
         layoutPlayerInventorySlots(8, 84);
@@ -53,7 +50,7 @@ public class ConstructorContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerIn, BlockList.constructor);
+        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.deconstructor);
     }
 
     @Override
@@ -65,20 +62,20 @@ public class ConstructorContainer extends Container {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
             if(index == 0) {
-                if(!this.mergeItemStack(stack, 10, 46, true)) {
+                if(!this.mergeItemStack(stack, 8, 44, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(stack.getItem() instanceof ElementItem) {
-                    if(!this.mergeItemStack(stack, 0, 9, false)) {
+                if(stack.getItem() == Items.REDSTONE) {
+                    if(!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if(index < 37) {
-                    if(!this.mergeItemStack(stack, 37, 46, false)) {
+                    if(!this.mergeItemStack(stack, 35, 44, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < 46 && !this.mergeItemStack(stack, 10, 36, false)) {
+                } else if(index < 46 && !this.mergeItemStack(stack, 8, 35, false)) {
                     return ItemStack.EMPTY;
                 }
             }
@@ -95,7 +92,6 @@ public class ConstructorContainer extends Container {
         }
         return itemStack;
     }
-
 
     private void layoutPlayerInventorySlots(int leftCol, int topRow) {
         // Player inventory

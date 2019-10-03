@@ -1,6 +1,7 @@
 {
   "block.chemcraftmod.dolomite": "Dolomite",
   "block.chemcraftmod.constructor": "Constructor",
+  "block.chemcraftmod.deconstructor": "Deconstructor",
 
 
   "item.chemcraftmod.hydrogen": "Hydrogen",

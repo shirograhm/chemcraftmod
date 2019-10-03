@@ -6,12 +6,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.ConstructorScreen;
+import solitudetraveler.chemcraftmod.container.DeconstructorScreen;
 
 public class ClientProxy implements IProxy {
 
     @Override
     public void init() {
         ScreenManager.registerFactory(BlockList.CONSTRUCTOR_CONTAINER, ConstructorScreen::new);
+        ScreenManager.registerFactory(BlockList.DECONSTRUCTOR_CONTAINER, DeconstructorScreen::new);
     }
 
     @Override
