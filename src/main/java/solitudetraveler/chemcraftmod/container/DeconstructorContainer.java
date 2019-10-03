@@ -15,7 +15,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.item.ElementItem;
 
 import java.util.Objects;
 

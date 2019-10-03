@@ -7,13 +7,18 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.ChemCraftMod;
+import solitudetraveler.chemcraftmod.tileentity.ConstructorTileEntity;
 
 public class ConstructorScreen extends ContainerScreen<ConstructorContainer> {
 
     private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MODID, "textures/gui/constructor_gui.png");
 
+    private ConstructorTileEntity constructorTE;
+
     public ConstructorScreen(ConstructorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
+
+        constructorTE = (ConstructorTileEntity) screenContainer.tileEntity;
     }
 
     @Override
@@ -36,6 +41,11 @@ public class ConstructorScreen extends ContainerScreen<ConstructorContainer> {
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
+
+        if(constructorTE.isConstructing()) {
+            int k = (int) (constructorTE.getConstructionTimeScaled() * 13);
+            this.blit(relX + 89, relY + 33, 176, 14, k + 1, 16);
+        }
     }
 
 }

@@ -10,7 +10,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
@@ -237,6 +236,8 @@ public class ChemCraftMod {
                     TileEntityType.Builder.create(ConstructorTileEntity::new, BlockList.constructor).build(null).setRegistryName(location("constructor")),
                     TileEntityType.Builder.create(DeconstructorTileEntity::new, BlockList.deconstructor).build(null).setRegistryName(location("deconstructor"))
             );
+
+            logger.info("Tile entities registered!");
         }
 
         @SubscribeEvent
@@ -251,6 +252,8 @@ public class ChemCraftMod {
             }).setRegistryName(location("deconstructor"));
 
             event.getRegistry().registerAll(constructor_container, deconstructor_container);
+
+            logger.info("Containers registered!");
         }
 
 

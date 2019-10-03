@@ -3,10 +3,8 @@ package solitudetraveler.chemcraftmod.container;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
@@ -16,13 +14,12 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.item.ElementItem;
 
 import java.util.Objects;
 
 public class ConstructorContainer extends Container {
 
-    private TileEntity tileEntity;
+    TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
@@ -64,17 +61,13 @@ public class ConstructorContainer extends Container {
         if(slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
-            if(index == 0) {
-                if(!this.mergeItemStack(stack, 10, 46, true)) {
+            if(index < 10) {
+                if(!this.mergeItemStack(stack, 10, 46, false)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(stack.getItem() instanceof ElementItem) {
-                    if(!this.mergeItemStack(stack, 0, 9, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if(index < 37) {
+                if(index < 37) {
                     if(!this.mergeItemStack(stack, 37, 46, false)) {
                         return ItemStack.EMPTY;
                     }
