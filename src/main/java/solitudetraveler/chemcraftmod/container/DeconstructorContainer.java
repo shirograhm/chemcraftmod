@@ -5,7 +5,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +14,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
 
 import java.util.Objects;
 
@@ -66,7 +66,7 @@ public class DeconstructorContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(stack.getItem() == Items.REDSTONE) {
+                if(DeconstructorRecipeHandler.isValidFuelItem(stack.getItem())) {
                     if(!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }

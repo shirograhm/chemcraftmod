@@ -12,7 +12,7 @@ public class DeconstructorRecipeHandler {
     private static ArrayList<Item> inputs = new ArrayList<>();
     private static ArrayList<ItemStack[]> outputs = new ArrayList<>();
 
-    private static ItemStack[] emptyOutput = new ItemStack[] {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY};
+    public static ItemStack[] emptyOutput = new ItemStack[] {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY};
 
     static {
         addRecipe(Items.COAL, new ItemStack[] {new ItemStack(ItemList.carbon, 6), new ItemStack(ItemList.oxygen, 1), new ItemStack(ItemList.hydrogen, 1),
@@ -32,5 +32,24 @@ public class DeconstructorRecipeHandler {
         }
 
         return emptyOutput;
+    }
+
+    public static boolean isValidFuelItem(Item item) {
+        return getFuelTimeForItem(item) > 0;
+    }
+
+    public static int getFuelTimeForItem(Item item) {
+        if(item == Items.REDSTONE) return 100;
+        if(item == Items.REDSTONE_BLOCK) return 900;
+
+        return 0;
+    }
+
+    public static boolean outputNotEmpty(ItemStack[] out) {
+        for(ItemStack is : out) {
+            if(!is.isEmpty()) return true;
+        }
+
+        return false;
     }
 }

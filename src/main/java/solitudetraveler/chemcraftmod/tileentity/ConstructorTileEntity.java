@@ -7,6 +7,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.IntNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -72,25 +73,22 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
 
     @Override
     public void tick() {
-        if(world.isRemote) {
-           return;
-        }
+        if(world.isRemote) return;
 
-        ItemStack out = ItemStack.EMPTY;
+        Item[] inputArray = new Item[]{
+                this.inventory.extractItem(0, 1, true).getItem(),
+                this.inventory.extractItem(1, 1, true).getItem(),
+                this.inventory.extractItem(2, 1, true).getItem(),
+                this.inventory.extractItem(3, 1, true).getItem(),
+                this.inventory.extractItem(4, 1, true).getItem(),
+                this.inventory.extractItem(5, 1, true).getItem(),
+                this.inventory.extractItem(6, 1, true).getItem(),
+                this.inventory.extractItem(7, 1, true).getItem(),
+                this.inventory.extractItem(8, 1, true).getItem()
+        };
 
         if(!isConstructing) {
-            Item[] inputArray = new Item[]{
-                    this.inventory.extractItem(0, 1, true).getItem(),
-                    this.inventory.extractItem(1, 1, true).getItem(),
-                    this.inventory.extractItem(2, 1, true).getItem(),
-                    this.inventory.extractItem(3, 1, true).getItem(),
-                    this.inventory.extractItem(4, 1, true).getItem(),
-                    this.inventory.extractItem(5, 1, true).getItem(),
-                    this.inventory.extractItem(6, 1, true).getItem(),
-                    this.inventory.extractItem(7, 1, true).getItem(),
-                    this.inventory.extractItem(8, 1, true).getItem()
-            };
-            out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
+            ItemStack out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
 
             if(out != ItemStack.EMPTY) {
                 constructionTimeLeft = CONSTRUCTION_TIME;
@@ -101,6 +99,8 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         }
 
         if(isConstructing) {
+            ItemStack out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
+
             if(constructionTimeLeft > 0) {
                 constructionTimeLeft--;
                 System.out.println("Time left: " + constructionTimeLeft);
@@ -128,6 +128,8 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
     public void read(CompoundNBT tag) {
         CompoundNBT compoundNBT = tag.getCompound("inv");
         inventoryHandler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(compoundNBT));
+        this.constructionTimeLeft = tag.getInt("timeLeft");
+        this.isConstructing = (tag.getInt("isConstructing") == 0);
         super.read(tag);
     }
 
@@ -136,6 +138,9 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         inventoryHandler.ifPresent(h -> {
             CompoundNBT compoundNBT = ((INBTSerializable<CompoundNBT>) h).serializeNBT();
             tag.put("inv", compoundNBT);
+            tag.put("timeLeft",  new IntNBT(constructionTimeLeft));
+            tag.put("isConstructing", new IntNBT(isConstructing ? 0 : 1));
+
         });
         return super.write(tag);
     }
