@@ -11,7 +11,7 @@ import solitudetraveler.chemcraftmod.tileentity.ConstructorTileEntity;
 
 public class ConstructorScreen extends ContainerScreen<ConstructorContainer> {
 
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MODID, "textures/gui/constructor_gui.png");
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/constructor_gui.png");
 
     private ConstructorTileEntity constructorTE;
 
@@ -43,9 +43,8 @@ public class ConstructorScreen extends ContainerScreen<ConstructorContainer> {
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
         if(constructorTE.isConstructing()) {
-            int k = (int) (constructorTE.getConstructionTimeScaled() * 13);
-            this.blit(relX + 89, relY + 33, 176, 14, k + 1, 16);
+            int k = (int) (constructorTE.getConstructionTimeScaled() * 23);
+            this.blit(relX + 89, relY + 33, 176, 0, k + 1, 16);
         }
     }
-
 }

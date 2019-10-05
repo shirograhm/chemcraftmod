@@ -16,6 +16,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 
 public class DeconstructorContainer extends Container {
@@ -48,10 +49,11 @@ public class DeconstructorContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
+    public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
         return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.deconstructor);
     }
 
+    @Nonnull
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
@@ -96,7 +98,7 @@ public class DeconstructorContainer extends Container {
         // Player inventory
         addSlotBox(playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
 
-        // Hotbar
+        // Hot bar
         topRow += 58;
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }

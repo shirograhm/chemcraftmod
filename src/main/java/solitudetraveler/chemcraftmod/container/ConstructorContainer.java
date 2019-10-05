@@ -15,6 +15,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 
 public class ConstructorContainer extends Container {
@@ -33,26 +34,27 @@ public class ConstructorContainer extends Container {
         if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
                 addSlot(new SlotItemHandler(h, 0, 30, 17));
-                addSlot(new SlotItemHandler(h, 1, 30, 35));
-                addSlot(new SlotItemHandler(h, 2, 30, 53));
-                addSlot(new SlotItemHandler(h, 3, 48, 17));
+                addSlot(new SlotItemHandler(h, 1, 48, 17));
+                addSlot(new SlotItemHandler(h, 2, 66, 17));
+                addSlot(new SlotItemHandler(h, 3, 30, 35));
                 addSlot(new SlotItemHandler(h, 4, 48, 35));
-                addSlot(new SlotItemHandler(h, 5, 48, 53));
-                addSlot(new SlotItemHandler(h, 6, 66, 17));
-                addSlot(new SlotItemHandler(h, 7, 66, 35));
+                addSlot(new SlotItemHandler(h, 5, 66, 35));
+                addSlot(new SlotItemHandler(h, 6, 30, 53));
+                addSlot(new SlotItemHandler(h, 7, 48, 53));
                 addSlot(new SlotItemHandler(h, 8, 66, 53));
 
                 addSlot(new SlotItemHandler(h, 9, 124, 35));
             });
         }
-        layoutPlayerInventorySlots(8, 84);
+        layoutPlayerInventorySlots();
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
+    public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
         return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerIn, BlockList.constructor);
     }
 
+    @Nonnull
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
@@ -90,28 +92,31 @@ public class ConstructorContainer extends Container {
     }
 
 
-    private void layoutPlayerInventorySlots(int leftCol, int topRow) {
+    private void layoutPlayerInventorySlots() {
         // Player inventory
-        addSlotBox(playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
+        addSlotBox(playerInventory);
 
-        // Hotbar
-        topRow += 58;
-        addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
+        addSlotRange(playerInventory, 0, 142);
     }
 
-    private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
-        for (int i = 0 ; i < amount ; i++) {
+    private int addSlotRange(IItemHandler handler, int index, int y) {
+        int x = 8;
+
+        for (int i = 0; i < 9; i++) {
             addSlot(new SlotItemHandler(handler, index, x, y));
-            x += dx;
+            x += 18;
             index++;
         }
         return index;
     }
 
-    private int addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
-        for (int j = 0 ; j < verAmount ; j++) {
-            index = addSlotRange(handler, index, x, y, horAmount, dx);
-            y += dy;
+    private int addSlotBox(IItemHandler handler) {
+        int y = 84;
+        int index = 9;
+
+        for (int j = 0; j < 3; j++) {
+            index = addSlotRange(handler, index, y);
+            y += 18;
         }
         return index;
     }

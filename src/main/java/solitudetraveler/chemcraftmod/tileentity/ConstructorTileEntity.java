@@ -18,6 +18,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.ConstructorContainer;
@@ -63,8 +64,8 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         this.isConstructing = false;
     }
 
-    public float getConstructionTimeScaled() {
-        return 1.0f * constructionTimeLeft / CONSTRUCTION_TIME;
+    public double getConstructionTimeScaled() {
+        return (CONSTRUCTION_TIME - constructionTimeLeft) * 1.0 / CONSTRUCTION_TIME;
     }
 
     public boolean isConstructing() {
@@ -73,18 +74,13 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
 
     @Override
     public void tick() {
-        if(world.isRemote) return;
+        if(!world.isRemote) return;
 
+        ItemStackHandler invHandler = (ItemStackHandler) this.inventory;
         Item[] inputArray = new Item[]{
-                this.inventory.extractItem(0, 1, true).getItem(),
-                this.inventory.extractItem(1, 1, true).getItem(),
-                this.inventory.extractItem(2, 1, true).getItem(),
-                this.inventory.extractItem(3, 1, true).getItem(),
-                this.inventory.extractItem(4, 1, true).getItem(),
-                this.inventory.extractItem(5, 1, true).getItem(),
-                this.inventory.extractItem(6, 1, true).getItem(),
-                this.inventory.extractItem(7, 1, true).getItem(),
-                this.inventory.extractItem(8, 1, true).getItem()
+                invHandler.getStackInSlot(0).getItem(), invHandler.getStackInSlot(1).getItem(), invHandler.getStackInSlot(2).getItem(),
+                invHandler.getStackInSlot(3).getItem(), invHandler.getStackInSlot(4).getItem(), invHandler.getStackInSlot(5).getItem(),
+                invHandler.getStackInSlot(6).getItem(), invHandler.getStackInSlot(7).getItem(), invHandler.getStackInSlot(8).getItem()
         };
 
         if(!isConstructing) {
@@ -93,31 +89,45 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
             if(out != ItemStack.EMPTY) {
                 constructionTimeLeft = CONSTRUCTION_TIME;
                 isConstructing = true;
-            } else {
-                isConstructing = false;
             }
         }
 
         if(isConstructing) {
             ItemStack out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
 
+            if(out == ItemStack.EMPTY) {
+                isConstructing = false;
+            }
+
             if(constructionTimeLeft > 0) {
-                constructionTimeLeft--;
+                constructionTimeLeft -= 1;
                 System.out.println("Time left: " + constructionTimeLeft);
             }
             else if(constructionTimeLeft == 0) {
-                this.inventory.extractItem(0, 1, false);
-                this.inventory.extractItem(1, 1, false);
-                this.inventory.extractItem(2, 1, false);
-                this.inventory.extractItem(3, 1, false);
-                this.inventory.extractItem(4, 1, false);
-                this.inventory.extractItem(5, 1, false);
-                this.inventory.extractItem(6, 1, false);
-                this.inventory.extractItem(7, 1, false);
-                this.inventory.extractItem(8, 1, false);
+//                invHandler.extractItem(0, 1, false);
+//                invHandler.extractItem(1, 1, false);
+//                invHandler.extractItem(2, 1, false);
+//                invHandler.extractItem(3, 1, false);
+//                invHandler.extractItem(4, 1, false);
+//                invHandler.extractItem(5, 1, false);
+//                invHandler.extractItem(6, 1, false);
+//                invHandler.extractItem(7, 1, false);
+//                invHandler.extractItem(8, 1, false);
 
-                ((ItemStackHandler) this.inventory).setStackInSlot(9, out);
-                this.inventory.insertItem(9, out, false);
+//                this.inventory.insertItem(9, out, false);
+
+                invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), invHandler.getStackInSlot(0).getCount() - 1));
+                invHandler.setStackInSlot(1, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(1), invHandler.getStackInSlot(1).getCount() - 1));
+                invHandler.setStackInSlot(2, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(2), invHandler.getStackInSlot(2).getCount() - 1));
+                invHandler.setStackInSlot(3, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(3), invHandler.getStackInSlot(3).getCount() - 1));
+                invHandler.setStackInSlot(4, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(4), invHandler.getStackInSlot(4).getCount() - 1));
+                invHandler.setStackInSlot(5, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(5), invHandler.getStackInSlot(5).getCount() - 1));
+                invHandler.setStackInSlot(6, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(6), invHandler.getStackInSlot(6).getCount() - 1));
+                invHandler.setStackInSlot(7, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(7), invHandler.getStackInSlot(7).getCount() - 1));
+                invHandler.setStackInSlot(8, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(8), invHandler.getStackInSlot(8).getCount() - 1));
+
+                int outSize = invHandler.getStackInSlot(9).getCount();
+                invHandler.setStackInSlot(9, ItemHandlerHelper.copyStackWithSize(out, outSize + 1));
 
                 isConstructing = false;
             }
@@ -133,6 +143,7 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         super.read(tag);
     }
 
+    @Nonnull
     @Override
     public CompoundNBT write(CompoundNBT tag) {
         inventoryHandler.ifPresent(h -> {
@@ -154,6 +165,7 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         return super.getCapability(cap, side);
     }
 
+    @Nonnull
     @Override
     public ITextComponent getDisplayName() {
         return new StringTextComponent(getType().getRegistryName().getPath());
@@ -161,7 +173,7 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
 
     @Nullable
     @Override
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public Container createMenu(int i, @Nonnull PlayerInventory playerInventory, @Nonnull PlayerEntity playerEntity) {
         return new ConstructorContainer(i, world, pos, playerInventory, playerEntity);
     }
 }

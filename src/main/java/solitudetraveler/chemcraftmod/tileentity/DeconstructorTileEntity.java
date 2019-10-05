@@ -60,11 +60,18 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
 
     public DeconstructorTileEntity() {
         super(BlockList.DECONSTRUCTOR_TILE_TYPE);
+
+        this.deconstructionTimeLeft = 0;
+        this.isDeconstructing = false;
+    }
+
+    public float getDeconstructionTimeScaled() {
+        return 1.0f * deconstructionTimeLeft / DECONSTRUCTION_TIME;
     }
 
     @Override
     public void tick() {
-        if(world.isRemote) return;
+        if(!world.isRemote) return;
 
         Item input = this.inventory.extractItem(0, 1, true).getItem();
 
@@ -107,6 +114,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         super.read(tag);
     }
 
+    @Nonnull
     @Override
     public CompoundNBT write(CompoundNBT tag) {
         inventoryHandler.ifPresent(h -> {
@@ -127,6 +135,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         return super.getCapability(cap, side);
     }
 
+    @Nonnull
     @Override
     public ITextComponent getDisplayName() {
         return new StringTextComponent(getType().getRegistryName().getPath());
@@ -134,7 +143,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Nullable
     @Override
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+    public Container createMenu(int i, @Nonnull PlayerInventory playerInventory, @Nonnull PlayerEntity playerEntity) {
         return new DeconstructorContainer(i, world, pos, playerInventory, playerEntity);
     }
 }

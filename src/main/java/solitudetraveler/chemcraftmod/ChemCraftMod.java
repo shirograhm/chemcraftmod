@@ -46,10 +46,10 @@ import java.util.Objects;
 @Mod("chemcraftmod")
 public class ChemCraftMod {
 
-    public static final String MODID = "chemcraftmod";
+    public static final String MOD_ID = "chemcraftmod";
 
     private static ChemCraftMod instance;
-    private static final Logger logger = LogManager.getLogger(MODID);
+    private static final Logger logger = LogManager.getLogger(MOD_ID);
     private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static final ItemGroup elementsGroup = new ElementItemGroup();
@@ -258,7 +258,7 @@ public class ChemCraftMod {
 
 
         private static ResourceLocation location(String name) {
-            return new ResourceLocation(MODID, name);
+            return new ResourceLocation(MOD_ID, name);
         }
     }
 }

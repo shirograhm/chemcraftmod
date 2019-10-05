@@ -14,8 +14,12 @@ public class ConstructorRecipeHandler {
     private static ArrayList<ItemStack> outputs = new ArrayList<>();
 
     static {
-        addRecipe(new Item[]{Items.AIR, ItemList.carbon, ItemList.carbon, ItemList.hydrogen, ItemList.carbon, ItemList.carbon, ItemList.oxygen, ItemList.carbon, ItemList.carbon},
-                  new ItemStack(Items.COAL, 1));
+        addRecipe(
+                new Item[]{
+                        Items.AIR, ItemList.hydrogen, ItemList.oxygen,
+                        ItemList.carbon, ItemList.carbon, ItemList.carbon,
+                        ItemList.carbon, ItemList.carbon, ItemList.carbon
+                }, new ItemStack(Items.COAL, 1));
     }
 
     private static void addRecipe(Item[] items, ItemStack itemStack) {

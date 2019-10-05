@@ -10,7 +10,7 @@ import solitudetraveler.chemcraftmod.ChemCraftMod;
 
 public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer> {
 
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MODID, "textures/gui/deconstructor_gui.png");
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/deconstructor_gui.png");
 
     public DeconstructorScreen(DeconstructorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
