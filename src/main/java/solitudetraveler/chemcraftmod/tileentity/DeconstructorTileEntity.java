@@ -18,6 +18,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
@@ -65,40 +66,51 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         this.isDeconstructing = false;
     }
 
-    public float getDeconstructionTimeScaled() {
-        return 1.0f * deconstructionTimeLeft / DECONSTRUCTION_TIME;
+    public double getDeconstructionTimeScaled() {
+        return (DECONSTRUCTION_TIME - deconstructionTimeLeft) * 1.0 / DECONSTRUCTION_TIME;
+    }
+
+    public boolean isDeconstructing() {
+        return isDeconstructing;
     }
 
     @Override
     public void tick() {
-        if(!world.isRemote) return;
+        ItemStackHandler invHandler = (ItemStackHandler) this.inventory;
+        Item itemIn = invHandler.getStackInSlot(0).getItem();
 
-        Item input = this.inventory.extractItem(0, 1, true).getItem();
+
+        ItemStack[] out = DeconstructorRecipeHandler.getResultStacksForInput(itemIn);
 
         if(!isDeconstructing) {
-            ItemStack[] out = DeconstructorRecipeHandler.getResultStacksForInput(input);
-
             if(DeconstructorRecipeHandler.outputNotEmpty(out)) {
                 deconstructionTimeLeft = DECONSTRUCTION_TIME;
                 isDeconstructing = true;
-            } else {
-                isDeconstructing = false;
             }
         }
 
         if(isDeconstructing) {
-            if(deconstructionTimeLeft > 0) {
-                deconstructionTimeLeft--;
-                System.out.println("Time left: " + deconstructionTimeLeft);
+            if (!DeconstructorRecipeHandler.outputNotEmpty(out)) {
+                isDeconstructing = false;
             }
-            else if(deconstructionTimeLeft == 0) {
-                ItemStack[] out = DeconstructorRecipeHandler.getResultStacksForInput(input);
 
-                this.inventory.extractItem(0, 1, false);
+            if (deconstructionTimeLeft > 0) {
+                deconstructionTimeLeft -= 1;
+            } else if (deconstructionTimeLeft == 0) {
 
-                for(int i = 0; i < out.length; i++) {
-                    this.inventory.insertItem(i + 2, out[i], false);
-                    ((ItemStackHandler) this.inventory).setStackInSlot(i + 2, out[i]);
+                if(!world.isRemote) {
+//                    inventory.extractItem(0, 1, false);
+//
+//                    for (int i = 0; i < 6; i++) {
+//                        inventory.insertItem(i + 2, out[i], false);
+//                    }
+
+                    int count = invHandler.getStackInSlot(0).getCount() - 1;
+                    invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), count));
+
+                    for (int i = 0; i < 6; i++) {
+                        invHandler.setStackInSlot(i + 2, out[i]);
+                   }
                 }
                 isDeconstructing = false;
             }
@@ -120,7 +132,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         inventoryHandler.ifPresent(h -> {
             CompoundNBT compoundNBT = ((INBTSerializable<CompoundNBT>) h).serializeNBT();
             tag.put("inv", compoundNBT);
-            tag.put("timeLeft",  new IntNBT(deconstructionTimeLeft));
+            tag.put("timeLeft", new IntNBT(deconstructionTimeLeft));
             tag.put("isDeconstructing", new IntNBT(isDeconstructing ? 0 : 1));
         });
         return super.write(tag);

@@ -54,8 +54,7 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
 
     private boolean isConstructing;
     private int constructionTimeLeft;
-
-    private final int CONSTRUCTION_TIME = 320;
+    private final int CONSTRUCTION_TIME = 160;
 
     public ConstructorTileEntity() {
         super(BlockList.CONSTRUCTOR_TILE_TYPE);
@@ -64,28 +63,18 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         this.isConstructing = false;
     }
 
-    public double getConstructionTimeScaled() {
-        return (CONSTRUCTION_TIME - constructionTimeLeft) * 1.0 / CONSTRUCTION_TIME;
-    }
-
-    public boolean isConstructing() {
-        return isConstructing;
-    }
 
     @Override
     public void tick() {
-        if(!world.isRemote) return;
-
         ItemStackHandler invHandler = (ItemStackHandler) this.inventory;
         Item[] inputArray = new Item[]{
                 invHandler.getStackInSlot(0).getItem(), invHandler.getStackInSlot(1).getItem(), invHandler.getStackInSlot(2).getItem(),
                 invHandler.getStackInSlot(3).getItem(), invHandler.getStackInSlot(4).getItem(), invHandler.getStackInSlot(5).getItem(),
                 invHandler.getStackInSlot(6).getItem(), invHandler.getStackInSlot(7).getItem(), invHandler.getStackInSlot(8).getItem()
         };
+        ItemStack out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
 
         if(!isConstructing) {
-            ItemStack out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
-
             if(out != ItemStack.EMPTY) {
                 constructionTimeLeft = CONSTRUCTION_TIME;
                 isConstructing = true;
@@ -93,45 +82,41 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         }
 
         if(isConstructing) {
-            ItemStack out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
-
             if(out == ItemStack.EMPTY) {
                 isConstructing = false;
             }
 
             if(constructionTimeLeft > 0) {
                 constructionTimeLeft -= 1;
-                System.out.println("Time left: " + constructionTimeLeft);
             }
             else if(constructionTimeLeft == 0) {
-//                invHandler.extractItem(0, 1, false);
-//                invHandler.extractItem(1, 1, false);
-//                invHandler.extractItem(2, 1, false);
-//                invHandler.extractItem(3, 1, false);
-//                invHandler.extractItem(4, 1, false);
-//                invHandler.extractItem(5, 1, false);
-//                invHandler.extractItem(6, 1, false);
-//                invHandler.extractItem(7, 1, false);
-//                invHandler.extractItem(8, 1, false);
+                if(!world.isRemote) {
+                    invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), invHandler.getStackInSlot(0).getCount() - 1));
+                    invHandler.setStackInSlot(1, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(1), invHandler.getStackInSlot(1).getCount() - 1));
+                    invHandler.setStackInSlot(2, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(2), invHandler.getStackInSlot(2).getCount() - 1));
+                    invHandler.setStackInSlot(3, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(3), invHandler.getStackInSlot(3).getCount() - 1));
+                    invHandler.setStackInSlot(4, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(4), invHandler.getStackInSlot(4).getCount() - 1));
+                    invHandler.setStackInSlot(5, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(5), invHandler.getStackInSlot(5).getCount() - 1));
+                    invHandler.setStackInSlot(6, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(6), invHandler.getStackInSlot(6).getCount() - 1));
+                    invHandler.setStackInSlot(7, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(7), invHandler.getStackInSlot(7).getCount() - 1));
+                    invHandler.setStackInSlot(8, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(8), invHandler.getStackInSlot(8).getCount() - 1));
 
-//                this.inventory.insertItem(9, out, false);
-
-                invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), invHandler.getStackInSlot(0).getCount() - 1));
-                invHandler.setStackInSlot(1, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(1), invHandler.getStackInSlot(1).getCount() - 1));
-                invHandler.setStackInSlot(2, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(2), invHandler.getStackInSlot(2).getCount() - 1));
-                invHandler.setStackInSlot(3, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(3), invHandler.getStackInSlot(3).getCount() - 1));
-                invHandler.setStackInSlot(4, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(4), invHandler.getStackInSlot(4).getCount() - 1));
-                invHandler.setStackInSlot(5, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(5), invHandler.getStackInSlot(5).getCount() - 1));
-                invHandler.setStackInSlot(6, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(6), invHandler.getStackInSlot(6).getCount() - 1));
-                invHandler.setStackInSlot(7, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(7), invHandler.getStackInSlot(7).getCount() - 1));
-                invHandler.setStackInSlot(8, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(8), invHandler.getStackInSlot(8).getCount() - 1));
-
-                int outSize = invHandler.getStackInSlot(9).getCount();
-                invHandler.setStackInSlot(9, ItemHandlerHelper.copyStackWithSize(out, outSize + 1));
+                    int outSize = invHandler.getStackInSlot(9).getCount();
+                    invHandler.setStackInSlot(9, ItemHandlerHelper.copyStackWithSize(out, outSize + 1));
+                }
 
                 isConstructing = false;
             }
         }
+    }
+
+
+    public double getConstructionTimeScaled() {
+        return (CONSTRUCTION_TIME - constructionTimeLeft) * 1.0 / CONSTRUCTION_TIME;
+    }
+
+    public boolean isConstructing() {
+        return isConstructing;
     }
 
     @Override

@@ -7,13 +7,18 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.ChemCraftMod;
+import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 
 public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer> {
 
     private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/deconstructor_gui.png");
 
+    private DeconstructorTileEntity deconstructorTE;
+
     public DeconstructorScreen(DeconstructorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
+
+        deconstructorTE = (DeconstructorTileEntity) screenContainer.tileEntity;
     }
 
     @Override
@@ -36,5 +41,10 @@ public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer>
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
+
+        if(deconstructorTE.isDeconstructing()) {
+            int k = (int) (deconstructorTE.getDeconstructionTimeScaled() * 23);
+            this.blit(relX + 67, relY + 34, 176, 14, k + 1, 16);
+        }
     }
 }

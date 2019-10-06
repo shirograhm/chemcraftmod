@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class DeconstructorContainer extends Container {
 
-    private TileEntity tileEntity;
+    TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 

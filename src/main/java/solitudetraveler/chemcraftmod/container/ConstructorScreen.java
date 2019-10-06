@@ -43,6 +43,8 @@ public class ConstructorScreen extends ContainerScreen<ConstructorContainer> {
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
         if(constructorTE.isConstructing()) {
+            this.blit(relX + 89, relY + 33, 176, 17, 24, 16);
+
             int k = (int) (constructorTE.getConstructionTimeScaled() * 23);
             this.blit(relX + 89, relY + 33, 176, 0, k + 1, 16);
         }
