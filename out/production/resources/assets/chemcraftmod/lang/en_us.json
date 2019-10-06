@@ -1,7 +1,14 @@
 {
-  "block.chemcraftmod.dolomite": "Dolomite",
-  "block.chemcraftmod.constructor": "Constructor",
+  "block.chemcraftmod.dolomite": "Dolostone",
+  "block.chemcraftmod.constructor": "Reconstructor",
   "block.chemcraftmod.deconstructor": "Deconstructor",
+
+
+  "item.chemcraftmod.aragonite": "Aragonite",
+  "item.chemcraftmod.calcite": "Calcite",
+  "item.chemcraftmod.sodalite": "Sodalite",
+  "item.chemcraftmod.fluorite": "Fluorite",
+  "item.chemcraftmod.andradite": "Aragonite",
 
 
   "item.chemcraftmod.hydrogen": "Hydrogen",

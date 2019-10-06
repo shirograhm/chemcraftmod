@@ -3,7 +3,7 @@
   "textures": {
     "particle": "chemcraftmod:block/machine_side",
     "down": "chemcraftmod:block/machine_side",
-    "up": "chemcraftmod:block/constructor_top",
+    "up": "chemcraftmod:block/reconstructor_top",
     "east": "chemcraftmod:block/machine_side",
     "west": "chemcraftmod:block/machine_side",
     "north": "chemcraftmod:block/machine_side",

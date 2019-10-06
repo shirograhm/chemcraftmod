@@ -8,7 +8,7 @@ import solitudetraveler.chemcraftmod.item.ItemList;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ConstructorRecipeHandler {
+public class ReconstructorRecipeHandler {
 
     private static ArrayList<Item[]> inputs = new ArrayList<>();
     private static ArrayList<ItemStack> outputs = new ArrayList<>();

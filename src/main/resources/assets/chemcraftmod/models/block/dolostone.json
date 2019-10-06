@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "chemcraftmod:block/dolomite"
+    "all": "chemcraftmod:block/dolostone"
   }
 }

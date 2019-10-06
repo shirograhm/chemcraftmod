@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "pools":
+  [
+    {
+      "rolls": 1,
+      "entries":
+      [
+        {
+          "type": "minecraft:item",
+          "name": "chemcraftmod:calcite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "chemcraftmod:aragonite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "chemcraftmod:fluorite"
+        }
+      ]
+    }
+  ]
+}

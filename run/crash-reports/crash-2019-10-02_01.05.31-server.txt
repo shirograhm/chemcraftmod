@@ -24,7 +24,7 @@ Stacktrace:
 
 -- Block entity being ticked --
 Details:
-	Name: null // solitudetraveler.chemcraftmod.tileentity.ConstructorTileEntity
+	Name: null // solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity
 	Block: Block{chemcraftmod:constructor}[facing=north]
 	Block location: World: (-244,4,99), Chunk: (at 12,0,3 in -16,6; contains blocks -256,0,96 to -241,255,111), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
 	Block: Block{chemcraftmod:constructor}[facing=north]

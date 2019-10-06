@@ -16,7 +16,7 @@ public class OreGeneration {
         if(OreGenConfig.generate_overworld.get()) {
             for(Biome biome : ForgeRegistries.BIOMES) {
                 CountRangeConfig dolomite_placement = new CountRangeConfig(100, 24, 20, 96);
-                OreFeatureConfig dolomite_config = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlockList.dolomite.getDefaultState(), OreGenConfig.chance.get());
+                OreFeatureConfig dolomite_config = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BlockList.dolostone.getDefaultState(), OreGenConfig.chance.get());
 
                 biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, dolomite_config, Placement.COUNT_RANGE, dolomite_placement));
             }

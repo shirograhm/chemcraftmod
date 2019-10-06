@@ -18,17 +18,15 @@ import solitudetraveler.chemcraftmod.block.BlockList;
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-public class ConstructorContainer extends Container {
+public class ReconstructorContainer extends Container {
 
     TileEntity tileEntity;
-    private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
-    public ConstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.CONSTRUCTOR_CONTAINER, id);
+    public ReconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
+        super(BlockList.RECONSTRUCTOR_CONTAINER, id);
 
         tileEntity = world.getTileEntity(pos);
-        playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
         if(tileEntity != null) {
@@ -51,7 +49,7 @@ public class ConstructorContainer extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerIn, BlockList.constructor);
+        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerIn, BlockList.reconstructor);
     }
 
     @Nonnull
@@ -110,7 +108,7 @@ public class ConstructorContainer extends Container {
         return index;
     }
 
-    private int addSlotBox(IItemHandler handler) {
+    private void addSlotBox(IItemHandler handler) {
         int y = 84;
         int index = 9;
 
@@ -118,6 +116,5 @@ public class ConstructorContainer extends Container {
             index = addSlotRange(handler, index, y);
             y += 18;
         }
-        return index;
     }
 }

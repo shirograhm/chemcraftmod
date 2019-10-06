@@ -14,13 +14,13 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import solitudetraveler.chemcraftmod.tileentity.ConstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
 import javax.annotation.Nullable;
 
-public class ConstructorBlock extends Block {
+public class ReconstructorBlock extends Block {
 
-    public ConstructorBlock(Block.Properties props) {
+    public ReconstructorBlock(Block.Properties props) {
         super(props);
     }
 
@@ -32,7 +32,7 @@ public class ConstructorBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new ConstructorTileEntity();
+        return new ReconstructorTileEntity();
     }
 
     @Override

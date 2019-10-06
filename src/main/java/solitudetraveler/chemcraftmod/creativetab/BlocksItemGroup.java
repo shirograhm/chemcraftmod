@@ -15,6 +15,6 @@ public class BlocksItemGroup extends ItemGroup {
     @Nonnull
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(Item.BLOCK_TO_ITEM.get(BlockList.dolomite));
+        return new ItemStack(Item.BLOCK_TO_ITEM.get(BlockList.dolostone));
     }
 }

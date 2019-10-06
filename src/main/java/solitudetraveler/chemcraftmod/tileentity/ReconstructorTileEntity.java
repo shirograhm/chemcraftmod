@@ -21,14 +21,14 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.container.ConstructorContainer;
-import solitudetraveler.chemcraftmod.handler.ConstructorRecipeHandler;
+import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
+import solitudetraveler.chemcraftmod.handler.ReconstructorRecipeHandler;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ConstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public class ReconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     private IItemHandler inventory = new ItemStackHandler(10) {
         @Override
@@ -52,15 +52,15 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
     };
     private LazyOptional<IItemHandler> inventoryHandler = LazyOptional.of(() -> inventory);
 
-    private boolean isConstructing;
-    private int constructionTimeLeft;
-    private final int CONSTRUCTION_TIME = 160;
+    private boolean isReconstructing;
+    private int reconstructionTimeLeft;
+    private final int RECONSTRUCTION_TIME = 160;
 
-    public ConstructorTileEntity() {
-        super(BlockList.CONSTRUCTOR_TILE_TYPE);
+    public ReconstructorTileEntity() {
+        super(BlockList.RECONSTRUCTOR_TILE_TYPE);
 
-        this.constructionTimeLeft = 0;
-        this.isConstructing = false;
+        this.reconstructionTimeLeft = 0;
+        this.isReconstructing = false;
     }
 
 
@@ -72,24 +72,24 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
                 invHandler.getStackInSlot(3).getItem(), invHandler.getStackInSlot(4).getItem(), invHandler.getStackInSlot(5).getItem(),
                 invHandler.getStackInSlot(6).getItem(), invHandler.getStackInSlot(7).getItem(), invHandler.getStackInSlot(8).getItem()
         };
-        ItemStack out = ConstructorRecipeHandler.getResultForInputSet(inputArray);
+        ItemStack out = ReconstructorRecipeHandler.getResultForInputSet(inputArray);
 
-        if(!isConstructing) {
+        if(!isReconstructing) {
             if(out != ItemStack.EMPTY) {
-                constructionTimeLeft = CONSTRUCTION_TIME;
-                isConstructing = true;
+                reconstructionTimeLeft = RECONSTRUCTION_TIME;
+                isReconstructing = true;
             }
         }
 
-        if(isConstructing) {
+        if(isReconstructing) {
             if(out == ItemStack.EMPTY) {
-                isConstructing = false;
+                isReconstructing = false;
             }
 
-            if(constructionTimeLeft > 0) {
-                constructionTimeLeft -= 1;
+            if(reconstructionTimeLeft > 0) {
+                reconstructionTimeLeft -= 1;
             }
-            else if(constructionTimeLeft == 0) {
+            else if(reconstructionTimeLeft == 0) {
                 if(!world.isRemote) {
                     invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), invHandler.getStackInSlot(0).getCount() - 1));
                     invHandler.setStackInSlot(1, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(1), invHandler.getStackInSlot(1).getCount() - 1));
@@ -105,26 +105,26 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
                     invHandler.setStackInSlot(9, ItemHandlerHelper.copyStackWithSize(out, outSize + 1));
                 }
 
-                isConstructing = false;
+                isReconstructing = false;
             }
         }
     }
 
 
-    public double getConstructionTimeScaled() {
-        return (CONSTRUCTION_TIME - constructionTimeLeft) * 1.0 / CONSTRUCTION_TIME;
+    public double getReconstructionTimeScaled() {
+        return (RECONSTRUCTION_TIME - reconstructionTimeLeft) * 1.0 / RECONSTRUCTION_TIME;
     }
 
-    public boolean isConstructing() {
-        return isConstructing;
+    public boolean isReconstructing() {
+        return isReconstructing;
     }
 
     @Override
     public void read(CompoundNBT tag) {
         CompoundNBT compoundNBT = tag.getCompound("inv");
         inventoryHandler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(compoundNBT));
-        this.constructionTimeLeft = tag.getInt("timeLeft");
-        this.isConstructing = (tag.getInt("isConstructing") == 0);
+        this.reconstructionTimeLeft = tag.getInt("timeLeft");
+        this.isReconstructing = (tag.getInt("isReconstructing") == 0);
         super.read(tag);
     }
 
@@ -134,8 +134,8 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
         inventoryHandler.ifPresent(h -> {
             CompoundNBT compoundNBT = ((INBTSerializable<CompoundNBT>) h).serializeNBT();
             tag.put("inv", compoundNBT);
-            tag.put("timeLeft",  new IntNBT(constructionTimeLeft));
-            tag.put("isConstructing", new IntNBT(isConstructing ? 0 : 1));
+            tag.put("timeLeft",  new IntNBT(reconstructionTimeLeft));
+            tag.put("isReconstructing", new IntNBT(isReconstructing ? 0 : 1));
 
         });
         return super.write(tag);
@@ -159,6 +159,6 @@ public class ConstructorTileEntity extends TileEntity implements ITickableTileEn
     @Nullable
     @Override
     public Container createMenu(int i, @Nonnull PlayerInventory playerInventory, @Nonnull PlayerEntity playerEntity) {
-        return new ConstructorContainer(i, world, pos, playerInventory, playerEntity);
+        return new ReconstructorContainer(i, world, pos, playerInventory, playerEntity);
     }
 }

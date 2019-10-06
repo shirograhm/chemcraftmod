@@ -4,10 +4,15 @@ import net.minecraft.item.Item;
 
 public class ItemList {
     // Blocks
-    public static Item dolomite;
-    public static Item constructor;
+    public static Item dolostone;
+    public static Item reconstructor;
     public static Item deconstructor;
     // Items
+    public static Item aragonite;
+    public static Item calcite;
+    public static Item sodalite;
+    public static Item fluorite;
+    public static Item andradite;
     // Elements
     public static Item hydrogen;
     public static Item helium;
