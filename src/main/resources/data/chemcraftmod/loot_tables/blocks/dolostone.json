@@ -3,9 +3,13 @@
   "pools":
   [
     {
-      "rolls": 1,
+      "rolls": 2,
       "entries":
       [
+        {
+          "type": "minecraft:item",
+          "name": "chemcraftmod:fluorite"
+        },
         {
           "type": "minecraft:item",
           "name": "chemcraftmod:calcite"
@@ -16,7 +20,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "chemcraftmod:fluorite"
+          "name": "chemcraftmod:andradite"
         }
       ]
     }

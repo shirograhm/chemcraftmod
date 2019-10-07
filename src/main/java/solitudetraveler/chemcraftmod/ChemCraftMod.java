@@ -94,12 +94,17 @@ public class ChemCraftMod {
                     ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
                     ItemList.reconstructor = new BlockItem(BlockList.reconstructor, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
                     ItemList.deconstructor = new BlockItem(BlockList.deconstructor, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
-                    // Items
+                    // Minerals
                     ItemList.aragonite = new MineralItem().setRegistryName(location("aragonite")),
                     ItemList.calcite = new MineralItem().setRegistryName(location("calcite")),
                     ItemList.sodalite = new MineralItem().setRegistryName(location("sodalite")),
                     ItemList.fluorite = new MineralItem().setRegistryName(location("fluorite")),
                     ItemList.andradite = new MineralItem().setRegistryName(location("andradite")),
+                    ItemList.zircon = new MineralItem().setRegistryName(location("zircon")),
+                    ItemList.ilmenite = new MineralItem().setRegistryName(location("ilmenite")),
+                    // Items
+                    ItemList.diamond_dust = new MineralItem().setRegistryName(location("diamond_dust")),
+                    ItemList.gold_dust = new MineralItem().setRegistryName(location("gold_dust")),
                     // Elements
                     ItemList.hydrogen = new ElementItem(1).setRegistryName(location("hydrogen")),
                     ItemList.helium = new ElementItem(2).setRegistryName(location("helium")),

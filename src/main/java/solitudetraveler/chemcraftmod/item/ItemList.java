@@ -7,12 +7,17 @@ public class ItemList {
     public static Item dolostone;
     public static Item reconstructor;
     public static Item deconstructor;
-    // Items
+    // Minerals
     public static Item aragonite;
     public static Item calcite;
     public static Item sodalite;
     public static Item fluorite;
     public static Item andradite;
+    public static Item zircon;
+    public static Item ilmenite;
+    // Items
+    public static Item diamond_dust;
+    public static Item gold_dust;
     // Elements
     public static Item hydrogen;
     public static Item helium;
