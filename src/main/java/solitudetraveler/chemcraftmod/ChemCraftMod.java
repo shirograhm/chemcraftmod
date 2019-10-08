@@ -31,7 +31,7 @@ import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.creativetab.BlocksItemGroup;
 import solitudetraveler.chemcraftmod.creativetab.ElementItemGroup;
-import solitudetraveler.chemcraftmod.creativetab.MineralsItemGroup;
+import solitudetraveler.chemcraftmod.creativetab.MaterialsItemGroup;
 import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
 import solitudetraveler.chemcraftmod.item.ElementItem;
@@ -55,7 +55,7 @@ public class ChemCraftMod {
     private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static final ItemGroup elementsGroup = new ElementItemGroup();
-    public static final ItemGroup mineralsGroup = new MineralsItemGroup();
+    public static final ItemGroup materialsGroup = new MaterialsItemGroup();
     public static final ItemGroup blocksGroup = new BlocksItemGroup();
 
     public ChemCraftMod() {
@@ -67,8 +67,8 @@ public class ChemCraftMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 
-        Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("chemcraftmod-client.toml").toString());
         Config.loadConfig(Config.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("chemcraftmod-server.toml").toString());
+        Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("chemcraftmod-client.toml").toString());
 
         MinecraftForge.EVENT_BUS.register(this);
     }

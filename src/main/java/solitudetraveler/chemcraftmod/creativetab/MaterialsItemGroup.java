@@ -6,14 +6,14 @@ import solitudetraveler.chemcraftmod.item.ItemList;
 
 import javax.annotation.Nonnull;
 
-public class MineralsItemGroup extends ItemGroup {
-    public MineralsItemGroup() {
-        super("mineralsGroup");
+public class MaterialsItemGroup extends ItemGroup {
+    public MaterialsItemGroup() {
+        super("materialsGroup");
     }
 
     @Nonnull
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(ItemList.calcite);
+        return new ItemStack(ItemList.diamond_dust);
     }
 }

@@ -138,5 +138,6 @@
 
 
   "itemGroup.elementsGroup": "ChemCraft Elements",
-  "itemGroup.blocksGroup": "ChemCraft Blocks"
+  "itemGroup.blocksGroup": "ChemCraft Blocks",
+  "itemGroup.materialsGroup": "ChemCraft Materials"
 }

@@ -14,7 +14,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -34,15 +33,14 @@ public class DeconstructorContainer extends Container {
 
         if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 44, 17));
-                addSlot(new SlotItemHandler(h, 1, 44, 53));
+                addSlot(new SlotItemHandler(h, 0, 44, 35));
 
-                addSlot(new SlotItemHandler(h, 2, 98, 17));
-                addSlot(new SlotItemHandler(h, 3, 98, 35));
-                addSlot(new SlotItemHandler(h, 4, 98, 53));
-                addSlot(new SlotItemHandler(h, 5, 116, 17));
-                addSlot(new SlotItemHandler(h, 6, 116, 35));
-                addSlot(new SlotItemHandler(h, 7, 116, 53));
+                addSlot(new SlotItemHandler(h, 1, 98, 17));
+                addSlot(new SlotItemHandler(h, 2, 98, 35));
+                addSlot(new SlotItemHandler(h, 3, 98, 53));
+                addSlot(new SlotItemHandler(h, 4, 116, 17));
+                addSlot(new SlotItemHandler(h, 5, 116, 35));
+                addSlot(new SlotItemHandler(h, 6, 116, 53));
             });
         }
         layoutPlayerInventorySlots(8, 84);
@@ -63,20 +61,16 @@ public class DeconstructorContainer extends Container {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
             if(index == 0) {
-                if(!this.mergeItemStack(stack, 8, 44, true)) {
+                if(!this.mergeItemStack(stack, 7, 43, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(DeconstructorRecipeHandler.isValidFuelItem(stack.getItem())) {
-                    if(!this.mergeItemStack(stack, 1, 2, false)) {
+                if(index < 37) {
+                    if(!this.mergeItemStack(stack, 34, 43, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < 37) {
-                    if(!this.mergeItemStack(stack, 35, 44, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if(index < 46 && !this.mergeItemStack(stack, 8, 35, false)) {
+                } else if(index < 46 && !this.mergeItemStack(stack, 7, 34, false)) {
                     return ItemStack.EMPTY;
                 }
             }

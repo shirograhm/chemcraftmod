@@ -5,6 +5,6 @@ import solitudetraveler.chemcraftmod.ChemCraftMod;
 
 public class MineralItem extends Item {
     public MineralItem() {
-        super(new Item.Properties().group(ChemCraftMod.mineralsGroup));
+        super(new Item.Properties().group(ChemCraftMod.materialsGroup));
     }
 }

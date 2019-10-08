@@ -43,8 +43,10 @@ public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer>
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
         if(deconstructorTE.isDeconstructing()) {
+            this.blit(relX + 67, relY + 34, 176, 17, 24, 17);
+
             int k = (int) (deconstructorTE.getDeconstructionTimeScaled() * 23);
-            this.blit(relX + 67, relY + 34, 176, 14, k + 1, 16);
+            this.blit(relX + 67, relY + 34, 176, 0, k + 1, 17);
         }
     }
 }

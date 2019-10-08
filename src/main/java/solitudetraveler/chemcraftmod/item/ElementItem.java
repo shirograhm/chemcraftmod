@@ -18,14 +18,13 @@ public class ElementItem extends Item {
     private int aNum;
 
     public ElementItem(int atomicNumber) {
-        super(new Item.Properties().group(ChemCraftMod.elementsGroup).maxStackSize(32).rarity(Rarity.RARE));
+        super(new Item.Properties().group(ChemCraftMod.elementsGroup).rarity(Rarity.RARE));
 
         aNum = atomicNumber;
     }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        //noinspection NullableProblems
         tooltip.add(new TextComponent() {
             @Nonnull
             @Override

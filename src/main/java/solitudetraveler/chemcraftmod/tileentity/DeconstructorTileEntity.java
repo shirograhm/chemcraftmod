@@ -38,18 +38,9 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
             if(slot == 0) {
-                return true;
-            }
-            if(slot == 1) {
-                return DeconstructorRecipeHandler.isValidFuelItem(stack.getItem());
+                return DeconstructorRecipeHandler.outputNotEmpty(DeconstructorRecipeHandler.getResultStacksForInput(stack.getItem()));
             }
             return false;
-        }
-
-        @Nonnull
-        @Override
-        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-            return super.insertItem(slot, stack, simulate);
         }
     };
     private LazyOptional<IItemHandler> inventoryHandler = LazyOptional.of(() -> inventory);
@@ -99,17 +90,11 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
             } else if (deconstructionTimeLeft == 0) {
 
                 if(!world.isRemote) {
-//                    inventory.extractItem(0, 1, false);
-//
-//                    for (int i = 0; i < 6; i++) {
-//                        inventory.insertItem(i + 2, out[i], false);
-//                    }
-
                     int count = invHandler.getStackInSlot(0).getCount() - 1;
                     invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), count));
 
                     for (int i = 0; i < 6; i++) {
-                        invHandler.setStackInSlot(i + 2, out[i]);
+                        invHandler.setStackInSlot(i + 1, out[i]);
                    }
                 }
                 isDeconstructing = false;

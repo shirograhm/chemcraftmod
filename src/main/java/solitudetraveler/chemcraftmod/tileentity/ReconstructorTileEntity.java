@@ -43,12 +43,6 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
             }
             return false;
         }
-
-        @Nonnull
-        @Override
-        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-            return super.insertItem(slot, stack, simulate);
-        }
     };
     private LazyOptional<IItemHandler> inventoryHandler = LazyOptional.of(() -> inventory);
 
@@ -104,7 +98,6 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
                     int outSize = invHandler.getStackInSlot(9).getCount();
                     invHandler.setStackInSlot(9, ItemHandlerHelper.copyStackWithSize(out, outSize + 1));
                 }
-
                 isReconstructing = false;
             }
         }
