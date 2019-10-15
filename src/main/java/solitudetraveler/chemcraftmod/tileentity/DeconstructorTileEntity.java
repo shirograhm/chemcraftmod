@@ -4,7 +4,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.IntNBT;
@@ -29,7 +28,7 @@ import javax.annotation.Nullable;
 
 public class DeconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
-    private IItemHandler inventory = new ItemStackHandler(8) {
+    private IItemHandler inventory = new ItemStackHandler(7) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -41,6 +40,20 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
                 return DeconstructorRecipeHandler.outputNotEmpty(DeconstructorRecipeHandler.getResultStacksForInput(stack.getItem()));
             }
             return false;
+        }
+
+        @Nonnull
+        @Override
+        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+            if(slot == 0) {
+                if(stack.getCount() == 1) {
+                    return ItemStack.EMPTY;
+                } else {
+                    return ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - 1);
+                }
+            }
+
+            return stack;
         }
     };
     private LazyOptional<IItemHandler> inventoryHandler = LazyOptional.of(() -> inventory);
@@ -68,34 +81,33 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public void tick() {
         ItemStackHandler invHandler = (ItemStackHandler) this.inventory;
-        Item itemIn = invHandler.getStackInSlot(0).getItem();
 
+        ItemStack input = invHandler.getStackInSlot(0);
+        ItemStack[] out = DeconstructorRecipeHandler.getResultStacksForInput(input.getItem());
 
-        ItemStack[] out = DeconstructorRecipeHandler.getResultStacksForInput(itemIn);
-
-        if(!isDeconstructing) {
-            if(DeconstructorRecipeHandler.outputNotEmpty(out)) {
+        if (!isDeconstructing) {
+            if (DeconstructorRecipeHandler.outputNotEmpty(out)) {
                 deconstructionTimeLeft = DECONSTRUCTION_TIME;
                 isDeconstructing = true;
             }
         }
 
-        if(isDeconstructing) {
+        if (isDeconstructing) {
             if (!DeconstructorRecipeHandler.outputNotEmpty(out)) {
                 isDeconstructing = false;
+                deconstructionTimeLeft = 0;
             }
 
             if (deconstructionTimeLeft > 0) {
                 deconstructionTimeLeft -= 1;
             } else if (deconstructionTimeLeft == 0) {
 
-                if(!world.isRemote) {
-                    int count = invHandler.getStackInSlot(0).getCount() - 1;
-                    invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), count));
+                if (!world.isRemote) {
+                    invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(input, input.getCount() - 1));
 
                     for (int i = 0; i < 6; i++) {
                         invHandler.setStackInSlot(i + 1, out[i]);
-                   }
+                    }
                 }
                 isDeconstructing = false;
             }

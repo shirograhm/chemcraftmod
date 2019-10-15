@@ -43,10 +43,10 @@ public class ReconstructorScreen extends ContainerScreen<ReconstructorContainer>
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
         if(reconstructorTE.isReconstructing()) {
-            this.blit(relX + 89, relY + 33, 176, 17, 24, 16);
+            this.blit(relX + 89, relY + 33, 176, 17, 24, 17);
 
             int k = (int) (reconstructorTE.getReconstructionTimeScaled() * 23);
-            this.blit(relX + 89, relY + 33, 176, 0, k + 1, 16);
+            this.blit(relX + 89, relY + 33, 176, 0, k + 1, 17);
         }
     }
 }

@@ -1,41 +1,46 @@
 package solitudetraveler.chemcraftmod.item;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
-import solitudetraveler.chemcraftmod.ChemCraftMod;
+import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
+import solitudetraveler.chemcraftmod.effect.EffectList;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class ElementItem extends Item {
+    private int atomicNumber;
 
-    private int aNum;
+    public ElementItem(ResourceLocation name, int a) {
+        super(new Item.Properties().group(CreativeTabList.elementGroup).rarity(Rarity.RARE));
 
-    public ElementItem(int atomicNumber) {
-        super(new Item.Properties().group(ChemCraftMod.elementsGroup).rarity(Rarity.RARE));
-
-        aNum = atomicNumber;
+        setRegistryName(name);
+        this.atomicNumber = a;
     }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TextComponent() {
-            @Nonnull
-            @Override
-            public String getUnformattedComponentText() {
-                return "Element number " + aNum + ".";
-            }
+        tooltip.add(new StringTextComponent("Element number " + atomicNumber + "."));
+    }
 
-            @Override
-            public ITextComponent shallowCopy() {
-                return null;
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if(atomicNumber == 43 || atomicNumber == 61 || atomicNumber >= 84) {
+            if(entityIn instanceof PlayerEntity) {
+                PlayerEntity pe = (PlayerEntity) entityIn;
+
+                pe.addPotionEffect(new EffectInstance(EffectList.radiation, 16, 0, false, true));
             }
-        });
+        }
     }
 }

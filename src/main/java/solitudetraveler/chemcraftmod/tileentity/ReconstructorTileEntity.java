@@ -43,6 +43,20 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
             }
             return false;
         }
+
+        @Nonnull
+        @Override
+        public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+            if(slot >= 0 && slot < 9) {
+                if(stack.getCount() == 1) {
+                    return ItemStack.EMPTY;
+                } else {
+                    return ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - 1);
+                }
+            }
+
+            return stack;
+        }
     };
     private LazyOptional<IItemHandler> inventoryHandler = LazyOptional.of(() -> inventory);
 
@@ -68,35 +82,28 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
         };
         ItemStack out = ReconstructorRecipeHandler.getResultForInputSet(inputArray);
 
-        if(!isReconstructing) {
-            if(out != ItemStack.EMPTY) {
+        if (!isReconstructing) {
+            if (out != ItemStack.EMPTY) {
                 reconstructionTimeLeft = RECONSTRUCTION_TIME;
                 isReconstructing = true;
             }
         }
-
-        if(isReconstructing) {
-            if(out == ItemStack.EMPTY) {
+        if (isReconstructing) {
+            if (out == ItemStack.EMPTY) {
                 isReconstructing = false;
+                reconstructionTimeLeft = 0;
             }
 
-            if(reconstructionTimeLeft > 0) {
+            if (reconstructionTimeLeft > 0) {
                 reconstructionTimeLeft -= 1;
-            }
-            else if(reconstructionTimeLeft == 0) {
-                if(!world.isRemote) {
-                    invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(0), invHandler.getStackInSlot(0).getCount() - 1));
-                    invHandler.setStackInSlot(1, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(1), invHandler.getStackInSlot(1).getCount() - 1));
-                    invHandler.setStackInSlot(2, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(2), invHandler.getStackInSlot(2).getCount() - 1));
-                    invHandler.setStackInSlot(3, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(3), invHandler.getStackInSlot(3).getCount() - 1));
-                    invHandler.setStackInSlot(4, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(4), invHandler.getStackInSlot(4).getCount() - 1));
-                    invHandler.setStackInSlot(5, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(5), invHandler.getStackInSlot(5).getCount() - 1));
-                    invHandler.setStackInSlot(6, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(6), invHandler.getStackInSlot(6).getCount() - 1));
-                    invHandler.setStackInSlot(7, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(7), invHandler.getStackInSlot(7).getCount() - 1));
-                    invHandler.setStackInSlot(8, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(8), invHandler.getStackInSlot(8).getCount() - 1));
+            } else if (reconstructionTimeLeft == 0) {
+                if (!world.isRemote) {
+                    for (int i = 0; i < 9; i++) {
+                        invHandler.setStackInSlot(i, ItemHandlerHelper.copyStackWithSize(invHandler.getStackInSlot(i), invHandler.getStackInSlot(i).getCount() - 1));
+                    }
 
-                    int outSize = invHandler.getStackInSlot(9).getCount();
-                    invHandler.setStackInSlot(9, ItemHandlerHelper.copyStackWithSize(out, outSize + 1));
+                    invHandler.setStackInSlot(9, out);
+
                 }
                 isReconstructing = false;
             }

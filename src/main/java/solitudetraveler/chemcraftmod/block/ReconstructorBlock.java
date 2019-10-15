@@ -9,6 +9,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -20,8 +21,10 @@ import javax.annotation.Nullable;
 
 public class ReconstructorBlock extends Block {
 
-    public ReconstructorBlock(Block.Properties props) {
+    public ReconstructorBlock(ResourceLocation name, Block.Properties props) {
         super(props);
+
+        setRegistryName(name);
     }
 
     @Override

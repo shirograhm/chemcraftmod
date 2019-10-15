@@ -16,65 +16,65 @@ public class DeconstructorRecipeHandler {
 
     static {
         addRecipe(Items.COAL, new ItemStack[] {
-                new ItemStack(ItemList.carbon, 6),
-                new ItemStack(ItemList.oxygen, 1),
-                new ItemStack(ItemList.hydrogen, 1),
+                new ItemStack(ItemList.getElementNumber(6), 6),
+                new ItemStack(ItemList.getElementNumber(8), 1),
+                new ItemStack(ItemList.getElementNumber(1), 1),
                 ItemStack.EMPTY,
                 ItemStack.EMPTY,
                 ItemStack.EMPTY
         });
 
-        addRecipe(ItemList.calcite, new ItemStack[] {
-                new ItemStack(ItemList.calcium, 5),
-                new ItemStack(ItemList.carbon, 1),
-                new ItemStack(ItemList.oxygen, 2),
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY
-        });
-
-        addRecipe(ItemList.aragonite, new ItemStack[] {
-                new ItemStack(ItemList.calcium, 3),
-                new ItemStack(ItemList.carbon, 2),
-                new ItemStack(ItemList.zinc, 1),
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY
-        });
-
-        addRecipe(ItemList.fluorite, new ItemStack[] {
-                new ItemStack(ItemList.fluorine, 4),
-                new ItemStack(ItemList.calcium, 1),
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-        });
-
-        addRecipe(ItemList.andradite, new ItemStack[] {
-                new ItemStack(ItemList.iron, 3),
-                new ItemStack(ItemList.silicon, 1),
-                new ItemStack(ItemList.oxygen, 2),
-                new ItemStack(ItemList.calcium, 3),
-                ItemStack.EMPTY,
-                ItemStack.EMPTY
-        });
-        addRecipe(ItemList.zircon, new ItemStack[]{
-                new ItemStack(ItemList.zirconium, 1),
-                new ItemStack(ItemList.silicon, 2),
-                new ItemStack(ItemList.oxygen, 2),
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY
-        });
-        addRecipe(ItemList.ilmenite, new ItemStack[]{
-                new ItemStack(ItemList.iron, 3),
-                new ItemStack(ItemList.titanium, 2),
-                new ItemStack(ItemList.oxygen, 2),
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                ItemStack.EMPTY
-        });
+//        addRecipe(ItemList.calcite, new ItemStack[] {
+//                new ItemStack(ItemList.calcium, 5),
+//                new ItemStack(ItemList.carbon, 1),
+//                new ItemStack(ItemList.oxygen, 2),
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY
+//        });
+//
+//        addRecipe(ItemList.aragonite, new ItemStack[] {
+//                new ItemStack(ItemList.calcium, 3),
+//                new ItemStack(ItemList.carbon, 2),
+//                new ItemStack(ItemList.zinc, 1),
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY
+//        });
+//
+//        addRecipe(ItemList.fluorite, new ItemStack[] {
+//                new ItemStack(ItemList.fluorine, 4),
+//                new ItemStack(ItemList.calcium, 1),
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY,
+//        });
+//
+//        addRecipe(ItemList.andradite, new ItemStack[] {
+//                new ItemStack(ItemList.iron, 3),
+//                new ItemStack(ItemList.silicon, 1),
+//                new ItemStack(ItemList.oxygen, 2),
+//                new ItemStack(ItemList.calcium, 3),
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY
+//        });
+//        addRecipe(ItemList.zircon, new ItemStack[]{
+//                new ItemStack(ItemList.zirconium, 1),
+//                new ItemStack(ItemList.silicon, 2),
+//                new ItemStack(ItemList.oxygen, 2),
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY
+//        });
+//        addRecipe(ItemList.ilmenite, new ItemStack[]{
+//                new ItemStack(ItemList.iron, 3),
+//                new ItemStack(ItemList.titanium, 2),
+//                new ItemStack(ItemList.oxygen, 2),
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY,
+//                ItemStack.EMPTY
+//        });
     }
 
     private static void addRecipe(Item itemIn, ItemStack[] outStacks) {
@@ -109,5 +109,15 @@ public class DeconstructorRecipeHandler {
         }
 
         return false;
+    }
+
+    public static boolean outputsAreEqual(ItemStack[] currentOutStacks, ItemStack[] out) {
+        for(int i = 0; i < 6; i++) {
+            if(currentOutStacks[i] != out[i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

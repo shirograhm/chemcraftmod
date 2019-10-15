@@ -1,18 +1,23 @@
 package solitudetraveler.chemcraftmod.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
-import solitudetraveler.chemcraftmod.ChemCraftMod;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
+import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
 public class BlockList {
-    public static Item.Properties blockItemProps = new Item.Properties().group(ChemCraftMod.blocksGroup);
+    public static Block.Properties rockProps = Block.Properties.create(Material.ROCK).lightValue(0).sound(SoundType.STONE).hardnessAndResistance(2.6f, 4.4f);
+    public static Block.Properties machineProps = Block.Properties.create(Material.IRON).lightValue(0).sound(SoundType.METAL).hardnessAndResistance(4.5f);
+
+    public static Item.Properties blockItemProps = new Item.Properties().group(CreativeTabList.blockGroup);
 
     public static Block dolostone;
     public static Block reconstructor;

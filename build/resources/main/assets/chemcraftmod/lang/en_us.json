@@ -137,7 +137,8 @@
   "item.chemcraftmod.oganesson": "Oganesson",
 
 
-  "itemGroup.elementsGroup": "ChemCraft Elements",
-  "itemGroup.blocksGroup": "ChemCraft Blocks",
-  "itemGroup.materialsGroup": "ChemCraft Materials"
+  "itemGroup.elementGroup": "ChemCraft Elements",
+  "itemGroup.blockGroup": "ChemCraft Blocks",
+  "itemGroup.mineralGroup": "ChemCraft Minerals",
+  "itemGroup.compoundGroup": "ChemCraft Compounds"
 }

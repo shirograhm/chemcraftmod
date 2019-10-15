@@ -1,10 +1,13 @@
 package solitudetraveler.chemcraftmod.item;
 
 import net.minecraft.item.Item;
-import solitudetraveler.chemcraftmod.ChemCraftMod;
+import net.minecraft.util.ResourceLocation;
+import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 
 public class MineralItem extends Item {
-    public MineralItem() {
-        super(new Item.Properties().group(ChemCraftMod.materialsGroup));
+    public MineralItem(ResourceLocation name) {
+        super(new Item.Properties().group(CreativeTabList.mineralGroup));
+
+        setRegistryName(name);
     }
 }
