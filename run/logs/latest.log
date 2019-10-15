@@ -1,7 +1,279 @@
-[15Oct2019 01:13:27.613] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--gameDir, ., --launchTarget, fmluserdevclient, --fml.mcpVersion, 20190829.143755, --fml.mcVersion, 1.14.4, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 28.1.0, --version, MOD_DEV, --assetIndex, 1.14, --assetsDir, C:\Users\Xavier\.gradle\caches\forge_gradle\assets, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
-[15Oct2019 01:13:27.619] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 3.2.0+60+b86c1d4 starting: java version 1.8.0_221 by Oracle Corporation
-[15Oct2019 01:13:28.034] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
-[15Oct2019 01:13:29.010] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevclient' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Xavier\.gradle\caches\forge_gradle\assets, --assetIndex, 1.14, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
-[15Oct2019 01:13:31.369] [Client thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[15Oct2019 01:13:43.222] [Client thread/WARN] [net.minecraft.client.GameSettings/]: Skipping bad option: lastServer:
-[15Oct2019 01:13:43.262] [Client thread/INFO] [net.minecraft.client.Minecraft/]: LWJGL Version: 3.2.2 build 10
+[15Oct2019 02:20:53.959] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--gameDir, ., --launchTarget, fmluserdevclient, --fml.mcpVersion, 20190829.143755, --fml.mcVersion, 1.14.4, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 28.1.0, --version, MOD_DEV, --assetIndex, 1.14, --assetsDir, C:\Users\Xavier\.gradle\caches\forge_gradle\assets, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[15Oct2019 02:20:53.967] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 3.2.0+60+b86c1d4 starting: java version 1.8.0_221 by Oracle Corporation
+[15Oct2019 02:20:54.476] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
+[15Oct2019 02:20:55.682] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevclient' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Xavier\.gradle\caches\forge_gradle\assets, --assetIndex, 1.14, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[15Oct2019 02:20:58.387] [Client thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[15Oct2019 02:21:10.860] [Client thread/WARN] [net.minecraft.client.GameSettings/]: Skipping bad option: lastServer:
+[15Oct2019 02:21:10.910] [Client thread/INFO] [net.minecraft.client.Minecraft/]: LWJGL Version: 3.2.2 build 10
+[15Oct2019 02:21:12.945] [modloading-worker-2/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 28.1.0, for MC 1.14.4 with MCP 20190829.143755
+[15Oct2019 02:21:12.945] [modloading-worker-2/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v28.1.0 Initialized
+[15Oct2019 02:21:13.542] [Client thread/INFO] [chemcraftmod/]: Blocks registered!
+[15Oct2019 02:21:13.549] [Client thread/INFO] [chemcraftmod/]: Items registered!
+[15Oct2019 02:21:13.558] [Client thread/INFO] [chemcraftmod/]: Tile entities registered!
+[15Oct2019 02:21:13.567] [Client thread/INFO] [chemcraftmod/]: Containers registered!
+[15Oct2019 02:21:15.453] [Client thread/INFO] [com.mojang.text2speech.NarratorWindows/]: Narrator library for x64 successfully loaded
+[15Oct2019 02:21:15.680] [Thread-1/FATAL] [net.minecraftforge.common.ForgeConfig/CORE]: Forge config just got changed on the file system!
+[15Oct2019 02:21:17.354] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[15Oct2019 02:21:17.523] [modloading-worker-9/INFO] [chemcraftmod/]: Setup method registered!
+[15Oct2019 02:21:17.525] [modloading-worker-9/INFO] [chemcraftmod/]: Client registries method registered!
+[15Oct2019 02:21:17.657] [Server-Worker-2/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/mob_effect/radiation.png : java.io.FileNotFoundException: chemcraftmod:textures/mob_effect/radiation.png
+[15Oct2019 02:21:17.792] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: UP_TO_DATE Current: 28.1.0 Target: null
+[15Oct2019 02:21:17.792] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [chemcraftmod] Starting version check at http://myurl.me/
+[15Oct2019 02:21:17.823] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
+[15Oct2019 02:21:18.166] [Forge Version Check/WARN] [net.minecraftforge.fml.VersionChecker/]: Failed to process update information
+java.io.IOException: Server returned HTTP response code: 400 for URL: http://myurl.me/
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_221]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_221]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_221]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1950) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1945) ~[?:1.8.0_221]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1944) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1514) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1498) ~[?:1.8.0_221]
+	at net.minecraftforge.fml.VersionChecker$1.openUrlStream(VersionChecker.java:189) ~[?:?]
+	at net.minecraftforge.fml.VersionChecker$1.process(VersionChecker.java:206) ~[?:?]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_221]
+	at net.minecraftforge.fml.VersionChecker$1.run(VersionChecker.java:157) [?:?]
+Caused by: java.io.IOException: Server returned HTTP response code: 400 for URL: http://myurl.me/
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1900) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1498) ~[?:1.8.0_221]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_221]
+	at net.minecraftforge.fml.VersionChecker$1.openUrlStream(VersionChecker.java:173) ~[?:?]
+	... 3 more
+[15Oct2019 02:21:21.480] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:cobalt#inventory' referenced from: chemcraftmod:cobalt#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/cobalt.json
+[15Oct2019 02:21:21.482] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:nickel#inventory' referenced from: chemcraftmod:nickel#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/nickel.json
+[15Oct2019 02:21:21.483] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:copper#inventory' referenced from: chemcraftmod:copper#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/copper.json
+[15Oct2019 02:21:21.484] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:zinc#inventory' referenced from: chemcraftmod:zinc#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/zinc.json
+[15Oct2019 02:21:21.485] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:gallium#inventory' referenced from: chemcraftmod:gallium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/gallium.json
+[15Oct2019 02:21:21.486] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:germanium#inventory' referenced from: chemcraftmod:germanium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/germanium.json
+[15Oct2019 02:21:21.488] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:arsenic#inventory' referenced from: chemcraftmod:arsenic#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/arsenic.json
+[15Oct2019 02:21:21.489] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:selenium#inventory' referenced from: chemcraftmod:selenium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/selenium.json
+[15Oct2019 02:21:21.490] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:bromine#inventory' referenced from: chemcraftmod:bromine#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/bromine.json
+[15Oct2019 02:21:21.491] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:krypton#inventory' referenced from: chemcraftmod:krypton#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/krypton.json
+[15Oct2019 02:21:21.492] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:rubidium#inventory' referenced from: chemcraftmod:rubidium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/rubidium.json
+[15Oct2019 02:21:21.493] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:strontium#inventory' referenced from: chemcraftmod:strontium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/strontium.json
+[15Oct2019 02:21:21.494] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:yttrium#inventory' referenced from: chemcraftmod:yttrium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/yttrium.json
+[15Oct2019 02:21:21.496] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:zirconium#inventory' referenced from: chemcraftmod:zirconium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/zirconium.json
+[15Oct2019 02:21:21.497] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:niobium#inventory' referenced from: chemcraftmod:niobium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/niobium.json
+[15Oct2019 02:21:21.498] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:molybdenum#inventory' referenced from: chemcraftmod:molybdenum#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/molybdenum.json
+[15Oct2019 02:21:21.499] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:technetium#inventory' referenced from: chemcraftmod:technetium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/technetium.json
+[15Oct2019 02:21:21.500] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:ruthenium#inventory' referenced from: chemcraftmod:ruthenium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/ruthenium.json
+[15Oct2019 02:21:21.502] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:rhodium#inventory' referenced from: chemcraftmod:rhodium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/rhodium.json
+[15Oct2019 02:21:21.503] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:palladium#inventory' referenced from: chemcraftmod:palladium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/palladium.json
+[15Oct2019 02:21:21.504] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:silver#inventory' referenced from: chemcraftmod:silver#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/silver.json
+[15Oct2019 02:21:21.505] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:cadmium#inventory' referenced from: chemcraftmod:cadmium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/cadmium.json
+[15Oct2019 02:21:21.506] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:indium#inventory' referenced from: chemcraftmod:indium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/indium.json
+[15Oct2019 02:21:21.507] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:tin#inventory' referenced from: chemcraftmod:tin#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/tin.json
+[15Oct2019 02:21:21.509] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:antimony#inventory' referenced from: chemcraftmod:antimony#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/antimony.json
+[15Oct2019 02:21:21.510] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:tellurium#inventory' referenced from: chemcraftmod:tellurium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/tellurium.json
+[15Oct2019 02:21:21.511] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:iodine#inventory' referenced from: chemcraftmod:iodine#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/iodine.json
+[15Oct2019 02:21:21.512] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:xenon#inventory' referenced from: chemcraftmod:xenon#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/xenon.json
+[15Oct2019 02:21:21.513] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:cesium#inventory' referenced from: chemcraftmod:cesium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/cesium.json
+[15Oct2019 02:21:21.514] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:barium#inventory' referenced from: chemcraftmod:barium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/barium.json
+[15Oct2019 02:21:21.516] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:lanthanum#inventory' referenced from: chemcraftmod:lanthanum#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/lanthanum.json
+[15Oct2019 02:21:21.517] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:cerium#inventory' referenced from: chemcraftmod:cerium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/cerium.json
+[15Oct2019 02:21:21.518] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:praseodymium#inventory' referenced from: chemcraftmod:praseodymium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/praseodymium.json
+[15Oct2019 02:21:21.519] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:neodymium#inventory' referenced from: chemcraftmod:neodymium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/neodymium.json
+[15Oct2019 02:21:21.520] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:promethium#inventory' referenced from: chemcraftmod:promethium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/promethium.json
+[15Oct2019 02:21:21.521] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:samarium#inventory' referenced from: chemcraftmod:samarium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/samarium.json
+[15Oct2019 02:21:21.522] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:europium#inventory' referenced from: chemcraftmod:europium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/europium.json
+[15Oct2019 02:21:21.523] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:gadolinium#inventory' referenced from: chemcraftmod:gadolinium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/gadolinium.json
+[15Oct2019 02:21:21.525] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:terbium#inventory' referenced from: chemcraftmod:terbium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/terbium.json
+[15Oct2019 02:21:21.526] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:dysprosium#inventory' referenced from: chemcraftmod:dysprosium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/dysprosium.json
+[15Oct2019 02:21:21.528] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:holmium#inventory' referenced from: chemcraftmod:holmium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/holmium.json
+[15Oct2019 02:21:21.529] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:erbium#inventory' referenced from: chemcraftmod:erbium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/erbium.json
+[15Oct2019 02:21:21.530] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:thulium#inventory' referenced from: chemcraftmod:thulium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/thulium.json
+[15Oct2019 02:21:21.531] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:ytterbium#inventory' referenced from: chemcraftmod:ytterbium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/ytterbium.json
+[15Oct2019 02:21:21.532] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:lutetium#inventory' referenced from: chemcraftmod:lutetium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/lutetium.json
+[15Oct2019 02:21:21.533] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:hafnium#inventory' referenced from: chemcraftmod:hafnium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/hafnium.json
+[15Oct2019 02:21:21.535] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:tantalum#inventory' referenced from: chemcraftmod:tantalum#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/tantalum.json
+[15Oct2019 02:21:21.536] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:tungsten#inventory' referenced from: chemcraftmod:tungsten#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/tungsten.json
+[15Oct2019 02:21:21.537] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:rhenium#inventory' referenced from: chemcraftmod:rhenium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/rhenium.json
+[15Oct2019 02:21:21.538] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:osmium#inventory' referenced from: chemcraftmod:osmium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/osmium.json
+[15Oct2019 02:21:21.539] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:iridium#inventory' referenced from: chemcraftmod:iridium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/iridium.json
+[15Oct2019 02:21:21.540] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:platinum#inventory' referenced from: chemcraftmod:platinum#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/platinum.json
+[15Oct2019 02:21:21.541] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:gold#inventory' referenced from: chemcraftmod:gold#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/gold.json
+[15Oct2019 02:21:21.543] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:mercury#inventory' referenced from: chemcraftmod:mercury#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/mercury.json
+[15Oct2019 02:21:21.544] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:thallium#inventory' referenced from: chemcraftmod:thallium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/thallium.json
+[15Oct2019 02:21:21.545] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:lead#inventory' referenced from: chemcraftmod:lead#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/lead.json
+[15Oct2019 02:21:21.546] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:bismuth#inventory' referenced from: chemcraftmod:bismuth#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/bismuth.json
+[15Oct2019 02:21:21.547] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:polonium#inventory' referenced from: chemcraftmod:polonium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/polonium.json
+[15Oct2019 02:21:21.548] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:astatine#inventory' referenced from: chemcraftmod:astatine#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/astatine.json
+[15Oct2019 02:21:21.550] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:radon#inventory' referenced from: chemcraftmod:radon#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/radon.json
+[15Oct2019 02:21:21.551] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:francium#inventory' referenced from: chemcraftmod:francium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/francium.json
+[15Oct2019 02:21:21.552] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:radium#inventory' referenced from: chemcraftmod:radium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/radium.json
+[15Oct2019 02:21:21.553] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:actinium#inventory' referenced from: chemcraftmod:actinium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/actinium.json
+[15Oct2019 02:21:21.554] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:thorium#inventory' referenced from: chemcraftmod:thorium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/thorium.json
+[15Oct2019 02:21:21.555] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:protactinium#inventory' referenced from: chemcraftmod:protactinium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/protactinium.json
+[15Oct2019 02:21:21.556] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:uranium#inventory' referenced from: chemcraftmod:uranium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/uranium.json
+[15Oct2019 02:21:21.558] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:neptunium#inventory' referenced from: chemcraftmod:neptunium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/neptunium.json
+[15Oct2019 02:21:21.559] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:plutonium#inventory' referenced from: chemcraftmod:plutonium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/plutonium.json
+[15Oct2019 02:21:21.560] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:americium#inventory' referenced from: chemcraftmod:americium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/americium.json
+[15Oct2019 02:21:21.561] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:curium#inventory' referenced from: chemcraftmod:curium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/curium.json
+[15Oct2019 02:21:21.563] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:berkelium#inventory' referenced from: chemcraftmod:berkelium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/berkelium.json
+[15Oct2019 02:21:21.564] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:californium#inventory' referenced from: chemcraftmod:californium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/californium.json
+[15Oct2019 02:21:21.565] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:einsteinium#inventory' referenced from: chemcraftmod:einsteinium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/einsteinium.json
+[15Oct2019 02:21:21.566] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:fermium#inventory' referenced from: chemcraftmod:fermium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/fermium.json
+[15Oct2019 02:21:21.567] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:mendelevium#inventory' referenced from: chemcraftmod:mendelevium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/mendelevium.json
+[15Oct2019 02:21:21.568] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:nobelium#inventory' referenced from: chemcraftmod:nobelium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/nobelium.json
+[15Oct2019 02:21:21.569] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:lawrencium#inventory' referenced from: chemcraftmod:lawrencium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/lawrencium.json
+[15Oct2019 02:21:21.571] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:rutherfordium#inventory' referenced from: chemcraftmod:rutherfordium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/rutherfordium.json
+[15Oct2019 02:21:21.572] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:dubnium#inventory' referenced from: chemcraftmod:dubnium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/dubnium.json
+[15Oct2019 02:21:21.573] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:seaborgium#inventory' referenced from: chemcraftmod:seaborgium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/seaborgium.json
+[15Oct2019 02:21:21.574] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:bohrium#inventory' referenced from: chemcraftmod:bohrium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/bohrium.json
+[15Oct2019 02:21:21.576] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:hassium#inventory' referenced from: chemcraftmod:hassium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/hassium.json
+[15Oct2019 02:21:21.577] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:meitnerium#inventory' referenced from: chemcraftmod:meitnerium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/meitnerium.json
+[15Oct2019 02:21:21.578] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:darmstadtium#inventory' referenced from: chemcraftmod:darmstadtium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/darmstadtium.json
+[15Oct2019 02:21:21.579] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:roentgenium#inventory' referenced from: chemcraftmod:roentgenium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/roentgenium.json
+[15Oct2019 02:21:21.580] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:copernicium#inventory' referenced from: chemcraftmod:copernicium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/copernicium.json
+[15Oct2019 02:21:21.581] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:nihonium#inventory' referenced from: chemcraftmod:nihonium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/nihonium.json
+[15Oct2019 02:21:21.583] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:flerovium#inventory' referenced from: chemcraftmod:flerovium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/flerovium.json
+[15Oct2019 02:21:21.584] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:moscovium#inventory' referenced from: chemcraftmod:moscovium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/moscovium.json
+[15Oct2019 02:21:21.585] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:livermorium#inventory' referenced from: chemcraftmod:livermorium#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/livermorium.json
+[15Oct2019 02:21:21.586] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:tennessine#inventory' referenced from: chemcraftmod:tennessine#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/tennessine.json
+[15Oct2019 02:21:21.587] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:oganesson#inventory' referenced from: chemcraftmod:oganesson#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/oganesson.json
+[15Oct2019 02:21:21.589] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:proton#inventory' referenced from: chemcraftmod:proton#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/proton.json
+[15Oct2019 02:21:21.590] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:neutron#inventory' referenced from: chemcraftmod:neutron#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/neutron.json
+[15Oct2019 02:21:21.591] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:electron#inventory' referenced from: chemcraftmod:electron#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/electron.json
+[15Oct2019 02:21:21.603] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:sulfate#inventory' referenced from: chemcraftmod:sulfate#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/sulfate.json
+[15Oct2019 02:21:21.605] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:sulfite#inventory' referenced from: chemcraftmod:sulfite#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/sulfite.json
+[15Oct2019 02:21:21.606] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:nitrate#inventory' referenced from: chemcraftmod:nitrate#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/nitrate.json
+[15Oct2019 02:21:21.607] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:nitrite#inventory' referenced from: chemcraftmod:nitrite#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/nitrite.json
+[15Oct2019 02:21:21.609] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:carbon_dioxide#inventory' referenced from: chemcraftmod:carbon_dioxide#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/carbon_dioxide.json
+[15Oct2019 02:21:21.610] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:carbon_monoxide#inventory' referenced from: chemcraftmod:carbon_monoxide#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/carbon_monoxide.json
+[15Oct2019 02:21:21.611] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:zinc_oxide#inventory' referenced from: chemcraftmod:zinc_oxide#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/zinc_oxide.json
+[15Oct2019 02:21:21.612] [Server-Worker-4/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:sodium_chloride#inventory' referenced from: chemcraftmod:sodium_chloride#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/sodium_chloride.json
+[15Oct2019 02:21:21.914] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/fluorite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/fluorite.png
+[15Oct2019 02:21:21.935] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/sodalite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/sodalite.png
+[15Oct2019 02:21:21.963] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/andradite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/andradite.png
+[15Oct2019 02:21:21.983] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/zircon.png : java.io.FileNotFoundException: chemcraftmod:textures/item/zircon.png
+[15Oct2019 02:21:22.023] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/aragonite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/aragonite.png
+[15Oct2019 02:21:22.924] [Client thread/WARN] [net.minecraft.client.GameSettings/]: Skipping bad option: lastServer:
+[15Oct2019 02:21:23.020] [Client thread/INFO] [net.minecraft.client.audio.SoundSystem/]: OpenAL initialized.
+[15Oct2019 02:21:23.021] [Client thread/INFO] [net.minecraft.client.audio.SoundEngine/SOUNDS]: Sound engine started
+[15Oct2019 02:21:23.197] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 1024x512 textures-atlas
+[15Oct2019 02:21:23.861] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 256x256 textures/particle-atlas
+[15Oct2019 02:21:23.865] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 256x256 textures/painting-atlas
+[15Oct2019 02:21:23.866] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 128x128 textures/mob_effect-atlas
+[15Oct2019 02:21:37.608] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[15Oct2019 02:21:37.609] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[15Oct2019 02:21:37.609] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[15Oct2019 02:21:37.610] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[15Oct2019 02:21:37.611] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[15Oct2019 02:21:37.755] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Starting integrated minecraft server version 1.14.4
+[15Oct2019 02:21:37.756] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Generating keypair
+[15Oct2019 02:21:37.869] [Thread-1/FATAL] [net.minecraftforge.common.ForgeConfig/CORE]: Forge config just got changed on the file system!
+[15Oct2019 02:21:37.946] [Server thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this SERVER instance
+[15Oct2019 02:21:37.968] [Server thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry Block: Found a missing id from the world chemcraftmod:constructor
+[15Oct2019 02:21:37.969] [Server thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry Block: Found a missing id from the world chemcraftmod:dolomite
+[15Oct2019 02:21:38.132] [Server thread/INFO] [net.minecraft.resources.SimpleReloadableResourceManager/]: Reloading ResourceManager: Default, forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar, main
+[15Oct2019 02:21:40.605] [Server thread/ERROR] [net.minecraft.item.crafting.RecipeManager/]: Parsing error loading recipe chemcraftmod:diamond_dust
+com.google.gson.JsonSyntaxException: Unknown item 'chemcraft:diamond_dust'
+	at net.minecraft.item.crafting.ShapedRecipe.lambda$deserializeItem$0(ShapedRecipe.java:280) ~[?:?]
+	at java.util.Optional.orElseThrow(Optional.java:290) ~[?:1.8.0_221]
+	at net.minecraft.item.crafting.ShapedRecipe.deserializeItem(ShapedRecipe.java:279) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:96) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:86) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.deserializeRecipe(RecipeManager.java:140) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:60) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:37) ~[?:?]
+	at net.minecraft.client.resources.ReloadListener.lambda$reload$1(ReloadListener.java:14) ~[?:?]
+	at java.util.concurrent.CompletableFuture.uniAccept(CompletableFuture.java:656) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire$$$capture(CompletableFuture.java:632) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:442) ~[?:1.8.0_221]
+	at net.minecraft.resources.AsyncReloader.lambda$null$3(AsyncReloader.java:66) ~[?:?]
+	at net.minecraft.util.concurrent.TickDelayedTask.run(TickDelayedTask.java:20) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.run(ThreadTaskExecutor.java:140) [?:?]
+	at net.minecraft.util.concurrent.RecursiveEventLoop.run(RecursiveEventLoop.java:22) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveOne(ThreadTaskExecutor.java:110) [?:?]
+	at net.minecraft.server.MinecraftServer.func_213205_aW(MinecraftServer.java:726) [?:?]
+	at net.minecraft.server.MinecraftServer.driveOne(MinecraftServer.java:720) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveUntil(ThreadTaskExecutor.java:123) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:1549) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:442) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:75) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:97) [?:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:622) [?:?]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_221]
+[15Oct2019 02:21:40.629] [Server thread/ERROR] [net.minecraft.item.crafting.RecipeManager/]: Parsing error loading recipe chemcraftmod:gold_dust
+com.google.gson.JsonSyntaxException: Unknown item 'chemcraft:gold_dust'
+	at net.minecraft.item.crafting.ShapedRecipe.lambda$deserializeItem$0(ShapedRecipe.java:280) ~[?:?]
+	at java.util.Optional.orElseThrow(Optional.java:290) ~[?:1.8.0_221]
+	at net.minecraft.item.crafting.ShapedRecipe.deserializeItem(ShapedRecipe.java:279) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:96) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:86) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.deserializeRecipe(RecipeManager.java:140) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:60) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:37) ~[?:?]
+	at net.minecraft.client.resources.ReloadListener.lambda$reload$1(ReloadListener.java:14) ~[?:?]
+	at java.util.concurrent.CompletableFuture.uniAccept(CompletableFuture.java:656) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire$$$capture(CompletableFuture.java:632) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:442) ~[?:1.8.0_221]
+	at net.minecraft.resources.AsyncReloader.lambda$null$3(AsyncReloader.java:66) ~[?:?]
+	at net.minecraft.util.concurrent.TickDelayedTask.run(TickDelayedTask.java:20) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.run(ThreadTaskExecutor.java:140) [?:?]
+	at net.minecraft.util.concurrent.RecursiveEventLoop.run(RecursiveEventLoop.java:22) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveOne(ThreadTaskExecutor.java:110) [?:?]
+	at net.minecraft.server.MinecraftServer.func_213205_aW(MinecraftServer.java:726) [?:?]
+	at net.minecraft.server.MinecraftServer.driveOne(MinecraftServer.java:720) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveUntil(ThreadTaskExecutor.java:123) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:1549) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:442) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:75) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:97) [?:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:622) [?:?]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_221]
+[15Oct2019 02:21:40.634] [Server thread/INFO] [net.minecraft.item.crafting.RecipeManager/]: Loaded 6 recipes
+[15Oct2019 02:21:42.831] [Server thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 811 advancements
+[15Oct2019 02:21:43.484] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[15Oct2019 02:21:44.156] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 0%
+[15Oct2019 02:21:44.156] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 0%
+[15Oct2019 02:21:44.522] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 99%
+[15Oct2019 02:21:44.555] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Time elapsed: 1066 ms
+[15Oct2019 02:21:44.717] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[15Oct2019 02:21:44.717] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[15Oct2019 02:21:46.244] [Netty Local Client IO #0/INFO] [net.minecraftforge.fml.network.NetworkHooks/]: Connected to a modded server.
+[15Oct2019 02:21:46.897] [Server thread/INFO] [net.minecraft.server.management.PlayerList/]: Dev[local:E:4950417f] logged in with entity id 1 at (-264.3695833751106, 4.0, 84.76589577535309)
+[15Oct2019 02:21:46.937] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
+[15Oct2019 02:21:47.243] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Saving and pausing game...
+[15Oct2019 02:21:47.263] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'New World'/minecraft:overworld
+[15Oct2019 02:21:47.378] [Client thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 89 advancements
+[15Oct2019 02:21:48.081] [pool-3-thread-1/WARN] [com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService/]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@68a1b0cc[id=380df991-f603-344c-a090-369bad2a924a,name=Dev,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) ~[authlib-1.5.25.jar:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3716) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2424) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2298) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2211) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4154) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153) ~[guava-21.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) ~[authlib-1.5.25.jar:?]
+	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:1950) ~[?:?]
+	at net.minecraft.client.resources.SkinManager.lambda$loadProfileTextures$1(SkinManager.java:111) ~[?:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_221]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_221]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_221]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_221]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_221]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_221]
+[15Oct2019 02:21:56.744] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Saving and pausing game...
+[15Oct2019 02:21:56.754] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'New World'/minecraft:overworld
+[15Oct2019 02:21:57.244] [Server thread/INFO] [net.minecraft.network.play.ServerPlayNetHandler/]: Dev lost connection: Disconnected
+[15Oct2019 02:21:57.245] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
+[15Oct2019 02:21:57.257] [Server thread/INFO] [net.minecraft.network.play.ServerPlayNetHandler/]: Stopping singleplayer server as player logged out
+[15Oct2019 02:21:57.293] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[15Oct2019 02:21:57.294] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[15Oct2019 02:21:57.294] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[15Oct2019 02:21:57.294] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'New World'/minecraft:overworld
+[15Oct2019 02:21:57.299] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (New World (1)): All chunks are saved
+[15Oct2019 02:21:57.313] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (New World (1)): All chunks are saved
+[15Oct2019 02:21:59.074] [Client thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
