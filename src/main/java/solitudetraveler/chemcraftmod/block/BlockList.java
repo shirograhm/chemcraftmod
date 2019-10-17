@@ -8,9 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
+import solitudetraveler.chemcraftmod.container.ErlenmeyerContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.ErlenmeyerTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
 public class BlockList {
@@ -22,6 +24,7 @@ public class BlockList {
     public static Block dolostone;
     public static Block reconstructor;
     public static Block deconstructor;
+    public static Block erlenmeyer;
 
     @ObjectHolder("chemcraftmod:reconstructor")
     public static TileEntityType<ReconstructorTileEntity> RECONSTRUCTOR_TILE_TYPE;
@@ -32,4 +35,9 @@ public class BlockList {
     public static TileEntityType<DeconstructorTileEntity> DECONSTRUCTOR_TILE_TYPE;
     @ObjectHolder("chemcraftmod:deconstructor")
     public static ContainerType<DeconstructorContainer> DECONSTRUCTOR_CONTAINER;
+
+    @ObjectHolder("chemcraftmod:erlenmeyer")
+    public static TileEntityType<ErlenmeyerTileEntity> ERLENMEYER_TILE_TYPE;
+    @ObjectHolder("chemcraftmod:erlenmeyer")
+    public static ContainerType<ErlenmeyerContainer> ERLENMEYER_CONTAINER;
 }
