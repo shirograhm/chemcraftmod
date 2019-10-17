@@ -29,7 +29,7 @@ public class CreativeTabList {
     public static final ItemGroup compoundGroup = new ItemGroup("compoundGroup") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ItemList.sodium_chloride);
+            return new ItemStack(ItemList.hydroxide);
         }
     };
 }

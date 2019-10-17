@@ -8,6 +8,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import solitudetraveler.chemcraftmod.ChemCraftMod;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -33,6 +34,6 @@ public class RadiationEffect extends Effect {
 
     @Override
     public void affectEntity(@Nullable Entity source, @Nullable Entity indirectSource, LivingEntity entityLivingBaseIn, int amplifier, double health) {
-        entityLivingBaseIn.attackEntityFrom(DamageSource.MAGIC, amplifier * 0.5f);
+        entityLivingBaseIn.attackEntityFrom(EffectList.RADIATION_SOURCE, amplifier * 0.5f);
     }
 }

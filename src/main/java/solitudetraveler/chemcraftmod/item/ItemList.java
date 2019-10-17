@@ -23,8 +23,8 @@ public class ItemList {
     public static Item sulfite;
     public static Item nitrate;
     public static Item nitrite;
-    public static Item carbon_dioxide;
-    public static Item carbon_monoxide;
+    public static Item carbonate;
+    public static Item hydroxide;
     // Ionic Compounds
     public static Item zinc_oxide;
     public static Item sodium_chloride;

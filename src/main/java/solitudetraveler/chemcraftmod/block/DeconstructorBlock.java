@@ -49,4 +49,6 @@ public class DeconstructorBlock extends Block {
         }
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
+
+
 }

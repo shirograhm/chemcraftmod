@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients":
+  [
+    { "item": "minecraft:gold_ingot" },
+    { "item": "minecraft:flint" }
+  ],
+  "result":
+  {
+    "item": "chemcraft:gold_dust",
+    "count": 4
+  }
+}

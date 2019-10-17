@@ -6,6 +6,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,6 +29,7 @@ import solitudetraveler.chemcraftmod.block.ReconstructorBlock;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.effect.EffectList;
+import solitudetraveler.chemcraftmod.effect.RadiationDamageSource;
 import solitudetraveler.chemcraftmod.effect.RadiationEffect;
 import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
@@ -47,7 +49,7 @@ public class ChemCraftMod {
     private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static final String MOD_ID = "chemcraftmod";
-    public static final Logger logger = LogManager.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static final String[] ELEMENT_NAMES = new String[] {
             "hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen",
             "oxygen", "fluorine", "neon", "sodium", "magnesium", "aluminium", "silicon",
@@ -86,11 +88,11 @@ public class ChemCraftMod {
         OreGeneration.setupOreGeneration();
         MinecraftForge.EVENT_BUS.register(ChemCraftEventHandler.class);
 
-        logger.info("Setup method registered!");
+        LOGGER.info("Setup method registered!");
     }
 
     private void clientRegistries(final FMLClientSetupEvent event) {
-        logger.info("Client registries method registered!");
+        LOGGER.info("Client registries method registered!");
     }
 
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
@@ -129,14 +131,14 @@ public class ChemCraftMod {
                     ItemList.sulfite = new CompoundItem(location("sulfite")),
                     ItemList.nitrate = new CompoundItem(location("nitrate")),
                     ItemList.nitrite = new CompoundItem(location("nitrite")),
-                    ItemList.carbon_dioxide = new CompoundItem(location("carbon_dioxide")),
-                    ItemList.carbon_monoxide = new CompoundItem(location("carbon_monoxide")),
+                    ItemList.carbonate = new CompoundItem(location("carbonate")),
+                    ItemList.hydroxide = new CompoundItem(location("hydroxide")),
                     // Ionic Compounds
                     ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide")),
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"))
             );
 
-            logger.info("Items registered!");
+            LOGGER.info("Items registered!");
         }
 
         @SubscribeEvent
@@ -155,7 +157,7 @@ public class ChemCraftMod {
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProps)
             );
 
-            logger.info("Blocks registered!");
+            LOGGER.info("Blocks registered!");
         }
 
         @SubscribeEvent
@@ -167,7 +169,7 @@ public class ChemCraftMod {
                             .setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName()))
             );
 
-            logger.info("Tile entities registered!");
+            LOGGER.info("Tile entities registered!");
         }
 
         @SubscribeEvent
@@ -183,7 +185,7 @@ public class ChemCraftMod {
 
             event.getRegistry().registerAll(reconstructor_container, deconstructor_container);
 
-            logger.info("Containers registered!");
+            LOGGER.info("Containers registered!");
         }
 
 
