@@ -18,14 +18,14 @@ import solitudetraveler.chemcraftmod.block.BlockList;
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-public class ErlenmeyerContainer extends Container {
+public class FlaskContainer extends Container {
 
     TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
-    public ErlenmeyerContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.DECONSTRUCTOR_CONTAINER, id);
+    public FlaskContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
+        super(BlockList.FLASK_CONTAINER, id);
 
         tileEntity = world.getTileEntity(pos);
         playerEntity = player;
@@ -43,7 +43,7 @@ public class ErlenmeyerContainer extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.deconstructor);
+        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.flask);
     }
 
     @Nonnull

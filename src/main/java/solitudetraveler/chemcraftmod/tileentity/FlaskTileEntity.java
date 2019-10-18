@@ -17,16 +17,17 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.container.ErlenmeyerContainer;
+import solitudetraveler.chemcraftmod.container.FlaskContainer;
 import solitudetraveler.chemcraftmod.item.CompoundItem;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ErlenmeyerTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public class FlaskTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     private IItemHandler inventory = new ItemStackHandler(2) {
         @Override
@@ -43,13 +44,37 @@ public class ErlenmeyerTileEntity extends TileEntity implements ITickableTileEnt
     };
     private LazyOptional<IItemHandler> inventoryHandler = LazyOptional.of(() -> inventory);
 
-    public ErlenmeyerTileEntity() {
-        super(BlockList.ERLENMEYER_TILE_TYPE);
+    public FlaskTileEntity() {
+        super(BlockList.FLASK_TILE_TYPE);
     }
 
     @Override
     public void tick() {
+        // Check for all possible recipes
+    }
 
+    public ItemStack addItemToFlask(ItemStack itemUsed) {
+        ItemStackHandler handler = ((ItemStackHandler) inventory);
+        int numberOfSlots = 2;
+
+        for(int i = 0; i < numberOfSlots; i++) {
+            int alreadyInFlask = -1;
+
+            if(handler.getStackInSlot(i).isEmpty()) {
+                alreadyInFlask = 0;
+            }
+            if(handler.getStackInSlot(i).getItem() == itemUsed.getItem()) {
+                alreadyInFlask = handler.getStackInSlot(i).getCount();
+            }
+
+            if(alreadyInFlask >= 0 && alreadyInFlask < handler.getSlotLimit(i)) {
+                handler.setStackInSlot(i, ItemHandlerHelper.copyStackWithSize(itemUsed, 1 + alreadyInFlask));
+                return ItemHandlerHelper.copyStackWithSize(itemUsed, itemUsed.getCount() - 1);
+            }
+
+        }
+
+        return itemUsed;
     }
 
     @Override
@@ -86,6 +111,6 @@ public class ErlenmeyerTileEntity extends TileEntity implements ITickableTileEnt
     @Nullable
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ErlenmeyerContainer(i, world, pos, playerInventory, playerEntity);
+        return new FlaskContainer(i, world, pos, playerInventory, playerEntity);
     }
 }

@@ -7,6 +7,7 @@ public class ItemList {
     public static Item dolostone;
     public static Item reconstructor;
     public static Item deconstructor;
+    public static Item flask;
     // Minerals
     public static Item aragonite;
     public static Item calcite;

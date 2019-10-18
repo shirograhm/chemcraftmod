@@ -7,17 +7,17 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.ErlenmeyerTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.FlaskTileEntity;
 
-public class ErlenmeyerScreen extends ContainerScreen<ErlenmeyerContainer> {
+public class FlaskScreen extends ContainerScreen<FlaskContainer> {
 
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/erlenmeyer_gui.png");
-    private ErlenmeyerTileEntity erlenmeyerTE;
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/flask_gui.png");
+    private FlaskTileEntity flaskTileEntity;
 
-    public ErlenmeyerScreen(ErlenmeyerContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public FlaskScreen(FlaskContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
 
-        erlenmeyerTE = (ErlenmeyerTileEntity) screenContainer.tileEntity;
+        flaskTileEntity = (FlaskTileEntity) screenContainer.tileEntity;
     }
 
     @Override

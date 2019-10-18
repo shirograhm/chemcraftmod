@@ -6,7 +6,6 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,11 +24,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.block.DeconstructorBlock;
+import solitudetraveler.chemcraftmod.block.FlaskBlock;
 import solitudetraveler.chemcraftmod.block.ReconstructorBlock;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
+import solitudetraveler.chemcraftmod.container.FlaskContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.effect.EffectList;
-import solitudetraveler.chemcraftmod.effect.RadiationDamageSource;
 import solitudetraveler.chemcraftmod.effect.RadiationEffect;
 import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
@@ -39,6 +39,7 @@ import solitudetraveler.chemcraftmod.proxy.ClientProxy;
 import solitudetraveler.chemcraftmod.proxy.IProxy;
 import solitudetraveler.chemcraftmod.proxy.ServerProxy;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.FlaskTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
 import java.util.Objects;
@@ -112,9 +113,10 @@ public class ChemCraftMod {
                     ItemList.neutron = new AtomicItem(location("neutron")),
                     ItemList.electron = new AtomicItem(location("electron")),
                     // Blocks
-                    ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
-                    ItemList.reconstructor = new BlockItem(BlockList.reconstructor, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
-                    ItemList.deconstructor = new BlockItem(BlockList.deconstructor, BlockList.blockItemProps).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
+                    ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
+                    ItemList.reconstructor = new BlockItem(BlockList.reconstructor, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
+                    ItemList.deconstructor = new BlockItem(BlockList.deconstructor, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
+                    ItemList.flask = new BlockItem(BlockList.flask, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.flask.getRegistryName())),
                     // Minerals
                     ItemList.aragonite = new MineralItem(location("aragonite")),
                     ItemList.calcite = new MineralItem(location("calcite")),
@@ -152,9 +154,10 @@ public class ChemCraftMod {
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 
             event.getRegistry().registerAll(
-                    BlockList.dolostone = new Block(BlockList.rockProps).setRegistryName(location("dolostone")),
-                    BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProps),
-                    BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProps)
+                    BlockList.dolostone = new Block(BlockList.rockProperties).setRegistryName(location("dolostone")),
+                    BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
+                    BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
+                    BlockList.flask = new FlaskBlock(location("flask"), BlockList.glasswareProperties)
             );
 
             LOGGER.info("Blocks registered!");
@@ -166,7 +169,9 @@ public class ChemCraftMod {
                     TileEntityType.Builder.create(ReconstructorTileEntity::new, BlockList.reconstructor).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
                     TileEntityType.Builder.create(DeconstructorTileEntity::new, BlockList.deconstructor).build(null)
-                            .setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName()))
+                            .setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
+                    TileEntityType.Builder.create(FlaskTileEntity::new, BlockList.flask).build(null)
+                            .setRegistryName(Objects.requireNonNull(BlockList.flask.getRegistryName()))
             );
 
             LOGGER.info("Tile entities registered!");
@@ -178,12 +183,18 @@ public class ChemCraftMod {
                 BlockPos pos = data.readBlockPos();
                 return new ReconstructorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             }).setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName()));
+
             ContainerType deconstructor_container = IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new DeconstructorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             }).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName()));
 
-            event.getRegistry().registerAll(reconstructor_container, deconstructor_container);
+            ContainerType flask_container = IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new FlaskContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
+            })).setRegistryName(Objects.requireNonNull(BlockList.flask.getRegistryName()));
+
+            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, flask_container);
 
             LOGGER.info("Containers registered!");
         }
