@@ -14,6 +14,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.tileentity.FlaskTileEntity;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -33,9 +34,14 @@ public class FlaskContainer extends Container {
 
         if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 44, 35));
+                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_1, 44, 53));
+                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_2, 62, 53));
+                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_3, 80, 53));
+                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_4, 98, 53));
+                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_5, 116, 53));
 
-                addSlot(new SlotItemHandler(h, 1, 98, 35));
+                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_OUTPUT_SLOT_1, 62, 17));
+                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_OUTPUT_SLOT_2, 98, 17));
             });
         }
         layoutPlayerInventorySlots(8, 84);
@@ -57,16 +63,16 @@ public class FlaskContainer extends Container {
             itemStack = stack.copy();
 
             if(index == 0) {
-                if(!this.mergeItemStack(stack, 2, 38, true)) {
+                if(!this.mergeItemStack(stack, FlaskTileEntity.NUMBER_FLASK_SLOTS, FlaskTileEntity.NUMBER_FLASK_SLOTS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(index < 37) {
-                    if(!this.mergeItemStack(stack, 29, 38, false)) {
+                if(index < FlaskTileEntity.NUMBER_FLASK_SLOTS + 27) {
+                    if(!this.mergeItemStack(stack, FlaskTileEntity.NUMBER_FLASK_SLOTS + 27, FlaskTileEntity.NUMBER_FLASK_SLOTS + 36, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < 46 && !this.mergeItemStack(stack, 2, 29, false)) {
+                } else if(index < FlaskTileEntity.NUMBER_FLASK_SLOTS + 36 && !this.mergeItemStack(stack, FlaskTileEntity.NUMBER_FLASK_SLOTS, FlaskTileEntity.NUMBER_FLASK_SLOTS + 27, false)) {
                     return ItemStack.EMPTY;
                 }
             }

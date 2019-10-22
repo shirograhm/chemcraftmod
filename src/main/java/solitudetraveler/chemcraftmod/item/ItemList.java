@@ -25,10 +25,12 @@ public class ItemList {
     public static Item nitrate;
     public static Item nitrite;
     public static Item carbonate;
+    public static Item bicarbonate;
     public static Item hydroxide;
     // Ionic Compounds
     public static Item zinc_oxide;
     public static Item sodium_chloride;
+    public static Item sodium_bicarbonate;
     // Elements
     public static Item proton;
     public static Item neutron;

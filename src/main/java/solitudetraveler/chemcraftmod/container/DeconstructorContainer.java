@@ -14,6 +14,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -33,14 +34,14 @@ public class DeconstructorContainer extends Container {
 
         if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 44, 35));
+                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35));
 
-                addSlot(new SlotItemHandler(h, 1, 98, 17));
-                addSlot(new SlotItemHandler(h, 2, 98, 35));
-                addSlot(new SlotItemHandler(h, 3, 98, 53));
-                addSlot(new SlotItemHandler(h, 4, 116, 17));
-                addSlot(new SlotItemHandler(h, 5, 116, 35));
-                addSlot(new SlotItemHandler(h, 6, 116, 53));
+                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_1, 98, 17));
+                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_2, 98, 35));
+                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_3, 98, 53));
+                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_4, 116, 17));
+                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_5, 116, 35));
+                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_6, 116, 53));
             });
         }
         layoutPlayerInventorySlots(8, 84);
@@ -60,17 +61,18 @@ public class DeconstructorContainer extends Container {
         if(slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
+
             if(index == 0) {
-                if(!this.mergeItemStack(stack, 7, 43, true)) {
+                if(!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(index < 37) {
-                    if(!this.mergeItemStack(stack, 34, 43, false)) {
+                if(index < DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 27) {
+                    if(!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 27, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < 46 && !this.mergeItemStack(stack, 7, 34, false)) {
+                } else if(index < DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36 && !this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 27, false)) {
                     return ItemStack.EMPTY;
                 }
             }

@@ -129,15 +129,17 @@ public class ChemCraftMod {
                     ItemList.diamond_dust = new MineralItem(location("diamond_dust")),
                     ItemList.gold_dust = new MineralItem(location("gold_dust")),
                     // Covalent Compounds
-                    ItemList.sulfate = new CompoundItem(location("sulfate")),
-                    ItemList.sulfite = new CompoundItem(location("sulfite")),
-                    ItemList.nitrate = new CompoundItem(location("nitrate")),
-                    ItemList.nitrite = new CompoundItem(location("nitrite")),
-                    ItemList.carbonate = new CompoundItem(location("carbonate")),
-                    ItemList.hydroxide = new CompoundItem(location("hydroxide")),
+                    ItemList.sulfate = new CompoundItem(location("sulfate"), ""),
+                    ItemList.sulfite = new CompoundItem(location("sulfite"), ""),
+                    ItemList.nitrate = new CompoundItem(location("nitrate"), ""),
+                    ItemList.nitrite = new CompoundItem(location("nitrite"), ""),
+                    ItemList.carbonate = new CompoundItem(location("carbonate"), ""),
+                    ItemList.bicarbonate = new CompoundItem(location("bicarbonate"), ""),
+                    ItemList.hydroxide = new CompoundItem(location("hydroxide"), ""),
                     // Ionic Compounds
-                    ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide")),
-                    ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"))
+                    ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), ""),
+                    ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "Also known as table salt."),
+                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda.")
             );
 
             LOGGER.info("Items registered!");

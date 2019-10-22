@@ -10,7 +10,7 @@
   "item.chemcraftmod.fluorite": "Fluorite",
   "item.chemcraftmod.andradite": "Andradite",
   "item.chemcraftmod.zircon": "Zircon",
-  "item.chencraftmod.ilmenite": "Ilmenite",
+  "item.chemcraftmod.ilmenite": "Ilmenite",
 
 
   "item.chemcraftmod.diamond_dust": "Diamond Dust",
@@ -135,6 +135,18 @@
   "item.chemcraftmod.livermorium": "Livermorium",
   "item.chemcraftmod.tennessine": "Tennessine",
   "item.chemcraftmod.oganesson": "Oganesson",
+
+
+  "item.chemcraftmod.sulfate": "Sulfate",
+  "item.chemcraftmod.sulfite": "Sulfite",
+  "item.chemcraftmod.carbonate": "Carbonate",
+  "item.chemcraftmod.hydroxide": "Hydroxide",
+  "item.chemcraftmod.nitrate": "Nitrate",
+  "item.chemcraftmod.nitrite": "Nitrite",
+
+
+  "item.chemcraftmod.zinc_oxide": "Zinc Oxide",
+  "item.chemcraftmod.sodium_chloride": "Sodium Chloride",
 
 
   "itemGroup.elementGroup": "ChemCraft Elements",

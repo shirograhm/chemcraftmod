@@ -17,10 +17,10 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.FlaskContainer;
+import solitudetraveler.chemcraftmod.handler.FlaskRecipeHandler;
 import solitudetraveler.chemcraftmod.item.CompoundItem;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 
@@ -28,8 +28,17 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class FlaskTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+    public static final int FLASK_INPUT_SLOT_1 = 0;
+    public static final int FLASK_INPUT_SLOT_2 = 1;
+    public static final int FLASK_INPUT_SLOT_3 = 2;
+    public static final int FLASK_INPUT_SLOT_4 = 3;
+    public static final int FLASK_INPUT_SLOT_5 = 4;
+    public static final int FLASK_OUTPUT_SLOT_1 = 5;
+    public static final int FLASK_OUTPUT_SLOT_2 = 6;
 
-    private IItemHandler inventory = new ItemStackHandler(2) {
+    public static final int NUMBER_FLASK_SLOTS = 7;
+
+    private IItemHandler inventory = new ItemStackHandler(NUMBER_FLASK_SLOTS) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -51,30 +60,21 @@ public class FlaskTileEntity extends TileEntity implements ITickableTileEntity, 
     @Override
     public void tick() {
         // Check for all possible recipes
-    }
+        ItemStackHandler handler = (ItemStackHandler) inventory;
 
-    public ItemStack addItemToFlask(ItemStack itemUsed) {
-        ItemStackHandler handler = ((ItemStackHandler) inventory);
-        int numberOfSlots = 2;
+        ItemStack[] inStacks = new ItemStack[]{
+                handler.getStackInSlot(FLASK_INPUT_SLOT_1),
+                handler.getStackInSlot(FLASK_INPUT_SLOT_2),
+                handler.getStackInSlot(FLASK_INPUT_SLOT_3),
+                handler.getStackInSlot(FLASK_INPUT_SLOT_4),
+                handler.getStackInSlot(FLASK_INPUT_SLOT_5)
+        };
+        ItemStack[] outStacks = FlaskRecipeHandler.getOutputForInputArray(inStacks);
 
-        for(int i = 0; i < numberOfSlots; i++) {
-            int alreadyInFlask = -1;
-
-            if(handler.getStackInSlot(i).isEmpty()) {
-                alreadyInFlask = 0;
-            }
-            if(handler.getStackInSlot(i).getItem() == itemUsed.getItem()) {
-                alreadyInFlask = handler.getStackInSlot(i).getCount();
-            }
-
-            if(alreadyInFlask >= 0 && alreadyInFlask < handler.getSlotLimit(i)) {
-                handler.setStackInSlot(i, ItemHandlerHelper.copyStackWithSize(itemUsed, 1 + alreadyInFlask));
-                return ItemHandlerHelper.copyStackWithSize(itemUsed, itemUsed.getCount() - 1);
-            }
-
+        if(!FlaskRecipeHandler.areOutputsEqual(outStacks, FlaskRecipeHandler.emptyOutput)) {
+            handler.setStackInSlot(FLASK_OUTPUT_SLOT_1, outStacks[0]);
+            handler.setStackInSlot(FLASK_OUTPUT_SLOT_2, outStacks[1]);
         }
-
-        return itemUsed;
     }
 
     @Override

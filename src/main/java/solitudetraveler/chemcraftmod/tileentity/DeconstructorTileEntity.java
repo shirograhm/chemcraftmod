@@ -27,8 +27,18 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class DeconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+    public static final int DECONSTRUCTOR_INPUT = 0;
+    public static final int DECONSTRUCTOR_OUTPUT_1 = 1;
+    public static final int DECONSTRUCTOR_OUTPUT_2 = 2;
+    public static final int DECONSTRUCTOR_OUTPUT_3 = 3;
+    public static final int DECONSTRUCTOR_OUTPUT_4 = 4;
+    public static final int DECONSTRUCTOR_OUTPUT_5 = 5;
+    public static final int DECONSTRUCTOR_OUTPUT_6 = 6;
+    public static final int NUMBER_DECONSTRUCTOR_SLOTS = 7;
 
-    private IItemHandler inventory = new ItemStackHandler(7) {
+    private static final int DECONSTRUCTION_TIME = 320;
+
+    private IItemHandler inventory = new ItemStackHandler(NUMBER_DECONSTRUCTOR_SLOTS) {
         @Override
         protected void onContentsChanged(int slot) {
             markDirty();
@@ -36,7 +46,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
 
         @Override
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-            if(slot == 0) {
+            if(slot == DECONSTRUCTOR_INPUT) {
                 return DeconstructorRecipeHandler.outputNotEmpty(DeconstructorRecipeHandler.getResultStacksForInput(stack.getItem()));
             }
             return false;
@@ -45,14 +55,13 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         @Nonnull
         @Override
         public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-            if(slot == 0) {
+            if(slot == DECONSTRUCTOR_INPUT) {
                 if(stack.getCount() == 1) {
                     return ItemStack.EMPTY;
                 } else {
                     return ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - 1);
                 }
             }
-
             return stack;
         }
     };
@@ -60,8 +69,6 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
 
     private boolean isDeconstructing;
     private int deconstructionTimeLeft;
-
-    private final int DECONSTRUCTION_TIME = 320;
 
     public DeconstructorTileEntity() {
         super(BlockList.DECONSTRUCTOR_TILE_TYPE);
@@ -82,7 +89,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     public void tick() {
         ItemStackHandler invHandler = (ItemStackHandler) this.inventory;
 
-        ItemStack input = invHandler.getStackInSlot(0);
+        ItemStack input = invHandler.getStackInSlot(DECONSTRUCTOR_INPUT);
         ItemStack[] out = DeconstructorRecipeHandler.getResultStacksForInput(input.getItem());
 
         if (!isDeconstructing) {
@@ -103,7 +110,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
             } else if (deconstructionTimeLeft == 0) {
 
                 if (!world.isRemote) {
-                    invHandler.setStackInSlot(0, ItemHandlerHelper.copyStackWithSize(input, input.getCount() - 1));
+                    invHandler.setStackInSlot(DECONSTRUCTOR_INPUT, ItemHandlerHelper.copyStackWithSize(input, input.getCount() - 1));
 
                     for (int i = 0; i < 6; i++) {
                         invHandler.setStackInSlot(i + 1, out[i]);
