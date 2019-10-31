@@ -16,6 +16,8 @@ public class FlaskRecipeHandler {
                 new ItemStack(ItemList.sodium_bicarbonate), ItemStack.EMPTY);
         addRecipe(new ItemStack(ItemList.getElementNumber(11)), new ItemStack(ItemList.getElementNumber(17)), ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
                 new ItemStack(ItemList.sodium_chloride), ItemStack.EMPTY);
+        addRecipe(new ItemStack(ItemList.sodium_bicarbonate), new ItemStack(ItemList.acetic_acid), ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+                ItemStack.EMPTY, ItemStack.EMPTY);
     }
 
     private static void addRecipe(ItemStack in1, ItemStack in2, ItemStack in3, ItemStack in4, ItemStack in5, ItemStack out1, ItemStack out2) {

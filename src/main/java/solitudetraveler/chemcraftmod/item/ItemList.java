@@ -1,6 +1,7 @@
 package solitudetraveler.chemcraftmod.item;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.IItemProvider;
 
 public class ItemList {
     // Blocks
@@ -31,6 +32,7 @@ public class ItemList {
     public static Item zinc_oxide;
     public static Item sodium_chloride;
     public static Item sodium_bicarbonate;
+    public static Item acetic_acid;
     // Elements
     public static Item proton;
     public static Item neutron;
