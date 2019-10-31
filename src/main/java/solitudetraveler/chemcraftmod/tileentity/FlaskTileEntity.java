@@ -23,9 +23,11 @@ import solitudetraveler.chemcraftmod.container.FlaskContainer;
 import solitudetraveler.chemcraftmod.handler.FlaskRecipeHandler;
 import solitudetraveler.chemcraftmod.item.CompoundItem;
 import solitudetraveler.chemcraftmod.item.ElementItem;
+import solitudetraveler.chemcraftmod.item.ItemList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class FlaskTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
     public static final int FLASK_INPUT_SLOT_1 = 0;
@@ -75,6 +77,26 @@ public class FlaskTileEntity extends TileEntity implements ITickableTileEntity, 
             handler.setStackInSlot(FLASK_OUTPUT_SLOT_1, outStacks[0]);
             handler.setStackInSlot(FLASK_OUTPUT_SLOT_2, outStacks[1]);
         }
+
+        boolean hasBakingSoda = false;
+        boolean hasVinegar = false;
+
+        for(ItemStack stack : inStacks) {
+            if(stack.getItem() == ItemList.sodium_bicarbonate) hasBakingSoda = true;
+            if(stack.getItem() == ItemList.acetic_acid) hasVinegar = true;
+        }
+
+        if(hasBakingSoda && hasVinegar) {
+            if(world != null && !world.isRemote) playEruption();
+        }
+    }
+
+    private void playEruption() {
+        Random rand = new Random();
+
+        world.addParticle(null, true,
+                pos.getX(),pos.getY() + 1, pos.getZ(),
+                rand.nextDouble(), rand.nextDouble(), rand.nextDouble());
     }
 
     @Override
