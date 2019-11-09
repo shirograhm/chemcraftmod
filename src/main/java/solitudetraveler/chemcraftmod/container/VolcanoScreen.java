@@ -7,17 +7,12 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.FlaskTileEntity;
 
-public class FlaskScreen extends ContainerScreen<FlaskContainer> {
+public class VolcanoScreen extends ContainerScreen<VolcanoContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/volcano_gui.png");
 
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/flask_gui.png");
-    private FlaskTileEntity flaskTileEntity;
-
-    public FlaskScreen(FlaskContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public VolcanoScreen(VolcanoContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
-
-        flaskTileEntity = (FlaskTileEntity) screenContainer.tileEntity;
     }
 
     @Override
@@ -29,7 +24,7 @@ public class FlaskScreen extends ContainerScreen<FlaskContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Erlenmeyer Flask", 5, 5, 0xff9a4d);
+        drawString(Minecraft.getInstance().fontRenderer, "Mini Volcano", 5, 5, 0xff9a4d);
         drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 73, 0x969696);
     }
 

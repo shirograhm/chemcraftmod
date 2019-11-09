@@ -5,51 +5,39 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.tileentity.FlaskTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-public class FlaskContainer extends Container {
+public class VolcanoContainer extends Container {
 
-    TileEntity tileEntity;
+    private VolcanoTileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
-    public FlaskContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.FLASK_CONTAINER, id);
+    public VolcanoContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
+        super(BlockList.VOLCANO_CONTAINER, id);
 
-        tileEntity = world.getTileEntity(pos);
+        tileEntity = (VolcanoTileEntity) world.getTileEntity(pos);
         playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
-        if(tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_1, 44, 53));
-                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_2, 62, 53));
-                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_3, 80, 53));
-                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_4, 98, 53));
-                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_INPUT_SLOT_5, 116, 53));
-
-                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_OUTPUT_SLOT_1, 62, 17));
-                addSlot(new SlotItemHandler(h, FlaskTileEntity.FLASK_OUTPUT_SLOT_2, 98, 17));
-            });
-        }
+        addSlot(new Slot(tileEntity, VolcanoTileEntity.VOLCANO_SLOT_1, 62, 35));
+        addSlot(new Slot(tileEntity, VolcanoTileEntity.VOLCANO_SLOT_2, 98, 35));
         layoutPlayerInventorySlots(8, 84);
     }
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.flask);
+        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.volcano);
     }
 
     @Nonnull
@@ -63,16 +51,16 @@ public class FlaskContainer extends Container {
             itemStack = stack.copy();
 
             if(index == 0) {
-                if(!this.mergeItemStack(stack, FlaskTileEntity.NUMBER_FLASK_SLOTS, FlaskTileEntity.NUMBER_FLASK_SLOTS + 36, true)) {
+                if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(index < FlaskTileEntity.NUMBER_FLASK_SLOTS + 27) {
-                    if(!this.mergeItemStack(stack, FlaskTileEntity.NUMBER_FLASK_SLOTS + 27, FlaskTileEntity.NUMBER_FLASK_SLOTS + 36, false)) {
+                if(index < VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 27) {
+                    if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 27, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < FlaskTileEntity.NUMBER_FLASK_SLOTS + 36 && !this.mergeItemStack(stack, FlaskTileEntity.NUMBER_FLASK_SLOTS, FlaskTileEntity.NUMBER_FLASK_SLOTS + 27, false)) {
+                } else if(index < VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36 && !this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 27, false)) {
                     return ItemStack.EMPTY;
                 }
             }

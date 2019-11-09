@@ -24,11 +24,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.block.DeconstructorBlock;
-import solitudetraveler.chemcraftmod.block.FlaskBlock;
 import solitudetraveler.chemcraftmod.block.ReconstructorBlock;
+import solitudetraveler.chemcraftmod.block.VolcanoBlock;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
-import solitudetraveler.chemcraftmod.container.FlaskContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
+import solitudetraveler.chemcraftmod.container.VolcanoContainer;
 import solitudetraveler.chemcraftmod.effect.EffectList;
 import solitudetraveler.chemcraftmod.effect.RadiationEffect;
 import solitudetraveler.chemcraftmod.generation.Config;
@@ -39,8 +39,8 @@ import solitudetraveler.chemcraftmod.proxy.ClientProxy;
 import solitudetraveler.chemcraftmod.proxy.IProxy;
 import solitudetraveler.chemcraftmod.proxy.ServerProxy;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.FlaskTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 import java.util.Objects;
 
@@ -116,7 +116,7 @@ public class ChemCraftMod {
                     ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
                     ItemList.reconstructor = new BlockItem(BlockList.reconstructor, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
                     ItemList.deconstructor = new BlockItem(BlockList.deconstructor, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
-                    ItemList.flask = new BlockItem(BlockList.flask, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.flask.getRegistryName())),
+                    ItemList.volcano = new BlockItem(BlockList.volcano, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName())),
                     // Minerals
                     ItemList.aragonite = new MineralItem(location("aragonite")),
                     ItemList.calcite = new MineralItem(location("calcite")),
@@ -139,7 +139,8 @@ public class ChemCraftMod {
                     // Ionic Compounds
                     ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), ""),
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "Also known as table salt."),
-                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda.")
+                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda."),
+                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "The main ingredient in vinegar.")
             );
 
             LOGGER.info("Items registered!");
@@ -159,7 +160,7 @@ public class ChemCraftMod {
                     BlockList.dolostone = new Block(BlockList.rockProperties).setRegistryName(location("dolostone")),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
-                    BlockList.flask = new FlaskBlock(location("flask"), BlockList.glasswareProperties)
+                    BlockList.volcano = new VolcanoBlock(location("volcano"), BlockList.rockProperties)
             );
 
             LOGGER.info("Blocks registered!");
@@ -172,8 +173,8 @@ public class ChemCraftMod {
                             .setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
                     TileEntityType.Builder.create(DeconstructorTileEntity::new, BlockList.deconstructor).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
-                    TileEntityType.Builder.create(FlaskTileEntity::new, BlockList.flask).build(null)
-                            .setRegistryName(Objects.requireNonNull(BlockList.flask.getRegistryName()))
+                    TileEntityType.Builder.create(VolcanoTileEntity::new, BlockList.volcano).build(null)
+                            .setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName()))
             );
 
             LOGGER.info("Tile entities registered!");
@@ -193,8 +194,8 @@ public class ChemCraftMod {
 
             ContainerType flask_container = IForgeContainerType.create(((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
-                return new FlaskContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
-            })).setRegistryName(Objects.requireNonNull(BlockList.flask.getRegistryName()));
+                return new VolcanoContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
+            })).setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName()));
 
             event.getRegistry().registerAll(reconstructor_container, deconstructor_container, flask_container);
 

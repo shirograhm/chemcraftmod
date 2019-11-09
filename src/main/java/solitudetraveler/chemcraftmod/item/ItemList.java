@@ -7,7 +7,7 @@ public class ItemList {
     public static Item dolostone;
     public static Item reconstructor;
     public static Item deconstructor;
-    public static Item flask;
+    public static Item volcano;
     // Minerals
     public static Item aragonite;
     public static Item calcite;
@@ -31,6 +31,7 @@ public class ItemList {
     public static Item zinc_oxide;
     public static Item sodium_chloride;
     public static Item sodium_bicarbonate;
+    public static Item acetic_acid;
     // Elements
     public static Item proton;
     public static Item neutron;

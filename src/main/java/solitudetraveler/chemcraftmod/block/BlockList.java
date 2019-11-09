@@ -8,12 +8,12 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
-import solitudetraveler.chemcraftmod.container.FlaskContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
+import solitudetraveler.chemcraftmod.container.VolcanoContainer;
 import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.FlaskTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 public class BlockList {
     public static Block.Properties rockProperties = Block.Properties.create(Material.ROCK).lightValue(0).sound(SoundType.STONE).hardnessAndResistance(2.6f, 4.4f);
@@ -25,7 +25,7 @@ public class BlockList {
     public static Block dolostone;
     public static Block reconstructor;
     public static Block deconstructor;
-    public static Block flask;
+    public static Block volcano;
 
     @ObjectHolder("chemcraftmod:reconstructor")
     public static TileEntityType<ReconstructorTileEntity> RECONSTRUCTOR_TILE_TYPE;
@@ -37,8 +37,8 @@ public class BlockList {
     @ObjectHolder("chemcraftmod:deconstructor")
     public static ContainerType<DeconstructorContainer> DECONSTRUCTOR_CONTAINER;
 
-    @ObjectHolder("chemcraftmod:flask")
-    public static TileEntityType<FlaskTileEntity> FLASK_TILE_TYPE;
-    @ObjectHolder("chemcraftmod:flask")
-    public static ContainerType<FlaskContainer> FLASK_CONTAINER;
+    @ObjectHolder("chemcraftmod:volcano")
+    public static TileEntityType<VolcanoTileEntity> VOLCANO_TILE_TYPE;
+    @ObjectHolder("chemcraftmod:volcano")
+    public static ContainerType<VolcanoContainer> VOLCANO_CONTAINER;
 }
