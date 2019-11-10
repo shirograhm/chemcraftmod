@@ -12,7 +12,6 @@ import solitudetraveler.chemcraftmod.block.BlockList;
 public class OreGeneration {
 
     public static void setupOreGeneration() {
-
         if(OreGenConfig.generate_overworld.get()) {
             for(Biome biome : ForgeRegistries.BIOMES) {
                 CountRangeConfig dolomite_placement = new CountRangeConfig(100, 24, 20, 96);
