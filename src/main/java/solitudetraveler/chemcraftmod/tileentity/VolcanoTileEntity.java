@@ -1,5 +1,6 @@
 package solitudetraveler.chemcraftmod.tileentity;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -7,7 +8,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
@@ -19,8 +19,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.VolcanoContainer;
-import solitudetraveler.chemcraftmod.item.CompoundItem;
-import solitudetraveler.chemcraftmod.item.ElementItem;
+import solitudetraveler.chemcraftmod.item.ItemList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -31,14 +30,12 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     public static final int VOLCANO_SLOT_2 = 1;
     public static final int NUMBER_VOLCANO_SLOTS = 2;
 
-    public ItemStackHandler inventory;
-    private boolean hasRequirements;
+    private ItemStackHandler inventory;
 
     public VolcanoTileEntity() {
         super(BlockList.VOLCANO_TILE_TYPE);
 
         inventory = generateInventory();
-        hasRequirements = false;
     }
 
     private ItemStackHandler generateInventory() {
@@ -51,33 +48,33 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
              @Override
              public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
                  Item item = stack.getItem();
-                 return (item instanceof CompoundItem || item instanceof ElementItem);
+                 return (item.equals(ItemList.sodium_bicarbonate) ||
+                         item.equals(ItemList.acetic_acid));
              }
          };
     }
 
     private boolean checkRequirements(Item item1, Item item2) {
-        return (item1.getRegistryName().getPath().equals("sodium_bicarbonate") && item2.getRegistryName().getPath().equals("acetic_acid")) ||
-                (item1.getRegistryName().getPath().equals("acetic_acid") && item2.getRegistryName().getPath().equals("sodium_bicarbonate"));
+        return (item1.equals(ItemList.sodium_bicarbonate) && item2.equals(ItemList.acetic_acid)) ||
+                (item1.equals(ItemList.acetic_acid) && item2.equals(ItemList.sodium_bicarbonate));
     }
 
     @Override
     public void tick() {
         // CLIENT SIDE
         if(!world.isRemote) {
-            hasRequirements = checkRequirements(inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(), inventory.getStackInSlot(VOLCANO_SLOT_2).getItem());
+            return;
         }
-        // SERVER SIDE
-        else {
-            if(hasRequirements) {
-                ItemParticleData data = new ItemParticleData(ParticleTypes.ITEM, new ItemStack(Items.LAVA_BUCKET));
-                Random rand = new Random();
 
-                for (int i = 0; i < 15; i++) {
-                    world.addParticle(data, true,
-                            this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5,
-                            (rand.nextDouble() - 0.5) / 4, 0.3, (rand.nextDouble() - 0.5) / 4);
-                }
+        // SERVER SIDE
+        if(checkRequirements(inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(), inventory.getStackInSlot(VOLCANO_SLOT_2).getItem())) {
+            ItemParticleData data = new ItemParticleData(ParticleTypes.ITEM, new ItemStack(Item.getItemFromBlock(Blocks.LAVA)));
+            Random rand = new Random();
+
+            for (int i = 0; i < 5; i++) {
+                world.addParticle(data, true,
+                        this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5,
+                        (rand.nextDouble() - 0.5) / 4, 0.3, (rand.nextDouble() - 0.5) / 4);
             }
         }
     }

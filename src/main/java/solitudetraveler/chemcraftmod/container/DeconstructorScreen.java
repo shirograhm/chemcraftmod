@@ -12,13 +12,12 @@ import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer> {
 
     private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/deconstructor_gui.png");
-
     private DeconstructorTileEntity deconstructorTE;
 
     public DeconstructorScreen(DeconstructorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
 
-        deconstructorTE = (DeconstructorTileEntity) screenContainer.tileEntity;
+        deconstructorTE = screenContainer.tileEntity;
     }
 
     @Override

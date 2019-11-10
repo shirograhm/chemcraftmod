@@ -140,8 +140,7 @@ public class ChemCraftMod {
                     // Ionic Compounds
                     ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), ""),
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "Also known as table salt."),
-                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda."),
-                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "The main ingredient in vinegar.")
+                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda.")
             );
 
             LOGGER.info("Items registered!");
@@ -193,12 +192,12 @@ public class ChemCraftMod {
                 return new DeconstructorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             }).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName()));
 
-            ContainerType flask_container = IForgeContainerType.create(((windowId, inv, data) -> {
+            ContainerType volcano_container = IForgeContainerType.create(((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new VolcanoContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             })).setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName()));
 
-            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, flask_container);
+            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container);
 
             LOGGER.info("Containers registered!");
         }

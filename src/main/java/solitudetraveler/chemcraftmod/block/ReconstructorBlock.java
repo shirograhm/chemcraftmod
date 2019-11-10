@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.StateContainer;
@@ -65,7 +64,7 @@ public class ReconstructorBlock extends Block {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 
             if(tileEntity instanceof ReconstructorTileEntity) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
+                InventoryHelper.dropInventoryItems(worldIn, pos, (ReconstructorTileEntity) tileEntity);
             }
 
             super.onReplaced(state, worldIn, pos, newState, isMoving);

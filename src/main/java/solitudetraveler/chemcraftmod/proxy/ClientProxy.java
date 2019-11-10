@@ -10,7 +10,6 @@ import solitudetraveler.chemcraftmod.container.ReconstructorScreen;
 import solitudetraveler.chemcraftmod.container.VolcanoScreen;
 
 public class ClientProxy implements IProxy {
-
     @Override
     public void init() {
         ScreenManager.registerFactory(BlockList.RECONSTRUCTOR_CONTAINER, ReconstructorScreen::new);

@@ -5,11 +5,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -17,39 +15,33 @@ import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 
 import javax.annotation.Nonnull;
-import java.util.Objects;
 
 public class DeconstructorContainer extends Container {
 
-    TileEntity tileEntity;
+    DeconstructorTileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
     public DeconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
         super(BlockList.DECONSTRUCTOR_CONTAINER, id);
 
-        tileEntity = world.getTileEntity(pos);
+        tileEntity = (DeconstructorTileEntity) world.getTileEntity(pos);
         playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
-        if(tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35));
-
-                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_1, 98, 17));
-                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_2, 98, 35));
-                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_3, 98, 53));
-                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_4, 116, 17));
-                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_5, 116, 35));
-                addSlot(new SlotItemHandler(h, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_6, 116, 53));
-            });
-        }
+        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35));
+        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_1, 98, 17));
+        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_2, 98, 35));
+        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_3, 98, 53));
+        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_4, 116, 17));
+        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_5, 116, 35));
+        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_6, 116, 53));
         layoutPlayerInventorySlots(8, 84);
     }
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.deconstructor);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.deconstructor);
     }
 
     @Nonnull
@@ -57,22 +49,23 @@ public class DeconstructorContainer extends Container {
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
+        int numberOfStacks = DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS;
 
         if(slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
             if(index == 0) {
-                if(!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, true)) {
+                if(!this.mergeItemStack(stack, numberOfStacks, numberOfStacks + 36, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {
-                if(index < DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 27) {
-                    if(!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 27, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, false)) {
+                if(index < numberOfStacks + 27) {
+                    if(!this.mergeItemStack(stack, numberOfStacks + 27, numberOfStacks + 36, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36 && !this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 27, false)) {
+                } else if(index < numberOfStacks + 36 && !this.mergeItemStack(stack, numberOfStacks, numberOfStacks + 27, false)) {
                     return ItemStack.EMPTY;
                 }
             }
