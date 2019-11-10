@@ -1,0 +1,267 @@
+[10Nov2019 02:27:47.577] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--gameDir, ., --launchTarget, fmluserdevclient, --fml.mcpVersion, 20190829.143755, --fml.mcVersion, 1.14.4, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 28.1.0, --version, MOD_DEV, --assetIndex, 1.14, --assetsDir, C:\Users\Xavier\.gradle\caches\forge_gradle\assets, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[10Nov2019 02:27:47.583] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 3.2.0+60+b86c1d4 starting: java version 1.8.0_221 by Oracle Corporation
+[10Nov2019 02:27:47.992] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
+[10Nov2019 02:27:48.950] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevclient' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Xavier\.gradle\caches\forge_gradle\assets, --assetIndex, 1.14, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[10Nov2019 02:27:51.345] [Client thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[10Nov2019 02:28:02.729] [Client thread/WARN] [net.minecraft.client.GameSettings/]: Skipping bad option: lastServer:
+[10Nov2019 02:28:02.772] [Client thread/INFO] [net.minecraft.client.Minecraft/]: LWJGL Version: 3.2.2 build 10
+[10Nov2019 02:28:04.510] [modloading-worker-2/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 28.1.0, for MC 1.14.4 with MCP 20190829.143755
+[10Nov2019 02:28:04.511] [modloading-worker-2/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v28.1.0 Initialized
+[10Nov2019 02:28:05.429] [Client thread/INFO] [chemcraftmod/]: Blocks registered!
+[10Nov2019 02:28:05.437] [Client thread/INFO] [chemcraftmod/]: Items registered!
+[10Nov2019 02:28:05.452] [Client thread/INFO] [chemcraftmod/]: Tile entities registered!
+[10Nov2019 02:28:05.461] [Client thread/INFO] [chemcraftmod/]: Containers registered!
+[10Nov2019 02:28:07.295] [Client thread/INFO] [com.mojang.text2speech.NarratorWindows/]: Narrator library for x64 successfully loaded
+[10Nov2019 02:28:07.512] [Thread-1/FATAL] [net.minecraftforge.common.ForgeConfig/CORE]: Forge config just got changed on the file system!
+[10Nov2019 02:28:09.028] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[10Nov2019 02:28:09.197] [modloading-worker-9/INFO] [chemcraftmod/]: Setup method registered!
+[10Nov2019 02:28:09.199] [modloading-worker-9/INFO] [chemcraftmod/]: Client registries method registered!
+[10Nov2019 02:28:09.244] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/mob_effect/radiation.png : java.io.FileNotFoundException: chemcraftmod:textures/mob_effect/radiation.png
+[10Nov2019 02:28:09.456] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: UP_TO_DATE Current: 28.1.0 Target: null
+[10Nov2019 02:28:09.456] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [chemcraftmod] Starting version check at http://myurl.me/
+[10Nov2019 02:28:09.495] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: Invalid session id
+[10Nov2019 02:28:09.801] [Forge Version Check/WARN] [net.minecraftforge.fml.VersionChecker/]: Failed to process update information
+java.io.IOException: Server returned HTTP response code: 400 for URL: http://myurl.me/
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_221]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_221]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_221]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1950) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1945) ~[?:1.8.0_221]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1944) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1514) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1498) ~[?:1.8.0_221]
+	at net.minecraftforge.fml.VersionChecker$1.openUrlStream(VersionChecker.java:189) ~[?:?]
+	at net.minecraftforge.fml.VersionChecker$1.process(VersionChecker.java:206) ~[?:?]
+	at java.lang.Iterable.forEach(Iterable.java:75) [?:1.8.0_221]
+	at net.minecraftforge.fml.VersionChecker$1.run(VersionChecker.java:157) [?:?]
+Caused by: java.io.IOException: Server returned HTTP response code: 400 for URL: http://myurl.me/
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1900) ~[?:1.8.0_221]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1498) ~[?:1.8.0_221]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_221]
+	at net.minecraftforge.fml.VersionChecker$1.openUrlStream(VersionChecker.java:173) ~[?:?]
+	... 3 more
+[10Nov2019 02:28:13.055] [Server-Worker-2/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:proton#inventory' referenced from: chemcraftmod:proton#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/proton.json
+[10Nov2019 02:28:13.056] [Server-Worker-2/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:neutron#inventory' referenced from: chemcraftmod:neutron#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/neutron.json
+[10Nov2019 02:28:13.058] [Server-Worker-2/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:electron#inventory' referenced from: chemcraftmod:electron#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/electron.json
+[10Nov2019 02:28:13.073] [Server-Worker-2/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:bicarbonate#inventory' referenced from: chemcraftmod:bicarbonate#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/bicarbonate.json
+[10Nov2019 02:28:13.075] [Server-Worker-2/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:acetic_acid#inventory' referenced from: chemcraftmod:acetic_acid#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/acetic_acid.json
+[10Nov2019 02:28:13.078] [Server-Worker-2/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'chemcraftmod:sodium_bicarbonate#inventory' referenced from: chemcraftmod:sodium_bicarbonate#inventory: java.io.FileNotFoundException: chemcraftmod:models/item/sodium_bicarbonate.json
+[10Nov2019 02:28:13.295] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/uranium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/uranium.png
+[10Nov2019 02:28:13.295] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/bohrium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/bohrium.png
+[10Nov2019 02:28:13.297] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/dubnium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/dubnium.png
+[10Nov2019 02:28:13.299] [Server-Worker-4/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/polonium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/polonium.png
+[10Nov2019 02:28:13.311] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/radon.png : java.io.FileNotFoundException: chemcraftmod:textures/item/radon.png
+[10Nov2019 02:28:13.319] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/seaborgium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/seaborgium.png
+[10Nov2019 02:28:13.326] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/bismuth.png : java.io.FileNotFoundException: chemcraftmod:textures/item/bismuth.png
+[10Nov2019 02:28:13.328] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/sulfate.png : java.io.FileNotFoundException: chemcraftmod:textures/item/sulfate.png
+[10Nov2019 02:28:13.338] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/carbonate.png : java.io.FileNotFoundException: chemcraftmod:textures/item/carbonate.png
+[10Nov2019 02:28:13.363] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/mercury.png : java.io.FileNotFoundException: chemcraftmod:textures/item/mercury.png
+[10Nov2019 02:28:13.371] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/nitrate.png : java.io.FileNotFoundException: chemcraftmod:textures/item/nitrate.png
+[10Nov2019 02:28:13.373] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/thorium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/thorium.png
+[10Nov2019 02:28:13.378] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/fluorite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/fluorite.png
+[10Nov2019 02:28:13.382] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/sodium_chloride.png : java.io.FileNotFoundException: chemcraftmod:textures/item/sodium_chloride.png
+[10Nov2019 02:28:13.391] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/livermorium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/livermorium.png
+[10Nov2019 02:28:13.400] [Server-Worker-4/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/sodalite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/sodalite.png
+[10Nov2019 02:28:13.408] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/fermium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/fermium.png
+[10Nov2019 02:28:13.409] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/lawrencium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/lawrencium.png
+[10Nov2019 02:28:13.411] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/platinum.png : java.io.FileNotFoundException: chemcraftmod:textures/item/platinum.png
+[10Nov2019 02:28:13.415] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/oganesson.png : java.io.FileNotFoundException: chemcraftmod:textures/item/oganesson.png
+[10Nov2019 02:28:13.421] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/tennessine.png : java.io.FileNotFoundException: chemcraftmod:textures/item/tennessine.png
+[10Nov2019 02:28:13.425] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/lead.png : java.io.FileNotFoundException: chemcraftmod:textures/item/lead.png
+[10Nov2019 02:28:13.426] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/flerovium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/flerovium.png
+[10Nov2019 02:28:13.429] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/roentgenium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/roentgenium.png
+[10Nov2019 02:28:13.430] [Server-Worker-4/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/andradite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/andradite.png
+[10Nov2019 02:28:13.431] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/francium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/francium.png
+[10Nov2019 02:28:13.442] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/nitrite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/nitrite.png
+[10Nov2019 02:28:13.443] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/hassium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/hassium.png
+[10Nov2019 02:28:13.447] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/darmstadtium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/darmstadtium.png
+[10Nov2019 02:28:13.449] [Server-Worker-4/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/neptunium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/neptunium.png
+[10Nov2019 02:28:13.451] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/nihonium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/nihonium.png
+[10Nov2019 02:28:13.451] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/zircon.png : java.io.FileNotFoundException: chemcraftmod:textures/item/zircon.png
+[10Nov2019 02:28:13.457] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/iridium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/iridium.png
+[10Nov2019 02:28:13.463] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/thallium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/thallium.png
+[10Nov2019 02:28:13.468] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/einsteinium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/einsteinium.png
+[10Nov2019 02:28:13.471] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/aragonite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/aragonite.png
+[10Nov2019 02:28:13.511] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/mendelevium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/mendelevium.png
+[10Nov2019 02:28:13.515] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/copernicium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/copernicium.png
+[10Nov2019 02:28:13.517] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/hydroxide.png : java.io.FileNotFoundException: chemcraftmod:textures/item/hydroxide.png
+[10Nov2019 02:28:13.517] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/ilmenite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/ilmenite.png
+[10Nov2019 02:28:13.523] [Server-Worker-4/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/meitnerium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/meitnerium.png
+[10Nov2019 02:28:13.532] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/nobelium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/nobelium.png
+[10Nov2019 02:28:13.540] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/calcite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/calcite.png
+[10Nov2019 02:28:13.543] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/sulfite.png : java.io.FileNotFoundException: chemcraftmod:textures/item/sulfite.png
+[10Nov2019 02:28:13.544] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/curium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/curium.png
+[10Nov2019 02:28:13.548] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/radium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/radium.png
+[10Nov2019 02:28:13.549] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load minecraft:textures/item/volcano.png : java.io.FileNotFoundException: minecraft:textures/item/volcano.png
+[10Nov2019 02:28:13.557] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/americium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/americium.png
+[10Nov2019 02:28:13.559] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/astatine.png : java.io.FileNotFoundException: chemcraftmod:textures/item/astatine.png
+[10Nov2019 02:28:13.560] [Server-Worker-5/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/protactinium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/protactinium.png
+[10Nov2019 02:28:13.563] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/plutonium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/plutonium.png
+[10Nov2019 02:28:13.564] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/actinium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/actinium.png
+[10Nov2019 02:28:13.568] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load minecraft:textures/block/volcano_bottom.png : java.io.FileNotFoundException: minecraft:textures/block/volcano_bottom.png
+[10Nov2019 02:28:13.568] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/californium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/californium.png
+[10Nov2019 02:28:13.571] [Server-Worker-4/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/berkelium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/berkelium.png
+[10Nov2019 02:28:13.573] [Server-Worker-3/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/rutherfordium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/rutherfordium.png
+[10Nov2019 02:28:13.575] [Server-Worker-7/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/moscovium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/moscovium.png
+[10Nov2019 02:28:13.578] [Server-Worker-8/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/osmium.png : java.io.FileNotFoundException: chemcraftmod:textures/item/osmium.png
+[10Nov2019 02:28:13.579] [Server-Worker-6/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load chemcraftmod:textures/item/zinc_oxide.png : java.io.FileNotFoundException: chemcraftmod:textures/item/zinc_oxide.png
+[10Nov2019 02:28:14.357] [Client thread/WARN] [net.minecraft.client.GameSettings/]: Skipping bad option: lastServer:
+[10Nov2019 02:28:14.452] [Client thread/INFO] [net.minecraft.client.audio.SoundSystem/]: OpenAL initialized.
+[10Nov2019 02:28:14.453] [Client thread/INFO] [net.minecraft.client.audio.SoundEngine/SOUNDS]: Sound engine started
+[10Nov2019 02:28:14.613] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 1024x512 textures-atlas
+[10Nov2019 02:28:15.322] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 256x256 textures/particle-atlas
+[10Nov2019 02:28:15.327] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 256x256 textures/painting-atlas
+[10Nov2019 02:28:15.328] [Client thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 128x128 textures/mob_effect-atlas
+[10Nov2019 02:28:22.301] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[10Nov2019 02:28:22.302] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[10Nov2019 02:28:22.303] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[10Nov2019 02:28:22.304] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[10Nov2019 02:28:22.305] [Client thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[10Nov2019 02:28:22.453] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Starting integrated minecraft server version 1.14.4
+[10Nov2019 02:28:22.454] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Generating keypair
+[10Nov2019 02:28:22.566] [Thread-1/FATAL] [net.minecraftforge.common.ForgeConfig/CORE]: Forge config just got changed on the file system!
+[10Nov2019 02:28:22.566] [Thread-1/FATAL] [net.minecraftforge.common.ForgeConfig/CORE]: Forge config just got changed on the file system!
+[10Nov2019 02:28:22.570] [Thread-1/FATAL] [net.minecraftforge.common.ForgeConfig/CORE]: Forge config just got changed on the file system!
+[10Nov2019 02:28:22.644] [Server thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this SERVER instance
+[10Nov2019 02:28:22.665] [Server thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry Block: Found a missing id from the world chemcraftmod:constructor
+[10Nov2019 02:28:22.666] [Server thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry Block: Found a missing id from the world chemcraftmod:dolomite
+[10Nov2019 02:28:22.666] [Server thread/INFO] [net.minecraftforge.registries.ForgeRegistry/REGISTRIES]: Registry Block: Found a missing id from the world chemcraftmod:flask
+[10Nov2019 02:28:22.821] [Server thread/INFO] [net.minecraft.resources.SimpleReloadableResourceManager/]: Reloading ResourceManager: Default, forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar, main
+[10Nov2019 02:28:25.179] [Server thread/ERROR] [net.minecraft.item.crafting.RecipeManager/]: Parsing error loading recipe chemcraftmod:diamond_dust
+com.google.gson.JsonSyntaxException: Unknown item 'chemcraft:diamond_dust'
+	at net.minecraft.item.crafting.ShapedRecipe.lambda$deserializeItem$0(ShapedRecipe.java:280) ~[?:?]
+	at java.util.Optional.orElseThrow(Optional.java:290) ~[?:1.8.0_221]
+	at net.minecraft.item.crafting.ShapedRecipe.deserializeItem(ShapedRecipe.java:279) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:96) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:86) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.deserializeRecipe(RecipeManager.java:140) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:60) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:37) ~[?:?]
+	at net.minecraft.client.resources.ReloadListener.lambda$reload$1(ReloadListener.java:14) ~[?:?]
+	at java.util.concurrent.CompletableFuture.uniAccept(CompletableFuture.java:656) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire$$$capture(CompletableFuture.java:632) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:442) ~[?:1.8.0_221]
+	at net.minecraft.resources.AsyncReloader.lambda$null$3(AsyncReloader.java:66) ~[?:?]
+	at net.minecraft.util.concurrent.TickDelayedTask.run(TickDelayedTask.java:20) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.run(ThreadTaskExecutor.java:140) [?:?]
+	at net.minecraft.util.concurrent.RecursiveEventLoop.run(RecursiveEventLoop.java:22) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveOne(ThreadTaskExecutor.java:110) [?:?]
+	at net.minecraft.server.MinecraftServer.func_213205_aW(MinecraftServer.java:726) [?:?]
+	at net.minecraft.server.MinecraftServer.driveOne(MinecraftServer.java:720) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveUntil(ThreadTaskExecutor.java:123) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:1549) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:442) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:75) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:97) [?:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:622) [?:?]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_221]
+[10Nov2019 02:28:25.202] [Server thread/ERROR] [net.minecraft.item.crafting.RecipeManager/]: Parsing error loading recipe chemcraftmod:gold_dust
+com.google.gson.JsonSyntaxException: Unknown item 'chemcraft:gold_dust'
+	at net.minecraft.item.crafting.ShapedRecipe.lambda$deserializeItem$0(ShapedRecipe.java:280) ~[?:?]
+	at java.util.Optional.orElseThrow(Optional.java:290) ~[?:1.8.0_221]
+	at net.minecraft.item.crafting.ShapedRecipe.deserializeItem(ShapedRecipe.java:279) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:96) ~[?:?]
+	at net.minecraft.item.crafting.ShapelessRecipe$Serializer.read(ShapelessRecipe.java:86) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.deserializeRecipe(RecipeManager.java:140) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:60) ~[?:?]
+	at net.minecraft.item.crafting.RecipeManager.apply(RecipeManager.java:37) ~[?:?]
+	at net.minecraft.client.resources.ReloadListener.lambda$reload$1(ReloadListener.java:14) ~[?:?]
+	at java.util.concurrent.CompletableFuture.uniAccept(CompletableFuture.java:656) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire$$$capture(CompletableFuture.java:632) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java) ~[?:1.8.0_221]
+	at java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:442) ~[?:1.8.0_221]
+	at net.minecraft.resources.AsyncReloader.lambda$null$3(AsyncReloader.java:66) ~[?:?]
+	at net.minecraft.util.concurrent.TickDelayedTask.run(TickDelayedTask.java:20) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.run(ThreadTaskExecutor.java:140) [?:?]
+	at net.minecraft.util.concurrent.RecursiveEventLoop.run(RecursiveEventLoop.java:22) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveOne(ThreadTaskExecutor.java:110) [?:?]
+	at net.minecraft.server.MinecraftServer.func_213205_aW(MinecraftServer.java:726) [?:?]
+	at net.minecraft.server.MinecraftServer.driveOne(MinecraftServer.java:720) [?:?]
+	at net.minecraft.util.concurrent.ThreadTaskExecutor.driveUntil(ThreadTaskExecutor.java:123) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:1549) [?:?]
+	at net.minecraft.server.MinecraftServer.loadDataPacks(MinecraftServer.java:442) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:75) [?:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:97) [?:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:622) [?:?]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_221]
+[10Nov2019 02:28:25.208] [Server thread/INFO] [net.minecraft.item.crafting.RecipeManager/]: Loaded 6 recipes
+[10Nov2019 02:28:27.412] [Server thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 811 advancements
+[10Nov2019 02:28:28.049] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[10Nov2019 02:28:28.724] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 0%
+[10Nov2019 02:28:28.724] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 0%
+[10Nov2019 02:28:29.090] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 54%
+[10Nov2019 02:28:29.523] [Client thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Time elapsed: 1467 ms
+[10Nov2019 02:28:29.667] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[10Nov2019 02:28:29.668] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[10Nov2019 02:28:31.452] [Netty Local Client IO #0/INFO] [net.minecraftforge.fml.network.NetworkHooks/]: Connected to a modded server.
+[10Nov2019 02:28:31.690] [Server thread/INFO] [net.minecraft.server.management.PlayerList/]: Dev[local:E:7e7d31e6] logged in with entity id 1 at (-282.7476541741602, 4.0, 87.1944140426395)
+[10Nov2019 02:28:31.735] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
+[10Nov2019 02:28:31.970] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Saving and pausing game...
+[10Nov2019 02:28:31.989] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'New World'/minecraft:overworld
+[10Nov2019 02:28:32.117] [Client thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 43 advancements
+[10Nov2019 02:28:32.773] [pool-3-thread-1/WARN] [com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService/]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@68b5ef58[id=380df991-f603-344c-a090-369bad2a924a,name=Dev,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) ~[authlib-1.5.25.jar:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3716) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2424) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2298) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2211) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4154) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153) ~[guava-21.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) ~[authlib-1.5.25.jar:?]
+	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:1950) ~[?:?]
+	at net.minecraft.client.resources.SkinManager.lambda$loadProfileTextures$1(SkinManager.java:111) ~[?:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_221]
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_221]
+	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_221]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_221]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_221]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_221]
+[10Nov2019 02:28:51.671] [Client thread/WARN] [net.minecraft.client.renderer.texture.TextureManager/]: Failed to load texture: chemcraftmod:textures/gui/volcano_gui.png
+java.io.FileNotFoundException: chemcraftmod:textures/gui/volcano_gui.png
+	at net.minecraft.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:56) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:58) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.renderer.texture.SimpleTexture$TextureData.func_217799_a(SimpleTexture.java:66) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.renderer.texture.SimpleTexture.func_215246_b(SimpleTexture.java:44) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.renderer.texture.SimpleTexture.loadTexture(SimpleTexture.java:26) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.renderer.texture.TextureManager.loadTexture(TextureManager.java:64) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.renderer.texture.TextureManager.bindTexture(TextureManager.java:45) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at solitudetraveler.chemcraftmod.container.VolcanoScreen.drawGuiContainerBackgroundLayer(VolcanoScreen.java:34) ~[classes/:?]
+	at net.minecraft.client.gui.screen.inventory.ContainerScreen.render(ContainerScreen.java:77) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at solitudetraveler.chemcraftmod.container.VolcanoScreen.render(VolcanoScreen.java:21) ~[classes/:?]
+	at net.minecraftforge.client.ForgeHooksClient.drawScreen(ForgeHooksClient.java:347) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.renderer.GameRenderer.updateCameraAndRender(GameRenderer.java:569) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:922) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:384) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at net.minecraft.client.main.Main.main(Main.java:128) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_221]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_221]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_221]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_221]
+	at net.minecraftforge.userdev.FMLUserdevClientLaunchProvider.lambda$launchService$0(FMLUserdevClientLaunchProvider.java:55) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37) [modlauncher-3.2.0.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:50) [modlauncher-3.2.0.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:68) [modlauncher-3.2.0.jar:?]
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:80) [modlauncher-3.2.0.jar:?]
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:65) [modlauncher-3.2.0.jar:?]
+	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:101) [forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?]
+[10Nov2019 02:29:08.351] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Saving and pausing game...
+[10Nov2019 02:29:08.365] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'New World'/minecraft:overworld
+[10Nov2019 02:29:09.100] [Server thread/INFO] [net.minecraft.network.play.ServerPlayNetHandler/]: Dev lost connection: Disconnected
+[10Nov2019 02:29:09.101] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
+[10Nov2019 02:29:09.116] [Server thread/INFO] [net.minecraft.network.play.ServerPlayNetHandler/]: Stopping singleplayer server as player logged out
+[10Nov2019 02:29:09.188] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[10Nov2019 02:29:09.188] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[10Nov2019 02:29:09.188] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[10Nov2019 02:29:09.188] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'New World'/minecraft:overworld
+[10Nov2019 02:29:09.194] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (New World (1)): All chunks are saved
+[10Nov2019 02:29:09.209] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (New World (1)): All chunks are saved
+[10Nov2019 02:29:10.058] [Client thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
