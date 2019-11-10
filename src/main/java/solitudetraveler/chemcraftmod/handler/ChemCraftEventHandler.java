@@ -14,6 +14,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 import solitudetraveler.chemcraftmod.item.ItemList;
 
+import java.util.Random;
+
 public class ChemCraftEventHandler {
     @SubscribeEvent
     public static void entityItemTickEvent(ItemEvent event) {
@@ -25,9 +27,13 @@ public class ChemCraftEventHandler {
 
             if(itemEntity.getItem().getItem() == ItemList.carbonate) {
                 ItemParticleData data = new ItemParticleData(ParticleTypes.ITEM, itemEntity.getItem());
+                Random rand = new Random();
+
                 BlockPos itemPos = new BlockPos(itemEntity.posX, itemEntity.posY - 1, itemEntity.posZ);
 
                 for(int i = 0; i < 25; i++) {
+                    BlockPos pos = new BlockPos(itemEntity.posX - rand.nextDouble(), itemEntity.posY - rand.nextDouble(), itemEntity.posZ - rand.nextDouble());
+
                     System.out.println("Generate particle at " + itemPos.toString());
                     worldIn.addParticle(data, true, itemPos.getX(), itemPos.getY(), itemPos.getZ(), 0.5, 0.5, 0.5);
                 }

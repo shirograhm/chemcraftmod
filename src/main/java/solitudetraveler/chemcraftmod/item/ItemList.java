@@ -1,6 +1,7 @@
 package solitudetraveler.chemcraftmod.item;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.IItemProvider;
 
 public class ItemList {
     // Blocks
