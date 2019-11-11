@@ -1,6 +1,5 @@
 package solitudetraveler.chemcraftmod.tileentity;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -9,7 +8,6 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -62,19 +60,18 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     @Override
     public void tick() {
         // CLIENT SIDE
-        if(!world.isRemote) {
+        if (world != null && !world.isRemote) {
             return;
         }
 
         // SERVER SIDE
         if(checkRequirements(inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(), inventory.getStackInSlot(VOLCANO_SLOT_2).getItem())) {
-            ItemParticleData data = new ItemParticleData(ParticleTypes.ITEM, new ItemStack(Item.getItemFromBlock(Blocks.LAVA)));
             Random rand = new Random();
 
             for (int i = 0; i < 5; i++) {
-                world.addParticle(data, true,
+                world.addParticle(ParticleTypes.POOF, true,
                         this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5,
-                        (rand.nextDouble() - 0.5) / 4, 0.3, (rand.nextDouble() - 0.5) / 4);
+                        (rand.nextDouble() - 0.5) / 4, 0.15, (rand.nextDouble() - 0.5) / 4);
             }
         }
     }

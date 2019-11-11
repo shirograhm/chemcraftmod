@@ -50,8 +50,8 @@ public class ChemCraftMod {
     private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static final String MOD_ID = "chemcraftmod";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-    public static final String[] ELEMENT_NAMES = new String[] {
+    private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    private static final String[] ELEMENT_NAMES = new String[] {
             "hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen",
             "oxygen", "fluorine", "neon", "sodium", "magnesium", "aluminium", "silicon",
             "phosphorus", "sulphur", "chlorine", "argon", "potassium", "calcium", "scandium",
@@ -136,11 +136,12 @@ public class ChemCraftMod {
                     ItemList.carbonate = new CompoundItem(location("carbonate"), ""),
                     ItemList.bicarbonate = new CompoundItem(location("bicarbonate"), ""),
                     ItemList.hydroxide = new CompoundItem(location("hydroxide"), ""),
-                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "The main ingredient in vinegar."),
+                    ItemList.acetate = new CompoundItem(location("acetate"), ""),
                     // Ionic Compounds
                     ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), ""),
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "Also known as table salt."),
-                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda.")
+                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda."),
+                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "The main ingredient in vinegar.")
             );
 
             LOGGER.info("Items registered!");

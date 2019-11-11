@@ -39,7 +39,7 @@ public class ElementItem extends Item {
             if(entityIn instanceof PlayerEntity) {
                 PlayerEntity pe = (PlayerEntity) entityIn;
 
-                pe.addPotionEffect(new EffectInstance(EffectList.radiation, 16, 0, false, true));
+                pe.addPotionEffect(new EffectInstance(EffectList.radiation, 16, 2, false, true));
             }
         }
     }

@@ -85,6 +85,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Override
     public void tick() {
+        // CLIENT AND SERVER
         ItemStack input = inventory.getStackInSlot(DECONSTRUCTOR_INPUT);
         ItemStack[] result = DeconstructorRecipeHandler.getResultStacksForInput(input.getItem());
 
@@ -102,8 +103,8 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         }
 
         // CLIENT SIDE ONLY
-        if(!world.isRemote) {
-            if(isDeconstructing && deconstructionTimeLeft == 0) {
+        if (world != null && !world.isRemote) {
+            if (isDeconstructing && deconstructionTimeLeft == 0) {
                 inventory.setStackInSlot(DECONSTRUCTOR_INPUT, ItemHandlerHelper.copyStackWithSize(input, input.getCount() - 1));
 
                 for (int i = 0; i < 6; i++) {
