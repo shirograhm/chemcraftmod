@@ -173,7 +173,12 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Override
     public boolean isEmpty() {
-        return false;
+        for(int i = 0; i < NUMBER_RECONSTRUCTOR_SLOTS; i++) {
+            if(inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Nonnull

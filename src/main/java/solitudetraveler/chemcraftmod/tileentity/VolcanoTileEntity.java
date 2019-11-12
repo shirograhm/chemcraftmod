@@ -28,12 +28,16 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     public static final int VOLCANO_SLOT_2 = 1;
     public static final int NUMBER_VOLCANO_SLOTS = 2;
 
+    private static final int VOLCANO_RUN_TIME = 120;
+
     private ItemStackHandler inventory;
+    private int currentTimeLeft;
 
     public VolcanoTileEntity() {
         super(BlockList.VOLCANO_TILE_TYPE);
 
         inventory = generateInventory();
+        currentTimeLeft = -1;
     }
 
     private ItemStackHandler generateInventory() {
@@ -59,15 +63,33 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
+        boolean requirementsMet = checkRequirements(
+                inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(),
+                inventory.getStackInSlot(VOLCANO_SLOT_2).getItem()
+        );
         // CLIENT SIDE
         if (world != null && !world.isRemote) {
-            return;
+            if(requirementsMet) {
+                // Begin running volcano ticks if not running right now
+                if(currentTimeLeft < 0) {
+                    currentTimeLeft = VOLCANO_RUN_TIME;
+                } else {
+                    currentTimeLeft--;
+                }
+                // Remove items inside volcano if time is up
+                if(currentTimeLeft == 0) {
+                    inventory.extractItem(VOLCANO_SLOT_1, 1, false);
+                    inventory.extractItem(VOLCANO_SLOT_2, 1, false);
+                }
+            } else {
+                // If requirements not met, reset current time left
+                currentTimeLeft = -1;
+            }
         }
-
         // SERVER SIDE
-        if(checkRequirements(inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(), inventory.getStackInSlot(VOLCANO_SLOT_2).getItem())) {
+        if(requirementsMet) {
             Random rand = new Random();
-
+            // Generate particles for the volcano while it is reacting
             for (int i = 0; i < 5; i++) {
                 world.addParticle(ParticleTypes.POOF, true,
                         this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5,
@@ -80,6 +102,7 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     public void read(CompoundNBT tag) {
         CompoundNBT compoundNBT = tag.getCompound("inv");
         inventory.deserializeNBT(compoundNBT);
+        currentTimeLeft = tag.getInt("timeLeft");
 
         super.read(tag);
     }
@@ -89,6 +112,7 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     public CompoundNBT write(CompoundNBT tag) {
         CompoundNBT compoundNBT = inventory.serializeNBT();
         tag.put("inv", compoundNBT);
+        tag.putInt("timeLeft", currentTimeLeft);
 
         return super.write(tag);
     }
@@ -112,7 +136,12 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
 
     @Override
     public boolean isEmpty() {
-        return false;
+        for(int i = 0; i < NUMBER_VOLCANO_SLOTS; i++) {
+            if(inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Nonnull

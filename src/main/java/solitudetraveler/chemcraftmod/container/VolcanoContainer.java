@@ -12,6 +12,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.item.ItemList;
 import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 import javax.annotation.Nonnull;
@@ -50,9 +51,15 @@ public class VolcanoContainer extends Container {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if(index == 0) {
-                if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, true)) {
-                    return ItemStack.EMPTY;
+            if(itemStack.getItem().equals(ItemList.acetic_acid) || itemStack.getItem().equals(ItemList.sodium_bicarbonate)) {
+                if(index != VolcanoTileEntity.VOLCANO_SLOT_1 && index != VolcanoTileEntity.VOLCANO_SLOT_2) {
+                    if(!this.mergeItemStack(stack, 0, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, true)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else {
+                    if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
                 slot.onSlotChange(stack, itemStack);
             } else {

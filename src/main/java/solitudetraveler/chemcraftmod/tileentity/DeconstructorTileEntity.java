@@ -105,8 +105,9 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         // CLIENT SIDE ONLY
         if (world != null && !world.isRemote) {
             if (isDeconstructing && deconstructionTimeLeft == 0) {
-                inventory.setStackInSlot(DECONSTRUCTOR_INPUT, ItemHandlerHelper.copyStackWithSize(input, input.getCount() - 1));
-
+                // Remove 1 input item from input stack
+                inventory.extractItem(DECONSTRUCTOR_INPUT, 1, false);
+                // Populate output stacks
                 for (int i = 0; i < 6; i++) {
                     inventory.setStackInSlot(i + 1, result[i]);
                 }
@@ -153,7 +154,12 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Override
     public boolean isEmpty() {
-        return false;
+        for(int i = 0; i < NUMBER_DECONSTRUCTOR_SLOTS; i++) {
+            if(inventory.getStackInSlot(i) != ItemStack.EMPTY) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Nonnull
