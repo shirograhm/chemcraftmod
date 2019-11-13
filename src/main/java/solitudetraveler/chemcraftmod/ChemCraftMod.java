@@ -98,25 +98,25 @@ public class ChemCraftMod {
 
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
-
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
-            // Elements
+            // Initialize elements
             for(int i = 0; i < ELEMENT_NAMES.length; i++) {
                 event.getRegistry().register(
                         ItemList.elementList[i] = new ElementItem(location(ELEMENT_NAMES[i]),i + 1)
                 );
             }
-
+            // Register items
             event.getRegistry().registerAll(
                     ItemList.proton = new AtomicItem(location("proton")),
                     ItemList.neutron = new AtomicItem(location("neutron")),
                     ItemList.electron = new AtomicItem(location("electron")),
                     // Blocks
-                    ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
-                    ItemList.reconstructor = new BlockItem(BlockList.reconstructor, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
-                    ItemList.deconstructor = new BlockItem(BlockList.deconstructor, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
-                    ItemList.volcano = new BlockItem(BlockList.volcano, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName())),
+                    ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(BlockList.dolostone.getRegistryName()),
+                    ItemList.reconstructor = new MachineBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor),
+                    ItemList.deconstructor = new MachineBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor),
+                    // Experiments
+                    ItemList.volcano = new ExperimentBlockItem(BlockList.volcano.getRegistryName(), BlockList.volcano),
                     // Minerals
                     ItemList.aragonite = new MineralItem(location("aragonite")),
                     ItemList.calcite = new MineralItem(location("calcite")),

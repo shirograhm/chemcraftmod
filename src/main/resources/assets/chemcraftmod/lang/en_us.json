@@ -1,8 +1,8 @@
 {
   "block.chemcraftmod.dolostone": "Dolostone",
-  "block.chemcraftmod.reconstructor": "Reconstructor",
-  "block.chemcraftmod.deconstructor": "Deconstructor",
-  "block.chemcraftmod.volcano": "Mini Volcano",
+  "block.chemcraftmod.reconstructor": "Molecular Reconstructor",
+  "block.chemcraftmod.deconstructor": "Molecular Deconstructor",
+  "block.chemcraftmod.volcano": "Mini Volcano Experiment",
 
 
   "item.chemcraftmod.aragonite": "Aragonite",
@@ -16,6 +16,22 @@
 
   "item.chemcraftmod.diamond_dust": "Diamond Dust",
   "item.chemcraftmod.gold_dust": "Gold Dust",
+
+
+  "item.chemcraftmod.sulfate": "Sulfate",
+  "item.chemcraftmod.sulfite": "Sulfite",
+  "item.chemcraftmod.nitrate": "Nitrate",
+  "item.chemcraftmod.nitrite": "Nitrite",
+  "item.chemcraftmod.carbonate": "Carbonate",
+  "item.chemcraftmod.bicarbonate": "Bicarbonate",
+  "item.chemcraftmod.hydroxide": "Hydroxide",
+  "item.chemcraftmod.acetate": "Acetate",
+
+
+  "item.chemcraftmod.zinc_oxide": "Zinc Oxide",
+  "item.chemcraftmod.sodium_chloride": "Sodium Chloride",
+  "item.chemcraftmod.sodium_bicarbonate": "Sodium Bicarbonate",
+  "item.chemcraftmod.acetic_acid": "Acetic Acid",
 
 
   "item.chemcraftmod.hydrogen": "Hydrogen",
@@ -136,18 +152,6 @@
   "item.chemcraftmod.livermorium": "Livermorium",
   "item.chemcraftmod.tennessine": "Tennessine",
   "item.chemcraftmod.oganesson": "Oganesson",
-
-
-  "item.chemcraftmod.sulfate": "Sulfate",
-  "item.chemcraftmod.sulfite": "Sulfite",
-  "item.chemcraftmod.carbonate": "Carbonate",
-  "item.chemcraftmod.hydroxide": "Hydroxide",
-  "item.chemcraftmod.nitrate": "Nitrate",
-  "item.chemcraftmod.nitrite": "Nitrite",
-
-
-  "item.chemcraftmod.zinc_oxide": "Zinc Oxide",
-  "item.chemcraftmod.sodium_chloride": "Sodium Chloride",
 
 
   "itemGroup.elementGroup": "ChemCraft Elements",

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "NLN",
+    "SSS",
+    "MMM"
+  ],
+  "key":
+  {
+    "M": { "item": "minecraft:magma_block" },
+    "N": { "item": "minecraft:netherrack" },
+    "S": { "item": "minecraft:soul_sand" },
+    "L": { "item": "minecraft:lava_bucket" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:volcano"
+  }
+}

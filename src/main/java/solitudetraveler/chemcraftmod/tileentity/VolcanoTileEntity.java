@@ -50,8 +50,11 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
              @Override
              public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
                  Item item = stack.getItem();
-                 return (item.equals(ItemList.sodium_bicarbonate) ||
-                         item.equals(ItemList.acetic_acid));
+
+                 if(slot == 0 && item.equals(ItemList.acetic_acid)) return true;
+                 if(slot == 1 && item.equals(ItemList.sodium_bicarbonate)) return true;
+
+                 return false;
              }
          };
     }
@@ -61,6 +64,12 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
                 (item1.equals(ItemList.acetic_acid) && item2.equals(ItemList.sodium_bicarbonate));
     }
 
+    public double getCurrentTimeLeftScaled() {
+        if(currentTimeLeft < 0) return 0.0;
+
+        return (VOLCANO_RUN_TIME - currentTimeLeft) * 1.0 / VOLCANO_RUN_TIME;
+    }
+
     @Override
     public void tick() {
         boolean requirementsMet = checkRequirements(
@@ -68,33 +77,34 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
                 inventory.getStackInSlot(VOLCANO_SLOT_2).getItem()
         );
         // CLIENT SIDE
-        if (world != null && !world.isRemote) {
-            if(requirementsMet) {
-                // Begin running volcano ticks if not running right now
-                if(currentTimeLeft < 0) {
-                    currentTimeLeft = VOLCANO_RUN_TIME;
-                } else {
-                    currentTimeLeft--;
-                }
-                // Remove items inside volcano if time is up
-                if(currentTimeLeft == 0) {
+        if(requirementsMet) {
+            // Begin running volcano ticks if not running right now
+            if(currentTimeLeft < 0) {
+                currentTimeLeft = VOLCANO_RUN_TIME;
+            } else {
+                currentTimeLeft--;
+            }
+            // Remove items inside volcano if time is up
+            if(currentTimeLeft == 0) {
+                // If we are on client, remove items
+                if (world != null && !world.isRemote) {
                     inventory.extractItem(VOLCANO_SLOT_1, 1, false);
                     inventory.extractItem(VOLCANO_SLOT_2, 1, false);
                 }
-            } else {
-                // If requirements not met, reset current time left
-                currentTimeLeft = -1;
             }
-        }
-        // SERVER SIDE
-        if(requirementsMet) {
-            Random rand = new Random();
-            // Generate particles for the volcano while it is reacting
-            for (int i = 0; i < 5; i++) {
-                world.addParticle(ParticleTypes.POOF, true,
-                        this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5,
-                        (rand.nextDouble() - 0.5) / 4, 0.15, (rand.nextDouble() - 0.5) / 4);
+            // If we are on server, make particles
+            if(world != null && world.isRemote) {
+                Random rand = new Random();
+                // Generate particles for the volcano while it is reacting
+                for (int i = 0; i < 5; i++) {
+                    world.addParticle(ParticleTypes.POOF, true,
+                            this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5,
+                            (rand.nextDouble() - 0.5) / 4, 0.15, (rand.nextDouble() - 0.5) / 4);
+                }
             }
+        } else {
+            // If requirements not met, reset current time left
+            currentTimeLeft = -1;
         }
     }
 

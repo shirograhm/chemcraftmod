@@ -16,11 +16,10 @@ import solitudetraveler.chemcraftmod.item.ItemList;
 import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 import javax.annotation.Nonnull;
-import java.util.Objects;
 
 public class VolcanoContainer extends Container {
 
-    private VolcanoTileEntity tileEntity;
+    VolcanoTileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
@@ -31,14 +30,14 @@ public class VolcanoContainer extends Container {
         playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
-        addSlot(new Slot(tileEntity, VolcanoTileEntity.VOLCANO_SLOT_1, 62, 35));
-        addSlot(new Slot(tileEntity, VolcanoTileEntity.VOLCANO_SLOT_2, 98, 35));
-        layoutPlayerInventorySlots(8, 84);
+        addSlot(new Slot(tileEntity, VolcanoTileEntity.VOLCANO_SLOT_1, 53, 21));
+        addSlot(new Slot(tileEntity, VolcanoTileEntity.VOLCANO_SLOT_2, 107, 21));
+        layoutPlayerInventorySlots(8, 57);
     }
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(Objects.requireNonNull(tileEntity.getWorld()), tileEntity.getPos()), playerEntity, BlockList.volcano);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.volcano);
     }
 
     @Nonnull
@@ -51,37 +50,31 @@ public class VolcanoContainer extends Container {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if(itemStack.getItem().equals(ItemList.acetic_acid) || itemStack.getItem().equals(ItemList.sodium_bicarbonate)) {
-                if(index != VolcanoTileEntity.VOLCANO_SLOT_1 && index != VolcanoTileEntity.VOLCANO_SLOT_2) {
-                    if(!this.mergeItemStack(stack, 0, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, true)) {
+            if (itemStack.getItem().equals(ItemList.acetic_acid)) {
+                if (index != VolcanoTileEntity.VOLCANO_SLOT_1) {
+                    if (!this.mergeItemStack(stack, 0, 1, true)) {
                         return ItemStack.EMPTY;
                     }
                 } else {
-                    if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
+                    if (!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
-                slot.onSlotChange(stack, itemStack);
-            } else {
-                if(index < VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 27) {
-                    if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 27, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
+            }
+            if (itemStack.getItem().equals(ItemList.sodium_bicarbonate)) {
+                if (index != VolcanoTileEntity.VOLCANO_SLOT_2) {
+                    if (!this.mergeItemStack(stack, 1, 2, true)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36 && !this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 27, false)) {
-                    return ItemStack.EMPTY;
+                } else {
+                    if (!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
             }
-            if(stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
-            } else {
-                slot.onSlotChanged();
-            }
-
-            if(stack.getCount() == itemStack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTake(playerIn, stack);
+            slot.onSlotChange(stack, itemStack);
         }
+
         return itemStack;
     }
 

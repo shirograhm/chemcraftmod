@@ -25,8 +25,8 @@ public class VolcanoBlock extends Block {
     protected static final VoxelShape SHAPE = VoxelShapes.or(
             Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D),
             Block.makeCuboidShape(2.0D, 1.0D, 2.0D, 14.0D, 2.0D, 14.0D),
-            Block.makeCuboidShape(3.0D, 2.0D, 3.0D, 13.0D, 3.5D, 13.0D),
-            Block.makeCuboidShape(4.0D, 3.5D, 4.0D, 12.0D, 5.0D, 12.0D),
+            Block.makeCuboidShape(3.0D, 2.0D, 3.0D, 13.0D, 3.0D, 13.0D),
+            Block.makeCuboidShape(4.0D, 3.0D, 4.0D, 12.0D, 5.0D, 12.0D),
             Block.makeCuboidShape(5.0D, 5.0D, 5.0D, 11.0D, 7.0D, 11.0D),
             Block.makeCuboidShape(6.0D, 7.0D, 6.0D, 10.0D, 9.0D, 10.0D)
     );

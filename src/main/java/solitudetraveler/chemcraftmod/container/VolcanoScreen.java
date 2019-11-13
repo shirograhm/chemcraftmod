@@ -7,12 +7,17 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.ChemCraftMod;
+import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 public class VolcanoScreen extends ContainerScreen<VolcanoContainer> {
+
     private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/volcano_gui.png");
+    private VolcanoTileEntity volcanoTE;
 
     public VolcanoScreen(VolcanoContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
+
+        volcanoTE = screenContainer.tileEntity;
     }
 
     @Override
@@ -24,8 +29,8 @@ public class VolcanoScreen extends ContainerScreen<VolcanoContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Mini Volcano", 5, 5, 0xff9a4d);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 73, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Mini Volcano Experiment", 5, 5, 0x4dc1ff);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 41, 0x969696);
     }
 
     @Override
@@ -35,5 +40,8 @@ public class VolcanoScreen extends ContainerScreen<VolcanoContainer> {
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
+
+        int pixelHeight = (int) (volcanoTE.getCurrentTimeLeftScaled() * 17) - 1;
+        this.blit(relX + 84, relY + 36 - pixelHeight, 177, 16 - pixelHeight, 8, 17);
     }
 }
