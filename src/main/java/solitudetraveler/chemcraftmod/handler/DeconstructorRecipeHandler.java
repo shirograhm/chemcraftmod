@@ -23,58 +23,55 @@ public class DeconstructorRecipeHandler {
                 ItemStack.EMPTY,
                 ItemStack.EMPTY
         });
+        addRecipe(ItemList.calcite, new ItemStack[] {
+                new ItemStack(ItemList.getElementNumber(20), 5),
+                new ItemStack(ItemList.getElementNumber(6), 1),
+                new ItemStack(ItemList.getElementNumber(8), 2),
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY
+        });
+        addRecipe(ItemList.aragonite, new ItemStack[] {
+                new ItemStack(ItemList.getElementNumber(20), 3),
+                new ItemStack(ItemList.getElementNumber(6), 2),
+                new ItemStack(ItemList.getElementNumber(30), 1),
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY
+        });
 
-//        addRecipe(ItemList.calcite, new ItemStack[] {
-//                new ItemStack(ItemList.calcium, 5),
-//                new ItemStack(ItemList.carbon, 1),
-//                new ItemStack(ItemList.oxygen, 2),
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY
-//        });
-//
-//        addRecipe(ItemList.aragonite, new ItemStack[] {
-//                new ItemStack(ItemList.calcium, 3),
-//                new ItemStack(ItemList.carbon, 2),
-//                new ItemStack(ItemList.zinc, 1),
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY
-//        });
-//
-//        addRecipe(ItemList.fluorite, new ItemStack[] {
-//                new ItemStack(ItemList.fluorine, 4),
-//                new ItemStack(ItemList.calcium, 1),
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY,
-//        });
-//
-//        addRecipe(ItemList.andradite, new ItemStack[] {
-//                new ItemStack(ItemList.iron, 3),
-//                new ItemStack(ItemList.silicon, 1),
-//                new ItemStack(ItemList.oxygen, 2),
-//                new ItemStack(ItemList.calcium, 3),
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY
-//        });
-//        addRecipe(ItemList.zircon, new ItemStack[]{
-//                new ItemStack(ItemList.zirconium, 1),
-//                new ItemStack(ItemList.silicon, 2),
-//                new ItemStack(ItemList.oxygen, 2),
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY
-//        });
-//        addRecipe(ItemList.ilmenite, new ItemStack[]{
-//                new ItemStack(ItemList.iron, 3),
-//                new ItemStack(ItemList.titanium, 2),
-//                new ItemStack(ItemList.oxygen, 2),
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY,
-//                ItemStack.EMPTY
-//        });
+        addRecipe(ItemList.fluorite, new ItemStack[] {
+                new ItemStack(ItemList.getElementNumber(9), 4),
+                new ItemStack(ItemList.getElementNumber(20), 1),
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+        });
+        addRecipe(ItemList.andradite, new ItemStack[] {
+                new ItemStack(ItemList.getElementNumber(26), 3),
+                new ItemStack(ItemList.getElementNumber(14), 1),
+                new ItemStack(ItemList.getElementNumber(8), 2),
+                new ItemStack(ItemList.getElementNumber(20), 3),
+                ItemStack.EMPTY,
+                ItemStack.EMPTY
+        });
+        addRecipe(ItemList.zircon, new ItemStack[]{
+                new ItemStack(ItemList.getElementNumber(40), 1),
+                new ItemStack(ItemList.getElementNumber(14), 2),
+                new ItemStack(ItemList.getElementNumber(8), 2),
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY
+        });
+        addRecipe(ItemList.ilmenite, new ItemStack[]{
+                new ItemStack(ItemList.getElementNumber(26), 3),
+                new ItemStack(ItemList.getElementNumber(22), 2),
+                new ItemStack(ItemList.getElementNumber(8), 2),
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY
+        });
     }
 
     private static void addRecipe(Item itemIn, ItemStack[] outStacks) {

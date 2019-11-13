@@ -30,7 +30,7 @@ public class ReconstructorScreen extends ContainerScreen<ReconstructorContainer>
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         drawString(Minecraft.getInstance().fontRenderer, "Molecular Reconstructor", 5, 5, 0x4dff5b);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 73, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 72, 0x969696);
     }
 
     @Override

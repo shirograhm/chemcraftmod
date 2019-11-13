@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -61,8 +62,13 @@ public class VolcanoBlock extends Block {
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!worldIn.isRemote) {
-            VolcanoTileEntity volcano = ((VolcanoTileEntity) worldIn.getTileEntity(pos));
-            NetworkHooks.openGui((ServerPlayerEntity) player, volcano, volcano.getPos());
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if(tileEntity instanceof INamedContainerProvider) {
+                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+            } else {
+                throw new IllegalStateException("Our named container provider is missing!");
+            }
+            return true;
         }
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }

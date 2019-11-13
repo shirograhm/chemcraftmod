@@ -28,6 +28,7 @@ public class ItemList {
     public static Item bicarbonate;
     public static Item hydroxide;
     public static Item acetate;
+    public static Item methyl_group;
     // Ionic Compounds
     public static Item zinc_oxide;
     public static Item sodium_chloride;

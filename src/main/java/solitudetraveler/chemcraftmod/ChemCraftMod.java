@@ -137,6 +137,7 @@ public class ChemCraftMod {
                     ItemList.bicarbonate = new CompoundItem(location("bicarbonate"), ""),
                     ItemList.hydroxide = new CompoundItem(location("hydroxide"), ""),
                     ItemList.acetate = new CompoundItem(location("acetate"), ""),
+                    ItemList.methyl_group = new CompoundItem(location("methyl_group"), ""),
                     // Ionic Compounds
                     ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), ""),
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "Also known as table salt."),

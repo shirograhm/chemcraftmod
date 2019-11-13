@@ -29,8 +29,8 @@ public class VolcanoScreen extends ContainerScreen<VolcanoContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Mini Volcano Experiment", 5, 5, 0x4dc1ff);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 41, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Mini Volcano Experiment", 7, 6, 0x4dc1ff);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 7, 43, 0x969696);
     }
 
     @Override

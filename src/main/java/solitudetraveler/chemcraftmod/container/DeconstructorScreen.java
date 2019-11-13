@@ -30,7 +30,7 @@ public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer>
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         drawString(Minecraft.getInstance().fontRenderer, "Molecular Deconstructor", 5, 5, 0xff9a4d);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 73, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 72, 0x969696);
     }
 
     @Override

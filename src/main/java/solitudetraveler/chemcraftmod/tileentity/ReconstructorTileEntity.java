@@ -64,20 +64,6 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
                 }
                 return false;
             }
-
-            @Nonnull
-            @Override
-            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if(slot >= 0 && slot < 9) {
-                    if(stack.getCount() == 1) {
-                        return ItemStack.EMPTY;
-                    } else {
-                        return ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - 1);
-                    }
-                }
-
-                return stack;
-            }
         };
     }
 
