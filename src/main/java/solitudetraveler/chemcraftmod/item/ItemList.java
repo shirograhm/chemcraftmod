@@ -19,6 +19,7 @@ public class ItemList {
     // Items
     public static Item diamond_dust;
     public static Item gold_dust;
+    public static Item cork;
     // Covalent Compounds
     public static Item sulfate;
     public static Item sulfite;

@@ -128,6 +128,7 @@ public class ChemCraftMod {
                     // Items
                     ItemList.diamond_dust = new MineralItem(location("diamond_dust")),
                     ItemList.gold_dust = new MineralItem(location("gold_dust")),
+                    ItemList.cork = new BasicItem(location("cork")),
                     // Covalent Compounds
                     ItemList.sulfate = new CompoundItem(location("sulfate"), ""),
                     ItemList.sulfite = new CompoundItem(location("sulfite"), ""),
