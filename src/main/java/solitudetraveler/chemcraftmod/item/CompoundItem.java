@@ -25,8 +25,8 @@ public class CompoundItem extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        if(infoLine != "") {
-            tooltip.add(new StringTextComponent(infoLine));
+        if(!infoLine.equals("")) {
+            tooltip.add(new StringTextComponent("Chemical Formula: " + infoLine));
         }
     }
 }

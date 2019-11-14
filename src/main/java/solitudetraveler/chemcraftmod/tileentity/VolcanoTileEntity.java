@@ -51,8 +51,8 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
              public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
                  Item item = stack.getItem();
 
-                 if(slot == 0 && item.equals(ItemList.acetic_acid)) return true;
-                 if(slot == 1 && item.equals(ItemList.sodium_bicarbonate)) return true;
+                 if(slot == 0 && item.equals(ItemList.vinegar)) return true;
+                 if(slot == 1 && item.equals(ItemList.baking_soda)) return true;
 
                  return false;
              }
@@ -60,8 +60,8 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     }
 
     private boolean checkRequirements(Item item1, Item item2) {
-        return (item1.equals(ItemList.sodium_bicarbonate) && item2.equals(ItemList.acetic_acid)) ||
-                (item1.equals(ItemList.acetic_acid) && item2.equals(ItemList.sodium_bicarbonate));
+        return (item1.equals(ItemList.baking_soda) && item2.equals(ItemList.vinegar)) ||
+                (item1.equals(ItemList.vinegar) && item2.equals(ItemList.baking_soda));
     }
 
     public double getCurrentTimeLeftScaled() {

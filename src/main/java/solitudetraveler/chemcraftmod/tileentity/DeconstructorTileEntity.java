@@ -10,6 +10,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -138,13 +139,17 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+        ResourceLocation location = getType().getRegistryName();
+        return new StringTextComponent(location != null ? location.getPath() : "");
     }
 
     @Nullable
     @Override
     public Container createMenu(int i, @Nonnull PlayerInventory playerInventory, @Nonnull PlayerEntity playerEntity) {
-        return new DeconstructorContainer(i, world, pos, playerInventory, playerEntity);
+        if (world != null) {
+            return new DeconstructorContainer(i, world, pos, playerInventory, playerEntity);
+        }
+        return null;
     }
 
     @Override

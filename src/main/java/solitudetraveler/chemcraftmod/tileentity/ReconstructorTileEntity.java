@@ -38,7 +38,7 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
 
     private ItemStackHandler inventory;
 
-    private static final int RECONSTRUCTION_TIME = 80;
+    private static final int RECONSTRUCTION_TIME = 60;
     private boolean isReconstructing;
     private int reconstructionTimeLeft;
 

@@ -12,6 +12,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 
 import javax.annotation.Nonnull;
@@ -49,36 +50,27 @@ public class DeconstructorContainer extends Container {
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
-        int numberOfStacks = DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS;
 
         if(slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if(index == 0) {
-                if(!this.mergeItemStack(stack, numberOfStacks, numberOfStacks + 36, true)) {
+            if(index < DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS) {
+                if (!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, false)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemStack);
             } else {
-                if(index < numberOfStacks + 27) {
-                    if(!this.mergeItemStack(stack, numberOfStacks + 27, numberOfStacks + 36, false)) {
+                if(DeconstructorRecipeHandler.isDeconstructible(stack.getItem())) {
+                    if (!this.mergeItemStack(stack, 0, 1, true)) {
                         return ItemStack.EMPTY;
                     }
-                } else if(index < numberOfStacks + 36 && !this.mergeItemStack(stack, numberOfStacks, numberOfStacks + 27, false)) {
-                    return ItemStack.EMPTY;
+                }
+                else {
+                    if (!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, true)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
             }
-            if(stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
-            } else {
-                slot.onSlotChanged();
-            }
-
-            if(stack.getCount() == itemStack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTake(playerIn, stack);
         }
         return itemStack;
     }

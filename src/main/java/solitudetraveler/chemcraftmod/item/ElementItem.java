@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -21,7 +20,7 @@ public class ElementItem extends Item {
     private int atomicNumber;
 
     public ElementItem(ResourceLocation name, int a) {
-        super(new Item.Properties().group(CreativeTabList.elementGroup).rarity(Rarity.RARE));
+        super(new Item.Properties().group(CreativeTabList.elementGroup));
 
         setRegistryName(name);
         this.atomicNumber = a;

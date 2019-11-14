@@ -77,6 +77,13 @@ public class ReconstructorRecipeHandler {
         );
         addShapedRecipe(
                 new Item[]{
+                        Items.AIR, Items.AIR, Items.AIR,
+                        Items.AIR, ItemList.getElementNumber(6), Items.AIR,
+                        ItemList.getElementNumber(1), Items.AIR, ItemList.getElementNumber(1)
+                }, new ItemStack(ItemList.methylene_group, 1)
+        );
+        addShapedRecipe(
+                new Item[]{
                         Items.AIR, ItemList.getElementNumber(8), Items.AIR,
                         Items.AIR, ItemList.getElementNumber(6), Items.AIR,
                         ItemList.getElementNumber(8), Items.AIR, ItemList.getElementNumber(8)
@@ -84,10 +91,24 @@ public class ReconstructorRecipeHandler {
         );
         addShapedRecipe(
                 new Item[]{
+                        Items.AIR, Items.AIR, Items.AIR,
+                        Items.AIR, ItemList.getElementNumber(6), Items.AIR,
+                        ItemList.getElementNumber(8), Items.AIR, ItemList.getElementNumber(8)
+                }, new ItemStack(ItemList.carbonite, 1)
+        );
+        addShapedRecipe(
+                new Item[]{
                         Items.AIR, ItemList.getElementNumber(8), Items.AIR,
                         ItemList.methyl_group, ItemList.getElementNumber(6), ItemList.getElementNumber(8),
                         Items.AIR, Items.AIR, Items.AIR
                 }, new ItemStack(ItemList.acetate, 1)
+        );
+        addShapelessRecipe(
+                new Item[]{
+                        ItemList.alkane_group, ItemList.carbonite, ItemList.getElementNumber(11),
+                        ItemList.alkane_group, ItemList.carbonite, ItemList.getElementNumber(11),
+                        ItemList.alkane_group, ItemList.carbonite, ItemList.getElementNumber(11)
+                }, new ItemStack(ItemList.soap, 2)
         );
     }
 
@@ -97,6 +118,31 @@ public class ReconstructorRecipeHandler {
                 new Item[]{
                         ItemList.getElementNumber(1), ItemList.getElementNumber(8)
                 }, new ItemStack(ItemList.hydroxide, 1)
+        );
+        addShapelessRecipe(
+                new Item[]{
+                        ItemList.getElementNumber(1), ItemList.getElementNumber(1), ItemList.getElementNumber(8)
+                }, new ItemStack(ItemList.water, 1)
+        );
+        addShapelessRecipe(
+                new Item[]{
+                        ItemList.hydroxide, ItemList.getElementNumber(1)
+                }, new ItemStack(ItemList.water, 1)
+        );
+        addShapelessRecipe(
+                new Item[]{
+                        ItemList.water, ItemList.getElementNumber(1)
+                }, new ItemStack(ItemList.hydrogen_peroxide, 1)
+        );
+        addShapelessRecipe(
+                new Item[]{
+                        ItemList.getElementNumber(8), ItemList.getElementNumber(8), ItemList.getElementNumber(1), ItemList.getElementNumber(1)
+                }, new ItemStack(ItemList.hydrogen_peroxide, 1)
+        );
+        addShapelessRecipe(
+                new Item[]{
+                        ItemList.methyl_group, ItemList.methylene_group, ItemList.methylene_group
+                }, new ItemStack(ItemList.alkane_group, 1)
         );
         addShapelessRecipe(
                 new Item[]{

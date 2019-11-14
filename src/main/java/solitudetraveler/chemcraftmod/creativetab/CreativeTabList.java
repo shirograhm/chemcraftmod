@@ -32,4 +32,10 @@ public class CreativeTabList {
             return new ItemStack(ItemList.hydroxide);
         }
     };
+    public static final ItemGroup basicItemGroup = new ItemGroup("basicItemGroup") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ItemList.salt);
+        }
+    };
 }

@@ -112,7 +112,7 @@ public class ChemCraftMod {
                     ItemList.neutron = new AtomicItem(location("neutron")),
                     ItemList.electron = new AtomicItem(location("electron")),
                     // Blocks
-                    ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(BlockList.dolostone.getRegistryName()),
+                    ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
                     ItemList.reconstructor = new MachineBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor),
                     ItemList.deconstructor = new MachineBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor),
                     // Experiments
@@ -126,23 +126,33 @@ public class ChemCraftMod {
                     ItemList.zircon = new MineralItem(location("zircon")),
                     ItemList.ilmenite = new MineralItem(location("ilmenite")),
                     // Items
-                    ItemList.diamond_dust = new MineralItem(location("diamond_dust")),
-                    ItemList.gold_dust = new MineralItem(location("gold_dust")),
+                    ItemList.diamond_dust = new BasicItem(location("diamond_dust")),
+                    ItemList.gold_dust = new BasicItem(location("gold_dust")),
+                    ItemList.salt = new BasicItem(location("salt")),
+                    ItemList.soap = new BasicItem(location("soap")),
+                    ItemList.baking_soda = new BasicItem(location("baking_soda")),
+                    ItemList.vinegar = new BasicItem(location("vinegar")),
                     // Covalent Compounds
-                    ItemList.sulfate = new CompoundItem(location("sulfate"), ""),
-                    ItemList.sulfite = new CompoundItem(location("sulfite"), ""),
-                    ItemList.nitrate = new CompoundItem(location("nitrate"), ""),
-                    ItemList.nitrite = new CompoundItem(location("nitrite"), ""),
-                    ItemList.carbonate = new CompoundItem(location("carbonate"), ""),
-                    ItemList.bicarbonate = new CompoundItem(location("bicarbonate"), ""),
-                    ItemList.hydroxide = new CompoundItem(location("hydroxide"), ""),
-                    ItemList.acetate = new CompoundItem(location("acetate"), ""),
-                    ItemList.methyl_group = new CompoundItem(location("methyl_group"), ""),
+                    ItemList.sulfate = new CompoundItem(location("sulfate"), "SO4"),
+                    ItemList.sulfite = new CompoundItem(location("sulfite"), "SO3"),
+                    ItemList.nitrate = new CompoundItem(location("nitrate"), "NO3"),
+                    ItemList.nitrite = new CompoundItem(location("nitrite"), "NO2"),
+                    ItemList.carbonate = new CompoundItem(location("carbonate"), "CO3"),
+                    ItemList.carbonite = new CompoundItem(location("carbonite"), "CO2"),
+                    ItemList.bicarbonate = new CompoundItem(location("bicarbonate"), "HCO3"),
+                    ItemList.hydroxide = new CompoundItem(location("hydroxide"), "OH"),
+                    ItemList.acetate = new CompoundItem(location("acetate"), "C2H3O2"),
+                    ItemList.methyl_group = new CompoundItem(location("methyl_group"), "CH3"),
+                    ItemList.methylene_group = new CompoundItem(location("methylene_group"), "CH2"),
+                    ItemList.alkane_group = new CompoundItem(location("alkane_group"), "C3H7"),
+                    ItemList.hydrogen_peroxide = new CompoundItem(location("hydrogen_peroxide"), "H2O2"),
+                    ItemList.water = new CompoundItem(location("water"), "H2O"),
+
                     // Ionic Compounds
-                    ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), ""),
-                    ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "Also known as table salt."),
-                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "Also known as baking soda."),
-                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "The main ingredient in vinegar.")
+                    ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), "ZnO"),
+                    ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "NaCl"),
+                    ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "NaHCO3"),
+                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "C2H4O2")
             );
 
             LOGGER.info("Items registered!");
@@ -153,6 +163,8 @@ public class ChemCraftMod {
             event.getRegistry().registerAll(
                     EffectList.radiation = new RadiationEffect(location("radiation"))
             );
+
+            LOGGER.info("Potion effects registered!");
         }
 
         @SubscribeEvent
@@ -203,7 +215,6 @@ public class ChemCraftMod {
 
             LOGGER.info("Containers registered!");
         }
-
 
         private static ResourceLocation location(String name) {
             return new ResourceLocation(MOD_ID, name);

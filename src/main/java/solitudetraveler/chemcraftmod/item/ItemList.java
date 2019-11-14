@@ -16,19 +16,28 @@ public class ItemList {
     public static Item andradite;
     public static Item zircon;
     public static Item ilmenite;
-    // Items
+    // New Items
     public static Item diamond_dust;
     public static Item gold_dust;
+    public static Item water;
+    public static Item salt;
+    public static Item soap;
+    public static Item baking_soda;
+    public static Item vinegar;
     // Covalent Compounds
     public static Item sulfate;
     public static Item sulfite;
     public static Item nitrate;
     public static Item nitrite;
     public static Item carbonate;
+    public static Item carbonite;
     public static Item bicarbonate;
     public static Item hydroxide;
     public static Item acetate;
     public static Item methyl_group;
+    public static Item methylene_group;
+    public static Item alkane_group;
+    public static Item hydrogen_peroxide;
     // Ionic Compounds
     public static Item zinc_oxide;
     public static Item sodium_chloride;

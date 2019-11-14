@@ -51,29 +51,14 @@ public class ReconstructorContainer extends Container {
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
-        int numberOfStacks = ReconstructorTileEntity.NUMBER_RECONSTRUCTOR_SLOTS;
 
         if(slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if(index > numberOfStacks && index < numberOfStacks + 27) {
-                if(!this.mergeItemStack(stack, numberOfStacks + 27, numberOfStacks + 36, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if(index < numberOfStacks + 36 && !this.mergeItemStack(stack, numberOfStacks, numberOfStacks + 27, false)) {
+            if (!this.mergeItemStack(stack, ReconstructorTileEntity.NUMBER_RECONSTRUCTOR_SLOTS, ReconstructorTileEntity.NUMBER_RECONSTRUCTOR_SLOTS + 36, false)) {
                 return ItemStack.EMPTY;
             }
-            if(stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
-            } else {
-                slot.onSlotChanged();
-            }
-
-            if(stack.getCount() == itemStack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTake(playerIn, stack);
         }
         return itemStack;
     }

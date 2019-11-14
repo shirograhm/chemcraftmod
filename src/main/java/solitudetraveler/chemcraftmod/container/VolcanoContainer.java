@@ -50,31 +50,29 @@ public class VolcanoContainer extends Container {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if (itemStack.getItem().equals(ItemList.acetic_acid)) {
-                if (index != VolcanoTileEntity.VOLCANO_SLOT_1) {
+            // If the slot clicked is one of the volcano slots
+            if(index < VolcanoTileEntity.NUMBER_VOLCANO_SLOTS) {
+                if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                if (stack.getItem().equals(ItemList.vinegar)) {
                     if (!this.mergeItemStack(stack, 0, 1, true)) {
                         return ItemStack.EMPTY;
                     }
-                } else {
-                    if (!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
-                        return ItemStack.EMPTY;
-                    }
                 }
-            }
-            if (itemStack.getItem().equals(ItemList.sodium_bicarbonate)) {
-                if (index != VolcanoTileEntity.VOLCANO_SLOT_2) {
+                else if (stack.getItem().equals(ItemList.baking_soda)) {
                     if (!this.mergeItemStack(stack, 1, 2, true)) {
                         return ItemStack.EMPTY;
                     }
-                } else {
-                    if (!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
+                }
+                else {
+                    if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, true)) {
                         return ItemStack.EMPTY;
                     }
                 }
             }
-            slot.onSlotChange(stack, itemStack);
         }
-
         return itemStack;
     }
 

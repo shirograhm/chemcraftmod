@@ -8,10 +8,7 @@ import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 
 public class AtomicItem extends Item {
     public AtomicItem(ResourceLocation name) {
-        super(new Item.Properties()
-                .group(CreativeTabList.elementGroup)
-                .rarity(Rarity.EPIC)
-                .maxStackSize(16));
+        super(new Item.Properties().group(CreativeTabList.elementGroup).rarity(Rarity.EPIC).maxStackSize(16));
 
         setRegistryName(name);
     }

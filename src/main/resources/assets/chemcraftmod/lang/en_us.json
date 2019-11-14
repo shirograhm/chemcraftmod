@@ -16,6 +16,10 @@
 
   "item.chemcraftmod.diamond_dust": "Diamond Dust",
   "item.chemcraftmod.gold_dust": "Gold Dust",
+  "item.chemcraftmod.baking_soda": "Baking Soda",
+  "item.chemcraftmod.vinegar": "Vinegar",
+  "item.chemcraftmod.salt": "Salt",
+  "item.chemcraftmod.soap": "Soap",
 
 
   "item.chemcraftmod.sulfate": "Sulfate",
@@ -23,10 +27,15 @@
   "item.chemcraftmod.nitrate": "Nitrate",
   "item.chemcraftmod.nitrite": "Nitrite",
   "item.chemcraftmod.carbonate": "Carbonate",
+  "item.chemcraftmod.carbonite": "Carbonite",
   "item.chemcraftmod.bicarbonate": "Bicarbonate",
   "item.chemcraftmod.hydroxide": "Hydroxide",
   "item.chemcraftmod.methyl_group": "Methyl Group",
+  "item.chemcraftmod.methylene_group": "Methylene Group",
+  "item.chemcraftmod.alkane_group": "Alkane Group",
   "item.chemcraftmod.acetate": "Acetate",
+  "item.chemcraftmod.water": "Water",
+  "item.chemcraftmod.hydrogen_peroxide": "Hydrogen Peroxide",
 
 
   "item.chemcraftmod.zinc_oxide": "Zinc Oxide",
@@ -158,5 +167,6 @@
   "itemGroup.elementGroup": "ChemCraft Elements",
   "itemGroup.blockGroup": "ChemCraft Blocks",
   "itemGroup.mineralGroup": "ChemCraft Minerals",
-  "itemGroup.compoundGroup": "ChemCraft Compounds"
+  "itemGroup.compoundGroup": "ChemCraft Compounds",
+  "itemGroup.basicItemGroup": "ChemCraft Miscellaneous"
 }

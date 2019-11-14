@@ -22,11 +22,15 @@ public class BlockList {
 
     public static Item.Properties blockItemProperties = new Item.Properties().group(CreativeTabList.blockGroup);
 
+    // Blocks
     public static Block dolostone;
+    // Machines
     public static Block reconstructor;
     public static Block deconstructor;
+    // Experiments
     public static Block volcano;
 
+    // Tile Entities and Containers
     @ObjectHolder("chemcraftmod:reconstructor")
     public static TileEntityType<ReconstructorTileEntity> RECONSTRUCTOR_TILE_TYPE;
     @ObjectHolder("chemcraftmod:reconstructor")
