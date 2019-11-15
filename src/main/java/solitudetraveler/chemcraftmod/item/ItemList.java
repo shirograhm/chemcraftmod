@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 public class ItemList {
     // Blocks
     public static Item dolostone;
+    public static Item copper_ore;
     public static Item reconstructor;
     public static Item deconstructor;
     public static Item volcano;
@@ -17,13 +18,13 @@ public class ItemList {
     public static Item zircon;
     public static Item ilmenite;
     // New Items
-    public static Item diamond_dust;
-    public static Item gold_dust;
+    public static Item copper_ingot;
     public static Item water;
     public static Item salt;
     public static Item soap;
     public static Item baking_soda;
     public static Item vinegar;
+    public static Item bleach;
     // Covalent Compounds
     public static Item sulfate;
     public static Item sulfite;
@@ -42,6 +43,7 @@ public class ItemList {
     public static Item zinc_oxide;
     public static Item sodium_chloride;
     public static Item sodium_bicarbonate;
+    public static Item sodium_hydroxide;
     public static Item acetic_acid;
     // Elements
     public static Item proton;

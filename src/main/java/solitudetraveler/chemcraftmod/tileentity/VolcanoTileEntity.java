@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -28,7 +29,7 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     public static final int VOLCANO_SLOT_2 = 1;
     public static final int NUMBER_VOLCANO_SLOTS = 2;
 
-    private static final int VOLCANO_RUN_TIME = 120;
+    private static final int VOLCANO_RUN_TIME = 60;
 
     private ItemStackHandler inventory;
     private int currentTimeLeft;
@@ -72,11 +73,8 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
-        boolean requirementsMet = checkRequirements(
-                inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(),
-                inventory.getStackInSlot(VOLCANO_SLOT_2).getItem()
-        );
-        // CLIENT SIDE
+        boolean requirementsMet = checkRequirements(inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(), inventory.getStackInSlot(VOLCANO_SLOT_2).getItem());
+        // CLIENT AND SERVER SIDE
         if(requirementsMet) {
             // Begin running volcano ticks if not running right now
             if(currentTimeLeft < 0) {
@@ -86,20 +84,22 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
             }
             // Remove items inside volcano if time is up
             if(currentTimeLeft == 0) {
-                // If we are on client, remove items
-                if (world != null && !world.isRemote) {
+                // CLIENT - remove items
+                if(world != null && !world.isRemote) {
                     inventory.extractItem(VOLCANO_SLOT_1, 1, false);
                     inventory.extractItem(VOLCANO_SLOT_2, 1, false);
                 }
-            }
-            // If we are on server, make particles
-            if(world != null && world.isRemote) {
-                Random rand = new Random();
-                // Generate particles for the volcano while it is reacting
-                for (int i = 0; i < 5; i++) {
-                    world.addParticle(ParticleTypes.POOF, true,
-                            this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5,
-                            (rand.nextDouble() - 0.5) / 4, 0.15, (rand.nextDouble() - 0.5) / 4);
+                // SERVER - make particles
+                if(world != null && world.isRemote) {
+                    Random rand = new Random();
+                    double xSpeed = (rand.nextDouble() - 0.5) / 2;
+                    double zSpeed = (rand.nextDouble() - 0.5) / 2;
+                    BlockPos start = pos.add(0.5, 0.75, 0.5);
+
+                    // Generate particles for the volcano when reaction completes
+                    for (int i = 0; i < 20; i++) {
+                        world.addParticle(ParticleTypes.POOF, true, start.getX(), start.getY(), start.getZ(), xSpeed, 0.25, zSpeed);
+                    }
                 }
             }
         } else {

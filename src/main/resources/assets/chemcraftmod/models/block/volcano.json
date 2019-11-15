@@ -1,7 +1,8 @@
 {
   "textures": {
     "base": "chemcraftmod:block/volcano_base",
-    "tops": "chemcraftmod:block/volcano_tops"
+    "tops": "chemcraftmod:block/volcano_tops",
+    "particle": "chemcraftmod:block/volcano_particles"
   },
   "elements":
   [

@@ -57,6 +57,9 @@ public class DeconstructorRecipeHandler {
         addRecipe(Items.POTION.getDefaultInstance().getItem(), new ItemStack[]{
                 new ItemStack(ItemList.water, 2)
         });
+        addRecipe(ItemList.copper_ingot, new ItemStack[]{
+                new ItemStack(ItemList.getElementNumber(29), 9)
+        });
     }
 
     private static void addRecipe(Item itemIn, ItemStack[] outStacks) {

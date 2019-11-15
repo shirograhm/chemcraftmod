@@ -1,5 +1,6 @@
 {
   "block.chemcraftmod.dolostone": "Dolostone",
+  "block.chemcraftmod.copper_ore": "Copper Ore",
   "block.chemcraftmod.reconstructor": "Molecular Reconstructor",
   "block.chemcraftmod.deconstructor": "Molecular Deconstructor",
   "block.chemcraftmod.volcano": "Mini Volcano Experiment",
@@ -14,12 +15,12 @@
   "item.chemcraftmod.ilmenite": "Ilmenite",
 
 
-  "item.chemcraftmod.diamond_dust": "Diamond Dust",
-  "item.chemcraftmod.gold_dust": "Gold Dust",
   "item.chemcraftmod.baking_soda": "Baking Soda",
   "item.chemcraftmod.vinegar": "Vinegar",
   "item.chemcraftmod.salt": "Salt",
   "item.chemcraftmod.soap": "Soap",
+  "item.chemcraftmod.bleach": "Bleach",
+  "item.chemcraftmod.copper_ingot": "Copper Ingot",
 
 
   "item.chemcraftmod.sulfate": "Sulfate",
@@ -41,7 +42,13 @@
   "item.chemcraftmod.zinc_oxide": "Zinc Oxide",
   "item.chemcraftmod.sodium_chloride": "Sodium Chloride",
   "item.chemcraftmod.sodium_bicarbonate": "Sodium Bicarbonate",
+  "item.chemcraftmod.sodium_hydroxide": "Sodium Hydroxide",
   "item.chemcraftmod.acetic_acid": "Acetic Acid",
+
+
+  "item.chemcraftmod.proton": "Proton",
+  "item.chemcraftmod.neutron": "Neutron",
+  "item.chemcraftmod.electron": "Electron",
 
 
   "item.chemcraftmod.hydrogen": "Hydrogen",

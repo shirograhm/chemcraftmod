@@ -14,9 +14,7 @@ public class CreativeTabList {
 
     public static final ItemGroup mineralGroup = new ItemGroup("mineralGroup") {
         @Override
-        public ItemStack createIcon() {
-            return new ItemStack(ItemList.diamond_dust);
-        }
+        public ItemStack createIcon() { return new ItemStack(ItemList.calcite); }
     };
 
     public static final ItemGroup blockGroup = new ItemGroup("blockGroup") {

@@ -24,6 +24,7 @@ public class BlockList {
 
     // Blocks
     public static Block dolostone;
+    public static Block copper_ore;
     // Machines
     public static Block reconstructor;
     public static Block deconstructor;

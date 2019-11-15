@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "chemcraftmod:copper_ore"
+  },
+  "result": "chemcraftmod:copper_ingot",
+  "experience": 1.7,
+  "cookingtime": 200
+}

@@ -100,6 +100,12 @@ public class ChemCraftMod {
     public static class RegistryEvents {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
+            // Sub atomic particles
+            event.getRegistry().registerAll(
+                    ItemList.proton = new AtomicItem(location("proton")),
+                    ItemList.neutron = new AtomicItem(location("neutron")),
+                    ItemList.electron = new AtomicItem(location("electron"))
+            );
             // Initialize elements
             for(int i = 0; i < ELEMENT_NAMES.length; i++) {
                 event.getRegistry().register(
@@ -108,11 +114,9 @@ public class ChemCraftMod {
             }
             // Register items
             event.getRegistry().registerAll(
-                    ItemList.proton = new AtomicItem(location("proton")),
-                    ItemList.neutron = new AtomicItem(location("neutron")),
-                    ItemList.electron = new AtomicItem(location("electron")),
                     // Blocks
                     ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
+                    ItemList.copper_ore = new BlockItem(BlockList.copper_ore, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.copper_ore.getRegistryName())),
                     ItemList.reconstructor = new MachineBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor),
                     ItemList.deconstructor = new MachineBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor),
                     // Experiments
@@ -126,12 +130,12 @@ public class ChemCraftMod {
                     ItemList.zircon = new MineralItem(location("zircon")),
                     ItemList.ilmenite = new MineralItem(location("ilmenite")),
                     // Items
-                    ItemList.diamond_dust = new BasicItem(location("diamond_dust")),
-                    ItemList.gold_dust = new BasicItem(location("gold_dust")),
+                    ItemList.copper_ingot = new BasicItem(location("copper_ingot")),
                     ItemList.salt = new BasicItem(location("salt")),
                     ItemList.soap = new BasicItem(location("soap")),
                     ItemList.baking_soda = new BasicItem(location("baking_soda")),
                     ItemList.vinegar = new BasicItem(location("vinegar")),
+                    ItemList.bleach = new BasicItem(location("bleach")),
                     // Covalent Compounds
                     ItemList.sulfate = new CompoundItem(location("sulfate"), "SO4"),
                     ItemList.sulfite = new CompoundItem(location("sulfite"), "SO3"),
@@ -147,11 +151,11 @@ public class ChemCraftMod {
                     ItemList.alkane_group = new CompoundItem(location("alkane_group"), "C3H7"),
                     ItemList.hydrogen_peroxide = new CompoundItem(location("hydrogen_peroxide"), "H2O2"),
                     ItemList.water = new CompoundItem(location("water"), "H2O"),
-
                     // Ionic Compounds
                     ItemList.zinc_oxide = new CompoundItem(location("zinc_oxide"), "ZnO"),
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "NaCl"),
                     ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "NaHCO3"),
+                    ItemList.sodium_hydroxide = new CompoundItem(location("sodium_hydroxide"), "NaOH"),
                     ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "C2H4O2")
             );
 
@@ -172,6 +176,7 @@ public class ChemCraftMod {
 
             event.getRegistry().registerAll(
                     BlockList.dolostone = new Block(BlockList.rockProperties).setRegistryName(location("dolostone")),
+                    BlockList.copper_ore = new Block(BlockList.rockProperties).setRegistryName(location("copper_ore")),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
                     BlockList.volcano = new VolcanoBlock(location("volcano"), BlockList.rockProperties)

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": "chemcraftmod:reconstructor",
+    "title": "DIY Challenge",
+    "background": "minecraft:textures/blocks/obsidian.png"
+  },
+  "criteria": {
+    "test": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "chemcraftmod:reconstructor"
+          }
+        ]
+      }
+    }
+  }
+}

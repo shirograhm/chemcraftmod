@@ -103,11 +103,18 @@ public class ReconstructorRecipeHandler {
                         Items.AIR, Items.AIR, Items.AIR
                 }, new ItemStack(ItemList.acetate, 1)
         );
-        addShapelessRecipe(
+        addShapedRecipe(
                 new Item[]{
-                        ItemList.alkane_group, ItemList.carbonite, ItemList.getElementNumber(11),
-                        ItemList.alkane_group, ItemList.carbonite, ItemList.getElementNumber(11),
-                        ItemList.alkane_group, ItemList.carbonite, ItemList.getElementNumber(11)
+                        ItemList.getElementNumber(29), ItemList.getElementNumber(29), ItemList.getElementNumber(29),
+                        ItemList.getElementNumber(29), ItemList.getElementNumber(29), ItemList.getElementNumber(29),
+                        ItemList.getElementNumber(29), ItemList.getElementNumber(29), ItemList.getElementNumber(29)
+                }, new ItemStack(ItemList.copper_ingot, 1)
+        );
+        addShapedRecipe(
+                new Item[]{
+                        ItemList.getElementNumber(11), ItemList.getElementNumber(11), ItemList.getElementNumber(11),
+                        ItemList.carbonite, ItemList.carbonite, ItemList.carbonite,
+                        ItemList.alkane_group, ItemList.alkane_group, ItemList.alkane_group
                 }, new ItemStack(ItemList.soap, 2)
         );
     }
