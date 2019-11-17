@@ -12,36 +12,39 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
-import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
+import solitudetraveler.chemcraftmod.item.CompoundItem;
+import solitudetraveler.chemcraftmod.item.ElementItem;
+import solitudetraveler.chemcraftmod.tileentity.BeakerTileEntity;
 
 import javax.annotation.Nonnull;
 
-public class DeconstructorContainer extends Container {
-    DeconstructorTileEntity tileEntity;
+public class BeakerContainer extends Container {
+    BeakerTileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
-    public DeconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.DECONSTRUCTOR_CONTAINER, id);
+    public BeakerContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
+        super(BlockList.BEAKER_CONTAINER, id);
 
-        tileEntity = (DeconstructorTileEntity) world.getTileEntity(pos);
+        tileEntity = (BeakerTileEntity) world.getTileEntity(pos);
         playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_1, 98, 17));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_2, 98, 35));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_3, 98, 53));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_4, 116, 17));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_5, 116, 35));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_6, 116, 53));
-        layoutPlayerInventorySlots(8, 84);
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_INPUT_1, 26, 22));
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_INPUT_2, 26, 40));
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_INPUT_3, 44, 22));
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_INPUT_4, 44, 40));
+
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_OUTPUT_1, 107, 31));
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_OUTPUT_2, 134, 13));
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_OUTPUT_3, 134, 31));
+        addSlot(new Slot(tileEntity, BeakerTileEntity.BEAKER_OUTPUT_4, 134, 49));
+        layoutPlayerInventorySlots(8, 76);
     }
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.deconstructor);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.beaker);
     }
 
     @Nonnull
@@ -54,13 +57,14 @@ public class DeconstructorContainer extends Container {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if(index < DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS) {
-                if (!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, false)) {
+            // If the slot clicked is one of the volcano slots
+            if(index < BeakerTileEntity.NUMBER_BEAKER_SLOTS) {
+                if(!this.mergeItemStack(stack, BeakerTileEntity.NUMBER_BEAKER_SLOTS, BeakerTileEntity.NUMBER_BEAKER_SLOTS + 36, false)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                if(DeconstructorRecipeHandler.isDeconstructible(stack.getItem())) {
-                    if (!this.mergeItemStack(stack, 0, 1, true)) {
+                if (stack.getItem() instanceof CompoundItem || stack.getItem() instanceof ElementItem) {
+                    if (!this.mergeItemStack(stack, BeakerTileEntity.BEAKER_INPUT_1, BeakerTileEntity.BEAKER_OUTPUT_1, true)) {
                         return ItemStack.EMPTY;
                     }
                 }

@@ -12,7 +12,7 @@ public class DeconstructorRecipeHandler {
     private static ArrayList<Item> inputs = new ArrayList<>();
     private static ArrayList<ItemStack[]> outputs = new ArrayList<>();
 
-    private static final ItemStack[] emptyOutput = new ItemStack[] {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY};
+    private static final ItemStack[] EMPTY_OUTPUT = new ItemStack[] {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY};
 
     static {
         addRecipe(Items.COAL, new ItemStack[] {
@@ -60,13 +60,30 @@ public class DeconstructorRecipeHandler {
         addRecipe(ItemList.copper_ingot, new ItemStack[]{
                 new ItemStack(ItemList.getElementNumber(29), 9)
         });
+        addRecipe(ItemList.bleach, new ItemStack[]{
+                new ItemStack(ItemList.sodium_hydroxide, 9)
+        });
+        addRecipe(ItemList.vinegar, new ItemStack[]{
+                new ItemStack(ItemList.acetic_acid, 9)
+        });
+        addRecipe(ItemList.baking_soda, new ItemStack[]{
+                new ItemStack(ItemList.sodium_bicarbonate, 9)
+        });
+        addRecipe(ItemList.salt, new ItemStack[]{
+                new ItemStack(ItemList.sodium_chloride, 9)
+        });
+        addRecipe(ItemList.soap, new ItemStack[]{
+                new ItemStack(ItemList.getElementNumber(11), 3),
+                new ItemStack(ItemList.carbonate, 3),
+                new ItemStack(ItemList.alkane_group, 3),
+        });
     }
 
     private static void addRecipe(Item itemIn, ItemStack[] outStacks) {
         ItemStack[] stacks = new ItemStack[6];
         System.arraycopy(outStacks, 0, stacks, 0, outStacks.length);
         if(outStacks.length < 6) {
-            System.arraycopy(emptyOutput, 0, stacks, outStacks.length, 6 - outStacks.length);
+            System.arraycopy(EMPTY_OUTPUT, 0, stacks, outStacks.length, 6 - outStacks.length);
         }
 
         inputs.add(itemIn);
@@ -84,14 +101,13 @@ public class DeconstructorRecipeHandler {
             }
         }
 
-        return emptyOutput;
+        return EMPTY_OUTPUT;
     }
 
     public static boolean outputNotEmpty(ItemStack[] out) {
-        for(ItemStack is : out) {
-            if(!is.isEmpty()) return true;
+        for(ItemStack stack : out) {
+            if(!stack.isEmpty()) return true;
         }
-
         return false;
     }
 }

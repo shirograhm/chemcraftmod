@@ -9,6 +9,7 @@ public class ItemList {
     public static Item reconstructor;
     public static Item deconstructor;
     public static Item volcano;
+    public static Item beaker;
     // Minerals
     public static Item aragonite;
     public static Item calcite;
@@ -22,6 +23,7 @@ public class ItemList {
     public static Item water;
     public static Item salt;
     public static Item soap;
+    public static Item liquid_soap;
     public static Item baking_soda;
     public static Item vinegar;
     public static Item bleach;

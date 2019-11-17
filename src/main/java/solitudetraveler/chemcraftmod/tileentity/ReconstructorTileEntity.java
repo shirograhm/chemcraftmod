@@ -24,16 +24,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ReconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
-    private static final int RECONSTRUCTOR_INPUT_1 = 0;
-    private static final int RECONSTRUCTOR_INPUT_2 = 1;
-    private static final int RECONSTRUCTOR_INPUT_3 = 2;
-    private static final int RECONSTRUCTOR_INPUT_4 = 3;
-    private static final int RECONSTRUCTOR_INPUT_5 = 4;
-    private static final int RECONSTRUCTOR_INPUT_6 = 5;
-    private static final int RECONSTRUCTOR_INPUT_7 = 6;
-    private static final int RECONSTRUCTOR_INPUT_8 = 7;
-    private static final int RECONSTRUCTOR_INPUT_9 = 8;
-    private static final int RECONSTRUCTOR_OUTPUT = 9;
+    public static final int RECONSTRUCTOR_INPUT_1 = 0;
+    public static final int RECONSTRUCTOR_INPUT_2 = 1;
+    public static final int RECONSTRUCTOR_INPUT_3 = 2;
+    public static final int RECONSTRUCTOR_INPUT_4 = 3;
+    public static final int RECONSTRUCTOR_INPUT_5 = 4;
+    public static final int RECONSTRUCTOR_INPUT_6 = 5;
+    public static final int RECONSTRUCTOR_INPUT_7 = 6;
+    public static final int RECONSTRUCTOR_INPUT_8 = 7;
+    public static final int RECONSTRUCTOR_INPUT_9 = 8;
+    public static final int RECONSTRUCTOR_OUTPUT = 9;
     public static final int NUMBER_RECONSTRUCTOR_SLOTS = 10;
 
     private ItemStackHandler inventory;

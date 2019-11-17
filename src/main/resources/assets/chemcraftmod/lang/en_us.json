@@ -4,6 +4,7 @@
   "block.chemcraftmod.reconstructor": "Molecular Reconstructor",
   "block.chemcraftmod.deconstructor": "Molecular Deconstructor",
   "block.chemcraftmod.volcano": "Mini Volcano Experiment",
+  "block.chemcraftmod.beaker": "Beaker",
 
 
   "item.chemcraftmod.aragonite": "Aragonite",
@@ -19,6 +20,7 @@
   "item.chemcraftmod.vinegar": "Vinegar",
   "item.chemcraftmod.salt": "Salt",
   "item.chemcraftmod.soap": "Soap",
+  "item.chemcraftmod.liquid_soap": "Liquid Soap",
   "item.chemcraftmod.bleach": "Bleach",
   "item.chemcraftmod.copper_ingot": "Copper Ingot",
 

@@ -7,17 +7,16 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.BeakerTileEntity;
 
-public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer> {
+public class BeakerScreen extends ContainerScreen<BeakerContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/beaker_gui.png");
+    private BeakerTileEntity beakerTileEntity;
 
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/deconstructor_gui.png");
-    private DeconstructorTileEntity deconstructorTE;
-
-    public DeconstructorScreen(DeconstructorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public BeakerScreen(BeakerContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
 
-        deconstructorTE = screenContainer.tileEntity;
+        beakerTileEntity = screenContainer.tileEntity;
     }
 
     @Override
@@ -29,8 +28,8 @@ public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer>
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Molecular Deconstructor", 5, 5, 0xff9a4d);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 72, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Beaker", 6, 6, 0x121212);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 63, 0x969696);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 
@@ -42,11 +41,10 @@ public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer>
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
-        if(deconstructorTE.isDeconstructing()) {
-            this.blit(relX + 67, relY + 34, 176, 17, 24, 17);
-
-            int k = (int) (deconstructorTE.getDeconstructionTimeScaled() * 23);
-            this.blit(relX + 67, relY + 34, 176, 0, k + 1, 17);
+        if(beakerTileEntity.isInUse()) {
+            int stage = beakerTileEntity.getProcessStage();
+            int timeLeft = beakerTileEntity.getTimeProcessedLeft();
+            this.blit(relX + 71, relY + 29, 176, 20 * stage, 21, 20);
         }
     }
 }

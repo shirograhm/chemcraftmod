@@ -22,10 +22,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.block.DeconstructorBlock;
-import solitudetraveler.chemcraftmod.block.ReconstructorBlock;
-import solitudetraveler.chemcraftmod.block.VolcanoBlock;
+import solitudetraveler.chemcraftmod.block.*;
+import solitudetraveler.chemcraftmod.container.BeakerContainer;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.container.VolcanoContainer;
@@ -38,6 +36,7 @@ import solitudetraveler.chemcraftmod.item.*;
 import solitudetraveler.chemcraftmod.proxy.ClientProxy;
 import solitudetraveler.chemcraftmod.proxy.IProxy;
 import solitudetraveler.chemcraftmod.proxy.ServerProxy;
+import solitudetraveler.chemcraftmod.tileentity.BeakerTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
@@ -119,6 +118,7 @@ public class ChemCraftMod {
                     ItemList.copper_ore = new BlockItem(BlockList.copper_ore, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.copper_ore.getRegistryName())),
                     ItemList.reconstructor = new MachineBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor),
                     ItemList.deconstructor = new MachineBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor),
+                    ItemList.beaker = new ExperimentBlockItem(BlockList.beaker.getRegistryName(), BlockList.beaker),
                     // Experiments
                     ItemList.volcano = new ExperimentBlockItem(BlockList.volcano.getRegistryName(), BlockList.volcano),
                     // Minerals
@@ -133,6 +133,7 @@ public class ChemCraftMod {
                     ItemList.copper_ingot = new BasicItem(location("copper_ingot")),
                     ItemList.salt = new BasicItem(location("salt")),
                     ItemList.soap = new BasicItem(location("soap")),
+                    ItemList.liquid_soap = new BasicItem(location("liquid_soap")),
                     ItemList.baking_soda = new BasicItem(location("baking_soda")),
                     ItemList.vinegar = new BasicItem(location("vinegar")),
                     ItemList.bleach = new BasicItem(location("bleach")),
@@ -179,6 +180,7 @@ public class ChemCraftMod {
                     BlockList.copper_ore = new Block(BlockList.rockProperties).setRegistryName(location("copper_ore")),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
+                    BlockList.beaker = new BeakerBlock(location("beaker"), BlockList.glasswareProperties),
                     BlockList.volcano = new VolcanoBlock(location("volcano"), BlockList.rockProperties)
             );
 
@@ -193,7 +195,9 @@ public class ChemCraftMod {
                     TileEntityType.Builder.create(DeconstructorTileEntity::new, BlockList.deconstructor).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
                     TileEntityType.Builder.create(VolcanoTileEntity::new, BlockList.volcano).build(null)
-                            .setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName()))
+                            .setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName())),
+                    TileEntityType.Builder.create(BeakerTileEntity::new, BlockList.beaker).build(null)
+                            .setRegistryName(Objects.requireNonNull(BlockList.beaker.getRegistryName()))
             );
 
             LOGGER.info("Tile entities registered!");
@@ -216,7 +220,12 @@ public class ChemCraftMod {
                 return new VolcanoContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             })).setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName()));
 
-            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container);
+            ContainerType beaker_container = IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new BeakerContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
+            })).setRegistryName(Objects.requireNonNull(BlockList.beaker.getRegistryName()));
+
+            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container, beaker_container);
 
             LOGGER.info("Containers registered!");
         }

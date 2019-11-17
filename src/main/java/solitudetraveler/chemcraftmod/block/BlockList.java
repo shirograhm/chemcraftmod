@@ -7,10 +7,12 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
+import solitudetraveler.chemcraftmod.container.BeakerContainer;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.container.VolcanoContainer;
 import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
+import solitudetraveler.chemcraftmod.tileentity.BeakerTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
@@ -28,6 +30,8 @@ public class BlockList {
     // Machines
     public static Block reconstructor;
     public static Block deconstructor;
+    //Glassware
+    public static Block beaker;
     // Experiments
     public static Block volcano;
 
@@ -46,4 +50,9 @@ public class BlockList {
     public static TileEntityType<VolcanoTileEntity> VOLCANO_TILE_TYPE;
     @ObjectHolder("chemcraftmod:volcano")
     public static ContainerType<VolcanoContainer> VOLCANO_CONTAINER;
+
+    @ObjectHolder("chemcraftmod:beaker")
+    public static TileEntityType<BeakerTileEntity> BEAKER_TILE_TYPE;
+    @ObjectHolder("chemcraftmod:beaker")
+    public static ContainerType<BeakerContainer> BEAKER_CONTAINER;
 }

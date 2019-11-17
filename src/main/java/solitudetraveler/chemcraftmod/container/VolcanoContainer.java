@@ -18,7 +18,6 @@ import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 import javax.annotation.Nonnull;
 
 public class VolcanoContainer extends Container {
-
     VolcanoTileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
@@ -67,9 +66,7 @@ public class VolcanoContainer extends Container {
                     }
                 }
                 else {
-                    if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, true)) {
-                        return ItemStack.EMPTY;
-                    }
+                    return ItemStack.EMPTY;
                 }
             }
         }

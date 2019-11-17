@@ -18,31 +18,33 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.BeakerTileEntity;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class VolcanoBlock extends Block {
+public class BeakerBlock extends Block {
     private static final VoxelShape SHAPE = VoxelShapes.or(
-            Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D),
-            Block.makeCuboidShape(2.0D, 1.0D, 2.0D, 14.0D, 2.0D, 14.0D),
-            Block.makeCuboidShape(3.0D, 2.0D, 3.0D, 13.0D, 3.0D, 13.0D),
-            Block.makeCuboidShape(4.0D, 3.0D, 4.0D, 12.0D, 5.0D, 12.0D),
-            Block.makeCuboidShape(5.0D, 5.0D, 5.0D, 11.0D, 7.0D, 11.0D),
-            Block.makeCuboidShape(6.0D, 7.0D, 6.0D, 10.0D, 9.0D, 10.0D)
+        Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 1.0D, 12.0D),
+        Block.makeCuboidShape(4.0D, 1.0D, 3.0D, 12.0D, 12.0D, 4.0D),
+        Block.makeCuboidShape(12.0D, 1.0D, 4.0D, 13.0D, 12.0D, 12.0D),
+        Block.makeCuboidShape(4.0D, 1.0D, 12.0D, 12.0D, 12.0D, 13.0D),
+        Block.makeCuboidShape(3.0D, 1.0D, 4.0D, 4.0D, 12.0D, 12.0D)
     );
 
-    public VolcanoBlock(ResourceLocation name, Block.Properties props) {
-        super(props);
+    public BeakerBlock(ResourceLocation name, Block.Properties properties) {
+        super(properties);
 
         setRegistryName(name);
     }
 
+    @Nonnull
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
 
+    @Nonnull
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
@@ -56,7 +58,7 @@ public class VolcanoBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new VolcanoTileEntity();
+        return new BeakerTileEntity();
     }
 
     @Override
@@ -74,14 +76,13 @@ public class VolcanoBlock extends Block {
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, BlockState newState, boolean isMoving) {
         if(state.getBlock() != newState.getBlock()) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 
-            if(tileEntity instanceof VolcanoTileEntity) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (VolcanoTileEntity) tileEntity);
+            if(tileEntity instanceof BeakerTileEntity) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (BeakerTileEntity) tileEntity);
             }
-
             super.onReplaced(state, worldIn, pos, newState, isMoving);
         }
     }

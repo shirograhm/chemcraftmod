@@ -115,12 +115,17 @@ public class ReconstructorRecipeHandler {
                         ItemList.getElementNumber(11), ItemList.getElementNumber(11), ItemList.getElementNumber(11),
                         ItemList.carbonite, ItemList.carbonite, ItemList.carbonite,
                         ItemList.alkane_group, ItemList.alkane_group, ItemList.alkane_group
-                }, new ItemStack(ItemList.soap, 2)
+                }, new ItemStack(ItemList.soap, 1)
         );
     }
 
     // SHAPELESS RECIPES
     static {
+        addShapelessRecipe(
+                new Item[]{
+                        ItemList.getElementNumber(11), ItemList.hydroxide
+                }, new ItemStack(ItemList.sodium_hydroxide, 1)
+        );
         addShapelessRecipe(
                 new Item[]{
                         ItemList.getElementNumber(1), ItemList.getElementNumber(8)
