@@ -3,15 +3,15 @@
   "pattern":
   [
     "iii",
-    "GRG",
+    "drd",
     "III"
   ],
   "key":
   {
     "i": { "item": "minecraft:iron_ingot" },
     "I": { "item": "minecraft:iron_block" },
-    "G": { "item": "chemcraftmod:gold_dust" },
-    "R": { "item": "minecraft:redstone" }
+    "d": { "item": "minecraft:diamond" },
+    "r": { "item": "minecraft:redstone" }
   },
   "result":
   {

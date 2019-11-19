@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "iii",
-    "iDi",
+    "ggg",
+    "drd",
     "III"
   ],
   "key":
   {
-    "i": { "item": "minecraft:iron_ingot" },
+    "g": { "item": "minecraft:gold_ingot" },
     "I": { "item": "minecraft:iron_block" },
-    "D": { "item": "chemcraftmod:diamond_dust" }
+    "d": { "item": "minecraft:diamond" },
+    "r": { "item": "minecraft:redstone" }
   },
   "result":
   {

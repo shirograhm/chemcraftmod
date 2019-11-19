@@ -30,7 +30,6 @@ public class DeconstructorRecipeHandler {
                 new ItemStack(ItemList.getElementNumber(6), 2),
                 new ItemStack(ItemList.getElementNumber(30), 1)
         });
-
         addRecipe(ItemList.fluorite, new ItemStack[] {
                 new ItemStack(ItemList.getElementNumber(9), 4),
                 new ItemStack(ItemList.getElementNumber(20), 1)

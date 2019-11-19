@@ -3,12 +3,13 @@
   "pattern":
   [
     "sss",
-    "sss",
+    "sws",
     "sss"
   ],
   "key":
   {
-    "s": { "item": "chemcraftmod:sodium_hydroxide" }
+    "s": { "item": "chemcraftmod:sodium_hydroxide" },
+    "w": { "item": "chemcraftmod:water" }
   },
   "result":
   {
