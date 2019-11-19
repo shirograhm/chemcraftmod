@@ -129,6 +129,8 @@ public class ChemCraftMod {
                     ItemList.andradite = new MineralItem(location("andradite")),
                     ItemList.zircon = new MineralItem(location("zircon")),
                     ItemList.ilmenite = new MineralItem(location("ilmenite")),
+                    ItemList.biotite = new MineralItem(location("biotite")),
+                    ItemList.acanthite = new MineralItem(location("acanthite")),
                     // Items
                     ItemList.copper_ingot = new BasicItem(location("copper_ingot")),
                     ItemList.salt = new BasicItem(location("salt")),

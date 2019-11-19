@@ -2,7 +2,7 @@
   "parent": "block/cube",
   "textures": {
     "particle": "chemcraftmod:block/deconstructor_top",
-    "down": "chemcraftmod:block/machine_bottom",
+    "down": "chemcraftmod:block/deconstructor_bottom",
     "up": "chemcraftmod:block/deconstructor_top",
     "east": "chemcraftmod:block/deconstructor_side",
     "west": "chemcraftmod:block/deconstructor_side",

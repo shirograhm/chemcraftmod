@@ -18,6 +18,8 @@ public class ItemList {
     public static Item andradite;
     public static Item zircon;
     public static Item ilmenite;
+    public static Item biotite;
+    public static Item acanthite;
     // New Items
     public static Item copper_ingot;
     public static Item water;

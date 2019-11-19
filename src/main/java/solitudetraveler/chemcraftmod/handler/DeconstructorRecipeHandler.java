@@ -17,22 +17,38 @@ public class DeconstructorRecipeHandler {
     static {
         addRecipe(Items.COAL, new ItemStack[] {
                 new ItemStack(ItemList.getElementNumber(6), 6),
-                new ItemStack(ItemList.getElementNumber(8), 1),
-                new ItemStack(ItemList.getElementNumber(1), 1)
+                new ItemStack(ItemList.hydroxide, 2)
+        });
+        addRecipe(ItemList.acanthite, new ItemStack[]{
+                new ItemStack(ItemList.getElementNumber(49), 6),
+                new ItemStack(ItemList.getElementNumber(16), 3)
+        });
+        addRecipe(ItemList.biotite, new ItemStack[]{
+                new ItemStack(ItemList.getElementNumber(19), 1),
+                new ItemStack(ItemList.getElementNumber(13), 5),
+                new ItemStack(ItemList.getElementNumber(9), 1),
+                new ItemStack(ItemList.hydroxide, 2)
+        });
+        addRecipe(ItemList.sodalite, new ItemStack[]{
+                new ItemStack(ItemList.getElementNumber(11), 3),
+                new ItemStack(ItemList.getElementNumber(13), 1),
+                new ItemStack(ItemList.getElementNumber(14), 1),
+                new ItemStack(ItemList.getElementNumber(8), 2),
+                new ItemStack(ItemList.getElementNumber(17), 2)
         });
         addRecipe(ItemList.calcite, new ItemStack[] {
                 new ItemStack(ItemList.getElementNumber(20), 5),
-                new ItemStack(ItemList.getElementNumber(6), 1),
+                new ItemStack(ItemList.getElementNumber(6), 2),
                 new ItemStack(ItemList.getElementNumber(8), 2)
         });
         addRecipe(ItemList.aragonite, new ItemStack[] {
-                new ItemStack(ItemList.getElementNumber(20), 3),
-                new ItemStack(ItemList.getElementNumber(6), 2),
-                new ItemStack(ItemList.getElementNumber(30), 1)
+                new ItemStack(ItemList.getElementNumber(20), 4),
+                new ItemStack(ItemList.getElementNumber(6), 3),
+                new ItemStack(ItemList.getElementNumber(30), 2)
         });
         addRecipe(ItemList.fluorite, new ItemStack[] {
-                new ItemStack(ItemList.getElementNumber(9), 4),
-                new ItemStack(ItemList.getElementNumber(20), 1)
+                new ItemStack(ItemList.getElementNumber(9), 6),
+                new ItemStack(ItemList.getElementNumber(20), 3)
         });
         addRecipe(ItemList.andradite, new ItemStack[] {
                 new ItemStack(ItemList.getElementNumber(26), 3),
@@ -41,14 +57,14 @@ public class DeconstructorRecipeHandler {
                 new ItemStack(ItemList.getElementNumber(20), 3)
         });
         addRecipe(ItemList.zircon, new ItemStack[]{
-                new ItemStack(ItemList.getElementNumber(40), 1),
-                new ItemStack(ItemList.getElementNumber(14), 2),
-                new ItemStack(ItemList.getElementNumber(8), 2)
+                new ItemStack(ItemList.getElementNumber(40), 3),
+                new ItemStack(ItemList.getElementNumber(14), 3),
+                new ItemStack(ItemList.getElementNumber(8), 3)
         });
         addRecipe(ItemList.ilmenite, new ItemStack[]{
                 new ItemStack(ItemList.getElementNumber(26), 3),
-                new ItemStack(ItemList.getElementNumber(22), 2),
-                new ItemStack(ItemList.getElementNumber(8), 2)
+                new ItemStack(ItemList.getElementNumber(22), 3),
+                new ItemStack(ItemList.getElementNumber(8), 3)
         });
         addRecipe(Items.WATER_BUCKET, new ItemStack[]{
                 new ItemStack(ItemList.water, 6)
