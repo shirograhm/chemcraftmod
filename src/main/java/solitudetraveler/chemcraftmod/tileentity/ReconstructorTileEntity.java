@@ -5,10 +5,8 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.IntNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
@@ -67,17 +65,17 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
         };
     }
 
-    private Item[] getCurrentInputArray() {
-        return new Item[] {
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_1).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_2).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_3).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_4).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_5).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_6).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_7).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_8).getItem(),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_9).getItem()
+    private ItemStack[] getCurrentInputArray() {
+        return new ItemStack[] {
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_1),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_2),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_3),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_4),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_5),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_6),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_7),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_8),
+                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_9)
         };
     }
 
@@ -92,7 +90,7 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public void tick() {
         // CLIENT AND SERVER
-        Item[] inputArray = getCurrentInputArray();
+        ItemStack[] inputArray = getCurrentInputArray();
         ItemStack out = ReconstructorRecipeHandler.getResultForInputSet(inputArray);
 
         if(isReconstructing) {
@@ -126,7 +124,7 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
     public void read(CompoundNBT tag) {
         inventory.deserializeNBT(tag.getCompound("inv"));
         this.reconstructionTimeLeft = tag.getInt("timeLeft");
-        this.isReconstructing = (tag.getInt("isReconstructing") == 0);
+        this.isReconstructing = tag.getBoolean("isReconstructing");
 
         super.read(tag);
     }
@@ -135,8 +133,8 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public CompoundNBT write(CompoundNBT tag) {
         tag.put("inv", inventory.serializeNBT());
-        tag.put("timeLeft",  new IntNBT(reconstructionTimeLeft));
-        tag.put("isReconstructing", new IntNBT(isReconstructing ? 0 : 1));
+        tag.putInt("timeLeft",  reconstructionTimeLeft);
+        tag.putBoolean("isReconstructing", isReconstructing);
 
         return super.write(tag);
     }

@@ -7,15 +7,9 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
-import solitudetraveler.chemcraftmod.container.BeakerContainer;
-import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
-import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
-import solitudetraveler.chemcraftmod.container.VolcanoContainer;
+import solitudetraveler.chemcraftmod.container.*;
 import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
-import solitudetraveler.chemcraftmod.tileentity.BeakerTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.*;
 
 public class BlockList {
     public static Block.Properties rockProperties = Block.Properties.create(Material.ROCK).lightValue(0).sound(SoundType.STONE).hardnessAndResistance(2.6f, 4.4f);
@@ -30,6 +24,8 @@ public class BlockList {
     // Machines
     public static Block reconstructor;
     public static Block deconstructor;
+    public static Block electromagnet;
+    public static Block particle_accelerator;
     //Glassware
     public static Block beaker;
     // Experiments
@@ -55,4 +51,9 @@ public class BlockList {
     public static TileEntityType<BeakerTileEntity> BEAKER_TILE_TYPE;
     @ObjectHolder("chemcraftmod:beaker")
     public static ContainerType<BeakerContainer> BEAKER_CONTAINER;
+
+    @ObjectHolder("chemcraftmod:particle_accelerator")
+    public static TileEntityType<ParticleAcceleratorTileEntity> PARTICLE_TILE_TYPE;
+    @ObjectHolder("chemcraftmod:particle_accelerator")
+    public static ContainerType<ParticleAcceleratorContainer> PARTICLE_CONTAINER;
 }

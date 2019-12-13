@@ -5,9 +5,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.IntNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -21,6 +21,7 @@ import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 public class DeconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
     public static final int DECONSTRUCTOR_INPUT = 0;
@@ -56,7 +57,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
                 if(slot == DECONSTRUCTOR_INPUT) {
-                    return DeconstructorRecipeHandler.outputNotEmpty(DeconstructorRecipeHandler.getResultStacksForInput(stack.getItem()));
+                    return DeconstructorRecipeHandler.isDeconstructible(stack.getItem());
                 }
                 return false;
             }
@@ -87,17 +88,17 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public void tick() {
         // CLIENT AND SERVER
-        ItemStack input = inventory.getStackInSlot(DECONSTRUCTOR_INPUT);
-        ItemStack[] result = DeconstructorRecipeHandler.getResultStacksForInput(input.getItem());
+        Item input = inventory.getStackInSlot(DECONSTRUCTOR_INPUT).getItem();
+        ArrayList<ItemStack> result = DeconstructorRecipeHandler.getResultStacksForInput(input.getItem());
 
         if(isDeconstructing) {
             deconstructionTimeLeft--;
-            if (!DeconstructorRecipeHandler.outputNotEmpty(result)) {
+            if (!DeconstructorRecipeHandler.isDeconstructible(input)) {
                 isDeconstructing = false;
                 deconstructionTimeLeft = 0;
             }
         } else {
-            if(DeconstructorRecipeHandler.outputNotEmpty(result)) {
+            if(DeconstructorRecipeHandler.isDeconstructible(input)) {
                 deconstructionTimeLeft = DECONSTRUCTION_TIME;
                 isDeconstructing = true;
             }
@@ -110,7 +111,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
                 inventory.extractItem(DECONSTRUCTOR_INPUT, 1, false);
                 // Populate output stacks
                 for (int i = 0; i < 6; i++) {
-                    inventory.setStackInSlot(i + 1, result[i]);
+                    inventory.setStackInSlot(i + 1, result.get(i));
                 }
                 isDeconstructing = false;
             }
@@ -121,7 +122,7 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     public void read(CompoundNBT tag) {
         inventory.deserializeNBT(tag.getCompound("inv"));
         this.deconstructionTimeLeft = tag.getInt("timeLeft");
-        this.isDeconstructing = (tag.getInt("isDeconstructing") == 0);
+        this.isDeconstructing = tag.getBoolean("isDeconstructing");
 
         super.read(tag);
     }
@@ -130,8 +131,8 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public CompoundNBT write(CompoundNBT tag) {
         tag.put("inv", inventory.serializeNBT());
-        tag.put("timeLeft", new IntNBT(deconstructionTimeLeft));
-        tag.put("isDeconstructing", new IntNBT(isDeconstructing ? 0 : 1));
+        tag.putInt("timeLeft", deconstructionTimeLeft);
+        tag.putBoolean("isDeconstructing", isDeconstructing);
 
         return super.write(tag);
     }

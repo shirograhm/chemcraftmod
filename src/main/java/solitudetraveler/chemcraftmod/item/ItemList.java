@@ -8,6 +8,8 @@ public class ItemList {
     public static Item copper_ore;
     public static Item reconstructor;
     public static Item deconstructor;
+    public static Item electromagnet;
+    public static Item particle_accelerator;
     public static Item volcano;
     public static Item beaker;
     // Minerals
@@ -29,19 +31,20 @@ public class ItemList {
     public static Item baking_soda;
     public static Item vinegar;
     public static Item bleach;
+    public static Item electromagnetic_coil;
+    public static Item copper_wire;
     // Covalent Compounds
     public static Item sulfate;
     public static Item sulfite;
     public static Item nitrate;
     public static Item nitrite;
     public static Item carbonate;
-    public static Item carbonite;
     public static Item bicarbonate;
     public static Item hydroxide;
     public static Item acetate;
     public static Item methyl_group;
     public static Item methylene_group;
-    public static Item alkane_group;
+    public static Item propane;
     public static Item hydrogen_peroxide;
     // Ionic Compounds
     public static Item zinc_oxide;
@@ -49,6 +52,7 @@ public class ItemList {
     public static Item sodium_bicarbonate;
     public static Item sodium_hydroxide;
     public static Item acetic_acid;
+    public static Item silver_sulfide;
     // Elements
     public static Item proton;
     public static Item neutron;

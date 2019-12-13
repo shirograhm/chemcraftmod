@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " c ",
+    "cic",
+    " c "
+  ],
+  "key":
+  {
+    "i": { "item": "minecraft:iron_ingot" },
+    "c": { "item": "chemcraftmod:copper_wire" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:electromagnetic_coil"
+  }
+}

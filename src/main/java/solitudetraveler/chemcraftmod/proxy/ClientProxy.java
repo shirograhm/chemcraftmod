@@ -5,10 +5,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.container.BeakerScreen;
-import solitudetraveler.chemcraftmod.container.DeconstructorScreen;
-import solitudetraveler.chemcraftmod.container.ReconstructorScreen;
-import solitudetraveler.chemcraftmod.container.VolcanoScreen;
+import solitudetraveler.chemcraftmod.container.*;
 
 public class ClientProxy implements IProxy {
     @Override
@@ -17,6 +14,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(BlockList.DECONSTRUCTOR_CONTAINER, DeconstructorScreen::new);
         ScreenManager.registerFactory(BlockList.VOLCANO_CONTAINER, VolcanoScreen::new);
         ScreenManager.registerFactory(BlockList.BEAKER_CONTAINER, BeakerScreen::new);
+        ScreenManager.registerFactory(BlockList.PARTICLE_CONTAINER, ParticleAcceleratorScreen::new);
     }
 
     @Override

@@ -2,8 +2,8 @@ package solitudetraveler.chemcraftmod;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Rarity;
 import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
@@ -23,10 +23,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solitudetraveler.chemcraftmod.block.*;
-import solitudetraveler.chemcraftmod.container.BeakerContainer;
-import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
-import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
-import solitudetraveler.chemcraftmod.container.VolcanoContainer;
+import solitudetraveler.chemcraftmod.container.*;
 import solitudetraveler.chemcraftmod.effect.EffectList;
 import solitudetraveler.chemcraftmod.effect.RadiationEffect;
 import solitudetraveler.chemcraftmod.generation.Config;
@@ -36,16 +33,12 @@ import solitudetraveler.chemcraftmod.item.*;
 import solitudetraveler.chemcraftmod.proxy.ClientProxy;
 import solitudetraveler.chemcraftmod.proxy.IProxy;
 import solitudetraveler.chemcraftmod.proxy.ServerProxy;
-import solitudetraveler.chemcraftmod.tileentity.BeakerTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
-import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.*;
 
 import java.util.Objects;
 
 @Mod("chemcraftmod")
 public class ChemCraftMod {
-    private static ChemCraftMod instance;
     private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static final String MOD_ID = "chemcraftmod";
@@ -69,8 +62,6 @@ public class ChemCraftMod {
     };
 
     public ChemCraftMod() {
-        instance = this;
-
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG, "chemcraftmod-server.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG, "chemcraftmod-client.toml");
 
@@ -108,19 +99,22 @@ public class ChemCraftMod {
             // Initialize elements
             for(int i = 0; i < ELEMENT_NAMES.length; i++) {
                 event.getRegistry().register(
-                        ItemList.elementList[i] = new ElementItem(location(ELEMENT_NAMES[i]),i + 1)
+                        ItemList.elementList[i] = new ElementItem(location(ELEMENT_NAMES[i]), i + 1)
                 );
             }
             // Register items
             event.getRegistry().registerAll(
+                    // Ores
+                    ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
+                    ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
                     // Blocks
-                    ItemList.dolostone = new BlockItem(BlockList.dolostone, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.dolostone.getRegistryName())),
-                    ItemList.copper_ore = new BlockItem(BlockList.copper_ore, BlockList.blockItemProperties).setRegistryName(Objects.requireNonNull(BlockList.copper_ore.getRegistryName())),
-                    ItemList.reconstructor = new MachineBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor),
-                    ItemList.deconstructor = new MachineBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor),
-                    ItemList.beaker = new ExperimentBlockItem(BlockList.beaker.getRegistryName(), BlockList.beaker),
+                    ItemList.beaker = new BasicBlockItem(BlockList.beaker.getRegistryName(), BlockList.beaker),
+                    ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet.getRegistryName(), BlockList.electromagnet),
+                    ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor, Rarity.UNCOMMON),
+                    ItemList.deconstructor = new BasicBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor, Rarity.UNCOMMON),
+                    ItemList.particle_accelerator = new BasicBlockItem(BlockList.particle_accelerator.getRegistryName(), BlockList.particle_accelerator, Rarity.UNCOMMON),
                     // Experiments
-                    ItemList.volcano = new ExperimentBlockItem(BlockList.volcano.getRegistryName(), BlockList.volcano),
+                    ItemList.volcano = new BasicBlockItem(BlockList.volcano.getRegistryName(), BlockList.volcano, Rarity.EPIC),
                     // Minerals
                     ItemList.aragonite = new MineralItem(location("aragonite")),
                     ItemList.calcite = new MineralItem(location("calcite")),
@@ -139,19 +133,20 @@ public class ChemCraftMod {
                     ItemList.baking_soda = new BasicItem(location("baking_soda")),
                     ItemList.vinegar = new BasicItem(location("vinegar")),
                     ItemList.bleach = new BasicItem(location("bleach")),
+                    ItemList.electromagnetic_coil = new BasicItem(location("electromagnetic_coil")),
+                    ItemList.copper_wire = new BasicItem(location("copper_wire")),
                     // Covalent Compounds
                     ItemList.sulfate = new CompoundItem(location("sulfate"), "SO4"),
                     ItemList.sulfite = new CompoundItem(location("sulfite"), "SO3"),
                     ItemList.nitrate = new CompoundItem(location("nitrate"), "NO3"),
                     ItemList.nitrite = new CompoundItem(location("nitrite"), "NO2"),
                     ItemList.carbonate = new CompoundItem(location("carbonate"), "CO3"),
-                    ItemList.carbonite = new CompoundItem(location("carbonite"), "CO2"),
                     ItemList.bicarbonate = new CompoundItem(location("bicarbonate"), "HCO3"),
                     ItemList.hydroxide = new CompoundItem(location("hydroxide"), "OH"),
                     ItemList.acetate = new CompoundItem(location("acetate"), "C2H3O2"),
                     ItemList.methyl_group = new CompoundItem(location("methyl_group"), "CH3"),
                     ItemList.methylene_group = new CompoundItem(location("methylene_group"), "CH2"),
-                    ItemList.alkane_group = new CompoundItem(location("alkane_group"), "C3H7"),
+                    ItemList.propane = new CompoundItem(location("propane"), "C3H8"),
                     ItemList.hydrogen_peroxide = new CompoundItem(location("hydrogen_peroxide"), "H2O2"),
                     ItemList.water = new CompoundItem(location("water"), "H2O"),
                     // Ionic Compounds
@@ -159,7 +154,8 @@ public class ChemCraftMod {
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "NaCl"),
                     ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "NaHCO3"),
                     ItemList.sodium_hydroxide = new CompoundItem(location("sodium_hydroxide"), "NaOH"),
-                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "C2H4O2")
+                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "C2H4O2"),
+                    ItemList.silver_sulfide = new CompoundItem(location("silver_sulfide"), "Ag2S")
             );
 
             LOGGER.info("Items registered!");
@@ -182,6 +178,8 @@ public class ChemCraftMod {
                     BlockList.copper_ore = new Block(BlockList.rockProperties).setRegistryName(location("copper_ore")),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
+                    BlockList.electromagnet = new ElectromagnetBlock(location("electromagnet"), BlockList.rockProperties),
+                    BlockList.particle_accelerator = new ParticleAcceleratorBlock(location("particle_accelerator"), BlockList.machineProperties),
                     BlockList.beaker = new BeakerBlock(location("beaker"), BlockList.glasswareProperties),
                     BlockList.volcano = new VolcanoBlock(location("volcano"), BlockList.rockProperties)
             );
@@ -199,7 +197,9 @@ public class ChemCraftMod {
                     TileEntityType.Builder.create(VolcanoTileEntity::new, BlockList.volcano).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName())),
                     TileEntityType.Builder.create(BeakerTileEntity::new, BlockList.beaker).build(null)
-                            .setRegistryName(Objects.requireNonNull(BlockList.beaker.getRegistryName()))
+                            .setRegistryName(Objects.requireNonNull(BlockList.beaker.getRegistryName())),
+                    TileEntityType.Builder.create(ParticleAcceleratorTileEntity::new, BlockList.particle_accelerator).build(null)
+                            .setRegistryName(Objects.requireNonNull(BlockList.particle_accelerator.getRegistryName()))
             );
 
             LOGGER.info("Tile entities registered!");
@@ -227,7 +227,12 @@ public class ChemCraftMod {
                 return new BeakerContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             })).setRegistryName(Objects.requireNonNull(BlockList.beaker.getRegistryName()));
 
-            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container, beaker_container);
+            ContainerType particle_container = IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new ParticleAcceleratorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
+            })).setRegistryName(Objects.requireNonNull(BlockList.particle_accelerator.getRegistryName()));
+
+            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container, beaker_container, particle_container);
 
             LOGGER.info("Containers registered!");
         }
