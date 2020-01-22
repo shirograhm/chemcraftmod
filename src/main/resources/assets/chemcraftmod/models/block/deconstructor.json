@@ -1,12 +1,9 @@
 {
-  "parent": "block/cube",
+  "parent": "block/orientable",
   "textures": {
-    "particle": "chemcraftmod:block/deconstructor_top",
-    "down": "chemcraftmod:block/deconstructor_bottom",
-    "up": "chemcraftmod:block/deconstructor_top",
-    "east": "chemcraftmod:block/deconstructor_side",
-    "west": "chemcraftmod:block/deconstructor_side",
-    "north": "chemcraftmod:block/deconstructor_side",
-    "south": "chemcraftmod:block/deconstructor_side"
+    "top": "chemcraftmod:block/deconstructor_top",
+    "bottom": "chemcraftmod:block/deconstructor_side",
+    "front": "chemcraftmod:block/deconstructor_front",
+    "side": "chemcraftmod:block/deconstructor_side"
   }
 }

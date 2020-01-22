@@ -108,7 +108,6 @@ public class ChemCraftMod {
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
                     // Blocks
-                    ItemList.beaker = new BasicBlockItem(BlockList.beaker.getRegistryName(), BlockList.beaker),
                     ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet.getRegistryName(), BlockList.electromagnet),
                     ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor, Rarity.UNCOMMON),
                     ItemList.deconstructor = new BasicBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor, Rarity.UNCOMMON),
@@ -180,7 +179,6 @@ public class ChemCraftMod {
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
                     BlockList.electromagnet = new ElectromagnetBlock(location("electromagnet"), BlockList.rockProperties),
                     BlockList.particle_accelerator = new ParticleAcceleratorBlock(location("accelerator"), BlockList.machineProperties),
-                    BlockList.beaker = new BeakerBlock(location("beaker"), BlockList.glasswareProperties),
                     BlockList.volcano = new VolcanoBlock(location("volcano"), BlockList.rockProperties)
             );
 
@@ -196,8 +194,6 @@ public class ChemCraftMod {
                             .setRegistryName(Objects.requireNonNull(BlockList.deconstructor.getRegistryName())),
                     TileEntityType.Builder.create(VolcanoTileEntity::new, BlockList.volcano).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName())),
-                    TileEntityType.Builder.create(BeakerTileEntity::new, BlockList.beaker).build(null)
-                            .setRegistryName(Objects.requireNonNull(BlockList.beaker.getRegistryName())),
                     TileEntityType.Builder.create(ParticleAcceleratorTileEntity::new, BlockList.particle_accelerator).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.particle_accelerator.getRegistryName()))
             );
@@ -222,17 +218,12 @@ public class ChemCraftMod {
                 return new VolcanoContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             })).setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName()));
 
-            ContainerType beaker_container = IForgeContainerType.create(((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new BeakerContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
-            })).setRegistryName(Objects.requireNonNull(BlockList.beaker.getRegistryName()));
-
             ContainerType particle_container = IForgeContainerType.create(((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new ParticleAcceleratorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             })).setRegistryName(Objects.requireNonNull(BlockList.particle_accelerator.getRegistryName()));
 
-            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container, beaker_container, particle_container);
+            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container, particle_container);
 
             LOGGER.info("Containers registered!");
         }

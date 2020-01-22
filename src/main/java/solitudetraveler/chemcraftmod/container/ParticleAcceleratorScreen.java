@@ -29,7 +29,7 @@ public class ParticleAcceleratorScreen extends ContainerScreen<ParticleAccelerat
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         drawString(Minecraft.getInstance().fontRenderer, "Particle Accelerator", 6, 6, 0x121212);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 63, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 64, 0x969696);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 

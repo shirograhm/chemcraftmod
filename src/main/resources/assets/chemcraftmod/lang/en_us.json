@@ -5,8 +5,7 @@
   "block.chemcraftmod.deconstructor": "Molecular Deconstructor",
   "block.chemcraftmod.accelerator": "Particle Accelerator",
   "block.chemcraftmod.volcano": "Mini Volcano Experiment",
-  "block.chemcraftmod.beaker": "Beaker",
-
+  "block.chemcraftmod.electromagnet": "Electromagnet",
 
   "item.chemcraftmod.aragonite": "Aragonite",
   "item.chemcraftmod.calcite": "Calcite",

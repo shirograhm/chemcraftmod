@@ -1,11 +1,9 @@
 {
-  "parent": "block/cube",
+  "parent": "block/orientable",
   "textures": {
-    "down": "chemcraftmod:block/accelerator_side",
-    "up": "chemcraftmod:block/accelerator_top",
-    "north": "chemcraftmod:block/accelerator_side",
-    "east": "chemcraftmod:block/accelerator_side",
-    "south": "chemcraftmod:block/accelerator_side",
-    "west": "chemcraftmod:block/accelerator_side"
+    "top": "chemcraftmod:block/accelerator_side",
+    "bottom": "chemcraftmod:block/accelerator_side",
+    "front": "chemcraftmod:block/accelerator_front",
+    "side": "chemcraftmod:block/accelerator_side"
   }
 }

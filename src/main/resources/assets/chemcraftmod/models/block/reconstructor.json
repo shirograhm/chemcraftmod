@@ -1,12 +1,9 @@
 {
-  "parent": "block/cube",
+  "parent": "block/orientable",
   "textures": {
-    "particle": "chemcraftmod:block/reconstructor_top",
-    "down": "chemcraftmod:block/reconstructor_bottom",
-    "up": "chemcraftmod:block/reconstructor_top",
-    "east": "chemcraftmod:block/reconstructor_side",
-    "west": "chemcraftmod:block/reconstructor_side",
-    "north": "chemcraftmod:block/reconstructor_side",
-    "south": "chemcraftmod:block/reconstructor_side"
+    "top": "chemcraftmod:block/reconstructor_top",
+    "bottom": "chemcraftmod:block/reconstructor_bottom",
+    "front": "chemcraftmod:block/reconstructor_front",
+    "side": "chemcraftmod:block/reconstructor_side"
   }
 }

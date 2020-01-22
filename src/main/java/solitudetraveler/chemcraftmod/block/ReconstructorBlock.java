@@ -6,9 +6,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -21,10 +23,10 @@ import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 import javax.annotation.Nullable;
 
 public class ReconstructorBlock extends Block {
-
     public ReconstructorBlock(ResourceLocation name, Block.Properties props) {
         super(props);
 
+        this.setDefaultState(this.getStateContainer().getBaseState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
         setRegistryName(name);
     }
 
@@ -37,11 +39,6 @@ public class ReconstructorBlock extends Block {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new ReconstructorTileEntity();
-    }
-
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.FACING);
     }
 
     @Override
@@ -69,5 +66,20 @@ public class ReconstructorBlock extends Block {
 
             super.onReplaced(state, worldIn, pos, newState, isMoving);
         }
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(BlockStateProperties.HORIZONTAL_FACING);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        BlockState blockState = super.getStateForPlacement(context);
+        if(blockState != null) {
+            blockState = blockState.with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+        }
+        return blockState;
     }
 }

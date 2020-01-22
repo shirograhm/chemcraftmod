@@ -11,7 +11,6 @@ public class ItemList {
     public static Item electromagnet;
     public static Item particle_accelerator;
     public static Item volcano;
-    public static Item beaker;
     // Minerals
     public static Item aragonite;
     public static Item calcite;

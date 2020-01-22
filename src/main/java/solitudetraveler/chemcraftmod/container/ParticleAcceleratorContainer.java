@@ -28,14 +28,14 @@ public class ParticleAcceleratorContainer extends Container {
         playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_INPUT_1, 0, 0));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_INPUT_2, 18, 0));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_1, 36, 0));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_2, 54, 0));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_3, 72, 0));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_4, 90, 0));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_5, 108, 0));
-        layoutPlayerInventorySlots(8, 84);
+        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_INPUT_1, 17, 22));
+        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_INPUT_2, 17, 40));
+        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_1, 125, 13));
+        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_2, 107, 31));
+        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_3, 125, 31));
+        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_4, 143, 31));
+        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_5, 125, 49));
+        layoutPlayerInventorySlots(8, 76);
     }
 
     @Override
