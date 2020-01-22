@@ -1,183 +1,177 @@
 package solitudetraveler.chemcraftmod.handler;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import solitudetraveler.chemcraftmod.item.ItemList;
+import solitudetraveler.chemcraftmod.recipes.ReconstructorRecipe;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 public class ReconstructorRecipeHandler {
 
-    private static ArrayList<ArrayList<ItemStack>> inputs = new ArrayList<>();
-    private static ArrayList<ItemStack> outputs = new ArrayList<>();
+    private static ArrayList<ReconstructorRecipe> recipes = new ArrayList<>();
 
     // SHAPED RECIPES
     static {
+        // SULFATE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(16)),
-                        new ItemStack(ItemList.getElementNumber(8), 4)
-                }, new ItemStack(ItemList.sulfate)
+                        new ItemStack(ItemList.getElementNumber(8), 4))),
+                new ItemStack(ItemList.sulfate)
         );
+        // SULFITE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(16)),
-                        new ItemStack(ItemList.getElementNumber(8), 3)
-                }, new ItemStack(ItemList.sulfite)
+                        new ItemStack(ItemList.getElementNumber(8), 3))),
+                new ItemStack(ItemList.sulfite)
         );
+        // NITRATE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(7)),
-                        new ItemStack(ItemList.getElementNumber(8), 3)
-                }, new ItemStack(ItemList.nitrate)
+                        new ItemStack(ItemList.getElementNumber(8), 3))),
+                new ItemStack(ItemList.nitrate)
         );
+        // NITRITE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(7)),
-                        new ItemStack(ItemList.getElementNumber(8), 2)
-                }, new ItemStack(ItemList.nitrite)
+                        new ItemStack(ItemList.getElementNumber(8), 2))),
+                new ItemStack(ItemList.nitrite)
         );
+        // CARBONATE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(6)),
-                        new ItemStack(ItemList.getElementNumber(8), 3)
-                }, new ItemStack(ItemList.carbonate)
+                        new ItemStack(ItemList.getElementNumber(8), 3))),
+                new ItemStack(ItemList.carbonate)
         );
+        // BICARBONATE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(1)),
                         new ItemStack(ItemList.getElementNumber(6)),
-                        new ItemStack(ItemList.getElementNumber(8), 3)
-                }, new ItemStack(ItemList.bicarbonate)
+                        new ItemStack(ItemList.getElementNumber(8), 3))),
+                new ItemStack(ItemList.bicarbonate)
         );
+        // HYDROXIDE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(8)),
-                        new ItemStack(ItemList.getElementNumber(1))
-                }, new ItemStack(ItemList.hydroxide)
+                        new ItemStack(ItemList.getElementNumber(1)))),
+                new ItemStack(ItemList.hydroxide)
         );
+        // ACETATE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(6), 2),
                         new ItemStack(ItemList.getElementNumber(1), 3),
-                        new ItemStack(ItemList.getElementNumber(8), 2)
-                }, new ItemStack(ItemList.acetate)
+                        new ItemStack(ItemList.getElementNumber(8), 2))),
+                new ItemStack(ItemList.acetate)
         );
+        // METHYL GROUP
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(6)),
-                        new ItemStack(ItemList.getElementNumber(1), 3)
-                }, new ItemStack(ItemList.methyl_group)
+                        new ItemStack(ItemList.getElementNumber(1), 3))),
+                new ItemStack(ItemList.methyl_group)
         );
+        // METHYLENE GROUP
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(6)),
-                        new ItemStack(ItemList.getElementNumber(1), 2)
-                }, new ItemStack(ItemList.methylene_group)
+                        new ItemStack(ItemList.getElementNumber(1), 2))),
+                new ItemStack(ItemList.methylene_group)
         );
+        // PROPANE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(6), 3),
-                        new ItemStack(ItemList.getElementNumber(1), 8)
-                }, new ItemStack(ItemList.propane)
+                        new ItemStack(ItemList.getElementNumber(1), 8))),
+                new ItemStack(ItemList.propane)
         );
+        // PROPANE USING CARBON GROUPS
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.methyl_group),
                         new ItemStack(ItemList.methylene_group),
-                        new ItemStack(ItemList.methyl_group)
-                }, new ItemStack(ItemList.propane)
+                        new ItemStack(ItemList.methyl_group))),
+                new ItemStack(ItemList.propane)
         );
+        // HYDROGEN PEROXIDE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(1), 2),
-                        new ItemStack(ItemList.getElementNumber(8), 2)
-                }, new ItemStack(ItemList.hydrogen_peroxide)
+                        new ItemStack(ItemList.getElementNumber(8), 2))),
+                new ItemStack(ItemList.hydrogen_peroxide)
         );
+        // WATER
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(1), 2),
-                        new ItemStack(ItemList.getElementNumber(8))
-                }, new ItemStack(ItemList.water)
+                        new ItemStack(ItemList.getElementNumber(8)))),
+                new ItemStack(ItemList.water)
         );
+        // COPPER
         addRecipe(
-                new ItemStack[]{
-                        new ItemStack(ItemList.getElementNumber(29), 9)
-                }, new ItemStack(ItemList.copper_ingot)
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(29), 9))),
+                new ItemStack(ItemList.copper_ingot)
         );
+        // ZINC OXIDE
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(30)),
-                        new ItemStack(ItemList.getElementNumber(8))
-                }, new ItemStack(ItemList.zinc_oxide)
+                        new ItemStack(ItemList.getElementNumber(8)))),
+                new ItemStack(ItemList.zinc_oxide)
         );
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(11)),
-                        new ItemStack(ItemList.getElementNumber(17))
-                }, new ItemStack(ItemList.sodium_chloride)
+                        new ItemStack(ItemList.getElementNumber(17)))),
+                new ItemStack(ItemList.sodium_chloride)
         );
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(11)),
-                        new ItemStack(ItemList.bicarbonate)
-                }, new ItemStack(ItemList.sodium_bicarbonate)
+                        new ItemStack(ItemList.bicarbonate))),
+                new ItemStack(ItemList.sodium_bicarbonate)
         );
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(11)),
-                        new ItemStack(ItemList.hydroxide)
-                }, new ItemStack(ItemList.sodium_hydroxide)
+                        new ItemStack(ItemList.hydroxide))),
+                new ItemStack(ItemList.sodium_hydroxide)
         );
         addRecipe(
-                new ItemStack[]{
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(1)),
-                        new ItemStack(ItemList.acetate)
-                }, new ItemStack(ItemList.acetic_acid)
+                        new ItemStack(ItemList.acetate))),
+                new ItemStack(ItemList.acetic_acid)
         );
         addRecipe(
-                new ItemStack[]{
-                        new ItemStack(ItemList.getElementNumber(49), 2),
-                        new ItemStack(ItemList.getElementNumber(16))
-                }, new ItemStack(ItemList.silver_sulfide)
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(47), 2),
+                        new ItemStack(ItemList.getElementNumber(16)))),
+                new ItemStack(ItemList.silver_sulfide)
         );
     }
 
-    private static void addRecipe(ItemStack[] stacksIn, ItemStack itemStack) {
-        ArrayList<ItemStack> ingredients = new ArrayList<>();
-        Collections.addAll(ingredients, stacksIn);
-
-        inputs.add(ingredients);
-        outputs.add(itemStack);
+    private static void addRecipe(ArrayList<ItemStack> stacks, ItemStack result) {
+        recipes.add(new ReconstructorRecipe(stacks, result));
     }
 
-    public static ItemStack getResultForInputSet(ItemStack[] items) {
-        // Check shaped recipes
-        for (int i = 0; i < inputs.size(); i++) {
-            if (ingredientsAreEqual(items, inputs.get(i))) {
-                return outputs.get(i);
+    // Returns recipe with matching input
+    // Otherwise returns null
+    public static ReconstructorRecipe getRecipeForInputs(ArrayList<ItemStack> input) {
+        for (ReconstructorRecipe rr : recipes) {
+            if (rr.inputEqual(input)) {
+                return rr;
             }
         }
-        return ItemStack.EMPTY;
-    }
 
-    private static boolean ingredientsAreEqual(ItemStack[] stacks, ArrayList<ItemStack> possible) {
-        // Generate ingredients list
-        ArrayList<ItemStack> ingredients = new ArrayList<>(possible);
-        // Compare itemstacks
-        for(ItemStack stack : stacks) {
-            if(stack.getItem() != Items.AIR) {
-                for(int i = 0; i < ingredients.size(); i++) {
-                    if(stack.getItem() == ingredients.get(i).getItem() && stack.getCount() == ingredients.get(i).getCount()) {
-                        ingredients.remove(i);
-                        i--;
-                    }
-                }
-            }
-        }
-        // Returns true if both contain equal itemstacks (both are subsets of each other == true)
-        return (ingredients.isEmpty());
+        return null;
     }
 }
-

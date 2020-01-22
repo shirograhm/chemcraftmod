@@ -30,12 +30,14 @@ public class DeconstructorContainer extends Container {
         playerInventory = new InvWrapper(playerInv);
 
         addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_1, 98, 17));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_2, 98, 35));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_3, 98, 53));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_4, 116, 17));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_5, 116, 35));
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_6, 116, 53));
+
+        addSlot(new Slot(tileEntity, 1, 98, 17));
+        addSlot(new Slot(tileEntity, 2, 98, 35));
+        addSlot(new Slot(tileEntity, 3, 98, 53));
+        addSlot(new Slot(tileEntity, 4, 116, 17));
+        addSlot(new Slot(tileEntity, 5, 116, 35));
+        addSlot(new Slot(tileEntity, 6, 116, 53));
+
         layoutPlayerInventorySlots(8, 84);
     }
 
@@ -59,7 +61,7 @@ public class DeconstructorContainer extends Container {
                     return ItemStack.EMPTY;
                 }
             } else {
-                if(DeconstructorRecipeHandler.isDeconstructible(stack.getItem())) {
+                if(DeconstructorRecipeHandler.getRecipeForInputs(stack) != null) {
                     if (!this.mergeItemStack(stack, 0, 1, true)) {
                         return ItemStack.EMPTY;
                     }

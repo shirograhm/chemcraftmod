@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "chemcraftmod:block/accelerator"
+    },
+    "facing=east": {
+      "model": "chemcraftmod:block/accelerator",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "chemcraftmod:block/accelerator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chemcraftmod:block/accelerator",
+      "y": 270
+    }
+  }
+}

@@ -179,7 +179,7 @@ public class ChemCraftMod {
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
                     BlockList.electromagnet = new ElectromagnetBlock(location("electromagnet"), BlockList.rockProperties),
-                    BlockList.particle_accelerator = new ParticleAcceleratorBlock(location("particle_accelerator"), BlockList.machineProperties),
+                    BlockList.particle_accelerator = new ParticleAcceleratorBlock(location("accelerator"), BlockList.machineProperties),
                     BlockList.beaker = new BeakerBlock(location("beaker"), BlockList.glasswareProperties),
                     BlockList.volcano = new VolcanoBlock(location("volcano"), BlockList.rockProperties)
             );

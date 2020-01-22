@@ -5,8 +5,8 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -18,6 +18,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
+import solitudetraveler.chemcraftmod.recipes.DeconstructorRecipe;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,12 +26,8 @@ import java.util.ArrayList;
 
 public class DeconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
     public static final int DECONSTRUCTOR_INPUT = 0;
-    public static final int DECONSTRUCTOR_OUTPUT_1 = 1;
-    public static final int DECONSTRUCTOR_OUTPUT_2 = 2;
-    public static final int DECONSTRUCTOR_OUTPUT_3 = 3;
-    public static final int DECONSTRUCTOR_OUTPUT_4 = 4;
-    public static final int DECONSTRUCTOR_OUTPUT_5 = 5;
-    public static final int DECONSTRUCTOR_OUTPUT_6 = 6;
+    public static final int DECONSTRUCTOR_OUTPUT_FIRST = 1;
+    public static final int DECONSTRUCTOR_OUTPUT_LAST = 6;
     public static final int NUMBER_DECONSTRUCTOR_SLOTS = 7;
 
     private ItemStackHandler inventory;
@@ -43,8 +40,8 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
         super(BlockList.DECONSTRUCTOR_TILE_TYPE);
 
         inventory = generateInventory();
-        this.isDeconstructing = false;
         this.deconstructionTimeLeft = 0;
+        this.isDeconstructing = false;
     }
 
     private ItemStackHandler generateInventory() {
@@ -57,24 +54,23 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
                 if(slot == DECONSTRUCTOR_INPUT) {
-                    return DeconstructorRecipeHandler.isDeconstructible(stack.getItem());
+                    return true;
                 }
                 return false;
             }
-
-            @Nonnull
-            @Override
-            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if(slot == DECONSTRUCTOR_INPUT) {
-                    if(stack.getCount() == 1) {
-                        return ItemStack.EMPTY;
-                    } else {
-                        return ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - 1);
-                    }
-                }
-                return stack;
-            }
         };
+    }
+
+    private boolean isOutputEmpty() {
+        ArrayList<ItemStack> outs = new ArrayList<>();
+        for(int i = DECONSTRUCTOR_OUTPUT_FIRST; i <= DECONSTRUCTOR_OUTPUT_LAST; i++) {
+            ItemStack is = inventory.getStackInSlot(i);
+            if(!is.isEmpty() && is.getItem() != Items.AIR) {
+                outs.add(is);
+            }
+        }
+
+        return outs.size() == 0;
     }
 
     public double getDeconstructionTimeScaled() {
@@ -88,31 +84,45 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public void tick() {
         // CLIENT AND SERVER
-        Item input = inventory.getStackInSlot(DECONSTRUCTOR_INPUT).getItem();
-        ArrayList<ItemStack> result = DeconstructorRecipeHandler.getResultStacksForInput(input.getItem());
+        ItemStack input = inventory.getStackInSlot(DECONSTRUCTOR_INPUT);
+        DeconstructorRecipe recipe = DeconstructorRecipeHandler.getRecipeForInputs(input);
 
-        if(isDeconstructing) {
-            deconstructionTimeLeft--;
-            if (!DeconstructorRecipeHandler.isDeconstructible(input)) {
+        // If outputs are not empty
+        if(!isOutputEmpty()) {
+            isDeconstructing = false;
+            deconstructionTimeLeft = 0;
+        }
+        else {
+            // If input is valid
+            if(recipe != null) {
+                // If we are already deconstructing
+                if(isDeconstructing) {
+                    deconstructionTimeLeft--;
+                }
+                // Otherwise, begin deconstruction
+                else {
+                    isDeconstructing = true;
+                    deconstructionTimeLeft = DECONSTRUCTION_TIME;
+                }
+            }
+            // Otherwise, if input is invalid
+            else {
+                // Stop deconstruction
                 isDeconstructing = false;
                 deconstructionTimeLeft = 0;
-            }
-        } else {
-            if(DeconstructorRecipeHandler.isDeconstructible(input)) {
-                deconstructionTimeLeft = DECONSTRUCTION_TIME;
-                isDeconstructing = true;
             }
         }
 
         // CLIENT SIDE ONLY
         if (world != null && !world.isRemote) {
             if (isDeconstructing && deconstructionTimeLeft == 0) {
-                // Remove 1 input item from input stack
-                inventory.extractItem(DECONSTRUCTOR_INPUT, 1, false);
-                // Populate output stacks
-                for (int i = 0; i < 6; i++) {
-                    inventory.setStackInSlot(i + 1, result.get(i));
+                // Clear input stack
+                inventory.setStackInSlot(DECONSTRUCTOR_INPUT, ItemStack.EMPTY);
+                // Set output stacks
+                for (int i = 0; i < recipe.getResults().size(); i++) {
+                    inventory.setStackInSlot(i + 1, recipe.getResults().get(i));
                 }
+                // Reset machine
                 isDeconstructing = false;
             }
         }

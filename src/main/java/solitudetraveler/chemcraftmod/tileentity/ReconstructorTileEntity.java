@@ -6,6 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -16,21 +17,15 @@ import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.handler.ReconstructorRecipeHandler;
-import solitudetraveler.chemcraftmod.item.ElementItem;
+import solitudetraveler.chemcraftmod.recipes.ReconstructorRecipe;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 public class ReconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
-    public static final int RECONSTRUCTOR_INPUT_1 = 0;
-    public static final int RECONSTRUCTOR_INPUT_2 = 1;
-    public static final int RECONSTRUCTOR_INPUT_3 = 2;
-    public static final int RECONSTRUCTOR_INPUT_4 = 3;
-    public static final int RECONSTRUCTOR_INPUT_5 = 4;
-    public static final int RECONSTRUCTOR_INPUT_6 = 5;
-    public static final int RECONSTRUCTOR_INPUT_7 = 6;
-    public static final int RECONSTRUCTOR_INPUT_8 = 7;
-    public static final int RECONSTRUCTOR_INPUT_9 = 8;
+    public static final int RECONSTRUCTOR_INPUT_FIRST = 0;
+    public static final int RECONSTRUCTOR_INPUT_LAST = 8;
     public static final int RECONSTRUCTOR_OUTPUT = 9;
     public static final int NUMBER_RECONSTRUCTOR_SLOTS = 10;
 
@@ -57,26 +52,24 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if(slot >= 0 && slot < 9) {
-                    return stack.getItem() instanceof ElementItem;
+                if(slot >= RECONSTRUCTOR_INPUT_FIRST && slot <= RECONSTRUCTOR_INPUT_LAST) {
+                    return true;
                 }
                 return false;
             }
         };
     }
 
-    private ItemStack[] getCurrentInputArray() {
-        return new ItemStack[] {
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_1),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_2),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_3),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_4),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_5),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_6),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_7),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_8),
-                inventory.getStackInSlot(RECONSTRUCTOR_INPUT_9)
-        };
+    private ArrayList<ItemStack> getCurrentInputArray() {
+        ArrayList<ItemStack> input = new ArrayList<>();
+        for(int i = RECONSTRUCTOR_INPUT_FIRST; i <= RECONSTRUCTOR_INPUT_LAST; i++) {
+            ItemStack is = inventory.getStackInSlot(i);
+            if (!is.isEmpty() && is.getItem() != Items.AIR) {
+                input.add(is);
+            }
+        }
+
+        return input;
     }
 
     public double getReconstructionTimeScaled() {
@@ -90,31 +83,46 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public void tick() {
         // CLIENT AND SERVER
-        ItemStack[] inputArray = getCurrentInputArray();
-        ItemStack out = ReconstructorRecipeHandler.getResultForInputSet(inputArray);
+        ArrayList<ItemStack> inputArray = getCurrentInputArray();
+        ReconstructorRecipe recipe = ReconstructorRecipeHandler.getRecipeForInputs(inputArray);
 
-        if(isReconstructing) {
-            reconstructionTimeLeft--;
-            if(out == ItemStack.EMPTY) {
+        // If out stack not empty
+        if(inventory.getStackInSlot(RECONSTRUCTOR_OUTPUT) != ItemStack.EMPTY) {
+            isReconstructing = false;
+            reconstructionTimeLeft = 0;
+        }
+        else {
+            // If input is valid
+            if(recipe != null) {
+                // If we are already reconstructing
+                if(isReconstructing) {
+                    reconstructionTimeLeft--;
+                }
+                // Otherwise, begin reconstruction
+                else {
+                    isReconstructing = true;
+                    reconstructionTimeLeft = RECONSTRUCTION_TIME;
+                }
+            }
+            // Otherwise if the input is invalid
+            else {
+                // Stop reconstruction
                 isReconstructing = false;
                 reconstructionTimeLeft = 0;
-            }
-        } else {
-            if(out != ItemStack.EMPTY) {
-                reconstructionTimeLeft = RECONSTRUCTION_TIME;
-                isReconstructing = true;
             }
         }
 
         // CLIENT SIDE ONLY
         if (world != null && !world.isRemote) {
             if (isReconstructing && reconstructionTimeLeft == 0) {
-                for (int i = 0; i < 9; i++) {
-                    int countLeft = inventory.getStackInSlot(i).getCount() - 1;
-                    inventory.setStackInSlot(i, ItemHandlerHelper.copyStackWithSize(inventory.getStackInSlot(i), countLeft));
+                // Clear input stacks
+                for (int i = RECONSTRUCTOR_INPUT_FIRST; i <= RECONSTRUCTOR_INPUT_LAST; i++) {
+                    // Reset input itemstacks
+                    inventory.setStackInSlot(i, ItemStack.EMPTY);
                 }
-                inventory.setStackInSlot(RECONSTRUCTOR_OUTPUT, out);
-
+                // Set output stack
+                inventory.setStackInSlot(RECONSTRUCTOR_OUTPUT, recipe.getOutput());
+                // Reset machine
                 isReconstructing = false;
             }
         }
@@ -157,7 +165,7 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Override
     public boolean isEmpty() {
-        for(int i = 0; i < NUMBER_RECONSTRUCTOR_SLOTS; i++) {
+        for(int i = 0; i < inventory.getSlots(); i++) {
             if(inventory.getStackInSlot(i) != ItemStack.EMPTY) {
                 return false;
             }
