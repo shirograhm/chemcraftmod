@@ -1,5 +1,6 @@
 package solitudetraveler.chemcraftmod.tileentity;
 
+import com.sun.media.jfxmedia.logging.Logger;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -9,6 +10,8 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -20,6 +23,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.GeneratorContainer;
+import solitudetraveler.chemcraftmod.main.ChemCraftMod;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -31,7 +35,9 @@ import static net.minecraft.item.Items.*;
 public class GeneratorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
     public static final int GENERATOR_INPUT = 0;
     public static final int NUMBER_GENERATOR_SLOTS = 1;
+
     private static Map<Item, Integer> fuelTimes = generateFuelTimes();
+    private static final int MAX_POWER_CAPACITY = 7200;
 
     private ItemStackHandler inventory;
 
@@ -42,6 +48,7 @@ public class GeneratorTileEntity extends TileEntity implements ITickableTileEnti
         Map<Item, Integer> generatorTimeForItems = new LinkedHashMap<>();
 
         // Coal and charcoal
+        generatorTimeForItems.put(COAL_BLOCK, 7200);
         generatorTimeForItems.put(COAL, 800);
         generatorTimeForItems.put(CHARCOAL, 800);
         // Stripped logs and logs
@@ -93,10 +100,35 @@ public class GeneratorTileEntity extends TileEntity implements ITickableTileEnti
 
     @Override
     public void tick() {
-        BlockState blockState = world.getBlockState(pos);
+        // If world is null, return
+        if(world == null) return;
+        // If client, return
+        if(world.isRemote) return;
 
-        // Update block state with powered or not
+        ItemStack inputStack = inventory.getStackInSlot(GENERATOR_INPUT);
+        Item inputItem = inputStack.getItem();
+
+        // If input item is valid and powerRemaining + added power <= MAX POWER
+        if(fuelTimes.containsKey(inputItem) && powerRemaining + fuelTimes.get(inputItem) <= MAX_POWER_CAPACITY) {
+            // Process fuel item
+            powerRemaining += fuelTimes.get(inputItem);
+            // Remove 1 item from fuel input slot
+            inventory.setStackInSlot(GENERATOR_INPUT, ItemHandlerHelper.copyStackWithSize(inputStack, inputStack.getCount() - 1));
+            // Turn on power
+            isPowered = true;
+        }
+        // Reduce power
+        powerRemaining--;
+        // Check if power runs out
+        if(powerRemaining == 0) {
+            isPowered = false;
+        }
+
+        // Update block state with isPowered value (for texture updates based on blockstate)
+        BlockState blockState = world.getBlockState(pos);
         world.setBlockState(pos, blockState.with(BlockStateProperties.POWERED, isPowered));
+
+        sendUpdates();
     }
 
     @Override
@@ -123,6 +155,28 @@ public class GeneratorTileEntity extends TileEntity implements ITickableTileEnti
     public ITextComponent getDisplayName() {
         ResourceLocation location = getType().getRegistryName();
         return new StringTextComponent(location != null ? location.getPath() : "");
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(this.pos, 0, this.getUpdateTag());
+    }
+
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return this.write(new CompoundNBT());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        super.onDataPacket(net, pkt);
+        handleUpdateTag(pkt.getNbtCompound());
+    }
+
+    private void sendUpdates() {
+        world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 3);
+        markDirty();
     }
 
     @Nullable

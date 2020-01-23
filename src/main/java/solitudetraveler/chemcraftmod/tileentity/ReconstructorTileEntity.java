@@ -8,8 +8,11 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -82,20 +85,24 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Override
     public void tick() {
-        // CLIENT AND SERVER
+        // If world is null, return
+        if(world == null) return;
+        // If client, return
+        if(world.isRemote) return;
+
+        // Server
         ArrayList<ItemStack> inputArray = getCurrentInputArray();
         ReconstructorRecipe recipe = ReconstructorRecipeHandler.getRecipeForInputs(inputArray);
 
         // If out stack not empty
-        if(inventory.getStackInSlot(RECONSTRUCTOR_OUTPUT) != ItemStack.EMPTY) {
+        if (inventory.getStackInSlot(RECONSTRUCTOR_OUTPUT) != ItemStack.EMPTY) {
             isReconstructing = false;
             reconstructionTimeLeft = 0;
-        }
-        else {
+        } else {
             // If input is valid
-            if(recipe != null) {
+            if (recipe != null) {
                 // If we are already reconstructing
-                if(isReconstructing) {
+                if (isReconstructing) {
                     reconstructionTimeLeft--;
                 }
                 // Otherwise, begin reconstruction
@@ -111,21 +118,20 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
                 reconstructionTimeLeft = 0;
             }
         }
-
-        // CLIENT SIDE ONLY
-        if (world != null && !world.isRemote) {
-            if (isReconstructing && reconstructionTimeLeft == 0) {
-                // Clear input stacks
-                for (int i = RECONSTRUCTOR_INPUT_FIRST; i <= RECONSTRUCTOR_INPUT_LAST; i++) {
-                    // Reset input itemstacks
-                    inventory.setStackInSlot(i, ItemStack.EMPTY);
-                }
-                // Set output stack
-                inventory.setStackInSlot(RECONSTRUCTOR_OUTPUT, recipe.getOutput());
-                // Reset machine
-                isReconstructing = false;
+        if (isReconstructing && reconstructionTimeLeft == 0) {
+            // Clear input stacks
+            for (int i = RECONSTRUCTOR_INPUT_FIRST; i <= RECONSTRUCTOR_INPUT_LAST; i++) {
+                // Reset input stacks
+                inventory.setStackInSlot(i, ItemStack.EMPTY);
             }
+            // Set output stack
+            inventory.setStackInSlot(RECONSTRUCTOR_OUTPUT, recipe.getOutput());
+            // Reset machine
+            isReconstructing = false;
         }
+
+        // Send updates to client
+        sendUpdates();
     }
 
     @Override
@@ -146,10 +152,35 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
 
         return super.write(tag);
     }
+
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+        ResourceLocation location = getType().getRegistryName();
+        return new StringTextComponent(location != null ? location.getPath() : "");
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(this.pos, 0, this.getUpdateTag());
+    }
+
+    @Nonnull
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return this.write(new CompoundNBT());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        super.onDataPacket(net, pkt);
+        handleUpdateTag(pkt.getNbtCompound());
+    }
+
+    private void sendUpdates() {
+        world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 3);
+        markDirty();
     }
 
     @Nullable

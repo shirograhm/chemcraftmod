@@ -1,19 +1,28 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,powered=false": {
       "model": "chemcraftmod:block/generator"
     },
-    "facing=east": {
-      "model": "chemcraftmod:block/generator",
-      "y": 90
+    "facing=north,powered=true": {
+      "model": "chemcraftmod:block/generator_on"
     },
-    "facing=south": {
-      "model": "chemcraftmod:block/generator",
-      "y": 180
+    "facing=east,powered=false": {
+      "model": "chemcraftmod:block/generator", "y": 90
     },
-    "facing=west": {
-      "model": "chemcraftmod:block/generator",
-      "y": 270
+    "facing=east,powered=true": {
+      "model": "chemcraftmod:block/generator_on", "y": 90
+    },
+    "facing=south,powered=false": {
+      "model": "chemcraftmod:block/generator", "y": 180
+    },
+    "facing=south,powered=true": {
+      "model": "chemcraftmod:block/generator_on", "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "chemcraftmod:block/generator", "y": 270
+    },
+    "facing=west,powered=true": {
+      "model": "chemcraftmod:block/generator_on", "y": 270
     }
   }
 }

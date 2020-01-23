@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "chemcraftmod:block/generator_side",
+    "bottom": "chemcraftmod:block/generator_side",
+    "front": "chemcraftmod:block/generator_front_on",
+    "side": "chemcraftmod:block/generator_side"
+  }
+}

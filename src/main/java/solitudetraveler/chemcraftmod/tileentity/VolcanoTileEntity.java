@@ -8,9 +8,12 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -73,7 +76,13 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
 
     @Override
     public void tick() {
+        // If world is null, return
+        if(world == null) return;
+        // If on client, return
+        if(world.isRemote) return;
+
         boolean requirementsMet = checkRequirements(inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(), inventory.getStackInSlot(VOLCANO_SLOT_2).getItem());
+
         // CLIENT AND SERVER SIDE
         if(requirementsMet) {
             // Begin running volcano ticks if not running right now
@@ -84,28 +93,27 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
             }
             // Remove items inside volcano if time is up
             if(currentTimeLeft == 0) {
-                // CLIENT - remove items
-                if(world != null && !world.isRemote) {
-                    inventory.extractItem(VOLCANO_SLOT_1, 1, false);
-                    inventory.extractItem(VOLCANO_SLOT_2, 1, false);
-                }
-                // SERVER - make particles
-                if(world != null && world.isRemote) {
-                    Random rand = new Random();
-                    double xSpeed = (rand.nextDouble() - 0.5) / 2;
-                    double zSpeed = (rand.nextDouble() - 0.5) / 2;
-                    BlockPos start = pos.add(0.5, 0.75, 0.5);
+                inventory.extractItem(VOLCANO_SLOT_1, 1, false);
+                inventory.extractItem(VOLCANO_SLOT_2, 1, false);
+                // make particles
+                Random rand = new Random();
+                double xSpeed = (rand.nextDouble() - 0.5) / 2;
+                double zSpeed = (rand.nextDouble() - 0.5) / 2;
+                BlockPos start = pos.add(0, 0.75, 0);
 
-                    // Generate particles for the volcano when reaction completes
-                    for (int i = 0; i < 20; i++) {
-                        world.addParticle(ParticleTypes.POOF, true, start.getX(), start.getY(), start.getZ(), xSpeed, 0.25, zSpeed);
-                    }
+                // Generate particles for the volcano when reaction completes
+                for (int i = 0; i < 20; i++) {
+                    world.addParticle(ParticleTypes.POOF, true, start.getX(), start.getY(), start.getZ(), xSpeed, 0.25, zSpeed);
                 }
             }
-        } else {
+        }
+        else {
             // If requirements not met, reset current time left
             currentTimeLeft = -1;
         }
+
+        // Send updates to client
+        sendUpdates();
     }
 
     @Override
@@ -130,7 +138,31 @@ public class VolcanoTileEntity extends TileEntity implements ITickableTileEntity
     @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+        ResourceLocation location = getType().getRegistryName();
+        return new StringTextComponent(location != null ? location.getPath() : "");
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(this.pos, 0, this.getUpdateTag());
+    }
+
+    @Nonnull
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return this.write(new CompoundNBT());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        super.onDataPacket(net, pkt);
+        handleUpdateTag(pkt.getNbtCompound());
+    }
+
+    private void sendUpdates() {
+        world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 3);
+        markDirty();
     }
 
     @Nullable

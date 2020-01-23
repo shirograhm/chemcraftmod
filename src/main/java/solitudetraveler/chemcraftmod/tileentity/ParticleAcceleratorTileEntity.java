@@ -7,6 +7,8 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -73,7 +75,16 @@ public class ParticleAcceleratorTileEntity extends TileEntity implements ITickab
 
     @Override
     public void tick() {
+        // If world is null, return
+        if(world == null) return;
+        // If client, return
+        if(world.isRemote) return;
 
+
+        // DO STUFF HERE
+
+
+        sendUpdates();
     }
 
     @Override
@@ -100,6 +111,29 @@ public class ParticleAcceleratorTileEntity extends TileEntity implements ITickab
     public ITextComponent getDisplayName() {
         ResourceLocation location = getType().getRegistryName();
         return new StringTextComponent(location != null ? location.getPath() : "");
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(this.pos, 0, this.getUpdateTag());
+    }
+
+    @Nonnull
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return this.write(new CompoundNBT());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        super.onDataPacket(net, pkt);
+        handleUpdateTag(pkt.getNbtCompound());
+    }
+
+    private void sendUpdates() {
+        world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 3);
+        markDirty();
     }
 
     @Nullable

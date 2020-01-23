@@ -8,6 +8,8 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -83,7 +85,12 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Override
     public void tick() {
-        // CLIENT AND SERVER
+        // If world is null, return
+        if(world == null) return;
+        // If on client, return
+        if(world.isRemote) return;
+
+        // If on server, do recipe computations
         ItemStack input = inventory.getStackInSlot(DECONSTRUCTOR_INPUT);
         DeconstructorRecipe recipe = DeconstructorRecipeHandler.getRecipeForInputs(input);
 
@@ -112,20 +119,19 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
                 deconstructionTimeLeft = 0;
             }
         }
-
-        // CLIENT SIDE ONLY
-        if (world != null && !world.isRemote) {
-            if (isDeconstructing && deconstructionTimeLeft == 0) {
-                // Clear input stack
-                inventory.setStackInSlot(DECONSTRUCTOR_INPUT, ItemStack.EMPTY);
-                // Set output stacks
-                for (int i = 0; i < recipe.getResults().size(); i++) {
-                    inventory.setStackInSlot(i + 1, recipe.getResults().get(i));
-                }
-                // Reset machine
-                isDeconstructing = false;
+        if (isDeconstructing && deconstructionTimeLeft == 0) {
+            // Clear input stack
+            inventory.setStackInSlot(DECONSTRUCTOR_INPUT, ItemStack.EMPTY);
+            // Set output stacks
+            for (int i = 0; i < recipe.getResults().size(); i++) {
+                inventory.setStackInSlot(i + 1, recipe.getResults().get(i));
             }
+            // Reset machine
+            isDeconstructing = false;
         }
+
+        // Send updates to client
+        sendUpdates();
     }
 
     @Override
@@ -152,6 +158,29 @@ public class DeconstructorTileEntity extends TileEntity implements ITickableTile
     public ITextComponent getDisplayName() {
         ResourceLocation location = getType().getRegistryName();
         return new StringTextComponent(location != null ? location.getPath() : "");
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(this.pos, 0, this.getUpdateTag());
+    }
+
+    @Nonnull
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return this.write(new CompoundNBT());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        super.onDataPacket(net, pkt);
+        handleUpdateTag(pkt.getNbtCompound());
+    }
+
+    private void sendUpdates() {
+        world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 3);
+        markDirty();
     }
 
     @Nullable

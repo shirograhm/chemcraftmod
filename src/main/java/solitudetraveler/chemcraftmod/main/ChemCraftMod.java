@@ -39,7 +39,7 @@ public class ChemCraftMod {
     private static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static final String MOD_ID = "chemcraftmod";
-    private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     private static final String[] ELEMENT_NAMES = new String[] {
             "hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen",
             "oxygen", "fluorine", "neon", "sodium", "magnesium", "aluminium", "silicon",
