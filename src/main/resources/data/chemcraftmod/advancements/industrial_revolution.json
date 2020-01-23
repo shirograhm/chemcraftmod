@@ -9,6 +9,7 @@
     "description": {
       "text": "Machines rise up!"
     },
+    "hidden": true,
     "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
   },
   "criteria": {

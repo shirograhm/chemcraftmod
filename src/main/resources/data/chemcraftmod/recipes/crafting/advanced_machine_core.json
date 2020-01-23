@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "AAA",
+    "SMS",
+    "RRR"
+  ],
+  "key":
+  {
+    "A": { "item": "chemcraftmod:aluminium" },
+    "S": { "item": "chemcraftmod:silicon" },
+    "M": { "item": "chemcraftmod:machine_core" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:machine_core"
+  }
+}

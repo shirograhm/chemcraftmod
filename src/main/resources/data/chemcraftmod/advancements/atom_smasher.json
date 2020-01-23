@@ -1,0 +1,26 @@
+{
+  "parent": "chemcraftmod:upgradable_parts",
+  "display": {
+    "icon": {
+      "item": "chemcraftmod:accelerator"
+    },
+    "title": {
+      "text": "Atom Smasher"
+    },
+    "description": {
+      "text": "Create a particle accelerator."
+    }
+  },
+  "criteria": {
+    "smasher": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "chemcraftmod:accelerator"
+          }
+        ]
+      }
+    }
+  }
+}

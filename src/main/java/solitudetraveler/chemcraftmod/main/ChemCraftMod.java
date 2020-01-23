@@ -138,6 +138,7 @@ public class ChemCraftMod {
                     ItemList.heating_coil = new BasicItem(location("heating_coil")),
                     ItemList.copper_wire = new BasicItem(location("copper_wire")),
                     ItemList.machine_core = new BasicItem(location("machine_core")),
+                    ItemList.advanced_machine_core = new BasicItem(location("advanced_machine_core")),
                     // Covalent Compounds
                     ItemList.sulfate = new CompoundItem(location("sulfate"), "SO4"),
                     ItemList.sulfite = new CompoundItem(location("sulfite"), "SO3"),

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "CCC",
+    "EAE",
+    "CCC"
+  ],
+  "key":
+  {
+    "E": { "item": "chemcraftmod:electromagnetic_coil" },
+    "A": { "item": "chemcraftmod:advanced_machine_core" },
+    "C": { "item": "chemcraftmod:copper_wire" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:accelerator"
+  }
+}

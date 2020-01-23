@@ -40,6 +40,7 @@ public class ItemList {
     public static Item heating_coil;
     public static Item copper_wire;
     public static Item machine_core;
+    public static Item advanced_machine_core;
     // Covalent Compounds
     public static Item sulfate;
     public static Item sulfite;
