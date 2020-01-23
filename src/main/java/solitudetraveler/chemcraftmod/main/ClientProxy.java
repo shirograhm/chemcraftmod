@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod.proxy;
+package solitudetraveler.chemcraftmod.main;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;

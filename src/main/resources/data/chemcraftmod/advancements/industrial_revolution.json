@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "chemcraftmod:machine_core"
+    },
+    "title": {
+      "text": "Industrial Revolution"
+    },
+    "description": {
+      "text": "Create your first machine core."
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+  },
+  "criteria": {
+    "revolution": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "chemcraftmod:machine_core"
+          }
+        ]
+      }
+    }
+  }
+}

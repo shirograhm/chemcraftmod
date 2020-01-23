@@ -6,7 +6,7 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import solitudetraveler.chemcraftmod.ChemCraftMod;
+import solitudetraveler.chemcraftmod.main.ChemCraftMod;
 import solitudetraveler.chemcraftmod.tileentity.GeneratorTileEntity;
 
 public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
@@ -40,9 +40,5 @@ public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
-
-        if(tileEntity.isPowered()) {
-            this.blit(relX + 71, relY + 29, 176, 20, 21, 20);
-        }
     }
 }

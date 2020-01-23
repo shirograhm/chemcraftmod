@@ -1,5 +1,6 @@
 package solitudetraveler.chemcraftmod.tileentity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -7,8 +8,8 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -19,12 +20,9 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.GeneratorContainer;
-import solitudetraveler.chemcraftmod.item.AtomicItem;
-import solitudetraveler.chemcraftmod.item.ElementItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -95,7 +93,10 @@ public class GeneratorTileEntity extends TileEntity implements ITickableTileEnti
 
     @Override
     public void tick() {
+        BlockState blockState = world.getBlockState(pos);
 
+        // Update block state with powered or not
+        world.setBlockState(pos, blockState.with(BlockStateProperties.POWERED, isPowered));
     }
 
     @Override

@@ -33,6 +33,7 @@ public class ItemList {
     public static Item bleach;
     public static Item electromagnetic_coil;
     public static Item copper_wire;
+    public static Item machine_core;
     // Covalent Compounds
     public static Item sulfate;
     public static Item sulfite;

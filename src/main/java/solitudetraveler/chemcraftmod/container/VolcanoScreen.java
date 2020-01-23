@@ -6,7 +6,7 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import solitudetraveler.chemcraftmod.ChemCraftMod;
+import solitudetraveler.chemcraftmod.main.ChemCraftMod;
 import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 public class VolcanoScreen extends ContainerScreen<VolcanoContainer> {

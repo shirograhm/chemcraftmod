@@ -1,0 +1,26 @@
+{
+  "parent": "chemcraftmod:industrial_revolution",
+  "display": {
+    "icon": {
+      "item": "chemcraftmod:deconstructor"
+    },
+    "title": {
+      "text": "Destroyer of Worlds"
+    },
+    "description": {
+      "text": "Create a molecular deconstructor."
+    }
+  },
+  "criteria": {
+    "destroyer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "chemcraftmod:deconstructor"
+          }
+        ]
+      }
+    }
+  }
+}

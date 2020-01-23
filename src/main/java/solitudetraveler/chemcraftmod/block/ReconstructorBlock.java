@@ -45,6 +45,7 @@ public class ReconstructorBlock extends Block {
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!worldIn.isRemote) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
+
             if(tileEntity instanceof INamedContainerProvider) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
             } else {
@@ -52,6 +53,7 @@ public class ReconstructorBlock extends Block {
             }
             return true;
         }
+
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 

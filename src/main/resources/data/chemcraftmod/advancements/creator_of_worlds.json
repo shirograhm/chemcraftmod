@@ -1,0 +1,26 @@
+{
+  "parent": "chemcraftmod:industrial_revolution",
+  "display": {
+    "icon": {
+      "item": "chemcraftmod:reconstructor"
+    },
+    "title": {
+      "text": "Creator of Worlds"
+    },
+    "description": {
+      "text": "Create a molecular reconstructor."
+    }
+  },
+  "criteria": {
+    "creator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "chemcraftmod:reconstructor"
+          }
+        ]
+      }
+    }
+  }
+}

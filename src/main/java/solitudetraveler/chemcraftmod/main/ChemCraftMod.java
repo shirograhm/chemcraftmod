@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod;
+package solitudetraveler.chemcraftmod.main;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
@@ -30,9 +30,6 @@ import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
 import solitudetraveler.chemcraftmod.handler.ChemCraftEventHandler;
 import solitudetraveler.chemcraftmod.item.*;
-import solitudetraveler.chemcraftmod.proxy.ClientProxy;
-import solitudetraveler.chemcraftmod.proxy.IProxy;
-import solitudetraveler.chemcraftmod.proxy.ServerProxy;
 import solitudetraveler.chemcraftmod.tileentity.*;
 
 import java.util.Objects;
@@ -135,6 +132,7 @@ public class ChemCraftMod {
                     ItemList.bleach = new BasicItem(location("bleach")),
                     ItemList.electromagnetic_coil = new BasicItem(location("electromagnetic_coil")),
                     ItemList.copper_wire = new BasicItem(location("copper_wire")),
+                    ItemList.machine_core = new BasicItem(location("machine_core")),
                     // Covalent Compounds
                     ItemList.sulfate = new CompoundItem(location("sulfate"), "SO4"),
                     ItemList.sulfite = new CompoundItem(location("sulfite"), "SO3"),

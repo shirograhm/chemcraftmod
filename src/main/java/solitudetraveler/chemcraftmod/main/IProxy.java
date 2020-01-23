@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod.proxy;
+package solitudetraveler.chemcraftmod.main;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;

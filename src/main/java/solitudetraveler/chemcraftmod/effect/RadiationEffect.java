@@ -4,11 +4,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import solitudetraveler.chemcraftmod.ChemCraftMod;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
