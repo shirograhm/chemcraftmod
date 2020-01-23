@@ -2,16 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "ggg",
-    "drd",
-    "III"
+    "SSS",
+    "HMH",
+    "SSS"
   ],
   "key":
   {
-    "g": { "item": "minecraft:gold_ingot" },
-    "I": { "item": "minecraft:iron_block" },
-    "d": { "item": "minecraft:diamond" },
-    "r": { "item": "minecraft:redstone" }
+    "M": { "item": "chemcraftmod:machine_core" },
+    "H": { "item": "chemcraftmod:heating_coil" },
+    "S": { "item": "minecraft:smooth_stone" }
   },
   "result":
   {

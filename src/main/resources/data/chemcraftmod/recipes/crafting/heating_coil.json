@@ -2,13 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "C C",
-    "CIC",
-    "C C"
+    "NNN",
+    "CCC"
   ],
   "key":
   {
-    "I": { "item": "minecraft:iron_ingot" },
+    "N": { "item": "chemcraftmod:nickel_ingot" },
     "C": { "item": "chemcraftmod:copper_wire" }
   },
   "result":

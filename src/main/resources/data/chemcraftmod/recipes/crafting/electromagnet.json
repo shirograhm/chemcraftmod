@@ -2,15 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "iii",
-    "wew",
-    "iii"
+    "EEE",
+    "WWW",
+    "EEE"
   ],
   "key":
   {
-    "i": { "item": "minecraft:iron_ingot" },
-    "e": { "item": "chemcraftmod:electromagnetic_coil" },
-    "w": { "item": "chemcraftmod:copper_wire" }
+    "E": { "item": "chemcraftmod:electromagnetic_coil" },
+    "W": { "item": "chemcraftmod:copper_wire" }
   },
   "result":
   {

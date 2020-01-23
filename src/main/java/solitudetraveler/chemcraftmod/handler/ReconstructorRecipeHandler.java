@@ -114,11 +114,29 @@ public class ReconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(8)))),
                 new ItemStack(ItemList.water)
         );
-        // COPPER
+        // COPPER INGOT
         addRecipe(
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(29), 9))),
                 new ItemStack(ItemList.copper_ingot)
+        );
+        // SILICON INGOT
+        addRecipe(
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(14), 9))),
+                new ItemStack(ItemList.silicon_ingot)
+        );
+        // ALUMINIUM INGOT
+        addRecipe(
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(13), 9))),
+                new ItemStack(ItemList.aluminium_ingot)
+        );
+        // TIN INGOT
+        addRecipe(
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(50), 9))),
+                new ItemStack(ItemList.tin_ingot)
         );
         // ZINC OXIDE
         addRecipe(
@@ -127,6 +145,7 @@ public class ReconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(8)))),
                 new ItemStack(ItemList.zinc_oxide)
         );
+        // SODIUM CHLORIDE
         addRecipe(
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(11)),

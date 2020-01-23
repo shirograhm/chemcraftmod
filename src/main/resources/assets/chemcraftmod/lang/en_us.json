@@ -21,10 +21,13 @@
   "item.chemcraftmod.vinegar": "Vinegar",
   "item.chemcraftmod.salt": "Salt",
   "item.chemcraftmod.soap": "Soap",
-  "item.chemcraftmod.liquid_soap": "Liquid Soap",
   "item.chemcraftmod.bleach": "Bleach",
   "item.chemcraftmod.electromagnetic_coil": "Electromagnetic Coil",
   "item.chemcraftmod.copper_ingot": "Copper Ingot",
+  "item.chemcraftmod.silicon_ingot": "Silicon Ingot",
+  "item.chemcraftmod.aluminium_ingot": "Aluminium Ingot",
+  "item.chemcraftmod.tin_ingot": "Tin Ingot",
+  "item.chemcraftmod.copper_wire": "Copper Wire",
   "item.chemcraftmod.machine_core": "Machine Core",
 
 

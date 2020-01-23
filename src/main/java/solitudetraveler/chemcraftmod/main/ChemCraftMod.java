@@ -104,6 +104,7 @@ public class ChemCraftMod {
                     // Blocks
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
+                    ItemList.nickel_ore = new BasicBlockItem(BlockList.nickel_ore.getRegistryName(), BlockList.nickel_ore),
                     ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet.getRegistryName(), BlockList.electromagnet),
                     // Machines
                     ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor, Rarity.UNCOMMON),
@@ -124,13 +125,17 @@ public class ChemCraftMod {
                     ItemList.acanthite = new MineralItem(location("acanthite")),
                     // Items
                     ItemList.copper_ingot = new BasicItem(location("copper_ingot")),
+                    ItemList.silicon_ingot = new BasicItem(location("silicon_ingot")),
+                    ItemList.aluminium_ingot = new BasicItem(location("aluminium_ingot")),
+                    ItemList.tin_ingot = new BasicItem(location("tin_ingot")),
+                    ItemList.nickel_ingot = new BasicItem(location("nickel_ingot")),
                     ItemList.salt = new BasicItem(location("salt")),
                     ItemList.soap = new BasicItem(location("soap")),
-                    ItemList.liquid_soap = new BasicItem(location("liquid_soap")),
                     ItemList.baking_soda = new BasicItem(location("baking_soda")),
                     ItemList.vinegar = new BasicItem(location("vinegar")),
                     ItemList.bleach = new BasicItem(location("bleach")),
                     ItemList.electromagnetic_coil = new BasicItem(location("electromagnetic_coil")),
+                    ItemList.heating_coil = new BasicItem(location("heating_coil")),
                     ItemList.copper_wire = new BasicItem(location("copper_wire")),
                     ItemList.machine_core = new BasicItem(location("machine_core")),
                     // Covalent Compounds
@@ -174,6 +179,7 @@ public class ChemCraftMod {
             event.getRegistry().registerAll(
                     BlockList.dolostone = new Block(BlockList.rockProperties).setRegistryName(location("dolostone")),
                     BlockList.copper_ore = new Block(BlockList.rockProperties).setRegistryName(location("copper_ore")),
+                    BlockList.nickel_ore = new Block(BlockList.rockProperties).setRegistryName(location("nickel_ore")),
                     BlockList.generator = new GeneratorBlock(location("generator"), BlockList.machineProperties),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),

@@ -6,6 +6,7 @@ public class ItemList {
     // Blocks
     public static Item dolostone;
     public static Item copper_ore;
+    public static Item nickel_ore;
     public static Item generator;
     public static Item reconstructor;
     public static Item deconstructor;
@@ -22,16 +23,21 @@ public class ItemList {
     public static Item ilmenite;
     public static Item biotite;
     public static Item acanthite;
-    // New Items
+    // New Ingots
     public static Item copper_ingot;
+    public static Item silicon_ingot;
+    public static Item aluminium_ingot;
+    public static Item tin_ingot;
+    public static Item nickel_ingot;
+    // New Items
     public static Item water;
     public static Item salt;
     public static Item soap;
-    public static Item liquid_soap;
     public static Item baking_soda;
     public static Item vinegar;
     public static Item bleach;
     public static Item electromagnetic_coil;
+    public static Item heating_coil;
     public static Item copper_wire;
     public static Item machine_core;
     // Covalent Compounds
