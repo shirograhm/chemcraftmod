@@ -3,16 +3,17 @@
   "pattern":
   [
     "CCC",
-    "III",
+    "IRI",
     "CCC"
   ],
   "key":
   {
     "I": { "item": "minecraft:iron_ingot" },
+    "R": { "item": "minecraft:redstone" },
     "C": { "item": "chemcraftmod:copper_wire" }
   },
   "result":
   {
-    "item": "chemcraftmod:electromagnetic_coil"
+    "item": "chemcraftmod:machine_core"
   }
 }

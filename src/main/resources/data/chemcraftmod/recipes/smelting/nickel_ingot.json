@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "chemcraftmod:nickel_ore"
+  },
+  "result": "chemcraftmod:nickel_ingot",
+  "experience": 1.4,
+  "cookingtime": 200
+}
