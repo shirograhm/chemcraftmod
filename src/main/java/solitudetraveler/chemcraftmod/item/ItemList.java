@@ -6,6 +6,7 @@ public class ItemList {
     // Blocks
     public static Item dolostone;
     public static Item copper_ore;
+    public static Item generator;
     public static Item reconstructor;
     public static Item deconstructor;
     public static Item electromagnet;

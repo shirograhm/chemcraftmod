@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "chemcraftmod:block/generator"
+    },
+    "facing=east": {
+      "model": "chemcraftmod:block/generator",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "chemcraftmod:block/generator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chemcraftmod:block/generator",
+      "y": 270
+    }
+  }
+}

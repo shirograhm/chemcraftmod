@@ -5,8 +5,11 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -15,39 +18,58 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.container.ParticleAcceleratorContainer;
+import solitudetraveler.chemcraftmod.container.GeneratorContainer;
 import solitudetraveler.chemcraftmod.item.AtomicItem;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ParticleAcceleratorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
-    public static final int PARTICLE_INPUT_1 = 0;
-    public static final int PARTICLE_INPUT_2 = 1;
-    public static final int PARTICLE_OUTPUT_1 = 2;
-    public static final int PARTICLE_OUTPUT_2 = 3;
-    public static final int PARTICLE_OUTPUT_3 = 4;
-    public static final int PARTICLE_OUTPUT_4 = 5;
-    public static final int PARTICLE_OUTPUT_5 = 6;
-    public static final int NUMBER_PARTICLE_SLOTS = 7;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static net.minecraft.item.Items.*;
+
+public class GeneratorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
+    public static final int GENERATOR_INPUT = 0;
+    public static final int NUMBER_GENERATOR_SLOTS = 1;
+    private static Map<Item, Integer> fuelTimes = generateFuelTimes();
 
     private ItemStackHandler inventory;
 
-    private static final double BASE_PARTICLE_CHANCE = 6.909;
-    private boolean isActive;
-    private double multiplier;
+    private boolean isPowered;
+    private int powerRemaining;
 
-    public ParticleAcceleratorTileEntity() {
-        super(BlockList.PARTICLE_TILE_TYPE);
+    private static Map<Item, Integer> generateFuelTimes() {
+        Map<Item, Integer> generatorTimeForItems = new LinkedHashMap<>();
+
+        // Coal and charcoal
+        generatorTimeForItems.put(COAL, 800);
+        generatorTimeForItems.put(CHARCOAL, 800);
+        // Stripped logs and logs
+        for(Item i : ItemTags.LOGS.getAllElements()) {
+            generatorTimeForItems.put(i, 240);
+        }
+        // Stripped wood and wood
+        for(Item i : ItemTags.PLANKS.getAllElements()) {
+            generatorTimeForItems.put(i, 60);
+        }
+        // Small wood items
+        generatorTimeForItems.put(STICK, 30);
+
+        return generatorTimeForItems;
+    }
+
+    public GeneratorTileEntity() {
+        super(BlockList.GENERATOR_TILE_TYPE);
 
         inventory = generateInventory();
-        this.isActive = false;
-        this.multiplier = 1.0;
+        this.isPowered = false;
+        this.powerRemaining = 0;
     }
 
     private ItemStackHandler generateInventory() {
-        return new ItemStackHandler(NUMBER_PARTICLE_SLOTS) {
+        return new ItemStackHandler(NUMBER_GENERATOR_SLOTS) {
             @Override
             protected void onContentsChanged(int slot) {
                 markDirty();
@@ -55,20 +77,20 @@ public class ParticleAcceleratorTileEntity extends TileEntity implements ITickab
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if(slot == PARTICLE_INPUT_1 || slot == PARTICLE_INPUT_2) {
-                    return stack.getItem() instanceof ElementItem || stack.getItem() instanceof AtomicItem;
+                if(slot == GENERATOR_INPUT) {
+                    return fuelTimes.containsKey(stack.getItem());
                 }
                 return false;
             }
         };
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isPowered() {
+        return isPowered;
     }
 
-    public double getMultiplier() {
-        return multiplier;
+    public int powerRemaining() {
+        return powerRemaining;
     }
 
     @Override
@@ -79,8 +101,8 @@ public class ParticleAcceleratorTileEntity extends TileEntity implements ITickab
     @Override
     public void read(CompoundNBT tag) {
         inventory.deserializeNBT(tag.getCompound("inv"));
-        this.isActive = tag.getBoolean("isActive");
-        this.multiplier = tag.getDouble("multiplier");
+        this.isPowered = tag.getBoolean("isPowered");
+        this.powerRemaining = tag.getInt("powerRemaining");
 
         super.read(tag);
     }
@@ -89,8 +111,8 @@ public class ParticleAcceleratorTileEntity extends TileEntity implements ITickab
     @Override
     public CompoundNBT write(CompoundNBT tag) {
         tag.put("inv", inventory.serializeNBT());
-        tag.putDouble("multiplier", multiplier);
-        tag.putBoolean("isActive", isActive);
+        tag.putBoolean("isPowered", isPowered);
+        tag.putInt("powerRemaining", powerRemaining);
 
         return super.write(tag);
     }
@@ -106,7 +128,7 @@ public class ParticleAcceleratorTileEntity extends TileEntity implements ITickab
     @Override
     public Container createMenu(int i, @Nonnull PlayerInventory playerInventory, @Nonnull PlayerEntity playerEntity) {
         if(world != null) {
-            return new ParticleAcceleratorContainer(i, world, pos, playerInventory, playerEntity);
+            return new GeneratorContainer(i, world, pos, playerInventory, playerEntity);
         }
         return null;
     }
@@ -118,12 +140,7 @@ public class ParticleAcceleratorTileEntity extends TileEntity implements ITickab
 
     @Override
     public boolean isEmpty() {
-        for(int i = 0; i < NUMBER_PARTICLE_SLOTS; i++) {
-            if(inventory.getStackInSlot(i) != ItemStack.EMPTY) {
-                return false;
-            }
-        }
-        return true;
+        return inventory.getStackInSlot(GENERATOR_INPUT) == ItemStack.EMPTY;
     }
 
     @Nonnull

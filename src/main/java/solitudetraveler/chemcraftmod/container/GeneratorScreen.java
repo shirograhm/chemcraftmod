@@ -7,13 +7,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.ParticleAcceleratorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.GeneratorTileEntity;
 
-public class ParticleAcceleratorScreen extends ContainerScreen<ParticleAcceleratorContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/particle_gui.png");
-    private ParticleAcceleratorTileEntity tileEntity;
+public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/generator_gui.png");
+    private GeneratorTileEntity tileEntity;
 
-    public ParticleAcceleratorScreen(ParticleAcceleratorContainer screenContainer, PlayerInventory inventory, ITextComponent title) {
+    public GeneratorScreen(GeneratorContainer screenContainer, PlayerInventory inventory, ITextComponent title) {
         super(screenContainer, inventory, title);
 
         tileEntity = screenContainer.tileEntity;
@@ -28,7 +28,7 @@ public class ParticleAcceleratorScreen extends ContainerScreen<ParticleAccelerat
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Particle Accelerator", 6, 6, 0x121212);
+        drawString(Minecraft.getInstance().fontRenderer, "Generator", 6, 6, 0x445566);
         drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 64, 0x969696);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
@@ -41,7 +41,7 @@ public class ParticleAcceleratorScreen extends ContainerScreen<ParticleAccelerat
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
-        if(tileEntity.isActive()) {
+        if(tileEntity.isPowered()) {
             this.blit(relX + 71, relY + 29, 176, 20, 21, 20);
         }
     }

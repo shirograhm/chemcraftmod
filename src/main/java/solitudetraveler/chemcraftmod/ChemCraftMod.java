@@ -104,13 +104,14 @@ public class ChemCraftMod {
             }
             // Register items
             event.getRegistry().registerAll(
-                    // Ores
+                    // Blocks
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
-                    // Blocks
                     ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet.getRegistryName(), BlockList.electromagnet),
+                    // Machines
                     ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor, Rarity.UNCOMMON),
                     ItemList.deconstructor = new BasicBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor, Rarity.UNCOMMON),
+                    ItemList.generator = new BasicBlockItem(BlockList.generator.getRegistryName(), BlockList.generator, Rarity.UNCOMMON),
                     ItemList.particle_accelerator = new BasicBlockItem(BlockList.particle_accelerator.getRegistryName(), BlockList.particle_accelerator, Rarity.UNCOMMON),
                     // Experiments
                     ItemList.volcano = new BasicBlockItem(BlockList.volcano.getRegistryName(), BlockList.volcano, Rarity.EPIC),
@@ -175,6 +176,7 @@ public class ChemCraftMod {
             event.getRegistry().registerAll(
                     BlockList.dolostone = new Block(BlockList.rockProperties).setRegistryName(location("dolostone")),
                     BlockList.copper_ore = new Block(BlockList.rockProperties).setRegistryName(location("copper_ore")),
+                    BlockList.generator = new GeneratorBlock(location("generator"), BlockList.machineProperties),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
                     BlockList.electromagnet = new ElectromagnetBlock(location("electromagnet"), BlockList.rockProperties),
@@ -188,6 +190,8 @@ public class ChemCraftMod {
         @SubscribeEvent
         public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
             event.getRegistry().registerAll(
+                    TileEntityType.Builder.create(GeneratorTileEntity::new, BlockList.generator).build(null)
+                            .setRegistryName(Objects.requireNonNull(BlockList.generator.getRegistryName())),
                     TileEntityType.Builder.create(ReconstructorTileEntity::new, BlockList.reconstructor).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.reconstructor.getRegistryName())),
                     TileEntityType.Builder.create(DeconstructorTileEntity::new, BlockList.deconstructor).build(null)
@@ -203,6 +207,11 @@ public class ChemCraftMod {
 
         @SubscribeEvent
         public static void registerContainers(final RegistryEvent.Register<ContainerType<?>> event) {
+            ContainerType generator_container = IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new GeneratorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
+            }).setRegistryName(Objects.requireNonNull(BlockList.generator.getRegistryName()));
+
             ContainerType reconstructor_container = IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
                 return new ReconstructorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
@@ -223,7 +232,7 @@ public class ChemCraftMod {
                 return new ParticleAcceleratorContainer(windowId, proxy.getClientWorld(), pos, inv, proxy.getClientPlayer());
             })).setRegistryName(Objects.requireNonNull(BlockList.particle_accelerator.getRegistryName()));
 
-            event.getRegistry().registerAll(reconstructor_container, deconstructor_container, volcano_container, particle_container);
+            event.getRegistry().registerAll(generator_container, reconstructor_container, deconstructor_container, volcano_container, particle_container);
 
             LOGGER.info("Containers registered!");
         }

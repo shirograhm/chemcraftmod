@@ -20,15 +20,21 @@ public class BlockList {
     // Blocks
     public static Block dolostone;
     public static Block copper_ore;
+    public static Block electromagnet;
     // Machines
+    public static Block generator;
     public static Block reconstructor;
     public static Block deconstructor;
-    public static Block electromagnet;
     public static Block particle_accelerator;
     // Experiments
     public static Block volcano;
 
     // Tile Entities and Containers
+    @ObjectHolder("chemcraftmod:generator")
+    public static TileEntityType<GeneratorTileEntity> GENERATOR_TILE_TYPE;
+    @ObjectHolder("chemcraftmod:generator")
+    public static ContainerType<GeneratorContainer> GENERATOR_CONTAINER;
+
     @ObjectHolder("chemcraftmod:reconstructor")
     public static TileEntityType<ReconstructorTileEntity> RECONSTRUCTOR_TILE_TYPE;
     @ObjectHolder("chemcraftmod:reconstructor")

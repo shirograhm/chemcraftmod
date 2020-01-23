@@ -1,6 +1,7 @@
 {
   "block.chemcraftmod.dolostone": "Dolostone",
   "block.chemcraftmod.copper_ore": "Copper Ore",
+  "block.chemcraftmod.generator": "Generator",
   "block.chemcraftmod.reconstructor": "Molecular Reconstructor",
   "block.chemcraftmod.deconstructor": "Molecular Deconstructor",
   "block.chemcraftmod.accelerator": "Particle Accelerator",
