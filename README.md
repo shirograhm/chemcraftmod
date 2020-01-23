@@ -1,3 +1,4 @@
 # ChemCraft Mod for Minecraft 1.14
-# ~~~~~~~~~~~~~~~~~~~~~~~
-A chemistry mod for minecraft 1.14. This mod adds all 118 elements to the game, as well as a way to deconstruct and reconstruct the items and blocks around you.
+
+
+A science mod for Minecraft 1.14.4 loosely based around chemistry. Includes, all elements, particle accelerator, specific chemistry experiments, and a way to deconstruct items and blocks into these elements and construct them back into new items and blocks.
