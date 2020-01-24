@@ -27,15 +27,15 @@ public class ReconstructorContainer extends Container {
         tileEntity = (ReconstructorTileEntity) world.getTileEntity(pos);
         playerInventory = new InvWrapper(playerInv);
 
-        addSlot(new Slot(tileEntity, 0, 30, 17));
-        addSlot(new Slot(tileEntity, 1, 48, 17));
-        addSlot(new Slot(tileEntity, 2, 66, 17));
-        addSlot(new Slot(tileEntity, 3, 30, 35));
-        addSlot(new Slot(tileEntity, 4, 48, 35));
-        addSlot(new Slot(tileEntity, 5, 66, 35));
-        addSlot(new Slot(tileEntity, 6, 30, 53));
-        addSlot(new Slot(tileEntity, 7, 48, 53));
-        addSlot(new Slot(tileEntity, 8, 66, 53));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_1, 30, 17));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_2, 48, 17));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_3, 66, 17));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_4, 30, 35));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_5, 48, 35));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_6, 66, 35));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_7, 30, 53));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_8, 48, 53));
+        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_9, 66, 53));
 
         addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_OUTPUT, 124, 35));
 

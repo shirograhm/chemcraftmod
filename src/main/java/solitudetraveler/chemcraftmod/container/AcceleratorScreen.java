@@ -7,14 +7,17 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.main.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.ParticleAcceleratorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity;
 
-public class ParticleAcceleratorScreen extends ContainerScreen<ParticleAcceleratorContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/particle_gui.png");
-    private ParticleAcceleratorTileEntity tileEntity;
+public class AcceleratorScreen extends ContainerScreen<AcceleratorContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/accelerator_gui.png");
+    private AcceleratorTileEntity tileEntity;
 
-    public ParticleAcceleratorScreen(ParticleAcceleratorContainer screenContainer, PlayerInventory inventory, ITextComponent title) {
+    public AcceleratorScreen(AcceleratorContainer screenContainer, PlayerInventory inventory, ITextComponent title) {
         super(screenContainer, inventory, title);
+
+        this.xSize = 176;
+        this.ySize = 158;
 
         tileEntity = screenContainer.tileEntity;
     }
@@ -42,7 +45,8 @@ public class ParticleAcceleratorScreen extends ContainerScreen<ParticleAccelerat
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
         if(tileEntity.isActive()) {
-            this.blit(relX + 71, relY + 29, 176, 20, 21, 20);
+            int animationFrame = tileEntity.getCurrentAnimationFrame();
+            this.blit(relX + 52, relY + 21, 216, animationFrame * 36, 36, 36);
         }
     }
 }

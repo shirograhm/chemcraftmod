@@ -11,7 +11,7 @@ public class ItemList {
     public static Item reconstructor;
     public static Item deconstructor;
     public static Item electromagnet;
-    public static Item particle_accelerator;
+    public static Item accelerator;
     public static Item volcano;
     // Minerals
     public static Item aragonite;
@@ -65,9 +65,11 @@ public class ItemList {
     public static Item proton;
     public static Item neutron;
     public static Item electron;
-    public static Item[] elementList = new Item[118];
+    public static ElementItem unknown;
+    public static ElementItem[] elementList = new ElementItem[118];
 
-    public static Item getElementNumber(int n) {
-        return elementList[n - 1];
+    public static ElementItem getElementNumber(int n) {
+        if(n >= elementList.length || n < 1) return unknown;
+        else return elementList[n - 1];
     }
 }

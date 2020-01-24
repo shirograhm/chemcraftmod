@@ -26,7 +26,8 @@ public class ReconstructorBlock extends Block {
     public ReconstructorBlock(ResourceLocation name, Block.Properties props) {
         super(props);
 
-        this.setDefaultState(this.getStateContainer().getBaseState().with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
+        this.setDefaultState(this.getStateContainer().getBaseState()
+                .with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
         setRegistryName(name);
     }
 

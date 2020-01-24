@@ -28,7 +28,7 @@ public class GeneratorContainer extends Container {
         playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
-        addSlot(new Slot(tileEntity, GeneratorTileEntity.GENERATOR_INPUT, 0, 0));
+        addSlot(new Slot(tileEntity, GeneratorTileEntity.GENERATOR_INPUT, 98, 31));
         layoutPlayerInventorySlots(8, 76);
     }
 

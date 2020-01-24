@@ -14,7 +14,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(BlockList.RECONSTRUCTOR_CONTAINER, ReconstructorScreen::new);
         ScreenManager.registerFactory(BlockList.DECONSTRUCTOR_CONTAINER, DeconstructorScreen::new);
         ScreenManager.registerFactory(BlockList.VOLCANO_CONTAINER, VolcanoScreen::new);
-        ScreenManager.registerFactory(BlockList.PARTICLE_CONTAINER, ParticleAcceleratorScreen::new);
+        ScreenManager.registerFactory(BlockList.ACCELERATOR_CONTAINER, AcceleratorScreen::new);
     }
 
     @Override

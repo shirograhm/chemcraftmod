@@ -24,7 +24,7 @@ Stacktrace:
 
 -- Block entity being ticked --
 Details:
-	Name: null // solitudetraveler.chemcraftmod.tileentity.ParticleAcceleratorTileEntity
+	Name: null // solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity
 	Block: Block{chemcraftmod:accelerator}[facing=south]
 	Block location: World: (-247,4,167), Chunk: (at 9,0,7 in -16,10; contains blocks -256,0,160 to -241,255,175), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
 	Block: Block{chemcraftmod:accelerator}[facing=south]

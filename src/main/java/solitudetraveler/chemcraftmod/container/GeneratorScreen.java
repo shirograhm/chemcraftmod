@@ -40,5 +40,11 @@ public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
+
+        if(tileEntity.isPowered()) {
+            int powerSize = (int) (tileEntity.getPowerLevelScaled() * 34);
+
+            this.blit(relX + 48, relY + 22, 176, 34 - powerSize, 8, powerSize);
+        }
     }
 }

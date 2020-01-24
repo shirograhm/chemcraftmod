@@ -2,21 +2,14 @@ package solitudetraveler.chemcraftmod.tileentity;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.handler.ReconstructorRecipeHandler;
@@ -26,46 +19,34 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ReconstructorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IInventory {
-    public static final int RECONSTRUCTOR_INPUT_FIRST = 0;
-    public static final int RECONSTRUCTOR_INPUT_LAST = 8;
+public class ReconstructorTileEntity extends BasicTileEntity implements INamedContainerProvider {
+    public static final int RECONSTRUCTOR_INPUT_1 = 0;
+    public static final int RECONSTRUCTOR_INPUT_2 = 1;
+    public static final int RECONSTRUCTOR_INPUT_3 = 2;
+    public static final int RECONSTRUCTOR_INPUT_4 = 3;
+    public static final int RECONSTRUCTOR_INPUT_5 = 4;
+    public static final int RECONSTRUCTOR_INPUT_6 = 5;
+    public static final int RECONSTRUCTOR_INPUT_7 = 6;
+    public static final int RECONSTRUCTOR_INPUT_8 = 7;
+    public static final int RECONSTRUCTOR_INPUT_9 = 8;
     public static final int RECONSTRUCTOR_OUTPUT = 9;
     public static final int NUMBER_RECONSTRUCTOR_SLOTS = 10;
 
-    private ItemStackHandler inventory;
-
     private static final int RECONSTRUCTION_TIME = 60;
+
     private boolean isReconstructing;
     private int reconstructionTimeLeft;
 
     public ReconstructorTileEntity() {
-        super(BlockList.RECONSTRUCTOR_TILE_TYPE);
+        super(BlockList.RECONSTRUCTOR_TILE_TYPE, NUMBER_RECONSTRUCTOR_SLOTS);
 
-        inventory = generateInventory();
         this.reconstructionTimeLeft = 0;
         this.isReconstructing = false;
     }
 
-    private ItemStackHandler generateInventory() {
-        return new ItemStackHandler(NUMBER_RECONSTRUCTOR_SLOTS) {
-            @Override
-            protected void onContentsChanged(int slot) {
-                markDirty();
-            }
-
-            @Override
-            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if(slot >= RECONSTRUCTOR_INPUT_FIRST && slot <= RECONSTRUCTOR_INPUT_LAST) {
-                    return true;
-                }
-                return false;
-            }
-        };
-    }
-
     private ArrayList<ItemStack> getCurrentInputArray() {
         ArrayList<ItemStack> input = new ArrayList<>();
-        for(int i = RECONSTRUCTOR_INPUT_FIRST; i <= RECONSTRUCTOR_INPUT_LAST; i++) {
+        for (int i = RECONSTRUCTOR_INPUT_1; i <= RECONSTRUCTOR_INPUT_9; i++) {
             ItemStack is = inventory.getStackInSlot(i);
             if (!is.isEmpty() && is.getItem() != Items.AIR) {
                 input.add(is);
@@ -86,9 +67,9 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
     @Override
     public void tick() {
         // If world is null, return
-        if(world == null) return;
+        if (world == null) return;
         // If client, return
-        if(world.isRemote) return;
+        if (world.isRemote) return;
 
         // Server
         ArrayList<ItemStack> inputArray = getCurrentInputArray();
@@ -100,7 +81,7 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
             reconstructionTimeLeft = 0;
         } else {
             // If input is valid
-            if (recipe != null) {
+            if (isActive && recipe != null) {
                 // If we are already reconstructing
                 if (isReconstructing) {
                     reconstructionTimeLeft--;
@@ -120,7 +101,7 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
         }
         if (isReconstructing && reconstructionTimeLeft == 0) {
             // Clear input stacks
-            for (int i = RECONSTRUCTOR_INPUT_FIRST; i <= RECONSTRUCTOR_INPUT_LAST; i++) {
+            for (int i = RECONSTRUCTOR_INPUT_1; i <= RECONSTRUCTOR_INPUT_9; i++) {
                 // Reset input stacks
                 inventory.setStackInSlot(i, ItemStack.EMPTY);
             }
@@ -130,13 +111,11 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
             isReconstructing = false;
         }
 
-        // Send updates to client
-        sendUpdates();
+        super.tick();
     }
 
     @Override
     public void read(CompoundNBT tag) {
-        inventory.deserializeNBT(tag.getCompound("inv"));
         this.reconstructionTimeLeft = tag.getInt("timeLeft");
         this.isReconstructing = tag.getBoolean("isReconstructing");
 
@@ -146,8 +125,7 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
     @Nonnull
     @Override
     public CompoundNBT write(CompoundNBT tag) {
-        tag.put("inv", inventory.serializeNBT());
-        tag.putInt("timeLeft",  reconstructionTimeLeft);
+        tag.putInt("timeLeft", reconstructionTimeLeft);
         tag.putBoolean("isReconstructing", isReconstructing);
 
         return super.write(tag);
@@ -162,85 +140,11 @@ public class ReconstructorTileEntity extends TileEntity implements ITickableTile
 
     @Nullable
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(this.pos, 0, this.getUpdateTag());
-    }
-
-    @Nonnull
-    @Override
-    public CompoundNBT getUpdateTag() {
-        return this.write(new CompoundNBT());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-        super.onDataPacket(net, pkt);
-        handleUpdateTag(pkt.getNbtCompound());
-    }
-
-    private void sendUpdates() {
-        world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 3);
-        markDirty();
-    }
-
-    @Nullable
-    @Override
     public Container createMenu(int i, @Nonnull PlayerInventory playerInventory, @Nonnull PlayerEntity playerEntity) {
-        return new ReconstructorContainer(i, world, pos, playerInventory, playerEntity);
-    }
-
-    @Override
-    public int getSizeInventory() {
-        return inventory.getSlots();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        for(int i = 0; i < inventory.getSlots(); i++) {
-            if(inventory.getStackInSlot(i) != ItemStack.EMPTY) {
-                return false;
-            }
+        if (world != null) {
+            return new ReconstructorContainer(i, world, pos, playerInventory, playerEntity);
         }
-        return true;
+        return null;
     }
 
-    @Nonnull
-    @Override
-    public ItemStack getStackInSlot(int index) {
-        return inventory.getStackInSlot(index);
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack decrStackSize(int index, int count) {
-        ItemStack stack = inventory.getStackInSlot(index);
-        inventory.setStackInSlot(index, ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - count));
-
-        return ItemHandlerHelper.copyStackWithSize(stack, count);
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack removeStackFromSlot(int index) {
-        ItemStack stack = inventory.getStackInSlot(index);
-        inventory.setStackInSlot(index, ItemStack.EMPTY);
-        return stack;
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, @Nonnull ItemStack stack) {
-        inventory.setStackInSlot(index, stack);
-    }
-
-    @Override
-    public boolean isUsableByPlayer(@Nonnull PlayerEntity player) {
-        return true;
-    }
-
-    @Override
-    public void clear() {
-        for(int i = 0; i < inventory.getSlots(); i++) {
-            inventory.setStackInSlot(i, ItemStack.EMPTY);
-        }
-    }
 }

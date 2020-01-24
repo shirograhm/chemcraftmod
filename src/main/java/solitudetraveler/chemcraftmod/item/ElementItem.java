@@ -28,7 +28,8 @@ public class ElementItem extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new StringTextComponent("Element number " + atomicNumber + "."));
+        if(this.atomicNumber > 0) tooltip.add(new StringTextComponent("Element number " + atomicNumber + "."));
+        else tooltip.add(new StringTextComponent("Unknown??"));
     }
 
 
@@ -41,5 +42,9 @@ public class ElementItem extends Item {
                 pe.addPotionEffect(new EffectInstance(EffectList.radiation, 16, 2, false, true));
             }
         }
+    }
+
+    public int getAtomicNumber() {
+        return atomicNumber;
     }
 }

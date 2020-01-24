@@ -18,13 +18,13 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-import solitudetraveler.chemcraftmod.tileentity.ParticleAcceleratorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ParticleAcceleratorBlock extends Block {
-    public ParticleAcceleratorBlock(ResourceLocation name, Block.Properties props) {
+public class AcceleratorBlock extends Block {
+    public AcceleratorBlock(ResourceLocation name, Block.Properties props) {
         super(props);
 
         this.setDefaultState(this.getStateContainer().getBaseState()
@@ -41,7 +41,7 @@ public class ParticleAcceleratorBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new ParticleAcceleratorTileEntity();
+        return new AcceleratorTileEntity();
     }
 
     @Override
@@ -64,8 +64,8 @@ public class ParticleAcceleratorBlock extends Block {
         if(state.getBlock() != newState.getBlock()) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 
-            if(tileEntity instanceof ParticleAcceleratorTileEntity) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (ParticleAcceleratorTileEntity) tileEntity);
+            if(tileEntity instanceof AcceleratorTileEntity) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (AcceleratorTileEntity) tileEntity);
             }
 
             super.onReplaced(state, worldIn, pos, newState, isMoving);

@@ -12,35 +12,35 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.tileentity.ParticleAcceleratorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity;
 
 import javax.annotation.Nonnull;
 
-public class ParticleAcceleratorContainer extends Container {
-    ParticleAcceleratorTileEntity tileEntity;
+public class AcceleratorContainer extends Container {
+    AcceleratorTileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
 
-    public ParticleAcceleratorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.PARTICLE_CONTAINER, id);
+    public AcceleratorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
+        super(BlockList.ACCELERATOR_CONTAINER, id);
 
-        tileEntity = (ParticleAcceleratorTileEntity) world.getTileEntity(pos);
-        playerEntity = player;
+        tileEntity = (AcceleratorTileEntity) world.getTileEntity(pos);
         playerInventory = new InvWrapper(playerInv);
+        playerEntity = player;
 
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_INPUT_1, 17, 22));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_INPUT_2, 17, 40));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_1, 125, 13));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_2, 107, 31));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_3, 125, 31));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_4, 143, 31));
-        addSlot(new Slot(tileEntity, ParticleAcceleratorTileEntity.PARTICLE_OUTPUT_5, 125, 49));
+        addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_INPUT_1, 17, 22));
+        addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_INPUT_2, 17, 40));
+        addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_OUTPUT_1, 125, 13));
+        addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_OUTPUT_2, 107, 31));
+        addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_OUTPUT_3, 125, 31));
+        addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_OUTPUT_4, 143, 31));
+        addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_OUTPUT_5, 125, 49));
         layoutPlayerInventorySlots(8, 76);
     }
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.particle_accelerator);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.accelerator);
     }
 
     @Nonnull
@@ -53,8 +53,8 @@ public class ParticleAcceleratorContainer extends Container {
             ItemStack stack = slot.getStack();
             itemStack = stack.copy();
 
-            if(index < ParticleAcceleratorTileEntity.NUMBER_PARTICLE_SLOTS) {
-                if (!this.mergeItemStack(stack, ParticleAcceleratorTileEntity.NUMBER_PARTICLE_SLOTS, ParticleAcceleratorTileEntity.NUMBER_PARTICLE_SLOTS + 36, false)) {
+            if(index < AcceleratorTileEntity.NUMBER_ACCELERATOR_SLOTS) {
+                if (!this.mergeItemStack(stack, AcceleratorTileEntity.NUMBER_ACCELERATOR_SLOTS, AcceleratorTileEntity.NUMBER_ACCELERATOR_SLOTS + 36, false)) {
                     return ItemStack.EMPTY;
                 }
             } else {

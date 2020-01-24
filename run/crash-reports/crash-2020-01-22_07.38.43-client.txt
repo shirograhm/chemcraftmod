@@ -6,7 +6,7 @@ Description: Unexpected error
 
 java.lang.IllegalArgumentException: Cannot set property DirectionProperty{name=facing, clazz=class net.minecraft.util.Direction, values=[north, south, west, east]} to up on Block{chemcraftmod:accelerator}, it is not an allowed value
 	at net.minecraft.state.StateHolder.with(StateHolder.java:111) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?] {}
-	at solitudetraveler.chemcraftmod.block.ParticleAcceleratorBlock.getStateForPlacement(ParticleAcceleratorBlock.java:87) ~[classes/:?] {}
+	at solitudetraveler.chemcraftmod.block.AcceleratorBlock.getStateForPlacement(ParticleAcceleratorBlock.java:87) ~[classes/:?] {}
 	at net.minecraft.item.BlockItem.getStateForPlacement(BlockItem.java:99) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?] {}
 	at net.minecraft.item.BlockItem.tryPlace(BlockItem.java:54) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?] {}
 	at net.minecraft.item.BlockItem.onItemUse(BlockItem.java:42) ~[forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar:?] {}
@@ -40,7 +40,7 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Thread: Client thread
 Stacktrace:
 	at net.minecraft.state.StateHolder.with(StateHolder.java:111)
-	at solitudetraveler.chemcraftmod.block.ParticleAcceleratorBlock.getStateForPlacement(ParticleAcceleratorBlock.java:87)
+	at solitudetraveler.chemcraftmod.block.AcceleratorBlock.getStateForPlacement(ParticleAcceleratorBlock.java:87)
 	at net.minecraft.item.BlockItem.getStateForPlacement(BlockItem.java:99)
 	at net.minecraft.item.BlockItem.tryPlace(BlockItem.java:54)
 	at net.minecraft.item.BlockItem.onItemUse(BlockItem.java:42)

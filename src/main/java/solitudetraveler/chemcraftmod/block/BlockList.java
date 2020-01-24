@@ -26,7 +26,7 @@ public class BlockList {
     public static Block generator;
     public static Block reconstructor;
     public static Block deconstructor;
-    public static Block particle_accelerator;
+    public static Block accelerator;
     // Experiments
     public static Block volcano;
 
@@ -52,7 +52,7 @@ public class BlockList {
     public static ContainerType<VolcanoContainer> VOLCANO_CONTAINER;
 
     @ObjectHolder("chemcraftmod:accelerator")
-    public static TileEntityType<ParticleAcceleratorTileEntity> PARTICLE_TILE_TYPE;
+    public static TileEntityType<AcceleratorTileEntity> ACCELERATOR_TILE_TYPE;
     @ObjectHolder("chemcraftmod:accelerator")
-    public static ContainerType<ParticleAcceleratorContainer> PARTICLE_CONTAINER;
+    public static ContainerType<AcceleratorContainer> ACCELERATOR_CONTAINER;
 }
