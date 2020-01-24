@@ -1,0 +1,8 @@
+
+[oregen]
+	#Maximum number of ore veins per chunk.
+	#Range: 1 ~ 100000
+	chance = 10
+	#Whether or not you want chemcraft ore generation.
+	generate_overworld = true
+

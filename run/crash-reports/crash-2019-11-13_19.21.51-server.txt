@@ -1,0 +1,91 @@
+---- Minecraft Crash Report ----
+// Why did you do that?
+
+Time: 11/13/19 7:21 PM
+Description: Ticking block entity
+
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity.tick(DeconstructorTileEntity.java:112) ~[?:?] {}
+	at net.minecraft.world.World.func_217391_K(World.java:671) ~[?:?] {pl:accesstransformer:B}
+	at net.minecraft.world.server.ServerWorld.tick(ServerWorld.java:370) ~[?:?] {}
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:865) ~[?:?] {pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:800) ~[?:?] {pl:accesstransformer:B}
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:118) ~[?:?] {pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:646) [?:?] {pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_221] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity.tick(DeconstructorTileEntity.java:112)
+
+-- Block entity being ticked --
+Details:
+	Name: chemcraftmod:deconstructor // solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity
+	Block: Block{chemcraftmod:deconstructor}
+	Block location: World: (-213,79,-20), Chunk: (at 11,4,12 in -14,-2; contains blocks -224,0,-32 to -209,255,-17), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Block: Block{chemcraftmod:deconstructor}
+	Block location: World: (-213,79,-20), Chunk: (at 11,4,12 in -14,-2; contains blocks -224,0,-32 to -209,255,-17), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+Stacktrace:
+	at net.minecraft.world.World.func_217391_K(World.java:671)
+	at net.minecraft.world.server.ServerWorld.tick(ServerWorld.java:370)
+
+-- Affected level --
+Details:
+	All players: 1 total; [ServerPlayerEntity['Dev'/197, l='Test Land', x=-210.11, y=79.00, z=-20.04]]
+	Chunk stats: ServerChunkCache: 2416
+	Level dimension: DimensionType{minecraft:overworld}
+	Level name: Test Land
+	Level seed: 2725064867904982590
+	Level generator: ID 00 - default, ver 1. Features enabled: true
+	Level generator options: {}
+	Level spawn location: World: (-112,81,-64), Chunk: (at 0,5,0 in -7,-4; contains blocks -112,0,-64 to -97,255,-49), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Level time: 49505 game time, 1153 day time
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 79915 (now: false), thunder time: 38889 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:865)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:800)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:118)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:646)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.14.4
+	Minecraft Version ID: 1.14.4
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_221, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 973847840 bytes (928 MB) / 2140143616 bytes (2041 MB) up to 3817865216 bytes (3641 MB)
+	CPUs: 12
+	JVM Flags: 2 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xmx4096m
+	ModLauncher: 3.2.0+60+b86c1d4
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/eventbus-1.0.0-service.jar eventbus PLUGINSERVICE 
+		/forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-1.0.0-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 28.1
+	Forge: net.minecraftforge:28.1.0
+	FML Language Providers: 
+		javafml@28.1
+		minecraft@1
+	Mod List: 
+		forge-1.14.4-28.1.0_mapped_snapshot_20190719-1.14.3-recomp.jar Forge {forge@28.1.0 DONE}
+		main ChemCraft Mod {chemcraftmod@NONE DONE}
+		client-extra.jar Minecraft {minecraft@1.14.4 DONE}
+	Player Count: 1 / 8; [ServerPlayerEntity['Dev'/197, l='Test Land', x=-210.11, y=79.00, z=-20.04]]
+	Data Packs: vanilla, mod:forge, mod:chemcraftmod
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'
