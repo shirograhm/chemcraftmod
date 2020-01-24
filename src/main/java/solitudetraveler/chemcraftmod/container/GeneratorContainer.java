@@ -17,15 +17,14 @@ import solitudetraveler.chemcraftmod.tileentity.GeneratorTileEntity;
 import javax.annotation.Nonnull;
 
 public class GeneratorContainer extends Container {
-    GeneratorTileEntity tileEntity;
-    private PlayerEntity playerEntity;
+    public GeneratorTileEntity tileEntity;
+
     private IItemHandler playerInventory;
 
     public GeneratorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
         super(BlockList.GENERATOR_CONTAINER, id);
 
         tileEntity = (GeneratorTileEntity) world.getTileEntity(pos);
-        playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
         addSlot(new Slot(tileEntity, GeneratorTileEntity.GENERATOR_INPUT, 98, 31));
@@ -34,7 +33,7 @@ public class GeneratorContainer extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.generator);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockList.generator);
     }
 
     @Nonnull

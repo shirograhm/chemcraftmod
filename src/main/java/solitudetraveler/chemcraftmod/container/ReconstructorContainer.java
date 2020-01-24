@@ -17,8 +17,8 @@ import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 import javax.annotation.Nonnull;
 
 public class ReconstructorContainer extends Container {
+    public ReconstructorTileEntity tileEntity;
 
-    ReconstructorTileEntity tileEntity;
     private IItemHandler playerInventory;
 
     public ReconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {

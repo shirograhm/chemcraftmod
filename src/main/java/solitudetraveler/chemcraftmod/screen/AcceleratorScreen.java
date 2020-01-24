@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod.container;
+package solitudetraveler.chemcraftmod.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
@@ -6,15 +6,19 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import solitudetraveler.chemcraftmod.container.AcceleratorContainer;
 import solitudetraveler.chemcraftmod.main.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.GeneratorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity;
 
-public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/generator_gui.png");
-    private GeneratorTileEntity tileEntity;
+public class AcceleratorScreen extends ContainerScreen<AcceleratorContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/accelerator_gui.png");
+    private AcceleratorTileEntity tileEntity;
 
-    public GeneratorScreen(GeneratorContainer screenContainer, PlayerInventory inventory, ITextComponent title) {
+    public AcceleratorScreen(AcceleratorContainer screenContainer, PlayerInventory inventory, ITextComponent title) {
         super(screenContainer, inventory, title);
+
+        this.xSize = 176;
+        this.ySize = 158;
 
         tileEntity = screenContainer.tileEntity;
     }
@@ -28,8 +32,8 @@ public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Generator", 6, 6, 0x445566);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 64, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Particle Accelerator", 6, 6, ScreenColors.accelerator_title);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 64, ScreenColors.inventory_title);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 
@@ -41,10 +45,9 @@ public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
-        if(tileEntity.isPowered()) {
-            int powerSize = (int) (tileEntity.getPowerLevelScaled() * 34);
-
-            this.blit(relX + 48, relY + 22, 176, 34 - powerSize, 8, powerSize);
+        if(tileEntity.isActive()) {
+            int animationFrame = tileEntity.getCurrentAnimationFrame();
+            this.blit(relX + 52, relY + 21, 216, animationFrame * 36, 36, 36);
         }
     }
 }

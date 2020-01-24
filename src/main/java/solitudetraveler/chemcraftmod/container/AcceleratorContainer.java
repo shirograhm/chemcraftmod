@@ -17,8 +17,8 @@ import solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity;
 import javax.annotation.Nonnull;
 
 public class AcceleratorContainer extends Container {
-    AcceleratorTileEntity tileEntity;
-    private PlayerEntity playerEntity;
+    public AcceleratorTileEntity tileEntity;
+
     private IItemHandler playerInventory;
 
     public AcceleratorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
@@ -26,7 +26,6 @@ public class AcceleratorContainer extends Container {
 
         tileEntity = (AcceleratorTileEntity) world.getTileEntity(pos);
         playerInventory = new InvWrapper(playerInv);
-        playerEntity = player;
 
         addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_INPUT_1, 17, 22));
         addSlot(new Slot(tileEntity, AcceleratorTileEntity.ACCELERATOR_INPUT_2, 17, 40));
@@ -40,7 +39,7 @@ public class AcceleratorContainer extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.accelerator);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockList.accelerator);
     }
 
     @Nonnull

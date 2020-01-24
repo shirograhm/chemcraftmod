@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod.container;
+package solitudetraveler.chemcraftmod.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
@@ -6,11 +6,11 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.main.ChemCraftMod;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 
 public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer> {
-
     private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/deconstructor_gui.png");
     private DeconstructorTileEntity deconstructorTE;
 
@@ -29,8 +29,8 @@ public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer>
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Molecular Deconstructor", 5, 5, 0xff9a4d);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 72, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Molecular Deconstructor", 5, 5, ScreenColors.deconstructor_title);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 72, ScreenColors.inventory_title);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 

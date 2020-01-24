@@ -26,23 +26,29 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
 
     private static final int VOLCANO_RUN_TIME = 60;
 
+    private boolean isRunning;
     private int currentTimeLeft;
 
     public VolcanoTileEntity() {
         super(BlockList.VOLCANO_TILE_TYPE, NUMBER_VOLCANO_SLOTS);
 
+        isRunning = false;
         currentTimeLeft = -1;
     }
 
-    private boolean checkRequirements(Item item1, Item item2) {
-        return (item1.equals(ItemList.baking_soda) && item2.equals(ItemList.vinegar)) ||
-                (item1.equals(ItemList.vinegar) && item2.equals(ItemList.baking_soda));
+    private boolean checkRequirements() {
+        Item item1 = inventory.getStackInSlot(VOLCANO_SLOT_1).getItem();
+        Item item2 = inventory.getStackInSlot(VOLCANO_SLOT_2).getItem();
+
+        return item1.equals(ItemList.vinegar) && item2.equals(ItemList.baking_soda);
     }
 
-    public double getCurrentTimeLeftScaled() {
-        if(currentTimeLeft < 0) return 0.0;
+    public float getCurrentTimeLeftScaled() {
+        return (VOLCANO_RUN_TIME - currentTimeLeft) * 1.0f / VOLCANO_RUN_TIME;
+    }
 
-        return (VOLCANO_RUN_TIME - currentTimeLeft) * 1.0 / VOLCANO_RUN_TIME;
+    public boolean isRunning() {
+        return isRunning;
     }
 
     @Override
@@ -52,15 +58,16 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
         // If on client, return
         if(world.isRemote) return;
 
-        boolean requirementsMet = checkRequirements(inventory.getStackInSlot(VOLCANO_SLOT_1).getItem(), inventory.getStackInSlot(VOLCANO_SLOT_2).getItem());
-
-        if(requirementsMet) {
+        if(checkRequirements()) {
             // Begin running volcano ticks if not running right now
-            if(currentTimeLeft < 0) {
+            if(!isRunning) {
+                isRunning = true;
                 currentTimeLeft = VOLCANO_RUN_TIME;
-            } else {
+            }
+            else {
                 currentTimeLeft--;
             }
+
             // Remove items inside volcano if time is up
             if(currentTimeLeft == 0) {
                 inventory.extractItem(VOLCANO_SLOT_1, 1, false);
@@ -78,8 +85,8 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
             }
         }
         else {
-            // If requirements not met, reset current time left
-            currentTimeLeft = -1;
+            isRunning = false;
+            currentTimeLeft = 0;
         }
 
         super.tick();
@@ -87,6 +94,7 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
 
     @Override
     public void read(CompoundNBT tag) {
+        isRunning = tag.getBoolean("isRunning");
         currentTimeLeft = tag.getInt("timeLeft");
 
         super.read(tag);
@@ -95,6 +103,7 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
     @Nonnull
     @Override
     public CompoundNBT write(CompoundNBT tag) {
+        tag.putBoolean("isRunning", isRunning);
         tag.putInt("timeLeft", currentTimeLeft);
 
         return super.write(tag);

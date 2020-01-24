@@ -18,15 +18,14 @@ import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 import javax.annotation.Nonnull;
 
 public class DeconstructorContainer extends Container {
-    DeconstructorTileEntity tileEntity;
-    private PlayerEntity playerEntity;
+    public DeconstructorTileEntity tileEntity;
+
     private IItemHandler playerInventory;
 
     public DeconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
         super(BlockList.DECONSTRUCTOR_CONTAINER, id);
 
         tileEntity = (DeconstructorTileEntity) world.getTileEntity(pos);
-        playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
         addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35));
@@ -43,7 +42,7 @@ public class DeconstructorContainer extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.deconstructor);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockList.deconstructor);
     }
 
     @Nonnull

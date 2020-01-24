@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod.container;
+package solitudetraveler.chemcraftmod.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
@@ -6,18 +6,19 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import solitudetraveler.chemcraftmod.container.VolcanoContainer;
 import solitudetraveler.chemcraftmod.main.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
-public class ReconstructorScreen extends ContainerScreen<ReconstructorContainer> {
+public class VolcanoScreen extends ContainerScreen<VolcanoContainer> {
 
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/reconstructor_gui.png");
-    private ReconstructorTileEntity reconstructorTE;
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/volcano_gui.png");
+    private VolcanoTileEntity volcanoTileEntity;
 
-    public ReconstructorScreen(ReconstructorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public VolcanoScreen(VolcanoContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
 
-        reconstructorTE = screenContainer.tileEntity;
+        volcanoTileEntity = screenContainer.tileEntity;
     }
 
     @Override
@@ -29,8 +30,8 @@ public class ReconstructorScreen extends ContainerScreen<ReconstructorContainer>
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Molecular Reconstructor", 5, 5, 0x4dff5b);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 72, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Mini Volcano Experiment", 7, 6, ScreenColors.volcano_title);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 7, 43, ScreenColors.inventory_title);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 
@@ -42,11 +43,9 @@ public class ReconstructorScreen extends ContainerScreen<ReconstructorContainer>
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
-        if(reconstructorTE.isReconstructing()) {
-            this.blit(relX + 89, relY + 33, 176, 17, 24, 17);
-
-            int k = (int) (reconstructorTE.getReconstructionTimeScaled() * 23);
-            this.blit(relX + 89, relY + 33, 176, 0, k + 1, 17);
+        if(volcanoTileEntity.isRunning()) {
+            int currentHeight = Math.round(volcanoTileEntity.getCurrentTimeLeftScaled() * 17);
+            this.blit(relX + 84, relY + 37 - currentHeight, 176, 16 - currentHeight, 8, currentHeight);
         }
     }
 }

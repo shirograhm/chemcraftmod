@@ -18,15 +18,14 @@ import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 import javax.annotation.Nonnull;
 
 public class VolcanoContainer extends Container {
-    VolcanoTileEntity tileEntity;
-    private PlayerEntity playerEntity;
+    public VolcanoTileEntity tileEntity;
+
     private IItemHandler playerInventory;
 
     public VolcanoContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
         super(BlockList.VOLCANO_CONTAINER, id);
 
         tileEntity = (VolcanoTileEntity) world.getTileEntity(pos);
-        playerEntity = player;
         playerInventory = new InvWrapper(playerInv);
 
         addSlot(new Slot(tileEntity, VolcanoTileEntity.VOLCANO_SLOT_1, 53, 21));
@@ -36,7 +35,7 @@ public class VolcanoContainer extends Container {
 
     @Override
     public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, BlockList.volcano);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockList.volcano);
     }
 
     @Nonnull

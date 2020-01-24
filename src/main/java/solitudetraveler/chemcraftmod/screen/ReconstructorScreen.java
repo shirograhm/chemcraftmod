@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod.container;
+package solitudetraveler.chemcraftmod.screen;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
@@ -6,20 +6,18 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.main.ChemCraftMod;
-import solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity;
+import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
-public class AcceleratorScreen extends ContainerScreen<AcceleratorContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/accelerator_gui.png");
-    private AcceleratorTileEntity tileEntity;
+public class ReconstructorScreen extends ContainerScreen<ReconstructorContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ChemCraftMod.MOD_ID, "textures/gui/reconstructor_gui.png");
+    private ReconstructorTileEntity reconstructorTE;
 
-    public AcceleratorScreen(AcceleratorContainer screenContainer, PlayerInventory inventory, ITextComponent title) {
-        super(screenContainer, inventory, title);
+    public ReconstructorScreen(ReconstructorContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+        super(screenContainer, inv, titleIn);
 
-        this.xSize = 176;
-        this.ySize = 158;
-
-        tileEntity = screenContainer.tileEntity;
+        reconstructorTE = screenContainer.tileEntity;
     }
 
     @Override
@@ -31,8 +29,8 @@ public class AcceleratorScreen extends ContainerScreen<AcceleratorContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Particle Accelerator", 6, 6, 0x121212);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 64, 0x969696);
+        drawString(Minecraft.getInstance().fontRenderer, "Molecular Reconstructor", 5, 5, ScreenColors.reconstructor_title);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 5, 72, ScreenColors.inventory_title);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 
@@ -44,9 +42,11 @@ public class AcceleratorScreen extends ContainerScreen<AcceleratorContainer> {
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
-        if(tileEntity.isActive()) {
-            int animationFrame = tileEntity.getCurrentAnimationFrame();
-            this.blit(relX + 52, relY + 21, 216, animationFrame * 36, 36, 36);
+        if(reconstructorTE.isReconstructing()) {
+            this.blit(relX + 89, relY + 33, 176, 17, 24, 17);
+
+            int k = (int) (reconstructorTE.getReconstructionTimeScaled() * 23);
+            this.blit(relX + 89, relY + 33, 176, 0, k + 1, 17);
         }
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.container.*;
+import solitudetraveler.chemcraftmod.screen.*;
 
 public class ClientProxy implements IProxy {
     @Override
