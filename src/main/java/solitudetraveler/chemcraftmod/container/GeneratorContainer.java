@@ -12,6 +12,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.tileentity.GeneratorTileEntity;
 
 import javax.annotation.Nonnull;
@@ -22,7 +23,7 @@ public class GeneratorContainer extends Container {
     private IItemHandler playerInventory;
 
     public GeneratorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.GENERATOR_CONTAINER, id);
+        super(BlockVariables.GENERATOR_CONTAINER, id);
 
         tileEntity = (GeneratorTileEntity) world.getTileEntity(pos);
         playerInventory = new InvWrapper(playerInv);
@@ -39,22 +40,37 @@ public class GeneratorContainer extends Container {
     @Nonnull
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
-        ItemStack itemStack = ItemStack.EMPTY;
+        ItemStack previousStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
+        // If slot contains some itemstack
         if(slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
-            itemStack = stack.copy();
+            ItemStack stackInSlot = slot.getStack();
+            previousStack = stackInSlot.copy();
 
+            // If clicked slot is in generator
             if(index < GeneratorTileEntity.NUMBER_GENERATOR_SLOTS) {
-                if (!this.mergeItemStack(stack, GeneratorTileEntity.NUMBER_GENERATOR_SLOTS, GeneratorTileEntity.NUMBER_GENERATOR_SLOTS + 36, false)) {
+                // Container to inventory
+                if (!this.mergeItemStack(stackInSlot, GeneratorTileEntity.NUMBER_GENERATOR_SLOTS, GeneratorTileEntity.NUMBER_GENERATOR_SLOTS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                return ItemStack.EMPTY;
+                // Inventory to container
+                if(!this.mergeItemStack(stackInSlot, GeneratorTileEntity.GENERATOR_INPUT, GeneratorTileEntity.GENERATOR_INPUT + 1, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
+
+            if(stackInSlot.getCount() == 0) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+
+            if(stackInSlot.getCount() == previousStack.getCount()) return ItemStack.EMPTY;
         }
-        return itemStack;
+
+        return previousStack;
     }
 
     private void layoutPlayerInventorySlots(int leftCol, int topRow) {

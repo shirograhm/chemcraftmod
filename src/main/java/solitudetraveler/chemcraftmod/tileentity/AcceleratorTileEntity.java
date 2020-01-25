@@ -9,7 +9,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.container.AcceleratorContainer;
 import solitudetraveler.chemcraftmod.item.ElementItem;
 import solitudetraveler.chemcraftmod.item.ItemList;
@@ -29,7 +29,7 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
     public static final int ACCELERATOR_OUTPUT_5 = 6;
     public static final int NUMBER_ACCELERATOR_SLOTS = 7;
 
-    private static final double BASE_COLLISION_CHANCE = 0.693;
+    private static final double BASE_COLLISION_CHANCE = 0.081;
     private static final int ANIMATION_FRAMES = 6;
 
     private double multiplier;
@@ -37,7 +37,7 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
 
 
     public AcceleratorTileEntity() {
-        super(BlockList.ACCELERATOR_TILE_TYPE, NUMBER_ACCELERATOR_SLOTS);
+        super(BlockVariables.ACCELERATOR_TILE_TYPE, NUMBER_ACCELERATOR_SLOTS);
 
         this.multiplier = 1.0;
         this.currentAnimationFrame = 0;
@@ -59,14 +59,14 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
     public void tick() {
         // If world is null, return
         if (world == null) return;
-        // If client, return
+        // If client, play sound if active
         if (world.isRemote) return;
 
         // Get input array
         ArrayList<ElementItem> inputs = getInputElements();
         Random rand = new Random();
         // If both inputs are elements (inputs.size() = 2) and the block is active
-        if(isActive && inputs.size() == 2) {
+        if(isActive && inputs.size() == 2 && outputSlotsAvailable()) {
             // Run chance collision
             if(rand.nextInt(100) < BASE_COLLISION_CHANCE) {
                 runCollisionAndSetOutputStacks(rand, inputs);
@@ -78,6 +78,22 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
         }
 
         super.tick();
+    }
+
+    private boolean outputSlotsAvailable() {
+        ItemStack stack1 = inventory.getStackInSlot(ACCELERATOR_OUTPUT_1);
+        ItemStack stack2 = inventory.getStackInSlot(ACCELERATOR_OUTPUT_2);
+        ItemStack stack3 = inventory.getStackInSlot(ACCELERATOR_OUTPUT_3);
+        ItemStack stack4 = inventory.getStackInSlot(ACCELERATOR_OUTPUT_4);
+        ItemStack stack5 = inventory.getStackInSlot(ACCELERATOR_OUTPUT_5);
+        // If element output isn't empty
+        if(!stack1.isEmpty()) return false;
+        if(!stack2.isEmpty()) return false;
+        if(!stack3.isEmpty()) return false;
+        if(!stack4.isEmpty()) return false;
+        if(!stack5.isEmpty()) return false;
+        // Return true if output is empty
+        return true;
     }
 
     private void runCollisionAndSetOutputStacks(Random rand, ArrayList<ElementItem> inputs) {
@@ -105,8 +121,8 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
         ItemStack stack1 = inventory.getStackInSlot(ACCELERATOR_INPUT_1);
         ItemStack stack2 = inventory.getStackInSlot(ACCELERATOR_INPUT_2);
 
-        if(stack1.getItem() instanceof ElementItem) elementsIn.add((ElementItem) stack1.getItem());
-        if(stack2.getItem() instanceof ElementItem) elementsIn.add((ElementItem) stack2.getItem());
+        if(stack1.getItem() instanceof ElementItem && stack1.getItem() != ItemList.unknown) elementsIn.add((ElementItem) stack1.getItem());
+        if(stack2.getItem() instanceof ElementItem && stack2.getItem() != ItemList.unknown) elementsIn.add((ElementItem) stack2.getItem());
 
         return elementsIn;
     }
@@ -145,5 +161,4 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
         }
         return null;
     }
-
 }

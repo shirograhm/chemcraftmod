@@ -2,23 +2,18 @@
   "pools":
   [
     {
-      "rolls": 1,
+      "rolls": 2,
       "bonus_rolls": 1,
       "entries": [
         {
           "type": "item",
           "name": "minecraft:quartz",
-          "weight": 2
-        },
-        {
-          "type": "item",
-          "name": "chemcraftmod:biotite",
-          "weight": 8
+          "weight": 1
         },
         {
           "type": "item",
           "name": "chemcraftmod:calcite",
-          "weight": 5
+          "weight": 9
         }
       ]
     }

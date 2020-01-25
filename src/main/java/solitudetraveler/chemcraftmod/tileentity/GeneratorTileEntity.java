@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.items.ItemHandlerHelper;
-import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.container.GeneratorContainer;
 
 import javax.annotation.Nonnull;
@@ -57,7 +57,7 @@ public class GeneratorTileEntity extends BasicTileEntity implements INamedContai
     }
 
     public GeneratorTileEntity() {
-        super(BlockList.GENERATOR_TILE_TYPE, NUMBER_GENERATOR_SLOTS);
+        super(BlockVariables.GENERATOR_TILE_TYPE, NUMBER_GENERATOR_SLOTS);
 
         this.isPowered = false;
         this.powerRemaining = 0;

@@ -1,39 +1,43 @@
 package solitudetraveler.chemcraftmod.recipes;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class DeconstructorRecipe {
-    private Comparator<ItemStack> sorter = new Comparator<ItemStack>() {
-        @Override
-        public int compare(ItemStack o1, ItemStack o2) {
-            int nameCompare = o1.getItem().toString().compareTo(o2.getItem().toString());
-
-            if(nameCompare != 0) return nameCompare;
-            else return o1.getCount() - o2.getCount();
-        }
-    };
-    private ItemStack input;
+    private Item input;
     private ArrayList<ItemStack> results;
 
-    public DeconstructorRecipe(ItemStack stackIn, ArrayList<ItemStack> outputsIn) {
-        Collections.sort(outputsIn, sorter);
+    public DeconstructorRecipe(Item itemIn, ArrayList<ItemStack> outputsIn) {
         this.results = outputsIn;
-        this.input = stackIn;
+        this.input = itemIn;
+
+        if(results.size() > 6) throw new IllegalArgumentException("Invalid amount of outputs for deconstructor recipe.");
     }
 
     public ArrayList<ItemStack> getResults() {
         return results;
     }
 
-    public ItemStack getInput() {
+    public Item getInput() {
         return input;
     }
 
-    public boolean inputEqual(ItemStack stackIn) {
-        return sorter.compare(this.input, stackIn) == 0;
+    public boolean inputEqual(Item itemIn) {
+        return this.input.getItem() == itemIn;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Input: ");
+        sb.append(input.toString());
+        sb.append("\n");
+        sb.append("Result: ");
+        sb.append(results.toString());
+
+        return sb.toString();
     }
 }

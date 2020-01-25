@@ -29,8 +29,8 @@ public class GeneratorScreen extends ContainerScreen<GeneratorContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Generator", 6, 6, ScreenColors.generator_title);
-        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 64, ScreenColors.inventory_title);
+        drawString(Minecraft.getInstance().fontRenderer, "Generator", 6, 6, ScreenColors.BLUE);
+        drawString(Minecraft.getInstance().fontRenderer, "Inventory", 6, 64, ScreenColors.GREY);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 

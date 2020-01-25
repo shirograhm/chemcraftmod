@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.container.VolcanoContainer;
 import solitudetraveler.chemcraftmod.item.ItemList;
 
@@ -30,7 +30,7 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
     private int currentTimeLeft;
 
     public VolcanoTileEntity() {
-        super(BlockList.VOLCANO_TILE_TYPE, NUMBER_VOLCANO_SLOTS);
+        super(BlockVariables.VOLCANO_TILE_TYPE, NUMBER_VOLCANO_SLOTS);
 
         isRunning = false;
         currentTimeLeft = -1;

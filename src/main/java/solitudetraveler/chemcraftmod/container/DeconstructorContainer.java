@@ -12,6 +12,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
 import solitudetraveler.chemcraftmod.tileentity.DeconstructorTileEntity;
 
@@ -23,54 +24,85 @@ public class DeconstructorContainer extends Container {
     private IItemHandler playerInventory;
 
     public DeconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.DECONSTRUCTOR_CONTAINER, id);
+        super(BlockVariables.DECONSTRUCTOR_CONTAINER, id);
 
         tileEntity = (DeconstructorTileEntity) world.getTileEntity(pos);
         playerInventory = new InvWrapper(playerInv);
 
-        addSlot(new Slot(tileEntity, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35));
+        addDeconstructorSlot(DeconstructorTileEntity.DECONSTRUCTOR_INPUT, 44, 35);
 
-        addSlot(new Slot(tileEntity, 1, 98, 17));
-        addSlot(new Slot(tileEntity, 2, 98, 35));
-        addSlot(new Slot(tileEntity, 3, 98, 53));
-        addSlot(new Slot(tileEntity, 4, 116, 17));
-        addSlot(new Slot(tileEntity, 5, 116, 35));
-        addSlot(new Slot(tileEntity, 6, 116, 53));
-
+        addDeconstructorSlot(DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_1, 98, 17);
+        addDeconstructorSlot(DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_2, 98, 35);
+        addDeconstructorSlot(DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_3, 98, 53);
+        addDeconstructorSlot(DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_4, 116, 17);
+        addDeconstructorSlot(DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_5, 116, 35);
+        addDeconstructorSlot(DeconstructorTileEntity.DECONSTRUCTOR_OUTPUT_6, 116, 53);
         layoutPlayerInventorySlots(8, 84);
     }
 
-    @Override
-    public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockList.deconstructor);
+    private void addDeconstructorSlot(int slotID, int xPos, int yPos) {
+        if(slotID == DeconstructorTileEntity.DECONSTRUCTOR_INPUT) {
+            addSlot(new Slot(tileEntity, slotID, xPos, yPos) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    return DeconstructorRecipeHandler.getRecipeForInputItem(stack.getItem()) != null;
+                }
+
+                @Override
+                public int getSlotStackLimit() {
+                    return 1;
+                }
+            });
+        }
+        else {
+            addSlot(new Slot(tileEntity, slotID, xPos, yPos) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    return false;
+                }
+            });
+        }
     }
 
     @Nonnull
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
-        ItemStack itemStack = ItemStack.EMPTY;
+        ItemStack previousStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
+        // If slot contains some itemstack
         if(slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
-            itemStack = stack.copy();
+            ItemStack stackInSlot = slot.getStack();
+            previousStack = stackInSlot.copy();
 
+            // If clicked slot is in deconstructor
             if(index < DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS) {
-                if (!this.mergeItemStack(stack, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, false)) {
+                // Container to inventory
+                if (!this.mergeItemStack(stackInSlot, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS, DeconstructorTileEntity.NUMBER_DECONSTRUCTOR_SLOTS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                if(DeconstructorRecipeHandler.getRecipeForInputs(stack) != null) {
-                    if (!this.mergeItemStack(stack, 0, 1, true)) {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else {
+                // Inventory to container
+                if(!this.mergeItemStack(stackInSlot, DeconstructorTileEntity.DECONSTRUCTOR_INPUT, DeconstructorTileEntity.DECONSTRUCTOR_INPUT + 1, false)) {
                     return ItemStack.EMPTY;
                 }
             }
+
+            if(stackInSlot.getCount() == 0) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+
+            if(stackInSlot.getCount() == previousStack.getCount()) return ItemStack.EMPTY;
         }
-        return itemStack;
+
+        return previousStack;
+    }
+
+    @Override
+    public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockList.deconstructor);
     }
 
     private void layoutPlayerInventorySlots(int leftCol, int topRow) {

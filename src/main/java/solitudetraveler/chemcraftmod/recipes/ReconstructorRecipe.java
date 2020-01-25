@@ -33,22 +33,33 @@ public class ReconstructorRecipe {
         return ingredients;
     }
 
-    public boolean inputEqual(ArrayList<ItemStack> input) {
-        if(input.size() != ingredients.size()) {
-            return false;
-        }
-
+    public boolean ingredientsEqual(ArrayList<ItemStack> input) {
+        // If arraylist sizes are not equal, return false
+        if(input.size() != ingredients.size()) return false;
+        // Sort input to test against
         Collections.sort(input, sorter);
-
+        // Iterate through and test at each index
         for(int i = 0; i < input.size(); i++) {
             if(input.get(i).getCount() != ingredients.get(i).getCount()) {
                 return false;
             }
-            if(!input.get(i).getItem().toString().equals(ingredients.get(i).getItem().toString())) {
+            if(input.get(i).getItem() != ingredients.get(i).getItem()) {
                 return false;
             }
         }
-        // Test equality if lengths are equivalent
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Ingredients: ");
+        sb.append(ingredients.toString());
+        sb.append("\n");
+        sb.append("Result: ");
+        sb.append(result.toString());
+
+        return sb.toString();
     }
 }

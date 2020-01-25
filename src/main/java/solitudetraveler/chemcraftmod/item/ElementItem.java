@@ -35,13 +35,23 @@ public class ElementItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if(atomicNumber == 43 || atomicNumber == 61 || atomicNumber >= 84) {
+        if(atomicNumber < 0 || atomicNumber == 43 || atomicNumber == 61 || atomicNumber >= 84) {
+            // Check if entity holding is a player with hazmat gear
             if(entityIn instanceof PlayerEntity) {
                 PlayerEntity pe = (PlayerEntity) entityIn;
 
-                pe.addPotionEffect(new EffectInstance(EffectList.radiation, 16, 2, false, true));
+                if(!playerWearingHazmatGear(pe)) {
+                    pe.addPotionEffect(new EffectInstance(EffectList.radiation, 360, 1, false, true));
+                }
             }
         }
+    }
+
+    private boolean playerWearingHazmatGear(PlayerEntity pe) {
+        for(ItemStack stack : pe.getArmorInventoryList()) {
+            if(!(stack.getItem() instanceof HazmatArmorItem)) return false;
+        }
+        return true;
     }
 
     public int getAtomicNumber() {

@@ -22,9 +22,16 @@ public class RadiationDamageSource extends DamageSource {
         return true;
     }
 
+    @Override
+    public boolean isDamageAbsolute() {
+        return true;
+    }
+
     @Nonnull
     @Override
     public ITextComponent getDeathMessage(LivingEntity entityLivingBaseIn) {
         return new StringTextComponent(entityLivingBaseIn.getName().getString() + " died of radiation");
     }
+
+
 }

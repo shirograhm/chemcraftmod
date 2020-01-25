@@ -1,7 +1,9 @@
 package solitudetraveler.chemcraftmod.main;
 
 import net.minecraft.block.Block;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 import net.minecraft.potion.Effect;
@@ -102,6 +104,11 @@ public class ChemCraftMod {
             }
             // Register items
             event.getRegistry().registerAll(
+                    // Hazmat suit
+                    ItemList.gas_mask = new HazmatArmorItem(location("gas_mask"), ArmorMaterial.LEATHER, EquipmentSlotType.HEAD, 400),
+                    ItemList.lead_coat = new HazmatArmorItem(location("lead_coat"), ArmorMaterial.IRON, EquipmentSlotType.CHEST, 1050),
+                    ItemList.lead_pants = new HazmatArmorItem(location("lead_pants"), ArmorMaterial.IRON, EquipmentSlotType.LEGS, 850),
+                    ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), ArmorMaterial.LEATHER, EquipmentSlotType.FEET, 250),
                     // Blocks
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
@@ -122,8 +129,6 @@ public class ChemCraftMod {
                     ItemList.andradite = new MineralItem(location("andradite")),
                     ItemList.zircon = new MineralItem(location("zircon")),
                     ItemList.ilmenite = new MineralItem(location("ilmenite")),
-                    ItemList.biotite = new MineralItem(location("biotite")),
-                    ItemList.acanthite = new MineralItem(location("acanthite")),
                     // Items
                     ItemList.copper_ingot = new BasicItem(location("copper_ingot")),
                     ItemList.silicon_ingot = new BasicItem(location("silicon_ingot")),
@@ -151,7 +156,6 @@ public class ChemCraftMod {
                     ItemList.acetate = new CompoundItem(location("acetate"), "C2H3O2"),
                     ItemList.methyl_group = new CompoundItem(location("methyl_group"), "CH3"),
                     ItemList.methylene_group = new CompoundItem(location("methylene_group"), "CH2"),
-                    ItemList.propane = new CompoundItem(location("propane"), "C3H8"),
                     ItemList.hydrogen_peroxide = new CompoundItem(location("hydrogen_peroxide"), "H2O2"),
                     ItemList.water = new CompoundItem(location("water"), "H2O"),
                     // Ionic Compounds
@@ -159,8 +163,7 @@ public class ChemCraftMod {
                     ItemList.sodium_chloride = new CompoundItem(location("sodium_chloride"), "NaCl"),
                     ItemList.sodium_bicarbonate = new CompoundItem(location("sodium_bicarbonate"), "NaHCO3"),
                     ItemList.sodium_hydroxide = new CompoundItem(location("sodium_hydroxide"), "NaOH"),
-                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "C2H4O2"),
-                    ItemList.silver_sulfide = new CompoundItem(location("silver_sulfide"), "Ag2S")
+                    ItemList.acetic_acid = new CompoundItem(location("acetic_acid"), "C2H4O2")
             );
 
             LOGGER.info("Items registered!");
@@ -179,15 +182,15 @@ public class ChemCraftMod {
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 
             event.getRegistry().registerAll(
-                    BlockList.dolostone = new Block(BlockList.rockProperties).setRegistryName(location("dolostone")),
-                    BlockList.copper_ore = new Block(BlockList.rockProperties).setRegistryName(location("copper_ore")),
-                    BlockList.nickel_ore = new Block(BlockList.rockProperties).setRegistryName(location("nickel_ore")),
-                    BlockList.generator = new GeneratorBlock(location("generator"), BlockList.machineProperties),
-                    BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockList.machineProperties),
-                    BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockList.machineProperties),
-                    BlockList.electromagnet = new ElectromagnetBlock(location("electromagnet"), BlockList.rockProperties),
-                    BlockList.accelerator = new AcceleratorBlock(location("accelerator"), BlockList.machineProperties),
-                    BlockList.volcano = new VolcanoBlock(location("volcano"), BlockList.rockProperties)
+                    BlockList.dolostone = new Block(BlockVariables.rockProperties).setRegistryName(location("dolostone")),
+                    BlockList.copper_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("copper_ore")),
+                    BlockList.nickel_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("nickel_ore")),
+                    BlockList.generator = new GeneratorBlock(location("generator"), BlockVariables.machineProperties),
+                    BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockVariables.machineProperties),
+                    BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockVariables.machineProperties),
+                    BlockList.electromagnet = new ElectromagnetBlock(location("electromagnet"), BlockVariables.rockProperties),
+                    BlockList.accelerator = new AcceleratorBlock(location("accelerator"), BlockVariables.machineProperties),
+                    BlockList.volcano = new VolcanoBlock(location("volcano"), BlockVariables.rockProperties)
             );
 
             LOGGER.info("Blocks registered!");

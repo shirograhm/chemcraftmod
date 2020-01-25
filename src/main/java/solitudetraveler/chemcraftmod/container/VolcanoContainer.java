@@ -12,7 +12,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
-import solitudetraveler.chemcraftmod.item.ItemList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 import javax.annotation.Nonnull;
@@ -23,7 +23,7 @@ public class VolcanoContainer extends Container {
     private IItemHandler playerInventory;
 
     public VolcanoContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.VOLCANO_CONTAINER, id);
+        super(BlockVariables.VOLCANO_CONTAINER, id);
 
         tileEntity = (VolcanoTileEntity) world.getTileEntity(pos);
         playerInventory = new InvWrapper(playerInv);
@@ -41,35 +41,40 @@ public class VolcanoContainer extends Container {
     @Nonnull
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
-        ItemStack itemStack = ItemStack.EMPTY;
+        ItemStack previousStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
+        // If slot contains some itemstack
         if(slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
-            itemStack = stack.copy();
+            ItemStack stackInSlot = slot.getStack();
+            previousStack = stackInSlot.copy();
 
-            // If the slot clicked is one of the volcano slots
+            // If clicked slot is in deconstructor
             if(index < VolcanoTileEntity.NUMBER_VOLCANO_SLOTS) {
-                if(!this.mergeItemStack(stack, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, false)) {
+                // Container to inventory
+                if (!this.mergeItemStack(stackInSlot, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS, VolcanoTileEntity.NUMBER_VOLCANO_SLOTS + 36, true)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                if (stack.getItem().equals(ItemList.vinegar)) {
-                    if (!this.mergeItemStack(stack, 0, 1, true)) {
-                        return ItemStack.EMPTY;
-                    }
+                // Inventory to container
+                if(!this.mergeItemStack(stackInSlot, VolcanoTileEntity.VOLCANO_SLOT_1, VolcanoTileEntity.VOLCANO_SLOT_1 + 1, false)) {
+                    return ItemStack.EMPTY;
                 }
-                else if (stack.getItem().equals(ItemList.baking_soda)) {
-                    if (!this.mergeItemStack(stack, 1, 2, true)) {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else {
+                if(!this.mergeItemStack(stackInSlot, VolcanoTileEntity.VOLCANO_SLOT_2, VolcanoTileEntity.VOLCANO_SLOT_2 + 1, false)) {
                     return ItemStack.EMPTY;
                 }
             }
+
+            if(stackInSlot.getCount() == 0) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+
+            if(stackInSlot.getCount() == previousStack.getCount()) return ItemStack.EMPTY;
         }
-        return itemStack;
+
+        return previousStack;
     }
 
     private void layoutPlayerInventorySlots(int leftCol, int topRow) {

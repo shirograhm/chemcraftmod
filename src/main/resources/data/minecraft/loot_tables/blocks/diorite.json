@@ -2,23 +2,18 @@
   "pools":
   [
     {
-      "rolls": 1,
+      "rolls": 2,
       "bonus_rolls": 1,
       "entries": [
         {
           "type": "item",
-          "name": "chemcraftmod:biotite",
-          "weight": 8
-        },
-        {
-          "type": "item",
-          "name": "chemcraftmod:acanthite",
-          "weight": 3
-        },
-        {
-          "type": "item",
           "name": "chemcraftmod:zircon",
           "weight": 4
+        },
+        {
+          "type": "item",
+          "name": "chemcraftmod:andradite",
+          "weight": 6
         }
       ]
     }

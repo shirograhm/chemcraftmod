@@ -3,6 +3,11 @@ package solitudetraveler.chemcraftmod.item;
 import net.minecraft.item.Item;
 
 public class ItemList {
+    // Garmets and Tools
+    public static Item gas_mask;
+    public static Item lead_coat;
+    public static Item lead_pants;
+    public static Item rubber_boots;
     // Blocks
     public static Item dolostone;
     public static Item copper_ore;
@@ -21,8 +26,6 @@ public class ItemList {
     public static Item andradite;
     public static Item zircon;
     public static Item ilmenite;
-    public static Item biotite;
-    public static Item acanthite;
     // New Ingots
     public static Item copper_ingot;
     public static Item silicon_ingot;

@@ -10,7 +10,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
 import solitudetraveler.chemcraftmod.handler.ReconstructorRecipeHandler;
 import solitudetraveler.chemcraftmod.recipes.ReconstructorRecipe;
@@ -38,7 +38,7 @@ public class ReconstructorTileEntity extends BasicTileEntity implements INamedCo
     private int reconstructionTimeLeft;
 
     public ReconstructorTileEntity() {
-        super(BlockList.RECONSTRUCTOR_TILE_TYPE, NUMBER_RECONSTRUCTOR_SLOTS);
+        super(BlockVariables.RECONSTRUCTOR_TILE_TYPE, NUMBER_RECONSTRUCTOR_SLOTS);
 
         this.reconstructionTimeLeft = 0;
         this.isReconstructing = false;
@@ -71,7 +71,7 @@ public class ReconstructorTileEntity extends BasicTileEntity implements INamedCo
         // If client, return
         if (world.isRemote) return;
 
-        // Server
+        // Do recipe computations
         ArrayList<ItemStack> inputArray = getCurrentInputArray();
         ReconstructorRecipe recipe = ReconstructorRecipeHandler.getRecipeForInputs(inputArray);
 
@@ -103,12 +103,13 @@ public class ReconstructorTileEntity extends BasicTileEntity implements INamedCo
             // Clear input stacks
             for (int i = RECONSTRUCTOR_INPUT_1; i <= RECONSTRUCTOR_INPUT_9; i++) {
                 // Reset input stacks
-                inventory.setStackInSlot(i, ItemStack.EMPTY);
+                inventory.extractItem(i, inventory.getStackInSlot(i).getCount(), false);
             }
             // Set output stack
-            inventory.setStackInSlot(RECONSTRUCTOR_OUTPUT, recipe.getOutput());
+            inventory.insertItem(RECONSTRUCTOR_OUTPUT, recipe.getOutput().copy(), false);
             // Reset machine
             isReconstructing = false;
+            reconstructionTimeLeft = 0;
         }
 
         super.tick();

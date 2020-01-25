@@ -11,15 +11,7 @@
         },
         {
           "type": "item",
-          "name": "chemcraftmod:calcite"
-        },
-        {
-          "type": "item",
           "name": "chemcraftmod:aragonite"
-        },
-        {
-          "type": "item",
-          "name": "chemcraftmod:andradite"
         }
       ]
     }

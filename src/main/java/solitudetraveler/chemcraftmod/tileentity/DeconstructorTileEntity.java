@@ -4,20 +4,18 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
 import solitudetraveler.chemcraftmod.handler.DeconstructorRecipeHandler;
 import solitudetraveler.chemcraftmod.recipes.DeconstructorRecipe;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 
 public class DeconstructorTileEntity extends BasicTileEntity implements INamedContainerProvider {
     public static final int DECONSTRUCTOR_INPUT = 0;
@@ -35,22 +33,17 @@ public class DeconstructorTileEntity extends BasicTileEntity implements INamedCo
     private int deconstructionTimeLeft;
 
     public DeconstructorTileEntity() {
-        super(BlockList.DECONSTRUCTOR_TILE_TYPE, NUMBER_DECONSTRUCTOR_SLOTS);
+        super(BlockVariables.DECONSTRUCTOR_TILE_TYPE, NUMBER_DECONSTRUCTOR_SLOTS);
 
         this.deconstructionTimeLeft = 0;
         this.isDeconstructing = false;
     }
 
     private boolean isOutputEmpty() {
-        ArrayList<ItemStack> outs = new ArrayList<>();
         for(int i = DECONSTRUCTOR_OUTPUT_1; i <= DECONSTRUCTOR_OUTPUT_6; i++) {
-            ItemStack is = inventory.getStackInSlot(i);
-            if(!is.isEmpty() && is.getItem() != Items.AIR) {
-                outs.add(is);
-            }
+            if(!inventory.getStackInSlot(i).isEmpty()) return false;
         }
-
-        return outs.size() == 0;
+        return true;
     }
 
     public double getDeconstructionTimeScaled() {
@@ -69,8 +62,8 @@ public class DeconstructorTileEntity extends BasicTileEntity implements INamedCo
         if(world.isRemote) return;
 
         // Do recipe computations
-        ItemStack input = inventory.getStackInSlot(DECONSTRUCTOR_INPUT);
-        DeconstructorRecipe recipe = DeconstructorRecipeHandler.getRecipeForInputs(input);
+        Item inputItem = inventory.getStackInSlot(DECONSTRUCTOR_INPUT).getItem();
+        DeconstructorRecipe recipe = DeconstructorRecipeHandler.getRecipeForInputItem(inputItem);
 
         // If outputs are not empty
         if(!isOutputEmpty()) {
@@ -98,14 +91,15 @@ public class DeconstructorTileEntity extends BasicTileEntity implements INamedCo
             }
         }
         if (isDeconstructing && deconstructionTimeLeft == 0) {
-            // Clear input stack
-            inventory.setStackInSlot(DECONSTRUCTOR_INPUT, ItemStack.EMPTY);
+            // Remove one from input stack
+            inventory.extractItem(DECONSTRUCTOR_INPUT, 1, false);
             // Set output stacks
             for (int i = 0; i < recipe.getResults().size(); i++) {
-                inventory.setStackInSlot(i + 1, recipe.getResults().get(i));
+                inventory.insertItem(i + 1, recipe.getResults().get(i).copy(), false);
             }
             // Reset machine
             isDeconstructing = false;
+            deconstructionTimeLeft = 0;
         }
 
         super.tick();

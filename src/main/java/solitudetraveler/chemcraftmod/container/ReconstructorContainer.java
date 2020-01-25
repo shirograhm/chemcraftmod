@@ -12,6 +12,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
+import solitudetraveler.chemcraftmod.block.BlockVariables;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
 import javax.annotation.Nonnull;
@@ -22,24 +23,74 @@ public class ReconstructorContainer extends Container {
     private IItemHandler playerInventory;
 
     public ReconstructorContainer(int id, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(BlockList.RECONSTRUCTOR_CONTAINER, id);
+        super(BlockVariables.RECONSTRUCTOR_CONTAINER, id);
 
         tileEntity = (ReconstructorTileEntity) world.getTileEntity(pos);
         playerInventory = new InvWrapper(playerInv);
 
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_1, 30, 17));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_2, 48, 17));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_3, 66, 17));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_4, 30, 35));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_5, 48, 35));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_6, 66, 35));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_7, 30, 53));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_8, 48, 53));
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_INPUT_9, 66, 53));
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_1, 30, 17);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_2, 48, 17);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_3, 66, 17);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_4, 30, 35);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_5, 48, 35);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_6, 66, 35);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_7, 30, 53);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_8, 48, 53);
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_INPUT_9, 66, 53);
 
-        addSlot(new Slot(tileEntity, ReconstructorTileEntity.RECONSTRUCTOR_OUTPUT, 124, 35));
+        addReconstructorSlot(ReconstructorTileEntity.RECONSTRUCTOR_OUTPUT, 124, 35);
+        layoutPlayerInventorySlots(8, 84);
+    }
 
-        layoutPlayerInventorySlots();
+    private void addReconstructorSlot(int slotID, int xPos, int yPos) {
+        if(slotID == ReconstructorTileEntity.RECONSTRUCTOR_OUTPUT) {
+            addSlot(new Slot(tileEntity, slotID, xPos, yPos) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    return false;
+                }
+            });
+        }
+        else {
+            addSlot(new Slot(tileEntity, slotID, xPos, yPos) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    return true;
+                }
+            });
+        }
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+        ItemStack previousStack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
+
+        // If slot contains some itemstack
+        if(slot != null && slot.getHasStack()) {
+            ItemStack stackInSlot = slot.getStack();
+            previousStack = stackInSlot.copy();
+
+            if(index < ReconstructorTileEntity.NUMBER_RECONSTRUCTOR_SLOTS) {
+                // Container to inventory
+                if (!this.mergeItemStack(stackInSlot, ReconstructorTileEntity.NUMBER_RECONSTRUCTOR_SLOTS, ReconstructorTileEntity.NUMBER_RECONSTRUCTOR_SLOTS + 36, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                // Do nothing (no shift clicking from inventory to container)
+            }
+
+            if(stackInSlot.getCount() == 0) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+
+            if(stackInSlot.getCount() == previousStack.getCount()) return ItemStack.EMPTY;
+        }
+
+        return previousStack;
     }
 
     @Override
@@ -47,38 +98,31 @@ public class ReconstructorContainer extends Container {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerIn, BlockList.reconstructor);
     }
 
-    @Nonnull
-    @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
-        return ItemStack.EMPTY;
-    }
 
 
-    private void layoutPlayerInventorySlots() {
+    private void layoutPlayerInventorySlots(int leftCol, int topRow) {
         // Player inventory
-        addSlotBox(playerInventory);
+        addSlotBox(playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
 
-        addSlotRange(playerInventory, 0, 142);
+        // Hot bar
+        topRow += 58;
+        addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
 
-    private int addSlotRange(IItemHandler handler, int index, int y) {
-        int x = 8;
-
-        for (int i = 0; i < 9; i++) {
+    private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
+        for (int i = 0 ; i < amount ; i++) {
             addSlot(new SlotItemHandler(handler, index, x, y));
-            x += 18;
+            x += dx;
             index++;
         }
         return index;
     }
 
-    private void addSlotBox(IItemHandler handler) {
-        int y = 84;
-        int index = 9;
-
-        for (int j = 0; j < 3; j++) {
-            index = addSlotRange(handler, index, y);
-            y += 18;
+    private int addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
+        for (int j = 0 ; j < verAmount ; j++) {
+            index = addSlotRange(handler, index, x, y, horAmount, dx);
+            y += dy;
         }
+        return index;
     }
 }

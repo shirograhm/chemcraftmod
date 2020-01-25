@@ -2,7 +2,7 @@
   "pools":
   [
     {
-      "rolls": 1,
+      "rolls": 2,
       "bonus_rolls": 1,
       "entries": [
         {
@@ -11,7 +11,7 @@
         },
         {
           "type": "item",
-          "name": "chemcraftmod:zircon"
+          "name": "chemcraftmod:sodalite"
         }
       ]
     }
