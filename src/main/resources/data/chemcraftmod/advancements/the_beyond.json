@@ -1,0 +1,25 @@
+{
+  "parent": "chemcraftmod:atom_smasher",
+  "display": {
+    "icon": {
+      "item": "chemcraftmod:unknown"
+    },
+    "title": {
+      "text": "The Great Beyond"
+    },
+    "description": {
+      "text": "UNKOWN",
+      "obfuscated": true
+    }
+  },
+  "criteria": {
+    "irradiated": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "chemcraftmod:radiation": {}
+        }
+      }
+    }
+  }
+}

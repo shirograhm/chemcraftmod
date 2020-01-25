@@ -1,18 +1,63 @@
 {
   "variants": {
-    "facing=north": {
+    "enabled=false,facing=north,powered=false": {
       "model": "chemcraftmod:block/accelerator"
     },
-    "facing=east": {
+    "enabled=false,facing=north,powered=true": {
+      "model": "chemcraftmod:block/accelerator"
+    },
+    "enabled=true,facing=north,powered=false": {
+      "model": "chemcraftmod:block/accelerator_built"
+    },
+    "enabled=true,facing=north,powered=true": {
+      "model": "chemcraftmod:block/accelerator_on"
+    },
+    "enabled=false,facing=east,powered=false": {
       "model": "chemcraftmod:block/accelerator",
       "y": 90
     },
-    "facing=south": {
+    "enabled=false,facing=east,powered=true": {
+      "model": "chemcraftmod:block/accelerator",
+      "y": 90
+    },
+    "enabled=true,facing=east,powered=false": {
+      "model": "chemcraftmod:block/accelerator_built",
+      "y": 90
+    },
+    "enabled=true,facing=east,powered=true": {
+      "model": "chemcraftmod:block/accelerator_on",
+      "y": 90
+    },
+    "enabled=false,facing=south,powered=false": {
       "model": "chemcraftmod:block/accelerator",
       "y": 180
     },
-    "facing=west": {
+    "enabled=false,facing=south,powered=true": {
       "model": "chemcraftmod:block/accelerator",
+      "y": 180
+    },
+    "enabled=true,facing=south,powered=false": {
+      "model": "chemcraftmod:block/accelerator_built",
+      "y": 180
+    },
+    "enabled=true,facing=south,powered=true": {
+      "model": "chemcraftmod:block/accelerator_on",
+      "y": 180
+    },
+    "enabled=false,facing=west,powered=false": {
+      "model": "chemcraftmod:block/accelerator",
+      "y": 270
+    },
+    "enabled=false,facing=west,powered=true": {
+      "model": "chemcraftmod:block/accelerator",
+      "y": 270
+    },
+    "enabled=true,facing=west,powered=false": {
+      "model": "chemcraftmod:block/accelerator_built",
+      "y": 270
+    },
+    "enabled=true,facing=west,powered=true": {
+      "model": "chemcraftmod:block/accelerator_on",
       "y": 270
     }
   }

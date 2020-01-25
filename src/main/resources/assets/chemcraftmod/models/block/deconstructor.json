@@ -1,9 +1,9 @@
 {
   "parent": "block/orientable",
   "textures": {
-    "top": "chemcraftmod:block/deconstructor_top",
-    "bottom": "chemcraftmod:block/deconstructor_side",
+    "top": "chemcraftmod:block/machine_top",
+    "bottom": "chemcraftmod:block/machine_top",
     "front": "chemcraftmod:block/deconstructor_front",
-    "side": "chemcraftmod:block/deconstructor_side"
+    "side": "chemcraftmod:block/machine_side"
   }
 }

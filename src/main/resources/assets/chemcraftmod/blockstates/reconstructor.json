@@ -1,17 +1,32 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,powered=true": {
+      "model": "chemcraftmod:block/reconstructor_on"
+    },
+    "facing=north,powered=false": {
       "model": "chemcraftmod:block/reconstructor"
     },
-    "facing=east": {
+    "facing=east,powered=true": {
+      "model": "chemcraftmod:block/reconstructor_on",
+      "y": 90
+    },
+    "facing=east,powered=false": {
       "model": "chemcraftmod:block/reconstructor",
       "y": 90
     },
-    "facing=south": {
+    "facing=south,powered=true": {
+      "model": "chemcraftmod:block/reconstructor_on",
+      "y": 180
+    },
+    "facing=south,powered=false": {
       "model": "chemcraftmod:block/reconstructor",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,powered=true": {
+      "model": "chemcraftmod:block/reconstructor_on",
+      "y": 270
+    },
+    "facing=west,powered=false": {
       "model": "chemcraftmod:block/reconstructor",
       "y": 270
     }

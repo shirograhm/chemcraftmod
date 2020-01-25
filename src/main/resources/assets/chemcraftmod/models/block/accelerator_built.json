@@ -3,7 +3,7 @@
   "textures": {
     "top": "chemcraftmod:block/machine_top",
     "bottom": "chemcraftmod:block/machine_top",
-    "front": "chemcraftmod:block/generator_front_on",
+    "front": "chemcraftmod:block/accelerator_front_built",
     "side": "chemcraftmod:block/machine_side"
   }
 }

@@ -1,0 +1,24 @@
+{
+  "parent": "chemcraftmod:atom_smasher",
+  "display": {
+    "icon": {
+      "item": "chemcraftmod:proton"
+    },
+    "title": {
+      "text": "Irradiated"
+    },
+    "description": {
+      "text": "Ouch!"
+    }
+  },
+  "criteria": {
+    "irradiated": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "chemcraftmod:radiation": {}
+        }
+      }
+    }
+  }
+}

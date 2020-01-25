@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "chemcraftmod:aluminium_ore"
+  },
+  "result": "chemcraftmod:aluminium_ingot",
+  "experience": 1.55,
+  "cookingtime": 200
+}

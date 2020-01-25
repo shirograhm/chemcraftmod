@@ -21,7 +21,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import solitudetraveler.chemcraftmod.tileentity.AcceleratorTileEntity;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 
 public class AcceleratorBlock extends Block {
     public AcceleratorBlock(ResourceLocation name, Block.Properties props) {
@@ -29,6 +28,8 @@ public class AcceleratorBlock extends Block {
 
         this.setDefaultState(this.getStateContainer().getBaseState()
                 .with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
+                .with(BlockStateProperties.ENABLED, false)
+                .with(BlockStateProperties.POWERED, false)
         );
         setRegistryName(name);
     }
@@ -46,7 +47,7 @@ public class AcceleratorBlock extends Block {
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(acceleratorIsBuilt(worldIn, pos) && !worldIn.isRemote) {
+        if(state.get(BlockStateProperties.ENABLED) && !worldIn.isRemote) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 
             if(tileEntity instanceof INamedContainerProvider) {
@@ -75,6 +76,8 @@ public class AcceleratorBlock extends Block {
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.HORIZONTAL_FACING);
+        builder.add(BlockStateProperties.ENABLED);
+        builder.add(BlockStateProperties.POWERED);
     }
 
     @Nullable
@@ -82,73 +85,10 @@ public class AcceleratorBlock extends Block {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState blockState = super.getStateForPlacement(context);
         if(blockState != null) {
-            blockState = blockState.with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+            blockState = blockState.with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite())
+                    .with(BlockStateProperties.ENABLED, false)
+                    .with(BlockStateProperties.POWERED, false);
         }
         return blockState;
-    }
-
-    // Test for built particle accelerator
-    private boolean acceleratorIsBuilt(World world, BlockPos blockPos) {
-        Direction dir = world.getBlockState(blockPos).get(BlockStateProperties.HORIZONTAL_FACING);
-        ArrayList<BlockPos> positionsToCheck = new ArrayList<>();
-
-        int minX = 0;
-        int maxX = 0;
-        int minZ = 0;
-        int maxZ = 0;
-
-        switch(dir) {
-            case NORTH:
-                minX = -3;
-                maxX = 3;
-                minZ = 0;
-                maxZ = 6;
-                break;
-            case SOUTH:
-                minX = -3;
-                maxX = 3;
-                minZ = -6;
-                maxZ = 0;
-                break;
-            case EAST:
-                minX = -6;
-                maxX = 0;
-                minZ = -3;
-                maxZ = 3;
-                break;
-            case WEST:
-                minX = 0;
-                maxX = 6;
-                minZ = -3;
-                maxZ = 3;
-                break;
-            default:
-                LOGGER.debug("Invalid direction on block placed at " + blockPos.toString());
-                break;
-        }
-
-        for(int x = minX; x <= maxX; x++) {
-            BlockPos temp1 = blockPos.add(x, 0, minZ);
-            BlockPos temp2 = blockPos.add(x, 0, maxZ);
-
-            if (temp1.compareTo(blockPos) != 0) positionsToCheck.add(temp1);
-            if (temp2.compareTo(blockPos) != 0) positionsToCheck.add(temp2);
-        }
-
-        for(int z = minZ; z <= maxZ; z++) {
-            BlockPos temp1 = blockPos.add(minX, 0, z);
-            BlockPos temp2 = blockPos.add(maxX, 0, z);
-
-            if (temp1.compareTo(blockPos) != 0) positionsToCheck.add(temp1);
-            if (temp2.compareTo(blockPos) != 0) positionsToCheck.add(temp2);
-        }
-
-        for(BlockPos bp : positionsToCheck) {
-            Block check = world.getBlockState(bp).getBlock();
-
-            if(!(check instanceof ElectromagnetBlock)) return false;
-        }
-        // If all electro blocks, return true
-        return true;
     }
 }

@@ -12,6 +12,7 @@ public class ItemList {
     public static Item dolostone;
     public static Item copper_ore;
     public static Item nickel_ore;
+    public static Item aluminium_ore;
     public static Item generator;
     public static Item reconstructor;
     public static Item deconstructor;

@@ -113,6 +113,7 @@ public class ChemCraftMod {
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
                     ItemList.nickel_ore = new BasicBlockItem(BlockList.nickel_ore.getRegistryName(), BlockList.nickel_ore),
+                    ItemList.aluminium_ore = new BasicBlockItem(BlockList.aluminium_ore.getRegistryName(), BlockList.aluminium_ore),
                     ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet.getRegistryName(), BlockList.electromagnet),
                     // Machines
                     ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor, Rarity.UNCOMMON),
@@ -185,6 +186,7 @@ public class ChemCraftMod {
                     BlockList.dolostone = new Block(BlockVariables.rockProperties).setRegistryName(location("dolostone")),
                     BlockList.copper_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("copper_ore")),
                     BlockList.nickel_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("nickel_ore")),
+                    BlockList.aluminium_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("aluminium_ore")),
                     BlockList.generator = new GeneratorBlock(location("generator"), BlockVariables.machineProperties),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockVariables.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockVariables.machineProperties),

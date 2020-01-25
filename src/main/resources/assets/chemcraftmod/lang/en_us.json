@@ -9,6 +9,13 @@
   "block.chemcraftmod.volcano": "Mini Volcano Experiment",
   "block.chemcraftmod.electromagnet": "Electromagnet",
 
+
+  "item.chemcraftmod.gas_mask": "Gas Mask",
+  "item.chemcraftmod.lead_coat": "Lead Coat",
+  "item.chemcraftmod.lead_pants": "Lead Pants",
+  "item.chemcraftmod.rubber_boots": "Rubber Boots",
+
+
   "item.chemcraftmod.aragonite": "Aragonite",
   "item.chemcraftmod.calcite": "Calcite",
   "item.chemcraftmod.sodalite": "Sodalite",

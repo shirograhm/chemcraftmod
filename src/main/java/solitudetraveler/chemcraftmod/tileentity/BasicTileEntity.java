@@ -39,7 +39,11 @@ public class BasicTileEntity extends TileEntity implements ITickableTileEntity, 
 
     @Override
     public void tick() {
-        isActive = checkForPower();
+        // If not a generator, check for power
+        if(!(world.getBlockState(pos).getBlock() instanceof GeneratorBlock)) {
+            isActive = checkForPower();
+            world.setBlockState(pos, this.getBlockState().with(BlockStateProperties.POWERED, isActive));
+        }
 
         sendUpdates();
     }
@@ -149,5 +153,9 @@ public class BasicTileEntity extends TileEntity implements ITickableTileEntity, 
         for(int i = 0; i < inventory.getSlots(); i++) {
             inventory.setStackInSlot(i, ItemStack.EMPTY);
         }
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 }

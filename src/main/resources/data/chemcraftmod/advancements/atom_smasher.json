@@ -8,18 +8,17 @@
       "text": "Atom Smasher"
     },
     "description": {
-      "text": "Create a particle accelerator."
+      "text": "Can you smell the subatomic particles?"
     }
   },
   "criteria": {
     "smasher": {
-      "trigger": "minecraft:inventory_changed",
+      "trigger": "minecraft:placed_block",
       "conditions": {
-        "items": [
-          {
-            "item": "chemcraftmod:accelerator"
-          }
-        ]
+        "block": "chemcraftmod:accelerator",
+        "state": {
+          "enabled": true
+        }
       }
     }
   }

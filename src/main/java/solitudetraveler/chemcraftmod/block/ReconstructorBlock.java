@@ -27,7 +27,8 @@ public class ReconstructorBlock extends Block {
         super(props);
 
         this.setDefaultState(this.getStateContainer().getBaseState()
-                .with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
+                .with(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
+                .with(BlockStateProperties.POWERED, false));
         setRegistryName(name);
     }
 
@@ -74,6 +75,7 @@ public class ReconstructorBlock extends Block {
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.HORIZONTAL_FACING);
+        builder.add(BlockStateProperties.POWERED);
     }
 
     @Nullable
@@ -81,7 +83,8 @@ public class ReconstructorBlock extends Block {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState blockState = super.getStateForPlacement(context);
         if(blockState != null) {
-            blockState = blockState.with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+            blockState = blockState.with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite())
+                    .with(BlockStateProperties.POWERED, false);
         }
         return blockState;
     }

@@ -21,6 +21,8 @@ public class OreGeneration {
                 addOreGenerationToBiome(biome, 0, 6, 70, 65, BlockList.copper_ore.getDefaultState());
                 // Nickel ore generation
                 addOreGenerationToBiome(biome, 12, 24, 52, 40, BlockList.nickel_ore.getDefaultState());
+                // Aluminium ore generation
+                addOreGenerationToBiome(biome, 6, 12, 74, 30, BlockList.aluminium_ore.getDefaultState());
             }
         }
     }
