@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "R R",
-    "LLL",
-    "LLL"
+    "L L",
+    "LRL",
+    "LRL"
   ],
   "key":
   {
     "R": { "item": "chemcraftmod:rubber" },
-    "L": { "item": "chemcraftmod:lead_ingot" }
+    "L": { "item": "chemcraftmod:lead" }
   },
   "result":
   {
