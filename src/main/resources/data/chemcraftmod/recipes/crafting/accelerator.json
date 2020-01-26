@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "CCC",
-    "EAE",
-    "CCC"
+    "EEE",
+    "SAS",
+    "EEE"
   ],
   "key":
   {
     "E": { "item": "chemcraftmod:electromagnetic_coil" },
     "A": { "item": "chemcraftmod:advanced_machine_core" },
-    "C": { "item": "chemcraftmod:copper_wire" }
+    "S": { "item": "minecraft:smooth_stone" }
   },
   "result":
   {

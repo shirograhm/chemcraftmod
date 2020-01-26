@@ -105,10 +105,10 @@ public class ChemCraftMod {
             // Register items
             event.getRegistry().registerAll(
                     // Hazmat suit
-                    ItemList.gas_mask = new HazmatArmorItem(location("gas_mask"), ArmorMaterial.LEATHER, EquipmentSlotType.HEAD, 400),
-                    ItemList.lead_coat = new HazmatArmorItem(location("lead_coat"), ArmorMaterial.IRON, EquipmentSlotType.CHEST, 1050),
-                    ItemList.lead_pants = new HazmatArmorItem(location("lead_pants"), ArmorMaterial.IRON, EquipmentSlotType.LEGS, 850),
-                    ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), ArmorMaterial.LEATHER, EquipmentSlotType.FEET, 250),
+                    ItemList.gas_mask = new HazmatArmorItem(location("gas_mask"), ArmorMaterial.IRON, EquipmentSlotType.HEAD, 650),
+                    ItemList.lead_coat = new HazmatArmorItem(location("lead_coat"), ArmorMaterial.IRON, EquipmentSlotType.CHEST, 1550),
+                    ItemList.lead_pants = new HazmatArmorItem(location("lead_pants"), ArmorMaterial.IRON, EquipmentSlotType.LEGS, 1200),
+                    ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), ArmorMaterial.IRON, EquipmentSlotType.FEET, 550),
                     // Blocks
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
@@ -141,6 +141,8 @@ public class ChemCraftMod {
                     ItemList.baking_soda = new BasicItem(location("baking_soda")),
                     ItemList.vinegar = new BasicItem(location("vinegar")),
                     ItemList.bleach = new BasicItem(location("bleach")),
+                    ItemList.sap = new BasicItem(location("sap")),
+                    ItemList.rubber = new BasicItem(location("rubber")),
                     ItemList.electromagnetic_coil = new BasicItem(location("electromagnetic_coil")),
                     ItemList.heating_coil = new BasicItem(location("heating_coil")),
                     ItemList.copper_wire = new BasicItem(location("copper_wire")),

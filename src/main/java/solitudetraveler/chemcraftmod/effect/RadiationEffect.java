@@ -62,7 +62,7 @@ public class RadiationEffect extends Effect {
 
     @Override
     public boolean isReady(int duration, int amplifier) {
-        int shift = 30 >> amplifier;
+        int shift = 50 >> amplifier;
         if(shift > 0) {
             return duration % shift == 0;
         }

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "chemcraftmod:sap"
+  },
+  "result": "chemcraftmod:rubber",
+  "experience": 0.9,
+  "cookingtime": 200
+}

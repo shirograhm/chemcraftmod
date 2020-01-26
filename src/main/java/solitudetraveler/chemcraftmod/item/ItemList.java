@@ -40,9 +40,11 @@ public class ItemList {
     public static Item baking_soda;
     public static Item vinegar;
     public static Item bleach;
+    public static Item sap;
+    public static Item rubber;
+    public static Item copper_wire;
     public static Item electromagnetic_coil;
     public static Item heating_coil;
-    public static Item copper_wire;
     public static Item machine_core;
     public static Item advanced_machine_core;
     // Covalent Compounds

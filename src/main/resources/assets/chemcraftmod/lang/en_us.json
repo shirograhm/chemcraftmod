@@ -1,19 +1,20 @@
 {
+  "item.chemcraftmod.gas_mask": "Gas Mask",
+  "item.chemcraftmod.lead_coat": "Lead Coat",
+  "item.chemcraftmod.lead_pants": "Lead Pants",
+  "item.chemcraftmod.rubber_boots": "Rubber Boots",
+
+
   "block.chemcraftmod.dolostone": "Dolostone",
   "block.chemcraftmod.copper_ore": "Copper Ore",
   "block.chemcraftmod.nickel_ore": "Nickel Ore",
+  "block.chemcraftmod.aluminium_ore": "Aluminium Ore",
   "block.chemcraftmod.generator": "Generator",
   "block.chemcraftmod.reconstructor": "Molecular Reconstructor",
   "block.chemcraftmod.deconstructor": "Molecular Deconstructor",
   "block.chemcraftmod.accelerator": "Particle Accelerator",
   "block.chemcraftmod.volcano": "Mini Volcano Experiment",
   "block.chemcraftmod.electromagnet": "Electromagnet",
-
-
-  "item.chemcraftmod.gas_mask": "Gas Mask",
-  "item.chemcraftmod.lead_coat": "Lead Coat",
-  "item.chemcraftmod.lead_pants": "Lead Pants",
-  "item.chemcraftmod.rubber_boots": "Rubber Boots",
 
 
   "item.chemcraftmod.aragonite": "Aragonite",
@@ -25,20 +26,23 @@
   "item.chemcraftmod.ilmenite": "Ilmenite",
 
 
-  "item.chemcraftmod.baking_soda": "Baking Soda",
-  "item.chemcraftmod.vinegar": "Vinegar",
-  "item.chemcraftmod.salt": "Salt",
-  "item.chemcraftmod.soap": "Soap",
-  "item.chemcraftmod.bleach": "Bleach",
-  "item.chemcraftmod.electromagnetic_coil": "Electromagnetic Coil",
-  "item.chemcraftmod.heating_coil": "Heating Coil",
   "item.chemcraftmod.copper_ingot": "Copper Ingot",
   "item.chemcraftmod.silicon_ingot": "Silicon Ingot",
   "item.chemcraftmod.aluminium_ingot": "Aluminium Ingot",
   "item.chemcraftmod.nickel_ingot": "Nickel Ingot",
   "item.chemcraftmod.tin_ingot": "Tin Ingot",
-  "item.chemcraftmod.unknown": "Unknown",
+
+
+  "item.chemcraftmod.salt": "Salt",
+  "item.chemcraftmod.soap": "Soap",
+  "item.chemcraftmod.baking_soda": "Baking Soda",
+  "item.chemcraftmod.vinegar": "Vinegar",
+  "item.chemcraftmod.bleach": "Bleach",
+  "item.chemcraftmod.sap": "Sap",
+  "item.chemcraftmod.rubber": "Rubber",
   "item.chemcraftmod.copper_wire": "Copper Wire",
+  "item.chemcraftmod.electromagnetic_coil": "Electromagnetic Coil",
+  "item.chemcraftmod.heating_coil": "Heating Coil",
   "item.chemcraftmod.machine_core": "Machine Core",
   "item.chemcraftmod.advanced_machine_core": "Advanced Machine Core",
 
@@ -69,6 +73,7 @@
   "item.chemcraftmod.proton": "Proton",
   "item.chemcraftmod.neutron": "Neutron",
   "item.chemcraftmod.electron": "Electron",
+  "item.chemcraftmod.unknown": "Unknown",
 
 
   "item.chemcraftmod.hydrogen": "Hydrogen",

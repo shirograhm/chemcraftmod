@@ -9,6 +9,7 @@
     },
     "description": {
       "text": "UNKOWN",
+      "color": "dark_purple",
       "obfuscated": true
     }
   },

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "RRR",
+    "RGR"
+  ],
+  "key":
+  {
+    "R": { "item": "chemcraftmod:rubber" },
+    "G": { "item": "minecraft:glass_pane" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:gas_mask"
+  }
+}
