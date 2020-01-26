@@ -6,11 +6,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "chemcraftmod:dolostone"
+          "name": "minecraft:stripped_birch_log"
         },
         {
           "type": "minecraft:loot_table",
-          "name": "chemcraftmod:blocks/dolostone_minerals"
+          "name": "chemcraftmod:blocks/tree_rubber"
         }
       ],
       "conditions": [

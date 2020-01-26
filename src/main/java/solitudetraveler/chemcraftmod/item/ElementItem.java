@@ -49,15 +49,18 @@ public class ElementItem extends Item {
 
     private void applyRadiation(Entity entityIn) {
         int damageAmount;
+        int effectStrength;
         Random rand = new Random();
 
         if(emitsRadiationI()) {
             // [0, 2]
             damageAmount = rand.nextInt(3);
+            effectStrength = 1;
         }
         else if(emitsRadiationII()) {
             // [0, 3]
             damageAmount = rand.nextInt(4);
+            effectStrength = 2;
         }
         else {
             return;
@@ -67,13 +70,23 @@ public class ElementItem extends Item {
         // If we didn't return, we are being radiated
         // Check for player wearing hazmat gear
         PlayerEntity pe = (PlayerEntity) entityIn;
-        EffectInstance instance = new EffectInstance(EffectList.radiation, 360, damageAmount, false, true);
 
         if(playerWearingHazmatGear(pe.getArmorInventoryList())) {
             // TODO: Fix damage hazmat suit when experiencing radiation
-            damageSuit(pe, damageAmount, instance);
+            damageSuit(pe, damageAmount);
         } else {
-            pe.addPotionEffect(instance);
+            EffectInstance currentInstance = pe.getActivePotionEffect(EffectList.radiation);
+            EffectInstance radiationInstance = new EffectInstance(EffectList.radiation, 360, effectStrength);
+
+            // If not being radiated, add effect
+            if(currentInstance == null) {
+                pe.addPotionEffect(radiationInstance);
+            }
+            else {
+                if(currentInstance.getDuration() == 310) {
+                    currentInstance.combine(radiationInstance);
+                }
+            }
         }
     }
 
@@ -84,12 +97,10 @@ public class ElementItem extends Item {
         return true;
     }
 
-    private void damageSuit(PlayerEntity pe, int damageAmount, EffectInstance instanceToApply) {
+    private void damageSuit(PlayerEntity pe, int damageAmount) {
         for(ItemStack stack : pe.getArmorInventoryList()) {
             // If radiation is ready to be applied, damage armor
-            if( EffectList.radiation.isReady(instanceToApply.getAmplifier(), instanceToApply.getDuration())) {
-                stack.damageItem(damageAmount, pe, (entity) -> {});
-            }
+            stack.damageItem(damageAmount, pe, (entity) -> {});
         }
     }
 

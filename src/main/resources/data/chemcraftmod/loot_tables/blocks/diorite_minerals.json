@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:item",
+  "pools":
+  [
+    {
+      "rolls": 2,
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "chemcraftmod:zircon",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "chemcraftmod:andradite",
+          "weight": 6
+        }
+      ]
+    }
+  ]
+}

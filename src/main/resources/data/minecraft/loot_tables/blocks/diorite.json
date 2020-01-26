@@ -1,20 +1,21 @@
 {
   "type": "minecraft:block",
-  "pools":
-  [
+  "pools": [
     {
-      "rolls": 2,
-      "bonus_rolls": 1,
+      "rolls": 1,
       "entries": [
         {
-          "type": "item",
-          "name": "chemcraftmod:zircon",
-          "weight": 4
+          "type": "minecraft:item",
+          "name": "minecraft:diorite"
         },
         {
-          "type": "item",
-          "name": "chemcraftmod:andradite",
-          "weight": 6
+          "type": "minecraft:loot_table",
+          "name": "chemcraftmod:blocks/diorite_minerals"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }
