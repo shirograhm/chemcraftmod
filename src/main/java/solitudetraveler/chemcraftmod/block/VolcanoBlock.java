@@ -7,6 +7,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
@@ -35,6 +38,7 @@ public class VolcanoBlock extends Block {
     public VolcanoBlock(ResourceLocation name, Block.Properties props) {
         super(props);
 
+        this.setDefaultState(this.getStateContainer().getBaseState().with(BlockStateProperties.POWERED, false));
         setRegistryName(name);
     }
 
@@ -84,5 +88,20 @@ public class VolcanoBlock extends Block {
 
             super.onReplaced(state, worldIn, pos, newState, isMoving);
         }
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(BlockStateProperties.POWERED);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        BlockState blockState = super.getStateForPlacement(context);
+        if(blockState != null) {
+            blockState = blockState.with(BlockStateProperties.POWERED, false);
+        }
+        return blockState;
     }
 }

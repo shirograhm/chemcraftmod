@@ -48,18 +48,13 @@ public class ElementItem extends Item {
     }
 
     private void applyRadiation(Entity entityIn) {
-        int damageAmount;
         int effectStrength;
         Random rand = new Random();
 
         if(emitsRadiationI()) {
-            // [0, 2]
-            damageAmount = rand.nextInt(3);
             effectStrength = 1;
         }
         else if(emitsRadiationII()) {
-            // [0, 3]
-            damageAmount = rand.nextInt(4);
             effectStrength = 2;
         }
         else {
@@ -72,8 +67,10 @@ public class ElementItem extends Item {
         PlayerEntity pe = (PlayerEntity) entityIn;
 
         if(playerWearingHazmatGear(pe.getArmorInventoryList())) {
-            // TODO: Fix damage hazmat suit when experiencing radiation
-            damageSuit(pe, damageAmount);
+//            // Random chance 0.4% or 0.8% for radiation damage on armor
+//            if(rand.nextFloat() < 0.04f * effectStrength) {
+//                damageSuit(pe);
+//            }
         } else {
             EffectInstance currentInstance = pe.getActivePotionEffect(EffectList.radiation);
             EffectInstance radiationInstance = new EffectInstance(EffectList.radiation, 360, effectStrength);
@@ -97,10 +94,10 @@ public class ElementItem extends Item {
         return true;
     }
 
-    private void damageSuit(PlayerEntity pe, int damageAmount) {
+    private void damageSuit(PlayerEntity pe) {
         for(ItemStack stack : pe.getArmorInventoryList()) {
             // If radiation is ready to be applied, damage armor
-            stack.damageItem(damageAmount, pe, (entity) -> {});
+            stack.damageItem(1, pe, (entity) -> {});
         }
     }
 

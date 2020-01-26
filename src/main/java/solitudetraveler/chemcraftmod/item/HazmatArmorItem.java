@@ -1,14 +1,11 @@
 package solitudetraveler.chemcraftmod.item;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 
 public class HazmatArmorItem extends ArmorItem {
@@ -20,7 +17,7 @@ public class HazmatArmorItem extends ArmorItem {
 
     @Override
     public int getDamageReduceAmount() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -29,9 +26,7 @@ public class HazmatArmorItem extends ArmorItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if(stack.getDamage() < stack.getMaxDamage())
-            // Heal by 1 on tick when in inventory
-            stack.damageItem(-1, (LivingEntity) entityIn, (entity) -> {});
+    public float getToughness() {
+        return super.getToughness();
     }
 }
