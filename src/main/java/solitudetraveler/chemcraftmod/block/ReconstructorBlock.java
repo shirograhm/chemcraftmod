@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ReconstructorBlock extends Block {
@@ -60,7 +61,7 @@ public class ReconstructorBlock extends Block {
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onReplaced(BlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, BlockState newState, boolean isMoving) {
         if(state.getBlock() != newState.getBlock()) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 

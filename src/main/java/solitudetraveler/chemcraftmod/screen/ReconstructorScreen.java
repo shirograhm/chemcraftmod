@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.container.ReconstructorContainer;
@@ -42,11 +43,8 @@ public class ReconstructorScreen extends ContainerScreen<ReconstructorContainer>
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
-        if(reconstructorTE.isReconstructing()) {
+        if(reconstructorTE.getBlockState().get(BlockStateProperties.POWERED)) {
             this.blit(relX + 89, relY + 33, 176, 17, 24, 17);
-
-            int k = (int) (reconstructorTE.getReconstructionTimeScaled() * 23);
-            this.blit(relX + 89, relY + 33, 176, 0, k + 1, 17);
         }
     }
 }

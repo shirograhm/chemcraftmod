@@ -1,5 +1,5 @@
 {
-  "parent": "chemcraftmod:atom_smasher",
+  "parent": "chemcraftmod:main/atom_smasher",
   "display": {
     "icon": {
       "item": "chemcraftmod:proton"

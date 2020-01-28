@@ -13,6 +13,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.block.BlockVariables;
+import solitudetraveler.chemcraftmod.slot.ReconstructorResultSlot;
 import solitudetraveler.chemcraftmod.tileentity.ReconstructorTileEntity;
 
 import javax.annotation.Nonnull;
@@ -44,12 +45,7 @@ public class ReconstructorContainer extends Container {
 
     private void addReconstructorSlot(int slotID, int xPos, int yPos) {
         if(slotID == ReconstructorTileEntity.RECONSTRUCTOR_OUTPUT) {
-            addSlot(new Slot(tileEntity, slotID, xPos, yPos) {
-                @Override
-                public boolean isItemValid(ItemStack stack) {
-                    return false;
-                }
-            });
+            addSlot(new ReconstructorResultSlot(this, tileEntity, slotID, xPos, yPos));
         }
         else {
             addSlot(new Slot(tileEntity, slotID, xPos, yPos) {
@@ -59,6 +55,10 @@ public class ReconstructorContainer extends Container {
                 }
             });
         }
+    }
+
+    public void removeInputs() {
+        tileEntity.removeInputs();
     }
 
     @Nonnull

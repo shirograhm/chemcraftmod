@@ -1,5 +1,5 @@
 {
-  "parent": "chemcraftmod:technology",
+  "parent": "chemcraftmod:main/technology",
   "display": {
     "icon": {
       "item": "chemcraftmod:generator"

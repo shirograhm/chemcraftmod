@@ -1,5 +1,6 @@
 package solitudetraveler.chemcraftmod.tileentity;
 
+import com.sun.javafx.geom.Vec3d;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -8,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import solitudetraveler.chemcraftmod.block.BlockVariables;
@@ -55,9 +55,23 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
     public void tick() {
         // If world is null, return
         if(world == null) return;
-        // If on client, return
-        if(world.isRemote) return;
+        // If on client, spawn particles when requirements are met
+        if(world.isRemote) {
+            if(checkRequirements()) {
+                // generate particle position and speed vectors
+                Random rand = new Random();
+                Vec3d particleSpeed = new Vec3d((rand.nextDouble() - 0.5D) / 2.0D, 0.5D, (rand.nextDouble() - 0.5D) / 2.0D);
+                Vec3d particlePosition = new Vec3d(pos.getX() + 0.5D, pos.getY() + 1.25D, pos.getZ() + 0.5D);
+                // Generate particles for the volcano when reaction completes
+                for (int i = 0; i < 10; i++) {
+                    world.addParticle(ParticleTypes.POOF, true, particlePosition.x, particlePosition.y, particlePosition.z, particleSpeed.x, particleSpeed.y, particleSpeed.z);
+                }
+            }
+            // Return from client block
+            return;
+        }
 
+        // Server side code
         if(checkRequirements()) {
             // Begin running volcano ticks if not running right now
             if(!isRunning) {
@@ -72,16 +86,8 @@ public class VolcanoTileEntity extends BasicTileEntity implements INamedContaine
             if(currentTimeLeft == 0) {
                 inventory.extractItem(VOLCANO_SLOT_1, 1, false);
                 inventory.extractItem(VOLCANO_SLOT_2, 1, false);
-                // make particles
-                Random rand = new Random();
-                double xSpeed = (rand.nextDouble() - 0.5) / 2;
-                double zSpeed = (rand.nextDouble() - 0.5) / 2;
-                BlockPos start = pos.add(0, 0.75, 0);
-
-                // Generate particles for the volcano when reaction completes
-                for (int i = 0; i < 20; i++) {
-                    world.addParticle(ParticleTypes.POOF, true, start.getX(), start.getY(), start.getZ(), xSpeed, 0.25, zSpeed);
-                }
+                // Reset current time left
+                currentTimeLeft = VOLCANO_RUN_TIME;
             }
         }
         else {

@@ -1,5 +1,6 @@
 package solitudetraveler.chemcraftmod.recipes;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -61,5 +62,19 @@ public class ReconstructorRecipe {
         sb.append(result.toString());
 
         return sb.toString();
+    }
+
+    /**
+     * @param item is the ingredient to find
+     * @return the count of the ingredient necessary, or -1 if the ingredient is invalid
+     **/
+    public int getCountForIngredient(Item item) {
+        for(ItemStack ing : ingredients) {
+            if(ing.getItem() == item) {
+                return ing.getCount();
+            }
+        }
+
+        return -1;
     }
 }

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import solitudetraveler.chemcraftmod.container.DeconstructorContainer;
@@ -42,7 +43,7 @@ public class DeconstructorScreen extends ContainerScreen<DeconstructorContainer>
         int relY = (this.height - this.ySize) / 2;
         this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
 
-        if(deconstructorTE.isDeconstructing()) {
+        if(deconstructorTE.getBlockState().get(BlockStateProperties.POWERED)) {
             this.blit(relX + 67, relY + 34, 176, 17, 24, 17);
 
             int k = (int) (deconstructorTE.getDeconstructionTimeScaled() * 23);

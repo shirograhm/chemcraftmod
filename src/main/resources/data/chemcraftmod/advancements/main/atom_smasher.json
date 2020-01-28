@@ -1,5 +1,5 @@
 {
-  "parent": "chemcraftmod:upgradable_parts",
+  "parent": "chemcraftmod:main/upgradable_parts",
   "display": {
     "icon": {
       "item": "chemcraftmod:accelerator"
@@ -15,10 +15,7 @@
     "smasher": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "block": "chemcraftmod:accelerator",
-        "state": {
-          "enabled": true
-        }
+        "block": "chemcraftmod:accelerator"
       }
     }
   }

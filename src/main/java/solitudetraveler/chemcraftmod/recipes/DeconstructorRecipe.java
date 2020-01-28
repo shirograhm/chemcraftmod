@@ -25,7 +25,7 @@ public class DeconstructorRecipe {
     }
 
     public boolean inputEqual(Item itemIn) {
-        return this.input.getItem() == itemIn;
+        return this.input == itemIn;
     }
 
     @Override

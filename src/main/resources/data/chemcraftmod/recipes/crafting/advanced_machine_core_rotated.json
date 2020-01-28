@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "RAR",
-    "SMS",
-    "RAR"
+    "RSR",
+    "AMA",
+    "RSR"
   ],
   "key":
   {

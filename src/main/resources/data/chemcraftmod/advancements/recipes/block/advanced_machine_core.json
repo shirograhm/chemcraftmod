@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "chemcraftmod:advanced_machine_core",
+      "chemcraftmod:crafting/accelerator"
+    ]
+  },
+  "criteria": {
+    "has_machine_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "chemcraftmod:machine_core"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "chemcraftmod:advanced_machine_core"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_machine_core",
+      "has_the_recipe"
+    ]
+  ]
+}

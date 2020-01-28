@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "EEE",
+    "EEE",
+    "EEE"
+  ],
+  "key":
+  {
+    "E": { "item": "chemcraftmod:copper_nugget" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:copper_ingot"
+  }
+}

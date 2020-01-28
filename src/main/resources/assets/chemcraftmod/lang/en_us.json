@@ -33,6 +33,13 @@
   "item.chemcraftmod.tin_ingot": "Tin Ingot",
 
 
+  "item.chemcraftmod.copper_nugget": "Copper Nugget",
+  "item.chemcraftmod.silicon_nugget": "Silicon Nugget",
+  "item.chemcraftmod.aluminium_nugget": "Aluminium Nugget",
+  "item.chemcraftmod.nickel_nugget": "Nickel Nugget",
+  "item.chemcraftmod.tin_nugget": "Tin Nugget",
+
+
   "item.chemcraftmod.salt": "Salt",
   "item.chemcraftmod.soap": "Soap",
   "item.chemcraftmod.baking_soda": "Baking Soda",
@@ -57,7 +64,7 @@
   "item.chemcraftmod.hydroxide": "Hydroxide",
   "item.chemcraftmod.methyl_group": "Methyl Group",
   "item.chemcraftmod.methylene_group": "Methylene Group",
-  "item.chemcraftmod.alkane_group": "Alkane Group",
+  "item.chemcraftmod.propane": "Propane",
   "item.chemcraftmod.acetate": "Acetate",
   "item.chemcraftmod.water": "Water",
   "item.chemcraftmod.hydrogen_peroxide": "Hydrogen Peroxide",
@@ -68,6 +75,7 @@
   "item.chemcraftmod.sodium_bicarbonate": "Sodium Bicarbonate",
   "item.chemcraftmod.sodium_hydroxide": "Sodium Hydroxide",
   "item.chemcraftmod.acetic_acid": "Acetic Acid",
+  "item.chemcraftmod.silver_sulfide": "Silver Sulfide",
 
 
   "item.chemcraftmod.proton": "Proton",

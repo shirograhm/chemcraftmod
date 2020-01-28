@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "EEE",
+    "EEE",
+    "EEE"
+  ],
+  "key":
+  {
+    "E": { "item": "chemcraftmod:silicon" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:silicon_nugget"
+  }
+}

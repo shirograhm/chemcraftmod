@@ -34,6 +34,8 @@ public class ElementItem extends Item {
     public Rarity getRarity(ItemStack stack) {
         if(atomicNumber < 0) return Rarity.EPIC;
 
+        if(emitsRadiationII() || emitsRadiationI()) return Rarity.UNCOMMON;
+
         return super.getRarity(stack);
     }
 
@@ -66,12 +68,7 @@ public class ElementItem extends Item {
         // Check for player wearing hazmat gear
         PlayerEntity pe = (PlayerEntity) entityIn;
 
-        if(playerWearingHazmatGear(pe.getArmorInventoryList())) {
-//            // Random chance 0.4% or 0.8% for radiation damage on armor
-//            if(rand.nextFloat() < 0.04f * effectStrength) {
-//                damageSuit(pe);
-//            }
-        } else {
+        if(!playerWearingHazmatGear(pe.getArmorInventoryList())) {
             EffectInstance currentInstance = pe.getActivePotionEffect(EffectList.radiation);
             EffectInstance radiationInstance = new EffectInstance(EffectList.radiation, 360, effectStrength);
 
@@ -92,13 +89,6 @@ public class ElementItem extends Item {
             if(!(stack.getItem() instanceof HazmatArmorItem)) return false;
         }
         return true;
-    }
-
-    private void damageSuit(PlayerEntity pe) {
-        for(ItemStack stack : pe.getArmorInventoryList()) {
-            // If radiation is ready to be applied, damage armor
-            stack.damageItem(1, pe, (entity) -> {});
-        }
     }
 
     private boolean emitsRadiationI() {

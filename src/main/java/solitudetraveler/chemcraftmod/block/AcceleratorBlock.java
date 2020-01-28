@@ -47,7 +47,10 @@ public class AcceleratorBlock extends Block {
 
     @Override
     public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(state.get(BlockStateProperties.ENABLED) && !worldIn.isRemote) {
+        // If the block isn't built, return false
+        if(!state.get(BlockStateProperties.ENABLED)) return false;
+        // Otherwise, open gui if on the server
+        if(!worldIn.isRemote) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
 
             if(tileEntity instanceof INamedContainerProvider) {

@@ -32,16 +32,13 @@ public class ReconstructorTileEntity extends BasicTileEntity implements INamedCo
     public static final int RECONSTRUCTOR_OUTPUT = 9;
     public static final int NUMBER_RECONSTRUCTOR_SLOTS = 10;
 
-    private static final int RECONSTRUCTION_TIME = 60;
 
-    private boolean isReconstructing;
-    private int reconstructionTimeLeft;
+    private ReconstructorRecipe currentRecipe;
 
     public ReconstructorTileEntity() {
         super(BlockVariables.RECONSTRUCTOR_TILE_TYPE, NUMBER_RECONSTRUCTOR_SLOTS);
 
-        this.reconstructionTimeLeft = 0;
-        this.isReconstructing = false;
+        this.currentRecipe = null;
     }
 
     private ArrayList<ItemStack> getCurrentInputArray() {
@@ -56,12 +53,26 @@ public class ReconstructorTileEntity extends BasicTileEntity implements INamedCo
         return input;
     }
 
-    public double getReconstructionTimeScaled() {
-        return (RECONSTRUCTION_TIME - reconstructionTimeLeft) * 1.0 / RECONSTRUCTION_TIME;
-    }
+    /**
+     * Called when a player removes an item from the result slot
+     **/
+    public void removeInputs() {
+        if(currentRecipe == null) return;
 
-    public boolean isReconstructing() {
-        return isReconstructing;
+        for(int i = RECONSTRUCTOR_INPUT_1; i <= RECONSTRUCTOR_INPUT_9; i++) {
+            ItemStack stackInSlot = inventory.getStackInSlot(i);
+            // If inventory stack is not empty
+            if(!stackInSlot.isEmpty()) {
+                int countToTake = currentRecipe.getCountForIngredient(stackInSlot.getItem());
+
+                if(countToTake > 0) {
+                    inventory.extractItem(i, countToTake, false);
+                } else {
+                    // Otherwise input is not valid for current recipe
+                    currentRecipe = null;
+                }
+            }
+        }
     }
 
     @Override
@@ -73,43 +84,29 @@ public class ReconstructorTileEntity extends BasicTileEntity implements INamedCo
 
         // Do recipe computations
         ArrayList<ItemStack> inputArray = getCurrentInputArray();
-        ReconstructorRecipe recipe = ReconstructorRecipeHandler.getRecipeForInputs(inputArray);
+        currentRecipe = ReconstructorRecipeHandler.getRecipeForInputs(inputArray);
 
-        // If out stack not empty
-        if (inventory.getStackInSlot(RECONSTRUCTOR_OUTPUT) != ItemStack.EMPTY) {
-            isReconstructing = false;
-            reconstructionTimeLeft = 0;
-        } else {
-            // If input is valid
-            if (isActive && recipe != null) {
-                // If we are already reconstructing
-                if (isReconstructing) {
-                    reconstructionTimeLeft--;
-                }
-                // Otherwise, begin reconstruction
-                else {
-                    isReconstructing = true;
-                    reconstructionTimeLeft = RECONSTRUCTION_TIME;
-                }
+        if(isActive) {
+            ItemStack stackInOutput = inventory.getStackInSlot(RECONSTRUCTOR_OUTPUT).copy();
+            // Current recipe exists && output stack is empty
+            if (currentRecipe != null && stackInOutput.isEmpty()) {
+                inventory.insertItem(RECONSTRUCTOR_OUTPUT, currentRecipe.getOutput().copy(), false);
             }
-            // Otherwise if the input is invalid
-            else {
-                // Stop reconstruction
-                isReconstructing = false;
-                reconstructionTimeLeft = 0;
+            // Current recipe exists && output stack is not empty
+            if (currentRecipe != null && !stackInOutput.isEmpty()) {
+                // Reset stack in output
+                inventory.extractItem(RECONSTRUCTOR_OUTPUT, stackInOutput.getCount(), false);
+                // Insert new output
+                inventory.insertItem(RECONSTRUCTOR_OUTPUT, currentRecipe.getOutput().copy(), false);
             }
-        }
-        if (isReconstructing && reconstructionTimeLeft == 0) {
-            // Clear input stacks
-            for (int i = RECONSTRUCTOR_INPUT_1; i <= RECONSTRUCTOR_INPUT_9; i++) {
-                // Reset input stacks
-                inventory.extractItem(i, inventory.getStackInSlot(i).getCount(), false);
+            // Current recipe does not exist && output stack is empty
+            if (currentRecipe == null && stackInOutput.isEmpty()) {
+                // Do nothing for this case because we want null recipes to have no output
             }
-            // Set output stack
-            inventory.insertItem(RECONSTRUCTOR_OUTPUT, recipe.getOutput().copy(), false);
-            // Reset machine
-            isReconstructing = false;
-            reconstructionTimeLeft = 0;
+            // Current recipe does not exist && output stack is not empty
+            if (currentRecipe == null && !stackInOutput.isEmpty()) {
+                inventory.extractItem(RECONSTRUCTOR_OUTPUT, stackInOutput.getCount(), false);
+            }
         }
 
         super.tick();
@@ -117,18 +114,12 @@ public class ReconstructorTileEntity extends BasicTileEntity implements INamedCo
 
     @Override
     public void read(CompoundNBT tag) {
-        this.reconstructionTimeLeft = tag.getInt("timeLeft");
-        this.isReconstructing = tag.getBoolean("isReconstructing");
-
         super.read(tag);
     }
 
     @Nonnull
     @Override
     public CompoundNBT write(CompoundNBT tag) {
-        tag.putInt("timeLeft", reconstructionTimeLeft);
-        tag.putBoolean("isReconstructing", isReconstructing);
-
         return super.write(tag);
     }
 

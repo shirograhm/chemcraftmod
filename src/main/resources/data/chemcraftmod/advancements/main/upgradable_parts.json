@@ -1,5 +1,5 @@
 {
-  "parent": "chemcraftmod:industrial_revolution",
+  "parent": "chemcraftmod:main/industrial_revolution",
   "display": {
     "icon": {
       "item": "chemcraftmod:advanced_machine_core"

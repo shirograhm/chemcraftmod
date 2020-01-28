@@ -47,7 +47,8 @@ public class DeconstructorTileEntity extends BasicTileEntity implements INamedCo
     }
 
     public double getDeconstructionTimeScaled() {
-        return (DECONSTRUCTION_TIME - deconstructionTimeLeft) * 1.0 / DECONSTRUCTION_TIME;
+        if(!isDeconstructing) return 0.0D;
+        return (DECONSTRUCTION_TIME - deconstructionTimeLeft) * 1.0D / DECONSTRUCTION_TIME;
     }
 
     public boolean isDeconstructing() {

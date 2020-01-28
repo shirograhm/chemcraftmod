@@ -83,7 +83,7 @@ public class AcceleratorContainer extends Container {
                 }
             } else {
                 // Inventory to container
-                if(inventorySlots.get(AcceleratorTileEntity.ACCELERATOR_INPUT_1).getStack() == ItemStack.EMPTY) {
+                if(inventorySlots.get(AcceleratorTileEntity.ACCELERATOR_INPUT_1).getStack().isEmpty()) {
                     if (!this.mergeItemStack(stackInSlot, AcceleratorTileEntity.ACCELERATOR_INPUT_1, AcceleratorTileEntity.ACCELERATOR_INPUT_1 + 1, false)) {
                         return ItemStack.EMPTY;
                     }

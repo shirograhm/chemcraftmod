@@ -10,7 +10,6 @@ import solitudetraveler.chemcraftmod.recipes.DeconstructorRecipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class DeconstructorRecipeHandler {
     private static ArrayList<DeconstructorRecipe> recipes = new ArrayList<>();
@@ -18,34 +17,41 @@ public class DeconstructorRecipeHandler {
     static {
         // All ingot recipes
         addRecipe(ItemList.copper_ingot,
-                new ArrayList<>(Collections.singletonList(
-                        new ItemStack(ItemList.getElementNumber(29), 6)))
-        );
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(29), 27),
+                        new ItemStack(ItemList.getElementNumber(29), 27),
+                        new ItemStack(ItemList.getElementNumber(29), 27))));
         addRecipe(Items.IRON_INGOT,
-                new ArrayList<>(Collections.singletonList(
-                        new ItemStack(ItemList.getElementNumber(26), 6)))
-        );
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(26), 27),
+                        new ItemStack(ItemList.getElementNumber(26), 27),
+                        new ItemStack(ItemList.getElementNumber(26), 27))));
         addRecipe(ItemList.silicon_ingot,
-                new ArrayList<>(Collections.singletonList(
-                        new ItemStack(ItemList.getElementNumber(14), 6)))
-        );
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(14), 27),
+                        new ItemStack(ItemList.getElementNumber(14), 27),
+                        new ItemStack(ItemList.getElementNumber(14), 27))));
         addRecipe(ItemList.nickel_ingot,
-                new ArrayList<>(Collections.singletonList(
-                        new ItemStack(ItemList.getElementNumber(28), 6)))
-        );
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(28), 27),
+                        new ItemStack(ItemList.getElementNumber(28), 27),
+                        new ItemStack(ItemList.getElementNumber(28), 27))));
         addRecipe(ItemList.aluminium_ingot,
-                new ArrayList<>(Collections.singletonList(
-                        new ItemStack(ItemList.getElementNumber(13), 6)))
-        );
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(13), 27),
+                        new ItemStack(ItemList.getElementNumber(13), 27),
+                        new ItemStack(ItemList.getElementNumber(13), 27))));
         addRecipe(ItemList.tin_ingot,
-                new ArrayList<>(Collections.singletonList(
-                        new ItemStack(ItemList.getElementNumber(50), 6)))
-        );
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(50), 27),
+                        new ItemStack(ItemList.getElementNumber(50), 27),
+                        new ItemStack(ItemList.getElementNumber(50), 27))));
         addRecipe(Items.GOLD_INGOT,
-                new ArrayList<>(Collections.singletonList(
-                        new ItemStack(ItemList.getElementNumber(79), 6)))
-        );
-        // Other item decompositions
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(79), 27),
+                        new ItemStack(ItemList.getElementNumber(79), 27),
+                        new ItemStack(ItemList.getElementNumber(79), 27))));
+        // Vanilla items
         addTagRecipe(ItemTags.LOGS,
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(6), 27),
@@ -83,6 +89,10 @@ public class DeconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(11), 6),
                         new ItemStack(ItemList.getElementNumber(20), 6),
                         new ItemStack(ItemList.getElementNumber(56), 6))));
+        addRecipe(Items.WATER_BUCKET,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(8), 18),
+                        new ItemStack(ItemList.getElementNumber(1), 36))));
         // Mineral decompositions
         addRecipe(ItemList.aragonite,
                 new ArrayList<>(Arrays.asList(
@@ -124,6 +134,90 @@ public class DeconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(26), 9),
                         new ItemStack(ItemList.getElementNumber(22), 9),
                         new ItemStack(ItemList.getElementNumber(8), 36))));
+        // Covalent Compounds
+        addRecipe(ItemList.water,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(1), 2),
+                        new ItemStack(ItemList.getElementNumber(8)))));
+        addRecipe(ItemList.hydrogen_peroxide,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(1), 2),
+                        new ItemStack(ItemList.getElementNumber(8), 2))));
+        addRecipe(ItemList.acetate,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6), 2),
+                        new ItemStack(ItemList.getElementNumber(1), 3),
+                        new ItemStack(ItemList.getElementNumber(8), 2))));
+        addRecipe(ItemList.sulfate,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(16)),
+                        new ItemStack(ItemList.getElementNumber(8), 4))));
+        addRecipe(ItemList.sulfite,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(16)),
+                        new ItemStack(ItemList.getElementNumber(8), 3))));
+        addRecipe(ItemList.nitrate,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(7)),
+                        new ItemStack(ItemList.getElementNumber(8), 3))));
+        addRecipe(ItemList.nitrite,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(7)),
+                        new ItemStack(ItemList.getElementNumber(8), 2))));
+        addRecipe(ItemList.carbonate,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6)),
+                        new ItemStack(ItemList.getElementNumber(8), 3))));
+        addRecipe(ItemList.bicarbonate,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(1)),
+                        new ItemStack(ItemList.getElementNumber(6)),
+                        new ItemStack(ItemList.getElementNumber(8), 3))));
+        addRecipe(ItemList.hydroxide,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(8)),
+                        new ItemStack(ItemList.getElementNumber(1)))));
+        addRecipe(ItemList.methyl_group,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6)),
+                        new ItemStack(ItemList.getElementNumber(1), 3))));
+        addRecipe(ItemList.methylene_group,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6)),
+                        new ItemStack(ItemList.getElementNumber(1), 2))));
+        addRecipe(ItemList.propane,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6), 3),
+                        new ItemStack(ItemList.getElementNumber(1), 8))));
+        // Ionic compounds
+        addRecipe(ItemList.zinc_oxide,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(30)),
+                        new ItemStack(ItemList.getElementNumber(8)))));
+        addRecipe(ItemList.sodium_chloride,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(11)),
+                        new ItemStack(ItemList.getElementNumber(17)))));
+        addRecipe(ItemList.sodium_bicarbonate,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(11)),
+                        new ItemStack(ItemList.getElementNumber(1)),
+                        new ItemStack(ItemList.getElementNumber(6)),
+                        new ItemStack(ItemList.getElementNumber(8), 3))));
+        addRecipe(ItemList.sodium_hydroxide,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(11)),
+                        new ItemStack(ItemList.getElementNumber(8)),
+                        new ItemStack(ItemList.getElementNumber(1)))));
+        addRecipe(ItemList.acetic_acid,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6), 2),
+                        new ItemStack(ItemList.getElementNumber(1), 4),
+                        new ItemStack(ItemList.getElementNumber(8), 2))));
+        addRecipe(ItemList.silver_sulfide,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(47), 2),
+                        new ItemStack(ItemList.getElementNumber(16)))));
     }
 
     private static void addRecipe(Item itemIn, ArrayList<ItemStack> resultStacks) {

@@ -13,6 +13,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import solitudetraveler.chemcraftmod.block.BlockList;
 import solitudetraveler.chemcraftmod.block.BlockVariables;
+import solitudetraveler.chemcraftmod.item.ItemList;
 import solitudetraveler.chemcraftmod.tileentity.VolcanoTileEntity;
 
 import javax.annotation.Nonnull;
@@ -57,11 +58,15 @@ public class VolcanoContainer extends Container {
                 }
             } else {
                 // Inventory to container
-                if(!this.mergeItemStack(stackInSlot, VolcanoTileEntity.VOLCANO_SLOT_1, VolcanoTileEntity.VOLCANO_SLOT_1 + 1, false)) {
-                    return ItemStack.EMPTY;
+                if(stackInSlot.getItem() == ItemList.vinegar) {
+                    if(!this.mergeItemStack(stackInSlot, VolcanoTileEntity.VOLCANO_SLOT_1, VolcanoTileEntity.VOLCANO_SLOT_1 + 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
-                if(!this.mergeItemStack(stackInSlot, VolcanoTileEntity.VOLCANO_SLOT_2, VolcanoTileEntity.VOLCANO_SLOT_2 + 1, false)) {
-                    return ItemStack.EMPTY;
+                if(stackInSlot.getItem() == ItemList.baking_soda) {
+                    if(!this.mergeItemStack(stackInSlot, VolcanoTileEntity.VOLCANO_SLOT_2, VolcanoTileEntity.VOLCANO_SLOT_2 + 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
             }
 

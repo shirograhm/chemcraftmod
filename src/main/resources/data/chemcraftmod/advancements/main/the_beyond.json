@@ -1,5 +1,5 @@
 {
-  "parent": "chemcraftmod:atom_smasher",
+  "parent": "chemcraftmod:main/atom_smasher",
   "display": {
     "icon": {
       "item": "chemcraftmod:unknown"
@@ -8,18 +8,21 @@
       "text": "The Great Beyond"
     },
     "description": {
-      "text": "UNKOWN",
+      "text": "unknown",
       "color": "dark_purple",
+      "bold": true,
       "obfuscated": true
     }
   },
   "criteria": {
-    "irradiated": {
-      "trigger": "minecraft:effects_changed",
+    "beyond": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "effects": {
-          "chemcraftmod:radiation": {}
-        }
+        "items": [
+          {
+            "item": "chemcraftmod:unknown"
+          }
+        ]
       }
     }
   }
