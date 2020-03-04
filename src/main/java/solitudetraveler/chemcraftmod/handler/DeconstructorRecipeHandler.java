@@ -14,8 +14,10 @@ import java.util.Arrays;
 public class DeconstructorRecipeHandler {
     private static ArrayList<DeconstructorRecipe> recipes = new ArrayList<>();
 
+    // All recipes produce 54 elements of output
+
     static {
-        // All ingot recipes
+        // Ingot recipes
         addRecipe(ItemList.copper_ingot,
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(29), 27),
@@ -51,6 +53,7 @@ public class DeconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(79), 27),
                         new ItemStack(ItemList.getElementNumber(79), 27),
                         new ItemStack(ItemList.getElementNumber(79), 27))));
+
         // Vanilla items
         addTagRecipe(ItemTags.LOGS,
                 new ArrayList<>(Arrays.asList(
@@ -68,6 +71,20 @@ public class DeconstructorRecipeHandler {
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(14), 18),
                         new ItemStack(ItemList.getElementNumber(8), 36))));
+        addTagRecipe(ItemTags.STONE_BRICKS,
+                new ArrayList<>((Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(14), 9),
+                        new ItemStack(ItemList.getElementNumber(13), 9),
+                        new ItemStack(ItemList.getElementNumber(26), 9),
+                        new ItemStack(ItemList.getElementNumber(8), 27)))));
+        addTagRecipe(ItemTags.LEAVES,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6), 12),
+                        new ItemStack(ItemList.getElementNumber(1), 24),
+                        new ItemStack(ItemList.getElementNumber(8), 12),
+                        new ItemStack(ItemList.getElementNumber(7), 2),
+                        new ItemStack(ItemList.getElementNumber(15), 2),
+                        new ItemStack(ItemList.getElementNumber(19), 2))));
         addRecipe(Items.DIRT,
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(7), 16),
@@ -93,6 +110,19 @@ public class DeconstructorRecipeHandler {
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(8), 18),
                         new ItemStack(ItemList.getElementNumber(1), 36))));
+        addRecipe(Items.COBBLESTONE,
+                new ArrayList<>((Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(14), 9),
+                        new ItemStack(ItemList.getElementNumber(13), 9),
+                        new ItemStack(ItemList.getElementNumber(26), 9),
+                        new ItemStack(ItemList.getElementNumber(8), 27)))));
+        addRecipe(Items.STONE,
+                new ArrayList<>((Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(14), 9),
+                        new ItemStack(ItemList.getElementNumber(13), 9),
+                        new ItemStack(ItemList.getElementNumber(26), 9),
+                        new ItemStack(ItemList.getElementNumber(8), 27)))));
+
         // Mineral decompositions
         addRecipe(ItemList.aragonite,
                 new ArrayList<>(Arrays.asList(
@@ -134,6 +164,7 @@ public class DeconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(26), 9),
                         new ItemStack(ItemList.getElementNumber(22), 9),
                         new ItemStack(ItemList.getElementNumber(8), 36))));
+
         // Covalent Compounds
         addRecipe(ItemList.water,
                 new ArrayList<>(Arrays.asList(
@@ -189,6 +220,7 @@ public class DeconstructorRecipeHandler {
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(6), 3),
                         new ItemStack(ItemList.getElementNumber(1), 8))));
+
         // Ionic compounds
         addRecipe(ItemList.zinc_oxide,
                 new ArrayList<>(Arrays.asList(

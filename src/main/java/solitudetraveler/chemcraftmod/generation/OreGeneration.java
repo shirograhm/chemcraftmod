@@ -16,13 +16,13 @@ public class OreGeneration {
         if(OreGenConfig.generate_overworld.get()) {
             for(Biome biome : ForgeRegistries.BIOMES) {
                 // Dolostone generation
-                addOreGenerationToBiome(biome, 20, 24, 96, 100, BlockList.dolostone.getDefaultState());
+                addOreGenerationToBiome(biome, 64, 70, 96, 30, BlockList.dolostone.getDefaultState());
                 // Copper ore generation
-                addOreGenerationToBiome(biome, 0, 6, 70, 65, BlockList.copper_ore.getDefaultState());
+                addOreGenerationToBiome(biome, 0, 6, 70, 50, BlockList.copper_ore.getDefaultState());
                 // Nickel ore generation
-                addOreGenerationToBiome(biome, 12, 24, 52, 40, BlockList.nickel_ore.getDefaultState());
+                addOreGenerationToBiome(biome, 12, 24, 52, 20, BlockList.nickel_ore.getDefaultState());
                 // Aluminium ore generation
-                addOreGenerationToBiome(biome, 6, 12, 74, 30, BlockList.aluminium_ore.getDefaultState());
+                addOreGenerationToBiome(biome, 6, 12, 74, 10, BlockList.aluminium_ore.getDefaultState());
             }
         }
     }

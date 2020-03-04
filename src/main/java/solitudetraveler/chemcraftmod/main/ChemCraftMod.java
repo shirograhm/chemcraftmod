@@ -78,6 +78,7 @@ public class ChemCraftMod {
     private void setup(final FMLCommonSetupEvent event) {
         proxy.init();
         OreGeneration.setupOreGeneration();
+        // Register in-game events
         MinecraftForge.EVENT_BUS.register(ChemCraftEventHandler.class);
 
         LOGGER.info("Setup method registered!");

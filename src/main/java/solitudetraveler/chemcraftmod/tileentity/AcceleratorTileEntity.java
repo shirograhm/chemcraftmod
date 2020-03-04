@@ -7,10 +7,12 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -41,11 +43,13 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
 
     private double multiplier;
     private int currentAnimationFrame;
+    private boolean isAtomSmashing;
 
 
     public AcceleratorTileEntity() {
         super(BlockVariables.ACCELERATOR_TILE_TYPE, NUMBER_ACCELERATOR_SLOTS);
 
+        this.isAtomSmashing = false;
         this.multiplier = 1.0;
         this.currentAnimationFrame = 0;
     }
@@ -132,8 +136,20 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
     public void tick() {
         // If world is null, return
         if (world == null) return;
-        // If client, play sound if active
-        if (world.isRemote) return;
+        // If client, play sound if active and spawn accelerator particles if collision is running
+        if (world.isRemote) {
+            if(isAtomSmashing) {
+                Random rand = new Random();
+                Vec3d particleSpeed = new Vec3d(rand.nextDouble() * 2 - 1, 0.0D, rand.nextDouble() * 2 - 1);
+                Vec3d particlePosition = new Vec3d(pos.getX() + 0.5D, pos.getY() - 0.5D, pos.getZ() - 2.5D);
+                // Generate particles for accelerator processing
+                for(int i = 0; i < 20; i++) {
+                    world.addParticle(ParticleTypes.POOF, true, particlePosition.x, particlePosition.y, particlePosition.z, particleSpeed.x, particleSpeed.y, particleSpeed.z);
+                }
+            }
+            // Return from client block
+            return;
+        }
         // Built check
         world.setBlockState(pos, this.getBlockState().with(BlockStateProperties.ENABLED, acceleratorIsBuilt(world, pos)));
         if (!this.getBlockState().get(BlockStateProperties.ENABLED)) return;
@@ -143,6 +159,7 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
         Random rand = new Random();
         // If both inputs are elements (inputs.size() = 2) and the block is active
         if(isActive && inputs.size() == 2 && outputSlotsAvailable()) {
+            isAtomSmashing = true;
             // Run chance collision
             if(rand.nextInt(100) < BASE_COLLISION_CHANCE) {
                 runCollisionAndSetOutputStacks(rand, inputs);
@@ -151,6 +168,8 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
                 currentAnimationFrame++;
                 currentAnimationFrame %= ANIMATION_FRAMES;
             }
+        } else {
+            isAtomSmashing = false;
         }
 
         super.tick();

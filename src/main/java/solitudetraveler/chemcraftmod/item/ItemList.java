@@ -3,6 +3,7 @@ package solitudetraveler.chemcraftmod.item;
 import net.minecraft.item.Item;
 
 public class ItemList {
+    public static Item chemical_index;
     // Garmets and Tools
     public static Item gas_mask;
     public static Item lead_coat;
