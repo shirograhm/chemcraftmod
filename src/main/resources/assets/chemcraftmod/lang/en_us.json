@@ -6,9 +6,18 @@
 
 
   "block.chemcraftmod.dolostone": "Dolostone",
+
+
   "block.chemcraftmod.copper_ore": "Copper Ore",
   "block.chemcraftmod.nickel_ore": "Nickel Ore",
   "block.chemcraftmod.aluminium_ore": "Aluminium Ore",
+  "block.chemcraftmod.tin_ore": "Tin Ore",
+  "block.chemcraftmod.lead_ore": "Lead Ore",
+  "block.chemcraftmod.silver_ore": "Silver Ore",
+  "block.chemcraftmod.platinum_ore": "Platinum Ore",
+  "block.chemcraftmod.chromium_ore": "Chromium Ore",
+
+
   "block.chemcraftmod.generator": "Generator",
   "block.chemcraftmod.reconstructor": "Molecular Reconstructor",
   "block.chemcraftmod.deconstructor": "Molecular Deconstructor",
@@ -208,5 +217,6 @@
   "itemGroup.blockGroup": "ChemCraft Blocks",
   "itemGroup.mineralGroup": "ChemCraft Minerals",
   "itemGroup.compoundGroup": "ChemCraft Compounds",
-  "itemGroup.basicItemGroup": "ChemCraft Miscellaneous"
+  "itemGroup.basicItemGroup": "ChemCraft Miscellaneous",
+  "itemGroup.equipmentGroup": "ChemCraft Equipment"
 }

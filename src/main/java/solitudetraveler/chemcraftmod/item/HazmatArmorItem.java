@@ -10,7 +10,7 @@ import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 
 public class HazmatArmorItem extends ArmorItem {
     public HazmatArmorItem(ResourceLocation name, ArmorMaterial material, EquipmentSlotType type, int damage) {
-        super(material, type, new Item.Properties().maxDamage(damage).group(CreativeTabList.basicItemGroup));
+        super(material, type, new Item.Properties().maxDamage(damage).group(CreativeTabList.equipmentGroup));
 
         setRegistryName(name);
     }
@@ -27,6 +27,6 @@ public class HazmatArmorItem extends ArmorItem {
 
     @Override
     public float getToughness() {
-        return super.getToughness();
+        return super.getToughness() + 0.5F;
     }
 }

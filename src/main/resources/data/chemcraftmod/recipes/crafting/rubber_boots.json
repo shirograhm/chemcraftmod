@@ -3,11 +3,12 @@
   "pattern":
   [
     "R R",
-    "R R"
+    "RIR"
   ],
   "key":
   {
-    "R": { "item": "chemcraftmod:rubber" }
+    "R": { "item": "chemcraftmod:rubber" },
+    "I": { "item": "minecraft:iron_boots" }
   },
   "result":
   {

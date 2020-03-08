@@ -2,14 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "L L",
-    "LRL",
-    "LRL"
+    "R R",
+    "LIL",
+    "LLL"
   ],
   "key":
   {
     "R": { "item": "chemcraftmod:rubber" },
-    "L": { "item": "chemcraftmod:lead" }
+    "L": { "item": "chemcraftmod:lead" },
+    "I": { "item": "minecraft:iron_chestplate" }
   },
   "result":
   {

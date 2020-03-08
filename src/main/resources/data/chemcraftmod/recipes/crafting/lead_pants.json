@@ -3,12 +3,13 @@
   "pattern":
   [
     "LLL",
-    "R R",
+    "LIL",
     "R R"
   ],
   "key":
   {
     "R": { "item": "chemcraftmod:rubber" },
+    "I": { "item": "minecraft:iron_leggings" },
     "L": { "item": "chemcraftmod:lead" }
   },
   "result":

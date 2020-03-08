@@ -32,6 +32,7 @@ import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
 import solitudetraveler.chemcraftmod.handler.ChemCraftEventHandler;
 import solitudetraveler.chemcraftmod.item.*;
+import solitudetraveler.chemcraftmod.item.HazmatArmorItem;
 import solitudetraveler.chemcraftmod.tileentity.*;
 
 import java.util.ArrayList;
@@ -42,25 +43,6 @@ public class ChemCraftMod {
     public static final String MOD_ID = "chemcraftmod";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-
-
-    private static final String[] ELEMENT_NAMES = new String[] {
-            "hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen",
-            "oxygen", "fluorine", "neon", "sodium", "magnesium", "aluminium", "silicon",
-            "phosphorus", "sulphur", "chlorine", "argon", "potassium", "calcium", "scandium",
-            "titanium", "vanadium", "chromium", "manganese", "iron", "cobalt", "nickel",
-            "copper", "zinc", "gallium", "germanium", "arsenic", "selenium", "bromine", "krypton",
-            "rubidium", "strontium", "yttrium", "zirconium", "niobium", "molybdenum", "technetium", "ruthenium",
-            "rhodium", "palladium", "silver", "cadmium", "indium", "tin", "antimony", "tellurium", "iodine",
-            "xenon", "cesium", "barium", "lanthanum", "cerium", "praseodymium", "neodymium", "promethium",
-            "samarium", "europium", "gadolinium", "terbium", "dysprosium", "holmium", "erbium", "thulium", "ytterbium",
-            "lutetium", "hafnium", "tantalum", "tungsten", "rhenium", "osmium", "iridium", "platinum", "gold", "mercury",
-            "thallium", "lead", "bismuth", "polonium", "astatine", "radon", "francium", "radium", "actinium", "thorium",
-            "protactinium", "uranium", "neptunium", "plutonium", "americium", "curium", "berkelium", "californium",
-            "einsteinium", "fermium", "mendelevium", "nobelium", "lawrencium", "rutherfordium", "dubnium", "seaborgium",
-            "bohrium", "hassium", "meitnerium", "darmstadtium", "roentgenium", "copernicium", "nihonium", "flerovium",
-            "moscovium", "livermorium", "tennessine", "oganesson"
-    };
 
     public ChemCraftMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG, MOD_ID + "-server.toml");
@@ -77,15 +59,16 @@ public class ChemCraftMod {
 
     private void setup(final FMLCommonSetupEvent event) {
         proxy.init();
+        // Generate ores in world
         OreGeneration.setupOreGeneration();
         // Register in-game events
         MinecraftForge.EVENT_BUS.register(ChemCraftEventHandler.class);
 
-        LOGGER.info("Setup method registered!");
+        LOGGER.info("Chemcraft setup complete!");
     }
 
     private void clientRegistries(final FMLClientSetupEvent event) {
-        LOGGER.info("Client registries method registered!");
+        LOGGER.info("Client registries method complete!");
     }
 
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
@@ -100,8 +83,8 @@ public class ChemCraftMod {
                     ItemList.unknown = new ElementItem(location("unknown"), -1)
                     );
             // Initialize elements
-            for(int i = 0; i < ELEMENT_NAMES.length; i++) {
-                event.getRegistry().register(ItemList.elementList[i] = new ElementItem(location(ELEMENT_NAMES[i]), i + 1));
+            for(int i = 1; i <= ElementInfo.getCount(); i++) {
+                event.getRegistry().register(ItemList.elementList[i - 1] = new ElementItem(location(ElementInfo.getName(i)), i));
             }
             // Register items
             event.getRegistry().registerAll(
@@ -115,6 +98,11 @@ public class ChemCraftMod {
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
                     ItemList.nickel_ore = new BasicBlockItem(BlockList.nickel_ore.getRegistryName(), BlockList.nickel_ore),
                     ItemList.aluminium_ore = new BasicBlockItem(BlockList.aluminium_ore.getRegistryName(), BlockList.aluminium_ore),
+                    ItemList.tin_ore = new BasicBlockItem(BlockList.tin_ore.getRegistryName(), BlockList.tin_ore),
+                    ItemList.silver_ore = new BasicBlockItem(BlockList.silver_ore.getRegistryName(), BlockList.silver_ore),
+                    ItemList.lead_ore = new BasicBlockItem(BlockList.lead_ore.getRegistryName(), BlockList.lead_ore),
+                    ItemList.platinum_ore = new BasicBlockItem(BlockList.platinum_ore.getRegistryName(), BlockList.platinum_ore),
+                    ItemList.chromium_ore = new BasicBlockItem(BlockList.chromium_ore.getRegistryName(), BlockList.chromium_ore),
                     // Machines
                     ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet.getRegistryName(), BlockList.electromagnet),
                     ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor, Rarity.UNCOMMON),
@@ -179,7 +167,7 @@ public class ChemCraftMod {
                     ItemList.silver_sulfide = new CompoundItem(location("silver_sulfide"), "Ag2S")
             );
 
-            LOGGER.info("Items registered!");
+            LOGGER.info("Chemcraft items registered!");
         }
 
         @SubscribeEvent
@@ -188,16 +176,23 @@ public class ChemCraftMod {
                     EffectList.radiation = new RadiationEffect(location("radiation"))
             );
 
-            LOGGER.info("Potion effects registered!");
+            LOGGER.info("Chemcraft potion effects registered!");
         }
 
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
             event.getRegistry().registerAll(
                     BlockList.dolostone = new Block(BlockVariables.rockProperties).setRegistryName(location("dolostone")),
+                    // Ores
                     BlockList.copper_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("copper_ore")),
                     BlockList.nickel_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("nickel_ore")),
                     BlockList.aluminium_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("aluminium_ore")),
+                    BlockList.tin_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("tin_ore")),
+                    BlockList.silver_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("silver_ore")),
+                    BlockList.lead_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("lead_ore")),
+                    BlockList.platinum_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("platinum_ore")),
+                    BlockList.chromium_ore = new Block(BlockVariables.rockProperties).setRegistryName(location("chromium_ore")),
+                    // Machines
                     BlockList.generator = new GeneratorBlock(location("generator"), BlockVariables.machineProperties),
                     BlockList.reconstructor = new ReconstructorBlock(location("reconstructor"), BlockVariables.machineProperties),
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockVariables.machineProperties),
@@ -206,7 +201,7 @@ public class ChemCraftMod {
                     BlockList.volcano = new VolcanoBlock(location("volcano"), BlockVariables.rockProperties)
             );
 
-            LOGGER.info("Blocks registered!");
+            LOGGER.info("Chemcraft blocks registered!");
         }
 
         @SubscribeEvent
@@ -224,7 +219,7 @@ public class ChemCraftMod {
                             .setRegistryName(Objects.requireNonNull(BlockList.accelerator.getRegistryName()))
             );
 
-            LOGGER.info("Tile entities registered!");
+            LOGGER.info("Chemcraft tile entities registered!");
         }
 
         @SubscribeEvent
@@ -260,7 +255,7 @@ public class ChemCraftMod {
                 event.getRegistry().register(type);
             }
 
-            LOGGER.info("Containers registered!");
+            LOGGER.info("Chemcraft containers registered!");
         }
 
         private static ResourceLocation location(String name) {

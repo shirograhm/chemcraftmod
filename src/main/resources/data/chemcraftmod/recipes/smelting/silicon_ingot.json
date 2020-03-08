@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:quartz_block"
+  },
+  "result": "chemcraftmod:silicon_ingot",
+  "experience": 3.0,
+  "cookingtime": 200
+}

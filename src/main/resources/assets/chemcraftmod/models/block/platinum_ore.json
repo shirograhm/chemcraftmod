@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "chemcraftmod:block/platinum_ore"
+  }
+}

@@ -4,10 +4,10 @@
       "item": "chemcraftmod:machine_core"
     },
     "title": {
-      "text": "A Digital World"
+      "text": "Chemistry!"
     },
     "description": {
-      "text": "Create a machine core"
+      "text": "Create your first machine core"
     },
     "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
   },

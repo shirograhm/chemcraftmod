@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class DeconstructorRecipeHandler {
     private static ArrayList<DeconstructorRecipe> recipes = new ArrayList<>();
 
-    // All recipes produce 54 elements of output
+    // All recipes produce 54 elements of output except diamond
 
     static {
         // Ingot recipes
@@ -99,38 +99,95 @@ public class DeconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(1), 10),
                         new ItemStack(ItemList.getElementNumber(8), 8),
                         new ItemStack(ItemList.getElementNumber(16), 10))));
+        addRecipe(Items.PODZOL,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(7), 18),
+                        new ItemStack(ItemList.getElementNumber(6), 8),
+                        new ItemStack(ItemList.getElementNumber(1), 8),
+                        new ItemStack(ItemList.getElementNumber(8), 8),
+                        new ItemStack(ItemList.getElementNumber(34), 12))));
         addRecipe(Items.GRAVEL,
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(14), 12),
                         new ItemStack(ItemList.getElementNumber(8), 24),
-                        new ItemStack(ItemList.getElementNumber(11), 6),
+                        new ItemStack(ItemList.getElementNumber(11), 9),
                         new ItemStack(ItemList.getElementNumber(20), 6),
-                        new ItemStack(ItemList.getElementNumber(56), 6))));
+                        new ItemStack(ItemList.getElementNumber(56), 3))));
         addRecipe(Items.WATER_BUCKET,
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(8), 18),
                         new ItemStack(ItemList.getElementNumber(1), 36))));
         addRecipe(Items.COBBLESTONE,
-                new ArrayList<>((Arrays.asList(
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(14), 9),
                         new ItemStack(ItemList.getElementNumber(13), 9),
                         new ItemStack(ItemList.getElementNumber(26), 9),
-                        new ItemStack(ItemList.getElementNumber(8), 27)))));
+                        new ItemStack(ItemList.getElementNumber(8), 27))));
         addRecipe(Items.STONE,
-                new ArrayList<>((Arrays.asList(
+                new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(14), 9),
                         new ItemStack(ItemList.getElementNumber(13), 9),
                         new ItemStack(ItemList.getElementNumber(26), 9),
-                        new ItemStack(ItemList.getElementNumber(8), 27)))));
+                        new ItemStack(ItemList.getElementNumber(8), 27))));
+        addRecipe(Items.COAL,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6), 42),
+                        new ItemStack(ItemList.getElementNumber(8), 3),
+                        new ItemStack(ItemList.getElementNumber(7), 3),
+                        new ItemStack(ItemList.getElementNumber(1), 3),
+                        new ItemStack(ItemList.getElementNumber(16), 3))));
+        addRecipe(Items.DIAMOND,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6), 64),
+                        new ItemStack(ItemList.getElementNumber(6), 44))));
+        addRecipe(Items.EMERALD,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(4), 14),
+                        new ItemStack(ItemList.getElementNumber(13), 8),
+                        new ItemStack(ItemList.getElementNumber(14), 8),
+                        new ItemStack(ItemList.getElementNumber(8), 24))));
+        addRecipe(Items.QUARTZ,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(11), 4),
+                        new ItemStack(ItemList.getElementNumber(5), 10),
+                        new ItemStack(ItemList.getElementNumber(8), 24),
+                        new ItemStack(ItemList.getElementNumber(1), 16))));
+        addRecipe(Items.APPLE,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(6), 12),
+                        new ItemStack(ItemList.getElementNumber(1), 24),
+                        new ItemStack(ItemList.getElementNumber(8), 12),
+                        new ItemStack(ItemList.getElementNumber(19), 3),
+                        new ItemStack(ItemList.getElementNumber(12), 3))));
+        addRecipe(Items.GUNPOWDER,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(15), 14),
+                        new ItemStack(ItemList.getElementNumber(16), 24),
+                        new ItemStack(ItemList.getElementNumber(7), 4),
+                        new ItemStack(ItemList.getElementNumber(8), 12))));
+        addRecipe(ItemList.salt,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(11), 27),
+                        new ItemStack(ItemList.getElementNumber(17), 27))));
+        addRecipe(Items.PUMPKIN,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(30), 18),
+                        new ItemStack(ItemList.getElementNumber(25), 18),
+                        new ItemStack(ItemList.getElementNumber(15), 18))));
+        addRecipe(Items.MELON,
+                new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.getElementNumber(30), 18),
+                        new ItemStack(ItemList.getElementNumber(25), 18),
+                        new ItemStack(ItemList.getElementNumber(15), 18))));
 
         // Mineral decompositions
         addRecipe(ItemList.aragonite,
                 new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(20), 12),
-                        new ItemStack(ItemList.getElementNumber(8), 36),
-                        new ItemStack(ItemList.getElementNumber(11), 2),
-                        new ItemStack(ItemList.getElementNumber(12), 2),
-                        new ItemStack(ItemList.getElementNumber(38), 2))));
+                        new ItemStack(ItemList.getElementNumber(20), 18),
+                        new ItemStack(ItemList.getElementNumber(8), 24),
+                        new ItemStack(ItemList.getElementNumber(3), 6),
+                        new ItemStack(ItemList.getElementNumber(12), 6),
+                        new ItemStack(ItemList.getElementNumber(38), 6))));
         addRecipe(ItemList.calcite,
                 new ArrayList<>(Arrays.asList(
                         new ItemStack(ItemList.getElementNumber(20), 13),
@@ -139,7 +196,7 @@ public class DeconstructorRecipeHandler {
                         new ItemStack(ItemList.getElementNumber(38), 1))));
         addRecipe(ItemList.sodalite,
                 new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(1), 12),
+                        new ItemStack(ItemList.getElementNumber(11), 12),
                         new ItemStack(ItemList.getElementNumber(13), 8),
                         new ItemStack(ItemList.getElementNumber(14), 8),
                         new ItemStack(ItemList.getElementNumber(8), 24),

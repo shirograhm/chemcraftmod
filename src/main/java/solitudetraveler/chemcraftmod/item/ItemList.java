@@ -3,17 +3,23 @@ package solitudetraveler.chemcraftmod.item;
 import net.minecraft.item.Item;
 
 public class ItemList {
-    public static Item chemical_index;
-    // Garmets and Tools
+    // Equipment
     public static Item gas_mask;
     public static Item lead_coat;
     public static Item lead_pants;
     public static Item rubber_boots;
     // Blocks
     public static Item dolostone;
+    // Ore Blocks
     public static Item copper_ore;
     public static Item nickel_ore;
     public static Item aluminium_ore;
+    public static Item tin_ore;
+    public static Item silver_ore;
+    public static Item lead_ore;
+    public static Item platinum_ore;
+    public static Item chromium_ore;
+    // Machine Blocks
     public static Item generator;
     public static Item reconstructor;
     public static Item deconstructor;

@@ -9,7 +9,6 @@ import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 import solitudetraveler.chemcraftmod.effect.EffectList;
@@ -41,7 +40,7 @@ public class ElementItem extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        if (this.atomicNumber > 0) tooltip.add(new StringTextComponent("Element number " + atomicNumber));
+        ElementInfo.appendToolTip(tooltip, atomicNumber);
     }
 
     @Override

@@ -1,0 +1,26 @@
+{
+  "parent": "chemcraftmod:main/technology",
+  "display": {
+    "icon": {
+      "item": "chemcraftmod:volcano"
+    },
+    "title": {
+      "text": "Experimenter"
+    },
+    "description": {
+      "text": "Create a science experiment block"
+    }
+  },
+  "criteria": {
+    "experimenter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "chemcraftmod:volcano"
+          }
+        ]
+      }
+    }
+  }
+}

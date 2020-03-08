@@ -16,20 +16,30 @@ public class OreGeneration {
         if(OreGenConfig.generate_overworld.get()) {
             for(Biome biome : ForgeRegistries.BIOMES) {
                 // Dolostone generation
-                addOreGenerationToBiome(biome, 64, 70, 96, 30, BlockList.dolostone.getDefaultState());
+                addOreGenerationToBiome(biome, 48, 48, 96, 18, BlockList.dolostone.getDefaultState(), OreGenConfig.large_vein.get());
                 // Copper ore generation
-                addOreGenerationToBiome(biome, 0, 6, 70, 50, BlockList.copper_ore.getDefaultState());
+                addOreGenerationToBiome(biome, 0, 0, 76, 12, BlockList.copper_ore.getDefaultState(), OreGenConfig.large_vein.get());
                 // Nickel ore generation
-                addOreGenerationToBiome(biome, 12, 24, 52, 20, BlockList.nickel_ore.getDefaultState());
+                addOreGenerationToBiome(biome, 0, 0, 44, 4, BlockList.nickel_ore.getDefaultState(), OreGenConfig.medium_vein.get());
                 // Aluminium ore generation
-                addOreGenerationToBiome(biome, 6, 12, 74, 10, BlockList.aluminium_ore.getDefaultState());
+                addOreGenerationToBiome(biome, 0, 0, 64, 8, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.medium_vein.get());
+                // Tin ore generation
+                addOreGenerationToBiome(biome, 0, 0, 76, 12, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.large_vein.get());
+                // Silver ore generation
+                addOreGenerationToBiome(biome, 0, 0, 54, 5, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.medium_vein.get());
+                // Lead ore generation
+                addOreGenerationToBiome(biome, 0, 0, 48, 4, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.large_vein.get());
+                // Platinum ore generation
+                addOreGenerationToBiome(biome, 0, 0, 24, 2, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.medium_vein.get());
+                // Chromium ore generation
+                addOreGenerationToBiome(biome, 0, 0, 24, 2, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.small_vein.get());
             }
         }
     }
 
-    private static void addOreGenerationToBiome(Biome biome, int topOffset, int bottomOffset, int maximum, int count, BlockState blockState) {
+    private static void addOreGenerationToBiome(Biome biome, int topOffset, int bottomOffset, int maximum, int count, BlockState blockState, int chance) {
         CountRangeConfig placement = new CountRangeConfig(count, bottomOffset, topOffset, maximum);
-        OreFeatureConfig config = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, blockState, OreGenConfig.chance.get());
+        OreFeatureConfig config = new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, blockState, chance);
 
         biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, config, Placement.COUNT_RANGE, placement));
     }
