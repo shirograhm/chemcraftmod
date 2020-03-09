@@ -2,13 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "EEE",
-    "EEE",
-    "EEE"
+    "E"
   ],
   "key":
   {
-    "E": { "item": "chemcraftmod:silicon" }
+    "E": { "item": "chemcraftmod:silicon_ingot" }
   },
   "result":
   {

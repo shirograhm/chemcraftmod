@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "chemcraftmod:platinum_ore"
+  },
+  "result": "chemcraftmod:platinum_ingot",
+  "experience": 2.15,
+  "cookingtime": 200
+}

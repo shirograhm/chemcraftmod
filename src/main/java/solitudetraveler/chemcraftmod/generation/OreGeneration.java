@@ -24,15 +24,15 @@ public class OreGeneration {
                 // Aluminium ore generation
                 addOreGenerationToBiome(biome, 0, 0, 64, 8, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.medium_vein.get());
                 // Tin ore generation
-                addOreGenerationToBiome(biome, 0, 0, 76, 12, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.large_vein.get());
+                addOreGenerationToBiome(biome, 0, 0, 76, 12, BlockList.tin_ore.getDefaultState(), OreGenConfig.large_vein.get());
                 // Silver ore generation
-                addOreGenerationToBiome(biome, 0, 0, 54, 5, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.medium_vein.get());
+                addOreGenerationToBiome(biome, 0, 0, 54, 5, BlockList.silver_ore.getDefaultState(), OreGenConfig.medium_vein.get());
                 // Lead ore generation
-                addOreGenerationToBiome(biome, 0, 0, 48, 4, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.large_vein.get());
+                addOreGenerationToBiome(biome, 0, 0, 48, 4, BlockList.lead_ore.getDefaultState(), OreGenConfig.large_vein.get());
                 // Platinum ore generation
-                addOreGenerationToBiome(biome, 0, 0, 24, 2, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.medium_vein.get());
+                addOreGenerationToBiome(biome, 0, 0, 24, 2, BlockList.platinum_ore.getDefaultState(), OreGenConfig.medium_vein.get());
                 // Chromium ore generation
-                addOreGenerationToBiome(biome, 0, 0, 24, 2, BlockList.aluminium_ore.getDefaultState(), OreGenConfig.small_vein.get());
+                addOreGenerationToBiome(biome, 0, 0, 24, 2, BlockList.chromium_ore.getDefaultState(), OreGenConfig.small_vein.get());
             }
         }
     }

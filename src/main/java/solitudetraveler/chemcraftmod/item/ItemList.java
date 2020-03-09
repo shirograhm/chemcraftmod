@@ -19,6 +19,16 @@ public class ItemList {
     public static Item lead_ore;
     public static Item platinum_ore;
     public static Item chromium_ore;
+    // New Ingots
+    public static Item silicon_ingot;
+    public static Item copper_ingot;
+    public static Item nickel_ingot;
+    public static Item aluminium_ingot;
+    public static Item tin_ingot;
+    public static Item silver_ingot;
+    public static Item lead_ingot;
+    public static Item platinum_ingot;
+    public static Item chromium_ingot;
     // Machine Blocks
     public static Item generator;
     public static Item reconstructor;
@@ -34,18 +44,6 @@ public class ItemList {
     public static Item andradite;
     public static Item zircon;
     public static Item ilmenite;
-    // New Ingots
-    public static Item copper_ingot;
-    public static Item silicon_ingot;
-    public static Item aluminium_ingot;
-    public static Item tin_ingot;
-    public static Item nickel_ingot;
-    // New Nuggets
-    public static Item copper_nugget;
-    public static Item silicon_nugget;
-    public static Item aluminium_nugget;
-    public static Item tin_nugget;
-    public static Item nickel_nugget;
     // New Items
     public static Item water;
     public static Item salt;

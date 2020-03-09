@@ -2,11 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "ccc"
+    "RRR",
+    "CCC",
+    "RRR"
   ],
   "key":
   {
-    "c": { "item": "chemcraftmod:copper_ingot" }
+    "C": { "item": "chemcraftmod:copper_ingot" },
+    "R": { "item": "chemcraftmod:rubber" }
   },
   "result":
   {

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chemcraftmod:item/aluminium_nugget"
+    "layer0": "chemcraftmod:item/chromium_ingot"
   }
 }

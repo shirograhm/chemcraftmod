@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "minecraft:quartz_block"
+    "item": "minecraft:quartz"
   },
   "result": "chemcraftmod:silicon_ingot",
   "experience": 3.0,

@@ -3,19 +3,18 @@ package solitudetraveler.chemcraftmod.item;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Rarity;
-import net.minecraft.util.ResourceLocation;
 import solitudetraveler.chemcraftmod.block.BlockVariables;
 
 public class BasicBlockItem extends BlockItem {
-    public BasicBlockItem(ResourceLocation name, Block block) {
+    public BasicBlockItem(Block block) {
         super(block, BlockVariables.blockItemProperties);
 
-        setRegistryName(name);
+        setRegistryName(block.getRegistryName());
     }
 
-    public BasicBlockItem(ResourceLocation name, Block block, Rarity rareLevel) {
+    public BasicBlockItem(Block block, Rarity rareLevel) {
         super(block, BlockVariables.blockItemProperties.rarity(rareLevel));
 
-        setRegistryName(name);
+        setRegistryName(block.getRegistryName());
     }
 }

@@ -32,7 +32,6 @@ import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
 import solitudetraveler.chemcraftmod.handler.ChemCraftEventHandler;
 import solitudetraveler.chemcraftmod.item.*;
-import solitudetraveler.chemcraftmod.item.HazmatArmorItem;
 import solitudetraveler.chemcraftmod.tileentity.*;
 
 import java.util.ArrayList;
@@ -94,23 +93,23 @@ public class ChemCraftMod {
                     ItemList.lead_pants = new HazmatArmorItem(location("lead_pants"), ArmorMaterial.IRON, EquipmentSlotType.LEGS, 800),
                     ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), ArmorMaterial.LEATHER, EquipmentSlotType.FEET, 450),
                     // Blocks
-                    ItemList.dolostone = new BasicBlockItem(BlockList.dolostone.getRegistryName(), BlockList.dolostone),
-                    ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore.getRegistryName(), BlockList.copper_ore),
-                    ItemList.nickel_ore = new BasicBlockItem(BlockList.nickel_ore.getRegistryName(), BlockList.nickel_ore),
-                    ItemList.aluminium_ore = new BasicBlockItem(BlockList.aluminium_ore.getRegistryName(), BlockList.aluminium_ore),
-                    ItemList.tin_ore = new BasicBlockItem(BlockList.tin_ore.getRegistryName(), BlockList.tin_ore),
-                    ItemList.silver_ore = new BasicBlockItem(BlockList.silver_ore.getRegistryName(), BlockList.silver_ore),
-                    ItemList.lead_ore = new BasicBlockItem(BlockList.lead_ore.getRegistryName(), BlockList.lead_ore),
-                    ItemList.platinum_ore = new BasicBlockItem(BlockList.platinum_ore.getRegistryName(), BlockList.platinum_ore),
-                    ItemList.chromium_ore = new BasicBlockItem(BlockList.chromium_ore.getRegistryName(), BlockList.chromium_ore),
+                    ItemList.dolostone = new BasicBlockItem(BlockList.dolostone),
+                    ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore),
+                    ItemList.nickel_ore = new BasicBlockItem(BlockList.nickel_ore),
+                    ItemList.aluminium_ore = new BasicBlockItem(BlockList.aluminium_ore),
+                    ItemList.tin_ore = new BasicBlockItem(BlockList.tin_ore),
+                    ItemList.silver_ore = new BasicBlockItem(BlockList.silver_ore),
+                    ItemList.lead_ore = new BasicBlockItem(BlockList.lead_ore),
+                    ItemList.platinum_ore = new BasicBlockItem(BlockList.platinum_ore),
+                    ItemList.chromium_ore = new BasicBlockItem(BlockList.chromium_ore),
                     // Machines
-                    ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet.getRegistryName(), BlockList.electromagnet),
-                    ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor.getRegistryName(), BlockList.reconstructor, Rarity.UNCOMMON),
-                    ItemList.deconstructor = new BasicBlockItem(BlockList.deconstructor.getRegistryName(), BlockList.deconstructor, Rarity.UNCOMMON),
-                    ItemList.generator = new BasicBlockItem(BlockList.generator.getRegistryName(), BlockList.generator, Rarity.UNCOMMON),
-                    ItemList.accelerator = new BasicBlockItem(BlockList.accelerator.getRegistryName(), BlockList.accelerator, Rarity.UNCOMMON),
+                    ItemList.electromagnet = new BasicBlockItem(BlockList.electromagnet),
+                    ItemList.reconstructor = new BasicBlockItem(BlockList.reconstructor, Rarity.UNCOMMON),
+                    ItemList.deconstructor = new BasicBlockItem(BlockList.deconstructor, Rarity.UNCOMMON),
+                    ItemList.generator = new BasicBlockItem(BlockList.generator),
+                    ItemList.accelerator = new BasicBlockItem(BlockList.accelerator, Rarity.UNCOMMON),
                     // Experiments
-                    ItemList.volcano = new BasicBlockItem(BlockList.volcano.getRegistryName(), BlockList.volcano, Rarity.EPIC),
+                    ItemList.volcano = new BasicBlockItem(BlockList.volcano, Rarity.EPIC),
                     // Minerals
                     ItemList.aragonite = new MineralItem(location("aragonite")),
                     ItemList.calcite = new MineralItem(location("calcite")),
@@ -125,12 +124,10 @@ public class ChemCraftMod {
                     ItemList.aluminium_ingot = new BasicItem(location("aluminium_ingot")),
                     ItemList.tin_ingot = new BasicItem(location("tin_ingot")),
                     ItemList.nickel_ingot = new BasicItem(location("nickel_ingot")),
-                    // Nuggets
-                    ItemList.copper_nugget = new BasicItem(location("copper_nugget")),
-                    ItemList.silicon_nugget = new BasicItem(location("silicon_nugget")),
-                    ItemList.aluminium_nugget = new BasicItem(location("aluminium_nugget")),
-                    ItemList.tin_nugget = new BasicItem(location("tin_nugget")),
-                    ItemList.nickel_nugget = new BasicItem(location("nickel_nugget")),
+                    ItemList.silver_ingot = new BasicItem(location("silver_ingot")),
+                    ItemList.lead_ingot = new BasicItem(location("lead_ingot")),
+                    ItemList.platinum_ingot = new BasicItem(location("platinum_ingot")),
+                    ItemList.chromium_ingot = new BasicItem(location("chromium_ingot")),
                     // Items
                     ItemList.salt = new BasicItem(location("salt")),
                     ItemList.soap = new BasicItem(location("soap")),

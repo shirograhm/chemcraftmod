@@ -2,13 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "EEE",
-    "EEE",
-    "EEE"
+    "E"
   ],
   "key":
   {
-    "E": { "item": "chemcraftmod:nickel" }
+    "E": { "item": "chemcraftmod:nickel_ingot" }
   },
   "result":
   {

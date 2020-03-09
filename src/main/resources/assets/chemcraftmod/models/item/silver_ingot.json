@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chemcraftmod:item/tin_nugget"
+    "layer0": "chemcraftmod:item/silver_ingot"
   }
 }

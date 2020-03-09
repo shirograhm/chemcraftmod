@@ -40,13 +40,10 @@
   "item.chemcraftmod.aluminium_ingot": "Aluminium Ingot",
   "item.chemcraftmod.nickel_ingot": "Nickel Ingot",
   "item.chemcraftmod.tin_ingot": "Tin Ingot",
-
-
-  "item.chemcraftmod.copper_nugget": "Copper Nugget",
-  "item.chemcraftmod.silicon_nugget": "Silicon Nugget",
-  "item.chemcraftmod.aluminium_nugget": "Aluminium Nugget",
-  "item.chemcraftmod.nickel_nugget": "Nickel Nugget",
-  "item.chemcraftmod.tin_nugget": "Tin Nugget",
+  "item.chemcraftmod.silver_ingot": "Silver Ingot",
+  "item.chemcraftmod.lead_ingot": "Lead Ingot",
+  "item.chemcraftmod.platinum_ingot": "Platinum Ingot",
+  "item.chemcraftmod.chromium_ingot": "Chromium Ingot",
 
 
   "item.chemcraftmod.salt": "Salt",
