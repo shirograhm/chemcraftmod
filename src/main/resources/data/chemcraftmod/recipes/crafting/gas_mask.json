@@ -2,14 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "RIR",
-    "RGR"
+    "RRR",
+    "RIR"
   ],
   "key":
   {
     "R": { "item": "chemcraftmod:rubber" },
-    "I": { "item": "minecraft:iron_helmet" },
-    "G": { "item": "minecraft:glass_pane" }
+    "I": { "item": "minecraft:iron_helmet" }
   },
   "result":
   {

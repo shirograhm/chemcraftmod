@@ -3,14 +3,13 @@
   "pattern":
   [
     "III",
-    "SMS",
+    "IMI",
     "HHH"
   ],
   "key":
   {
     "I": { "item": "minecraft:iron_ingot" },
     "M": { "item": "chemcraftmod:machine_core" },
-    "S": { "item": "minecraft:smooth_stone" },
     "H": { "item": "chemcraftmod:heating_coil" }
   },
   "result":

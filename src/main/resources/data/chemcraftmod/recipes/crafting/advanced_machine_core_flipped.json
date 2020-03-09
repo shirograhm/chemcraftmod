@@ -2,16 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "RSR",
-    "AMA",
-    "RSR"
+    "S V",
+    "SMV",
+    "S V"
   ],
   "key":
   {
-    "A": { "item": "chemcraftmod:aluminium_ingot" },
-    "S": { "item": "chemcraftmod:silicon_ingot" },
     "M": { "item": "chemcraftmod:machine_core" },
-    "R": { "item": "minecraft:redstone" }
+    "S": { "item": "chemcraftmod:silicon_ingot" },
+    "V": { "item": "chemcraftmod:silver_ingot" }
   },
   "result":
   {

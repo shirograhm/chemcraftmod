@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "SSS",
-    "EME",
-    "SSS"
+    "CCC",
+    "CGC",
+    "EME"
   ],
   "key":
   {
     "M": { "item": "chemcraftmod:machine_core" },
     "E": { "item": "chemcraftmod:electromagnetic_coil" },
-    "S": { "item": "minecraft:smooth_stone" }
+    "G": { "item": "minecraft:glass" },
+    "C": { "item": "minecraft:cobblestone" }
   },
   "result":
   {

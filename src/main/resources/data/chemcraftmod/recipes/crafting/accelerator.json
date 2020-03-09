@@ -3,14 +3,14 @@
   "pattern":
   [
     "EEE",
-    "SAS",
+    "GAG",
     "EEE"
   ],
   "key":
   {
     "E": { "item": "chemcraftmod:electromagnetic_coil" },
     "A": { "item": "chemcraftmod:advanced_machine_core" },
-    "S": { "item": "minecraft:smooth_stone" }
+    "G": { "item": "minecraft:glass" }
   },
   "result":
   {

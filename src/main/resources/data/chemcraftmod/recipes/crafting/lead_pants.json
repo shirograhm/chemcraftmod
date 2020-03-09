@@ -4,13 +4,12 @@
   [
     "LLL",
     "LIL",
-    "R R"
+    "LLL"
   ],
   "key":
   {
-    "R": { "item": "chemcraftmod:rubber" },
     "I": { "item": "minecraft:iron_leggings" },
-    "L": { "item": "chemcraftmod:lead" }
+    "L": { "item": "chemcraftmod:lead_ingot" }
   },
   "result":
   {

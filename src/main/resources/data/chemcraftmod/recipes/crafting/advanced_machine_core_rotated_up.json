@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "V S",
-    "VMS",
-    "V S"
+    "VVV",
+    " M ",
+    "SSS"
   ],
   "key":
   {

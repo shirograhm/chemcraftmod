@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "SSS",
-    "HMH",
-    "SSS"
+    "CCC",
+    "CGC",
+    "HMH"
   ],
   "key":
   {
     "M": { "item": "chemcraftmod:machine_core" },
     "H": { "item": "chemcraftmod:heating_coil" },
-    "S": { "item": "minecraft:smooth_stone" }
+    "G": { "item": "minecraft:glass" },
+    "C": { "item": "minecraft:cobblestone" }
   },
   "result":
   {

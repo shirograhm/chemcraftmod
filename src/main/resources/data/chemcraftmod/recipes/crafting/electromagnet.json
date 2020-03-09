@@ -3,13 +3,13 @@
   "pattern":
   [
     "EEE",
-    "WWW",
+    "GGG",
     "EEE"
   ],
   "key":
   {
     "E": { "item": "chemcraftmod:electromagnetic_coil" },
-    "W": { "item": "chemcraftmod:copper_wire" }
+    "G": { "item": "minecraft:glass" }
   },
   "result":
   {

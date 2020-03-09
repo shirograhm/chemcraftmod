@@ -3,13 +3,13 @@
   "pattern":
   [
     " L ",
-    "SSS",
+    "BBB",
     "MMM"
   ],
   "key":
   {
     "M": { "item": "minecraft:magma_block" },
-    "S": { "item": "minecraft:soul_sand" },
+    "B": { "item": "minecraft:glass_bottle" },
     "L": { "item": "minecraft:lava_bucket" }
   },
   "result":
