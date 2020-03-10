@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " TS",
+    "I S",
+    " TS"
+  ],
+  "key":
+  {
+    "I": { "item": "chemcraftmod:silver_ingot" },
+    "T": { "item": "minecraft:stick" },
+    "S": { "item": "minecraft:string" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:quick_bow"
+  }
+}

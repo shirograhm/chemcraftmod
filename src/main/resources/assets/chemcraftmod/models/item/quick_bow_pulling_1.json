@@ -1,0 +1,6 @@
+{
+  "parent": "chemcraftmod:item/quick_bow",
+  "textures": {
+    "layer0": "chemcraftmod:item/quick_bow_pulling_1"
+  }
+}

@@ -32,6 +32,9 @@ import solitudetraveler.chemcraftmod.generation.Config;
 import solitudetraveler.chemcraftmod.generation.OreGeneration;
 import solitudetraveler.chemcraftmod.handler.ChemCraftEventHandler;
 import solitudetraveler.chemcraftmod.item.*;
+import solitudetraveler.chemcraftmod.item.armor.HazmatArmorItem;
+import solitudetraveler.chemcraftmod.item.tools.IrradiatorSword;
+import solitudetraveler.chemcraftmod.item.tools.QuickBow;
 import solitudetraveler.chemcraftmod.tileentity.*;
 
 import java.util.ArrayList;
@@ -87,11 +90,16 @@ public class ChemCraftMod {
             }
             // Register items
             event.getRegistry().registerAll(
+                    // Tools
+                    ItemList.radioactive_coating = new BasicItem(location("radioactive_coating"), 16),
+                    ItemList.silver_platinum_blade = new BasicItem(location("silver_platinum_blade"), 1),
+                    ItemList.irradiator_sword = new IrradiatorSword(location("irradiator_sword")),
+                    ItemList.quick_bow = new QuickBow(location("quick_bow")),
                     // Hazmat suit
-                    ItemList.gas_mask = new HazmatArmorItem(location("gas_mask"), ArmorMaterial.LEATHER, EquipmentSlotType.HEAD, 300),
+                    ItemList.gas_mask = new HazmatArmorItem(location("gas_mask"), ArmorMaterial.IRON, EquipmentSlotType.HEAD, 300),
                     ItemList.lead_coat = new HazmatArmorItem(location("lead_coat"), ArmorMaterial.IRON, EquipmentSlotType.CHEST, 1100),
                     ItemList.lead_pants = new HazmatArmorItem(location("lead_pants"), ArmorMaterial.IRON, EquipmentSlotType.LEGS, 800),
-                    ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), ArmorMaterial.LEATHER, EquipmentSlotType.FEET, 450),
+                    ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), ArmorMaterial.IRON, EquipmentSlotType.FEET, 450),
                     // Blocks
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore),
@@ -128,6 +136,7 @@ public class ChemCraftMod {
                     ItemList.lead_ingot = new BasicItem(location("lead_ingot")),
                     ItemList.platinum_ingot = new BasicItem(location("platinum_ingot")),
                     ItemList.chromium_ingot = new BasicItem(location("chromium_ingot")),
+                    ItemList.silver_platinum_ingot = new BasicItem(location("silver_platinum_ingot")),
                     // Items
                     ItemList.salt = new BasicItem(location("salt")),
                     ItemList.soap = new BasicItem(location("soap")),

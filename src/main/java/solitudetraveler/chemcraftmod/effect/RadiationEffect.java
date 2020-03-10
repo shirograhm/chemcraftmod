@@ -47,7 +47,7 @@ public class RadiationEffect extends Effect {
 
     @Override
     public void performEffect(@Nonnull LivingEntity entityLivingBaseIn, int amplifier) {
-        entityLivingBaseIn.attackEntityFrom(EffectList.RADIATION_SOURCE, amplifier);
+        entityLivingBaseIn.attackEntityFrom(EffectList.RADIATION_SOURCE, amplifier + 1);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class RadiationEffect extends Effect {
 
     @Override
     public boolean isReady(int duration, int amplifier) {
-        int shift = 50 >> amplifier;
+        int shift = 40 >> (amplifier + 1);
         if(shift > 0) {
             return duration % shift == 0;
         }

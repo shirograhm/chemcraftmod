@@ -12,6 +12,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 import solitudetraveler.chemcraftmod.effect.EffectList;
+import solitudetraveler.chemcraftmod.item.armor.HazmatArmorItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -53,10 +54,10 @@ public class ElementItem extends Item {
         Random rand = new Random();
 
         if(emitsRadiationI()) {
-            effectStrength = 1;
+            effectStrength = 0;
         }
         else if(emitsRadiationII()) {
-            effectStrength = 2;
+            effectStrength = 1;
         }
         else {
             return;
@@ -69,14 +70,14 @@ public class ElementItem extends Item {
 
         if(!playerWearingHazmatGear(pe.getArmorInventoryList())) {
             EffectInstance currentInstance = pe.getActivePotionEffect(EffectList.radiation);
-            EffectInstance radiationInstance = new EffectInstance(EffectList.radiation, 360, effectStrength);
+            EffectInstance radiationInstance = new EffectInstance(EffectList.radiation, 300, effectStrength);
 
             // If not being radiated, add effect
             if(currentInstance == null) {
                 pe.addPotionEffect(radiationInstance);
             }
             else {
-                if(currentInstance.getDuration() == 310) {
+                if(currentInstance.getDuration() <= 260) {
                     currentInstance.combine(radiationInstance);
                 }
             }

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "  A",
+    " A ",
+    "AA "
+  ],
+  "key":
+  {
+    "A": { "item": "chemcraftmod:silver_platinum_ingot" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:silver_platinum_blade"
+  }
+}

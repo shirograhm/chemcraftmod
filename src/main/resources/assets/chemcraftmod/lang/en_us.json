@@ -1,4 +1,8 @@
 {
+  "item.chemcraftmod.irradiator_sword": "The Irradiator",
+  "item.chemcraftmod.quick_bow": "Quick Bow",
+
+
   "item.chemcraftmod.gas_mask": "Gas Mask",
   "item.chemcraftmod.lead_coat": "Lead Coat",
   "item.chemcraftmod.lead_pants": "Lead Pants",
@@ -45,6 +49,9 @@
   "item.chemcraftmod.platinum_ingot": "Platinum Ingot",
   "item.chemcraftmod.chromium_ingot": "Chromium Ingot",
 
+  "item.chemcraftmod.silver_platinum_ingot": "Silver-Platinum Ingot",
+  "item.chemcraftmod.silver_platinum_blade": "Silver-Platinum Blade",
+  "item.chemcraftmod.radioactive_coating": "Radioactive Coating",
 
   "item.chemcraftmod.salt": "Salt",
   "item.chemcraftmod.soap": "Soap",

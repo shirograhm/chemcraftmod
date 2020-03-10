@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients":
+  [
+    { "item": "chemcraftmod:chromium_ingot" },
+    { "item": "chemcraftmod:unknown" },
+    { "item": "minecraft:glass_bottle" }
+  ],
+  "result":
+  {
+    "item": "chemcraftmod:radioactive_coating",
+    "count": 2
+  }
+}

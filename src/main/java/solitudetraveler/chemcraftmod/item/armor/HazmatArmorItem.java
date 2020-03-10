@@ -1,4 +1,4 @@
-package solitudetraveler.chemcraftmod.item;
+package solitudetraveler.chemcraftmod.item.armor;
 
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;

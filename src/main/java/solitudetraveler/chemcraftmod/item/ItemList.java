@@ -3,7 +3,14 @@ package solitudetraveler.chemcraftmod.item;
 import net.minecraft.item.Item;
 
 public class ItemList {
-    // Equipment
+    // Tools
+    public static Item irradiator_sword;
+    public static Item quick_bow;
+    // Tool Materials
+    public static Item silver_platinum_ingot;
+    public static Item silver_platinum_blade;
+    public static Item radioactive_coating;
+    // Armor
     public static Item gas_mask;
     public static Item lead_coat;
     public static Item lead_pants;
