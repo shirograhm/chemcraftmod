@@ -7,7 +7,7 @@ import solitudetraveler.chemcraftmod.item.ItemList;
 
 import java.util.function.Supplier;
 
-public enum CustomItemTier implements IItemTier {
+public enum CustomItemTiers implements IItemTier {
     GODLIKE(5, 6900, 12.0F, 5.0F, 24, () -> {
         return Ingredient.fromItems(ItemList.getElementNumber(1));
     });
@@ -19,7 +19,7 @@ public enum CustomItemTier implements IItemTier {
     private final int enchantability;
     private final LazyLoadBase<Ingredient> repairMaterial;
 
-    private CustomItemTier(int harvest, int max, float eff, float attack, int enchant, Supplier<Ingredient> material) {
+    private CustomItemTiers(int harvest, int max, float eff, float attack, int enchant, Supplier<Ingredient> material) {
         this.harvestLevel = harvest;
         this.maxUses = max;
         this.efficiency = eff;

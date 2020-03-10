@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
+import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 
 import javax.annotation.Nonnull;
 
@@ -18,7 +19,7 @@ public class QuickBow extends BowItem {
     private float pullSpeed = 6.0F;
 
     public QuickBow(ResourceLocation name) {
-        super(new Item.Properties().maxStackSize(1).rarity(Rarity.RARE));
+        super(new Item.Properties().maxStackSize(1).group(CreativeTabList.equipmentGroup).rarity(Rarity.RARE));
 
         setRegistryName(name);
 

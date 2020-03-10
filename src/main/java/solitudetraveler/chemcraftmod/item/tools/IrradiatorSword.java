@@ -18,7 +18,7 @@ import java.util.List;
 
 public class IrradiatorSword extends SwordItem {
     public IrradiatorSword(ResourceLocation name) {
-        super(CustomItemTier.GODLIKE, 6, -1.6F, ItemVariables.equipmentProperty.rarity(Rarity.RARE));
+        super(CustomItemTiers.GODLIKE, 6, -1.6F, ItemVariables.equipmentProperty.rarity(Rarity.RARE));
 
         setRegistryName(name);
     }

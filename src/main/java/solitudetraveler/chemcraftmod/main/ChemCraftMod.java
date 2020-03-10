@@ -3,7 +3,6 @@ package solitudetraveler.chemcraftmod.main;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 import net.minecraft.potion.Effect;
@@ -96,10 +95,10 @@ public class ChemCraftMod {
                     ItemList.irradiator_sword = new IrradiatorSword(location("irradiator_sword")),
                     ItemList.quick_bow = new QuickBow(location("quick_bow")),
                     // Hazmat suit
-                    ItemList.gas_mask = new HazmatArmorItem(location("gas_mask"), ArmorMaterial.IRON, EquipmentSlotType.HEAD, 300),
-                    ItemList.lead_coat = new HazmatArmorItem(location("lead_coat"), ArmorMaterial.IRON, EquipmentSlotType.CHEST, 1100),
-                    ItemList.lead_pants = new HazmatArmorItem(location("lead_pants"), ArmorMaterial.IRON, EquipmentSlotType.LEGS, 800),
-                    ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), ArmorMaterial.IRON, EquipmentSlotType.FEET, 450),
+                    ItemList.gas_mask = new HazmatArmorItem(location("gas_mask"), EquipmentSlotType.HEAD, 300),
+                    ItemList.lead_coat = new HazmatArmorItem(location("lead_coat"), EquipmentSlotType.CHEST, 1100),
+                    ItemList.lead_pants = new HazmatArmorItem(location("lead_pants"), EquipmentSlotType.LEGS, 800),
+                    ItemList.rubber_boots = new HazmatArmorItem(location("rubber_boots"), EquipmentSlotType.FEET, 450),
                     // Blocks
                     ItemList.dolostone = new BasicBlockItem(BlockList.dolostone),
                     ItemList.copper_ore = new BasicBlockItem(BlockList.copper_ore),
