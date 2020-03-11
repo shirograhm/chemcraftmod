@@ -35,14 +35,14 @@
     {
       "predicate": {
         "pulling": 1,
-        "pull": 0.65
+        "pull": 0.60
       },
       "model": "chemcraftmod:item/quick_bow_pulling_1"
     },
     {
       "predicate": {
         "pulling": 1,
-        "pull": 0.9
+        "pull": 0.99
       },
       "model": "chemcraftmod:item/quick_bow_pulling_2"
     }

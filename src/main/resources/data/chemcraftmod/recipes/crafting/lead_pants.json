@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "LLL",
     "LIL",
-    "LLL"
+    "L L",
+    "L L"
   ],
   "key":
   {

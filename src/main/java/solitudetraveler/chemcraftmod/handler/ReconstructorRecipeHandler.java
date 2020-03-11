@@ -1,6 +1,7 @@
 package solitudetraveler.chemcraftmod.handler;
 
 import net.minecraft.item.ItemStack;
+import solitudetraveler.chemcraftmod.item.ElementInfo;
 import solitudetraveler.chemcraftmod.item.ItemList;
 import solitudetraveler.chemcraftmod.recipes.ReconstructorRecipe;
 
@@ -92,6 +93,15 @@ public class ReconstructorRecipeHandler {
 
                 new ItemStack(ItemList.propane)
         );
+        addRecipe(new ArrayList<>(Arrays.asList(
+                new ItemStack(ItemList.methyl_group),
+                new ItemStack(ItemList.methylene_group),
+                new ItemStack(ItemList.methyl_group))),
+
+                new ItemStack(ItemList.propane)
+        );
+
+
         // Ionic compounds
         addRecipe(new ArrayList<>(Arrays.asList(
                 new ItemStack(ItemList.getElementNumber(30)),
@@ -152,13 +162,18 @@ public class ReconstructorRecipeHandler {
 
                 new ItemStack(ItemList.acetic_acid)
         );
-        addRecipe(new ArrayList<>(Arrays.asList(
-                new ItemStack(ItemList.methyl_group),
-                new ItemStack(ItemList.methylene_group),
-                new ItemStack(ItemList.methyl_group))),
 
-                new ItemStack(ItemList.propane)
-        );
+
+        // Element recipes from atomic particles
+        for(int i = 1; i <= ElementInfo.getCount(); i++) {
+            addRecipe(new ArrayList<>(Arrays.asList(
+                    new ItemStack(ItemList.proton, i),
+                    new ItemStack(ItemList.electron, i),
+                    new ItemStack(ItemList.neutron, ElementInfo.getNeutronCount(i)))),
+
+                    new ItemStack(ItemList.getElementNumber(i))
+            );
+        }
     }
 
     private static void addRecipe(ArrayList<ItemStack> stacks, ItemStack result) {

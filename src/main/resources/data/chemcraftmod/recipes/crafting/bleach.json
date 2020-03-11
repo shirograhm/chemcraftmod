@@ -9,7 +9,7 @@
   "key":
   {
     "s": { "item": "chemcraftmod:sodium_hydroxide" },
-    "w": { "item": "chemcraftmod:water" }
+    "w": { "item": "minecraft:water_bucket" }
   },
   "result":
   {

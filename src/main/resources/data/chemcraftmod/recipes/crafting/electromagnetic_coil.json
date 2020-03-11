@@ -13,6 +13,7 @@
   },
   "result":
   {
-    "item": "chemcraftmod:electromagnetic_coil"
+    "item": "chemcraftmod:electromagnetic_coil",
+    "count": 2
   }
 }

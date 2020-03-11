@@ -14,7 +14,7 @@ issueTrackerURL="https://github.com/xavierwg13/chemcraftmod/issues/" #optional
 # The MOD_ID of the mod
 modId="chemcraftmod" #mandatory
 # The version number of the mod - there's a few well known ${} variables usable here or just hardcode it
-version="v0.8.9 beta" #mandatory
+version="v0.9.0 beta" #mandatory
  # A display name for the mod
 displayName="ChemCraft Mod" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
@@ -24,11 +24,11 @@ displayURL="https://github.com/xavierwg13/chemcraftmod/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="logo_file.png" #optional
 # A text field displayed in the mod UI
-credits="This mod is dedicated to my brother." #optional
+credits="This mod is dedicated to my brother, who inspires me to be a better person." #optional
 # A text field displayed in the mod UI
 authors="SolitudeTraveler" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description='''A mod for minecraft gamers interested in broadening their gemeral chemistry knowledge.
+description='''A mod for minecraft gamers interested in broadening their general chemistry knowledge.
 
 NOTE: This mod does not claim factual correctness about any chemistry topics.'''
 

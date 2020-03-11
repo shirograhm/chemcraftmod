@@ -13,6 +13,7 @@
   },
   "result":
   {
-    "item": "chemcraftmod:heating_coil"
+    "item": "chemcraftmod:heating_coil",
+    "count": 2
   }
 }
