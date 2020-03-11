@@ -166,13 +166,51 @@ public class ReconstructorRecipeHandler {
 
         // Element recipes from atomic particles
         for(int i = 1; i <= ElementInfo.getCount(); i++) {
-            addRecipe(new ArrayList<>(Arrays.asList(
-                    new ItemStack(ItemList.proton, i),
-                    new ItemStack(ItemList.electron, i),
-                    new ItemStack(ItemList.neutron, ElementInfo.getNeutronCount(i)))),
+            int neutronCount = ElementInfo.getNeutronCount(i);
 
-                    new ItemStack(ItemList.getElementNumber(i))
-            );
+            if (i <= 64 && neutronCount <= 64) {
+                addRecipe(new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.proton, i),
+                        new ItemStack(ItemList.electron, i),
+                        new ItemStack(ItemList.neutron, ElementInfo.getNeutronCount(i)))),
+
+                        new ItemStack(ItemList.getElementNumber(i))
+                );
+            } else if (i <= 64 && neutronCount <= 128) {
+                addRecipe(new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.proton, i),
+                        new ItemStack(ItemList.electron, i),
+                        new ItemStack(ItemList.neutron, 64),
+                        new ItemStack(ItemList.neutron, ElementInfo.getNeutronCount(i) - 64))),
+
+                        new ItemStack(ItemList.getElementNumber(i))
+                );
+            } else if (i <= 128 && neutronCount <= 128) {
+                addRecipe(new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.proton, 64),
+                        new ItemStack(ItemList.proton, i - 64),
+                        new ItemStack(ItemList.electron, 64),
+                        new ItemStack(ItemList.electron, i - 64),
+                        new ItemStack(ItemList.neutron, 64),
+                        new ItemStack(ItemList.neutron, ElementInfo.getNeutronCount(i) - 64))),
+
+                        new ItemStack(ItemList.getElementNumber(i))
+                );
+            } else if (i <= 128 && neutronCount <= 196) {
+                addRecipe(new ArrayList<>(Arrays.asList(
+                        new ItemStack(ItemList.proton, 64),
+                        new ItemStack(ItemList.proton, i - 64),
+                        new ItemStack(ItemList.electron, 64),
+                        new ItemStack(ItemList.electron, i - 64),
+                        new ItemStack(ItemList.neutron, 64),
+                        new ItemStack(ItemList.neutron, 64),
+                        new ItemStack(ItemList.neutron, ElementInfo.getNeutronCount(i) - 128))),
+
+                        new ItemStack(ItemList.getElementNumber(i))
+                );
+            } else {
+                // NOT A VALID ELEMENT, thus we dont have any recipe added here.
+            }
         }
     }
 

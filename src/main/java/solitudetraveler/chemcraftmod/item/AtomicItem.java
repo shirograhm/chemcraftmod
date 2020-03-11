@@ -8,7 +8,7 @@ import solitudetraveler.chemcraftmod.creativetab.CreativeTabList;
 
 public class AtomicItem extends Item {
     public AtomicItem(ResourceLocation name) {
-        super(new Item.Properties().group(CreativeTabList.elementGroup).rarity(Rarity.EPIC).maxStackSize(64));
+        super(new Item.Properties().group(CreativeTabList.elementGroup).rarity(Rarity.UNCOMMON));
 
         setRegistryName(name);
     }
@@ -17,4 +17,6 @@ public class AtomicItem extends Item {
     public boolean canHarvestBlock(BlockState blockIn) {
         return false;
     }
+
+
 }
