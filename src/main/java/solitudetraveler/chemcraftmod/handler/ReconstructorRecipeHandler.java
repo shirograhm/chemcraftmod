@@ -1,17 +1,76 @@
 package solitudetraveler.chemcraftmod.handler;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import solitudetraveler.chemcraftmod.item.ElementInfo;
 import solitudetraveler.chemcraftmod.item.ItemList;
 import solitudetraveler.chemcraftmod.recipes.ReconstructorRecipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ReconstructorRecipeHandler {
     private static ArrayList<ReconstructorRecipe> recipes = new ArrayList<>();
 
     static {
+        // Ingot recipes
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(26), 54))),
+
+                new ItemStack(Items.IRON_INGOT)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(79), 54))),
+
+                new ItemStack(Items.GOLD_INGOT)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(29), 54))),
+
+                new ItemStack(ItemList.copper_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(14), 54))),
+
+                new ItemStack(ItemList.silicon_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(28), 54))),
+
+                new ItemStack(ItemList.nickel_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(13), 54))),
+
+                new ItemStack(ItemList.aluminium_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(50), 54))),
+
+                new ItemStack(ItemList.tin_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(78), 54))),
+
+                new ItemStack(ItemList.platinum_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(47), 54))),
+
+                new ItemStack(ItemList.silver_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(24), 54))),
+
+                new ItemStack(ItemList.chromium_ingot)
+        );
+        addRecipe(new ArrayList<>(Collections.singletonList(
+                new ItemStack(ItemList.getElementNumber(82), 54))),
+
+                new ItemStack(ItemList.lead_ingot)
+        );
+
         // Covalent compounds
         addRecipe(new ArrayList<>(Arrays.asList(
                 new ItemStack(ItemList.getElementNumber(1), 2),

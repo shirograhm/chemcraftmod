@@ -2,6 +2,8 @@ package solitudetraveler.chemcraftmod.item;
 
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -43,7 +45,14 @@ public class ElementInfo {
 
     public static void appendToolTip(List<ITextComponent> tiplist, int atomicNumber) {
         if (atomicNumber > 0) {
+            String protons = "P - " + atomicNumber;
+            String neutrons = "N - " + getNeutronCount(atomicNumber);
+            String electrons = "E - " + atomicNumber;
+
             tiplist.add(new StringTextComponent("Element number " + atomicNumber + "."));
+            tiplist.add(new StringTextComponent(protons).setStyle((new Style()).setColor(TextFormatting.RED).setItalic(true)));
+            tiplist.add(new StringTextComponent(neutrons).setStyle((new Style()).setColor(TextFormatting.BLUE).setItalic(true)));
+            tiplist.add(new StringTextComponent(electrons).setStyle((new Style()).setColor(TextFormatting.YELLOW).setItalic(true)));
         }
     }
 

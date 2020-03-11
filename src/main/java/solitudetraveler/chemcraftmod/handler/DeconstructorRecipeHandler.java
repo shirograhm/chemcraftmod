@@ -10,6 +10,7 @@ import solitudetraveler.chemcraftmod.recipes.DeconstructorRecipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class DeconstructorRecipeHandler {
     private static ArrayList<DeconstructorRecipe> recipes = new ArrayList<>();
@@ -18,41 +19,39 @@ public class DeconstructorRecipeHandler {
 
     static {
         // Ingot recipes
-        addRecipe(ItemList.copper_ingot,
-                new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(29), 27),
-                        new ItemStack(ItemList.getElementNumber(29), 27),
-                        new ItemStack(ItemList.getElementNumber(29), 27))));
         addRecipe(Items.IRON_INGOT,
-                new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(26), 27),
-                        new ItemStack(ItemList.getElementNumber(26), 27),
-                        new ItemStack(ItemList.getElementNumber(26), 27))));
-        addRecipe(ItemList.silicon_ingot,
-                new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(14), 27),
-                        new ItemStack(ItemList.getElementNumber(14), 27),
-                        new ItemStack(ItemList.getElementNumber(14), 27))));
-        addRecipe(ItemList.nickel_ingot,
-                new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(28), 27),
-                        new ItemStack(ItemList.getElementNumber(28), 27),
-                        new ItemStack(ItemList.getElementNumber(28), 27))));
-        addRecipe(ItemList.aluminium_ingot,
-                new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(13), 27),
-                        new ItemStack(ItemList.getElementNumber(13), 27),
-                        new ItemStack(ItemList.getElementNumber(13), 27))));
-        addRecipe(ItemList.tin_ingot,
-                new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(50), 27),
-                        new ItemStack(ItemList.getElementNumber(50), 27),
-                        new ItemStack(ItemList.getElementNumber(50), 27))));
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(26), 54))));
         addRecipe(Items.GOLD_INGOT,
-                new ArrayList<>(Arrays.asList(
-                        new ItemStack(ItemList.getElementNumber(79), 27),
-                        new ItemStack(ItemList.getElementNumber(79), 27),
-                        new ItemStack(ItemList.getElementNumber(79), 27))));
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(79), 54))));
+        addRecipe(ItemList.copper_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(29), 54))));
+        addRecipe(ItemList.silicon_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(14), 54))));
+        addRecipe(ItemList.nickel_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(28), 54))));
+        addRecipe(ItemList.aluminium_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(13), 54))));
+        addRecipe(ItemList.tin_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(50), 54))));
+        addRecipe(ItemList.platinum_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(78), 54))));
+        addRecipe(ItemList.silver_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(47), 54))));
+        addRecipe(ItemList.chromium_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(24), 54))));
+        addRecipe(ItemList.lead_ingot,
+                new ArrayList<>(Collections.singletonList(
+                        new ItemStack(ItemList.getElementNumber(82), 54))));
 
         // Vanilla items
         addTagRecipe(ItemTags.LOGS,
