@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    " TS",
+    " PS",
     "I S",
-    " TS"
+    " PS"
   ],
   "key":
   {
     "I": { "item": "chemcraftmod:silver_ingot" },
-    "T": { "item": "minecraft:stick" },
+    "P": { "item": "chemcraftmod:platinum_ingot" },
     "S": { "item": "minecraft:string" }
   },
   "result":

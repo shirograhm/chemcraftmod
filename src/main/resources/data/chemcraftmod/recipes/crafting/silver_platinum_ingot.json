@@ -3,18 +3,12 @@
   "ingredients":
   [
     { "item": "chemcraftmod:silver_ingot" },
-    { "item": "chemcraftmod:silver_ingot" },
-    { "item": "chemcraftmod:silver_ingot" },
-    { "item": "chemcraftmod:silver_ingot" },
-    { "item": "chemcraftmod:platinum_ingot" },
-    { "item": "chemcraftmod:platinum_ingot" },
-    { "item": "chemcraftmod:platinum_ingot" },
     { "item": "chemcraftmod:platinum_ingot" },
     { "item": "minecraft:lava_bucket" }
   ],
   "result":
   {
     "item": "chemcraftmod:silver_platinum_ingot",
-    "count": 4
+    "count": 2
   }
 }

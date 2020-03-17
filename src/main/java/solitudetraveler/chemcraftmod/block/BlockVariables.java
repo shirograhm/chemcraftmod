@@ -42,4 +42,9 @@ public class BlockVariables {
     public static TileEntityType<AcceleratorTileEntity> ACCELERATOR_TILE_TYPE;
     @ObjectHolder("chemcraftmod:accelerator")
     public static ContainerType<AcceleratorContainer> ACCELERATOR_CONTAINER;
+
+    @ObjectHolder("chemcraftmod:assembler")
+    public static TileEntityType<AssemblerTileEntity> ASSEMBLER_TILE_TYPE;
+    @ObjectHolder("chemcraftmod:assembler")
+    public static ContainerType<AssemblerContainer> ASSEMBLER_CONTAINER;
 }

@@ -251,6 +251,7 @@ public class AcceleratorTileEntity extends BasicTileEntity implements INamedCont
     @Nullable
     @Override
     public Container createMenu(int i, @Nonnull PlayerInventory playerInventory, @Nonnull PlayerEntity playerEntity) {
+        if(world == null) return null;
         return new AcceleratorContainer(i, world, pos, playerInventory, playerEntity);
     }
 }

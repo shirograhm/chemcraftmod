@@ -20,6 +20,7 @@ public class BlockList {
     public static Block reconstructor;
     public static Block deconstructor;
     public static Block accelerator;
+    public static Block assembler;
     // Experiments
     public static Block volcano;
 }

@@ -115,6 +115,7 @@ public class ChemCraftMod {
                     ItemList.deconstructor = new BasicBlockItem(BlockList.deconstructor, Rarity.UNCOMMON),
                     ItemList.generator = new BasicBlockItem(BlockList.generator),
                     ItemList.accelerator = new BasicBlockItem(BlockList.accelerator, Rarity.UNCOMMON),
+                    ItemList.assembler = new BasicBlockItem(BlockList.assembler, Rarity.UNCOMMON),
                     // Experiments
                     ItemList.volcano = new BasicBlockItem(BlockList.volcano, Rarity.EPIC),
                     // Minerals
@@ -203,6 +204,7 @@ public class ChemCraftMod {
                     BlockList.deconstructor = new DeconstructorBlock(location("deconstructor"), BlockVariables.machineProperties),
                     BlockList.electromagnet = new ElectromagnetBlock(location("electromagnet"), BlockVariables.rockProperties),
                     BlockList.accelerator = new AcceleratorBlock(location("accelerator"), BlockVariables.machineProperties),
+                    BlockList.assembler = new AssemblerBlock(location("assembler"), BlockVariables.machineProperties),
                     BlockList.volcano = new VolcanoBlock(location("volcano"), BlockVariables.rockProperties)
             );
 
@@ -221,7 +223,9 @@ public class ChemCraftMod {
                     TileEntityType.Builder.create(VolcanoTileEntity::new, BlockList.volcano).build(null)
                             .setRegistryName(Objects.requireNonNull(BlockList.volcano.getRegistryName())),
                     TileEntityType.Builder.create(AcceleratorTileEntity::new, BlockList.accelerator).build(null)
-                            .setRegistryName(Objects.requireNonNull(BlockList.accelerator.getRegistryName()))
+                            .setRegistryName(Objects.requireNonNull(BlockList.accelerator.getRegistryName())),
+                    TileEntityType.Builder.create(AssemblerTileEntity::new, BlockList.assembler).build(null)
+                            .setRegistryName(Objects.requireNonNull(BlockList.assembler.getRegistryName()))
             );
 
             LOGGER.info("Chemcraft tile entities registered!");
@@ -255,6 +259,11 @@ public class ChemCraftMod {
                 BlockPos pos = data.readBlockPos();
                 return new AcceleratorContainer(windowId, ChemCraftMod.proxy.getClientWorld(), pos, inv, ChemCraftMod.proxy.getClientPlayer());
             })).setRegistryName(Objects.requireNonNull(BlockList.accelerator.getRegistryName())));
+
+            containers.add(IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new AssemblerContainer(windowId, ChemCraftMod.proxy.getClientWorld(), pos, inv, ChemCraftMod.proxy.getClientPlayer());
+            })).setRegistryName(Objects.requireNonNull(BlockList.assembler.getRegistryName())));
 
             for(ContainerType<?> type : containers) {
                 event.getRegistry().register(type);

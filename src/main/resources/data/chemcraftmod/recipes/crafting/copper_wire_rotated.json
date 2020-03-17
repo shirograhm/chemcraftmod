@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "RCR",
+    "RCR",
+    "RCR"
+  ],
+  "key":
+  {
+    "C": { "item": "chemcraftmod:copper_ingot" },
+    "R": { "item": "chemcraftmod:rubber" }
+  },
+  "result":
+  {
+    "item": "chemcraftmod:copper_wire",
+    "count": 12
+  }
+}

@@ -42,6 +42,7 @@ public class ItemList {
     public static Item deconstructor;
     public static Item electromagnet;
     public static Item accelerator;
+    public static Item assembler;
     public static Item volcano;
     // Minerals
     public static Item aragonite;

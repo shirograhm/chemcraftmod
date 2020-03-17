@@ -1,17 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern":
+  "ingredients":
   [
-    " C",
-    "CP",
-    "S "
+    { "item": "chemcraftmod:silver_platinum_blade" },
+    { "item": "chemcraftmod:radioactive_coating" },
+    { "item": "minecraft:stick" }
   ],
-  "key":
-  {
-    "P": { "item": "chemcraftmod:silver_platinum_blade" },
-    "C": { "item": "chemcraftmod:radioactive_coating" },
-    "S": { "item": "minecraft:stick" }
-  },
   "result":
   {
     "item": "chemcraftmod:irradiator_sword"

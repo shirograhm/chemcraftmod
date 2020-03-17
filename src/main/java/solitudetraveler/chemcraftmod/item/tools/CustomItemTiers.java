@@ -8,8 +8,8 @@ import solitudetraveler.chemcraftmod.item.ItemList;
 import java.util.function.Supplier;
 
 public enum CustomItemTiers implements IItemTier {
-    GODLIKE(5, 6900, 12.0F, 5.0F, 24, () -> {
-        return Ingredient.fromItems(ItemList.getElementNumber(1));
+    SILVER_PLATINUM(5, 6900, 12.0F, 5.0F, 24, () -> {
+        return Ingredient.fromItems(ItemList.silver_platinum_ingot);
     });
 
     private final int harvestLevel;
